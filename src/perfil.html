@@ -1,14 +1,219 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil</title>
+
     <link rel="stylesheet" href="css/perfil.css">
 </head>
+
 <body>
-    <div class="topo">
-    <p>Meu Perfil</p>
-    </div>
+
+    <header class="topo">
+        <p>Meu Perfil</p>
+    </header>
+
+    <main class="perfil-container">
+
+        <section class="perfil-card">
+
+            <!-- FOTO DE PERFIL -->
+            <img src="img/user.png" alt="Foto do usuário" class="foto" id="fotoPerfil">
+
+            <input type="file" id="fotoInput">
+
+            <!-- DADOS -->
+            <h2 id="nomeUsuario">Liz Gonçalves</h2>
+
+            <p>Email: <span id="emailUsuario">liz@email.com</span></p>
+
+            <p>Meta: <span id="bioUsuario">Medicina</span></p>
+
+            <!-- BOTÃO -->
+            <button id="btnEditar">Editar Perfil</button>
+
+        </section>
+
+        <section class="estatisticas">
+
+            <div class="box">
+                <h3>Questões Resolvidas</h3>
+                <p>245</p>
+            </div>
+
+            <div class="box">
+                <h3>Média Redação</h3>
+                <p>880</p>
+            </div>
+
+            <div class="box">
+                <h3>Dias Estudando</h3>
+                <p>32</p>
+            </div>
+
+        </section>
+
+        <!-- METAS -->
+        <section class="metas">
+
+            <h2>Metas da Semana</h2>
+
+            <input type="text" id="inputMeta" placeholder="Digite uma meta">
+
+            <button id="btnAdicionarMeta">Adicionar Meta</button>
+
+            <ul id="metasLista"></ul>
+
+        </section>
+
+    </main>
+
+
+    <!-- EMAILJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        /
+
+
+        // ===============================
+        // METAS SEMANAIS
+        // ===============================
+
+        const metasLista = document.getElementById("metasLista");
+        const inputMeta = document.getElementById("inputMeta");
+        const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
+
+        let metas = JSON.parse(localStorage.getItem("metas")) || [];
+
+
+        function renderizarMetas() {
+
+            metasLista.innerHTML = "";
+
+            metas.forEach((meta, index) => {
+
+                const li = document.createElement("li");
+
+                li.innerHTML = `
+                    <input type="checkbox" ${meta.concluida ? "checked" : ""}>
+                    <span>${meta.texto}</span>
+                `;
+
+                const checkbox = li.querySelector("input");
+
+                checkbox.addEventListener("change", () => {
+
+                    metas[index].concluida = checkbox.checked;
+
+                    localStorage.setItem("metas", JSON.stringify(metas));
+
+                    verificarMetas();
+                });
+
+                metasLista.appendChild(li);
+            });
+        }
+
+
+        btnAdicionarMeta.addEventListener("click", () => {
+
+            if (inputMeta.value.trim() !== "") {
+
+                metas.push({
+                    texto: inputMeta.value,
+                    concluida: false
+                });
+
+                localStorage.setItem("metas", JSON.stringify(metas));
+
+                inputMeta.value = "";
+
+                renderizarMetas();
+            }
+        });
+
+        renderizarMetas();
+
+
+        // ===============================
+        // EMAILJS
+        // ===============================
+
+        // coloque sua PUBLIC KEY aqui
+        emailjs.init("SUA_PUBLIC_KEY");
+
+
+        // ===============================
+        // VERIFICAR METAS
+        // ===============================
+
+        function verificarMetas() {
+
+            const todasConcluidas = metas.every(meta => meta.concluida);
+
+            if (todasConcluidas && metas.length > 0) {
+
+                enviarEmailParabens();
+
+            } else {
+
+                enviarEmailIncentivo();
+            }
+        }
+
+
+        // ===============================
+        // EMAIL PARABÉNS
+        // ===============================
+
+        function enviarEmailParabens() {
+
+            emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
+
+                nome: document.getElementById("nomeUsuario").innerText,
+
+                mensagem: "Parabéns! Você concluiu todas as metas da semana!"
+
+            }).then(() => {
+
+                console.log("Email de parabéns enviado!");
+
+            }).catch((erro) => {
+
+                console.log("Erro:", erro);
+            });
+        }
+
+
+        // ===============================
+        // EMAIL INCENTIVO
+        // ===============================
+
+        function enviarEmailIncentivo() {
+
+            emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
+
+                nome: document.getElementById("nomeUsuario").innerText,
+
+                mensagem: "Você ainda não concluiu suas metas da semana. Continue firme, você consegue!"
+
+            }).then(() => {
+
+                console.log("Email de incentivo enviado!");
+
+            }).catch((erro) => {
+
+                console.log("Erro:", erro);
+            });
+        }
+
+    </script>
+
 </body>
+
 </html>
