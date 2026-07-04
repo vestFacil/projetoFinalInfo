@@ -1,6 +1,6 @@
 
-document.getElementById("quest").addEventListener("click", () => {
-    window.location.href = "questao.html";
+document.getElementById("materia").addEventListener("click", () => {
+    window.location.href = "materia.html";
 });
 
 document.getElementById("red").addEventListener("click", () => {

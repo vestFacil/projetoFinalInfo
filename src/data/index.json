@@ -1,0 +1,202 @@
+[
+  {
+    "materia": "matematica",
+    "conteudos": [
+      "numeros",
+      "razoes_proporcoes",
+      "porcentagem",
+      "juros",
+      "equacoes",
+      "funcoes",
+      "progressoes",
+      "matrizes",
+      "determinantes",
+      "sistemas_lineares",
+      "analise_combinatoria",
+      "probabilidade",
+      "estatistica",
+      "geometria_plana",
+      "geometria_espacial",
+      "geometria_analitica",
+      "trigonometria",
+      "logaritmos",
+      "exponenciais"
+    ]
+  },
+  {
+    "materia": "portugues",
+    "conteudos": [
+      "interpretacao_textual",
+      "gramatica",
+      "ortografia",
+      "pontuacao",
+      "classes_de_palavras",
+      "sintaxe",
+      "concordancia",
+      "regencia",
+      "crase",
+      "semantica",
+      "figuras_de_linguagem",
+      "variacao_linguistica"
+    ]
+  },
+  {
+    "materia": "literatura",
+    "conteudos": [
+      "escolas_literarias",
+      "autores_e_obras",
+      "generos_literarios",
+      "interpretacao_literaria"
+    ]
+  },
+  {
+    "materia": "ingles",
+    "conteudos": [
+      "interpretacao",
+      "vocabulario",
+      "gramatica"
+    ]
+  },
+  {
+    "materia": "espanhol",
+    "conteudos": [
+      "interpretacao",
+      "vocabulario",
+      "gramatica"
+    ]
+  },
+  {
+    "materia": "artes",
+    "conteudos": [
+      "historia_da_arte",
+      "movimentos_artisticos",
+      "arte_brasileira",
+      "musica",
+      "teatro",
+      "cinema"
+    ]
+  },
+  {
+    "materia": "educacao_fisica",
+    "conteudos": [
+      "esportes",
+      "corpo_e_saude",
+      "praticas_corporais",
+      "jogos"
+    ]
+  },
+  {
+    "materia": "historia",
+    "conteudos": [
+      "historia_do_brasil",
+      "historia_geral",
+      "brasil_colonia",
+      "brasil_imperio",
+      "republica",
+      "idade_antiga",
+      "idade_media",
+      "idade_moderna",
+      "idade_contemporanea",
+      "guerras_mundiais",
+      "guerra_fria"
+    ]
+  },
+  {
+    "materia": "geografia",
+    "conteudos": [
+      "cartografia",
+      "geografia_fisica",
+      "geografia_humana",
+      "climatologia",
+      "relevo",
+      "hidrografia",
+      "biomas",
+      "urbanizacao",
+      "globalizacao",
+      "geopolitica",
+      "demografia",
+      "economia"
+    ]
+  },
+  {
+    "materia": "filosofia",
+    "conteudos": [
+      "filosofia_antiga",
+      "filosofia_medieval",
+      "filosofia_moderna",
+      "filosofia_contemporanea",
+      "etica",
+      "politica",
+      "conhecimento"
+    ]
+  },
+  {
+    "materia": "sociologia",
+    "conteudos": [
+      "cultura",
+      "cidadania",
+      "movimentos_sociais",
+      "trabalho",
+      "estado",
+      "globalizacao",
+      "desigualdade_social"
+    ]
+  },
+  {
+    "materia": "biologia",
+    "conteudos": [
+      "citologia",
+      "histologia",
+      "fisiologia_humana",
+      "botanica",
+      "zoologia",
+      "ecologia",
+      "genetica",
+      "evolucao",
+      "biotecnologia",
+      "parasitologia",
+      "microbiologia",
+      "virologia",
+      "imunologia"
+    ]
+  },
+  {
+    "materia": "quimica",
+    "conteudos": [
+      "quimica_geral",
+      "estrutura_atomica",
+      "tabela_periodica",
+      "ligacoes_quimicas",
+      "funcoes_inorganicas",
+      "estequiometria",
+      "solucoes",
+      "termoquimica",
+      "cinetica_quimica",
+      "equilibrio_quimico",
+      "eletroquimica",
+      "quimica_organica",
+      "funcoes_organicas",
+      "isomeria"
+    ]
+  },
+  {
+    "materia": "fisica",
+    "conteudos": [
+      "mecanica",
+      "cinematica",
+      "dinamica",
+      "trabalho_e_energia",
+      "gravitacao",
+      "hidrostatica",
+      "termologia",
+      "termodinamica",
+      "optica",
+      "ondulatoria",
+      "acustica",
+      "eletricidade",
+      "magnetismo",
+      "eletromagnetismo",
+      "fisica_moderna"
+    ]
+  }
+]
