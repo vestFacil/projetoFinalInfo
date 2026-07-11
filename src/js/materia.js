@@ -47,14 +47,18 @@ botoes.forEach(botao => {
 
 });
 
-lista.addEventListener("click", (e) => {
+lista.addEventListener("click", (evento) => {
 
-    if (!e.target.classList.contains("item-conteudo")) return;
+    if(evento.target.classList.contains("item-conteudo")){
 
-    const materia = e.target.dataset.materia;
-    const conteudo = e.target.dataset.conteudo;
+        console.log("clicou");
 
-    console.log(materia);
-    console.log(conteudo);
+        const materia = evento.target.dataset.materia;
+        const conteudo = evento.target.dataset.conteudo;
+
+        window.location.href =
+        `questao.html?materia=${materia}&conteudo=${conteudo}`;
+
+    }
 
 });
