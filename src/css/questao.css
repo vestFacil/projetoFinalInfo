@@ -1,0 +1,29 @@
+.alternativa {
+    display: block;
+    padding: 15px;
+    margin: 10px 0;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.alternativa:hover {
+    background-color: #f0f0f0;
+}
+
+
+.correta {
+    background-color: #b8f7b8;
+    border-color: green;
+}
+
+
+.errada {
+    background-color: #f7b8b8;
+    border-color: red;
+}

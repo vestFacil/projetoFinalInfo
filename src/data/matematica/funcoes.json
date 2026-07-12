@@ -1,6 +1,7 @@
 [
     {
-        "enunciado": "Se f(x) = 2x + 3, qual é o valor de f(2)?",
+        "enunciado": "Se f(x)=2x+3, qual é o valor de f(2)?",
+
         "alternativas": [
             "5",
             "7",
@@ -8,6 +9,9 @@
             "10",
             "12"
         ],
-        "resposta": 1
+
+        "resposta": 1,
+
+        "explicacao": "Substituindo x por 2: f(2)=2(2)+3=7."
     }
 ]

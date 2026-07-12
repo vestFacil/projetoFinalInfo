@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questões</title>
+    <link rel="stylesheet" href="css/questao.css">
 </head>
 <body>
-    <div class="questao">
+    
+<div id="configuracao">
+
+    <h2>Quantidade de questões</h2>
+
+    <select id="quantidade">
+        <option value="5">5 questões</option>
+        <option value="10">10 questões</option>
+        <option value="20">20 questões</option>
+    </select>
+
+    <button id="iniciar">
+        Começar
+    </button>
+
+</div>
+
+<div id="questao" style="display: none;">
+
+    <p id="contador"></p>
 
     <h1 id="titulo"></h1>
 
-    <p id="enunciado">
-        Carregando...
-    </p>
+    <p id="enunciado"></p>
 
     <div id="alternativas"></div>
 
@@ -20,7 +38,15 @@
         Responder
     </button>
 
-    <script src="js/questao.js"></script>
+    <p id="resultado"></p>
+
+    <button id="proxima">
+        Próxima Questão
+    </button>
+
 </div>
+
+    <script src="js/questao.js"></script>
+    
 </body>
 </html>
