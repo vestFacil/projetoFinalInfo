@@ -7,46 +7,54 @@
     <link rel="stylesheet" href="css/questao.css">
 </head>
 <body>
-    
-<div id="configuracao">
 
-    <h2>Quantidade de questões</h2>
+    <!-- Popup -->
+    <div id="popupConfiguracao" class="popup">
 
-    <select id="quantidade">
-        <option value="5">5 questões</option>
-        <option value="10">10 questões</option>
-        <option value="20">20 questões</option>
-    </select>
+        <div class="popup-conteudo">
 
-    <button id="iniciar">
-        Começar
-    </button>
+            <div class="titulo">
+                <h1>Configuração da Lista</h1>
+            </div>
 
-</div>
+            <select id="quantidade">
+                <option value="5">5 questões</option>
+                <option value="10">10 questões</option>
+                <option value="20">20 questões</option>
+            </select>
 
-<div id="questao" style="display: none;">
+            <button id="iniciar">
+                Começar
+            </button>
 
-    <p id="contador"></p>
+        </div>
 
-    <h1 id="titulo"></h1>
+    </div>
 
-    <p id="enunciado"></p>
+    <!-- Questões -->
+    <div id="questao">
 
-    <div id="alternativas"></div>
+        <p id="contador"></p>
 
-    <button id="responder">
-        Responder
-    </button>
+        <h1 id="titulo"></h1>
 
-    <p id="resultado"></p>
+        <p id="enunciado"></p>
 
-    <button id="proxima">
-        Próxima Questão
-    </button>
+        <div id="alternativas"></div>
 
-</div>
+        <button id="responder">
+            Responder
+        </button>
+
+        <p id="resultado"></p>
+
+        <button id="proxima">
+            Próxima Questão
+        </button>
+
+    </div>
 
     <script src="js/questao.js"></script>
-    
+
 </body>
 </html>

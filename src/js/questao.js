@@ -16,8 +16,8 @@ const contador = document.getElementById("contador");
 const quantidade = document.getElementById("quantidade");
 const iniciar = document.getElementById("iniciar");
 
+const popup = document.getElementById("popupConfiguracao");
 const areaQuestao = document.getElementById("questao");
-const configuracao = document.getElementById("configuracao");
 
 let respostaCorreta;
 let explicacao;
@@ -30,15 +30,14 @@ let pontos = 0;
 let respondeu = false;
 let quantidadeQuestoes = 10;
 
-
-function salvarProgresso(){
+function salvarProgresso() {
 
     const progresso = {
-        materia: materia,
-        conteudo: conteudo,
+        materia,
+        conteudo,
         questoes: questoesSelecionadas,
-        numeroQuestao: numeroQuestao,
-        pontos: pontos,
+        numeroQuestao,
+        pontos,
         quantidade: quantidadeQuestoes
     };
 
@@ -48,21 +47,20 @@ function salvarProgresso(){
     );
 }
 
-
-function carregarProgresso(){
+function carregarProgresso() {
 
     const salvo = localStorage.getItem("progressoQuestao");
 
-    if(!salvo){
+    if (!salvo) {
         return false;
     }
 
     const progresso = JSON.parse(salvo);
 
-    if(
+    if (
         progresso.materia !== materia ||
         progresso.conteudo !== conteudo
-    ){
+    ) {
         return false;
     }
 
@@ -71,29 +69,28 @@ function carregarProgresso(){
     pontos = progresso.pontos;
     quantidadeQuestoes = progresso.quantidade;
 
+    quantidade.value = quantidadeQuestoes;
+
     mostrarQuestao();
 
     return true;
 }
 
-
-iniciar.addEventListener("click", async ()=>{
+iniciar.addEventListener("click", async () => {
 
     quantidadeQuestoes = Number(quantidade.value);
 
-    configuracao.style.display = "none";
-    areaQuestao.style.display = "block";
+    popup.style.display = "none";
 
     const continuando = carregarProgresso();
 
-    if(!continuando){
+    if (!continuando) {
         await carregarQuestoes();
     }
 
 });
 
-
-async function carregarQuestoes(){
+async function carregarQuestoes() {
 
     const resposta = await fetch(
         `data/${materia}/${conteudo}.json`
@@ -112,8 +109,7 @@ async function carregarQuestoes(){
 
 }
 
-
-function mostrarQuestao(){
+function mostrarQuestao() {
 
     respondeu = false;
 
@@ -125,8 +121,7 @@ function mostrarQuestao(){
     respostaCorreta = questao.resposta;
     explicacao = questao.explicacao;
 
-    titulo.textContent =
-        `${materia} - ${conteudo}`;
+    titulo.textContent = `${materia} - ${conteudo}`;
 
     contador.textContent =
         `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
@@ -136,7 +131,7 @@ function mostrarQuestao(){
     alternativas.innerHTML = "";
     resultado.textContent = "";
 
-    questao.alternativas.forEach((alt,index)=>{
+    questao.alternativas.forEach((alt, index) => {
 
         alternativas.innerHTML += `
             <label class="alternativa" data-index="${index}">
@@ -149,16 +144,15 @@ function mostrarQuestao(){
 
 }
 
+botaoResponder.addEventListener("click", () => {
 
-botaoResponder.addEventListener("click", ()=>{
-
-    if(respondeu) return;
+    if (respondeu) return;
 
     const selecionada = document.querySelector(
         'input[name="resposta"]:checked'
     );
 
-    if(!selecionada){
+    if (!selecionada) {
 
         resultado.textContent = "Escolha uma alternativa!";
         return;
@@ -171,70 +165,79 @@ botaoResponder.addEventListener("click", ()=>{
     botaoProxima.disabled = false;
 
     document
-    .querySelectorAll('input[name="resposta"]')
-    .forEach(radio=>{
-        radio.disabled = true;
-    });
-
+        .querySelectorAll('input[name="resposta"]')
+        .forEach(radio => {
+            radio.disabled = true;
+        });
 
     const valorSelecionado = Number(selecionada.value);
 
-
-    if(valorSelecionado === respostaCorreta){
+    if (valorSelecionado === respostaCorreta) {
 
         resultado.textContent =
-        "✅ Você acertou!\n\n" + explicacao;
+            "✅ Você acertou!\n\n" + explicacao;
 
         pontos++;
 
-    }else{
+    } else {
 
         resultado.textContent =
-        "❌ Você errou!\n\n" + explicacao;
+            "❌ Você errou!\n\n" + explicacao;
 
     }
 
-
     document
-    .querySelectorAll(".alternativa")
-    .forEach(alternativa=>{
+        .querySelectorAll(".alternativa")
+        .forEach(alternativa => {
 
-        const valor = Number(alternativa.dataset.index);
+            const valor = Number(alternativa.dataset.index);
 
-        if(valor === respostaCorreta){
-            alternativa.classList.add("correta");
-        }
+            if (valor === respostaCorreta) {
+                alternativa.classList.add("correta");
+            }
 
-        if(
-            valor === valorSelecionado &&
-            valor !== respostaCorreta
-        ){
-            alternativa.classList.add("errada");
-        }
+            if (
+                valor === valorSelecionado &&
+                valor !== respostaCorreta
+            ) {
+                alternativa.classList.add("errada");
+            }
 
-    });
-
+        });
 
     salvarProgresso();
 
 });
 
-
-botaoProxima.addEventListener("click", ()=>{
+botaoProxima.addEventListener("click", () => {
 
     numeroQuestao++;
 
-    if(numeroQuestao < questoesSelecionadas.length){
+    if (numeroQuestao < questoesSelecionadas.length) {
 
         salvarProgresso();
         mostrarQuestao();
 
-    }else{
+    } else {
 
         resultado.textContent =
-        `Fim! Você acertou ${pontos} de ${questoesSelecionadas.length} questões.`;
+            `Fim! Você acertou ${pontos} de ${questoesSelecionadas.length} questões.`;
+
+        botaoResponder.disabled = true;
+        botaoProxima.disabled = true;
 
         localStorage.removeItem("progressoQuestao");
+
+    }
+
+});
+
+window.addEventListener("beforeunload", (event) => {
+
+    if (questoesSelecionadas.length > 0) {
+
+        event.preventDefault();
+        event.returnValue = "";
 
     }
 
