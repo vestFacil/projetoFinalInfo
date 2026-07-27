@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil</title>
-
     <link rel="stylesheet" href="css/perfil.css">
 </head>
 
@@ -18,202 +17,153 @@
     <main class="perfil-container">
 
         <section class="perfil-card">
-
-            <!-- FOTO DE PERFIL -->
             <img src="img/user.png" alt="Foto do usuário" class="foto" id="fotoPerfil">
+            <input type="file" id="fotoInput" accept="image/*" style="display:none">
 
-            <input type="file" id="fotoInput">
-
-            <!-- DADOS -->
             <h2 id="nomeUsuario">Liz Gonçalves</h2>
-
             <p>Email: <span id="emailUsuario">liz@email.com</span></p>
-
             <p>Meta: <span id="bioUsuario">Medicina</span></p>
 
-            <!-- BOTÃO -->
             <button id="btnEditar">Editar Perfil</button>
-
+            <button id="btnSalvar" style="display:none">Salvar</button>
         </section>
 
         <section class="estatisticas">
-
             <div class="box">
                 <h3>Questões Resolvidas</h3>
-                <p>245</p>
+                <p id="questoesResolvidas">0</p>
             </div>
-
             <div class="box">
                 <h3>Média Redação</h3>
-                <p>880</p>
+                <p id="mediaRedacao">0</p>
             </div>
-
             <div class="box">
                 <h3>Dias Estudando</h3>
-                <p>32</p>
+                <p id="diasEstudando">0</p>
             </div>
-
         </section>
 
-        <!-- METAS -->
         <section class="metas">
-
             <h2>Metas da Semana</h2>
-
             <input type="text" id="inputMeta" placeholder="Digite uma meta">
-
             <button id="btnAdicionarMeta">Adicionar Meta</button>
-
             <ul id="metasLista"></ul>
-
         </section>
 
     </main>
 
-
-    <!-- EMAILJS -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <!-- JAVASCRIPT -->
     <script>
+        const nomeUsuario = document.getElementById("nomeUsuario");
+        const emailUsuario = document.getElementById("emailUsuario");
+        const bioUsuario = document.getElementById("bioUsuario");
+        const fotoPerfil = document.getElementById("fotoPerfil");
+        const fotoInput = document.getElementById("fotoInput");
 
-        /
+        const questoesResolvidas = document.getElementById("questoesResolvidas");
+        const mediaRedacao = document.getElementById("mediaRedacao");
+        const diasEstudando = document.getElementById("diasEstudando");
 
+        // Carregar dados ao abrir
+        window.onload = () => {
+            if (localStorage.getItem("nome")) nomeUsuario.textContent = localStorage.getItem("nome");
+            if (localStorage.getItem("email")) emailUsuario.textContent = localStorage.getItem("email");
+            if (localStorage.getItem("bio")) bioUsuario.textContent = localStorage.getItem("bio");
+            if (localStorage.getItem("foto")) fotoPerfil.src = localStorage.getItem("foto");
 
-        // ===============================
-        // METAS SEMANAIS
-        // ===============================
+            // Estatísticas
+            questoesResolvidas.textContent = localStorage.getItem("questoesResolvidas") || 0;
+            mediaRedacao.textContent = localStorage.getItem("mediaRedacao") || 0;
 
-        const metasLista = document.getElementById("metasLista");
-        const inputMeta = document.getElementById("inputMeta");
-        const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
+            // Dias estudando: incrementa se for um novo dia
+            const hoje = new Date().toDateString();
+            const ultimoAcesso = localStorage.getItem("ultimoAcesso");
+            let dias = parseInt(localStorage.getItem("diasEstudando")) || 0;
 
-        let metas = JSON.parse(localStorage.getItem("metas")) || [];
+            if (ultimoAcesso !== hoje) {
+                dias++;
+                localStorage.setItem("diasEstudando", dias);
+                localStorage.setItem("ultimoAcesso", hoje);
+            }
+            diasEstudando.textContent = dias;
 
+            // Metas
+            const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
+            metasSalvas.forEach(meta => adicionarMetaNaLista(meta));
+        };
 
-        function renderizarMetas() {
+        // Editar perfil
+        document.getElementById("btnEditar").addEventListener("click", () => {
+            nomeUsuario.innerHTML = `<input type="text" id="inputNome" value="${nomeUsuario.textContent}">`;
+            emailUsuario.innerHTML = `<input type="email" id="inputEmail" value="${emailUsuario.textContent}">`;
+            bioUsuario.innerHTML = `<input type="text" id="inputBio" value="${bioUsuario.textContent}">`;
+            fotoInput.style.display = "block";
 
-            metasLista.innerHTML = "";
+            document.getElementById("btnEditar").style.display = "none";
+            document.getElementById("btnSalvar").style.display = "inline-block";
+        });
 
-            metas.forEach((meta, index) => {
+        document.getElementById("btnSalvar").addEventListener("click", () => {
+            const novoNome = document.getElementById("inputNome").value;
+            const novoEmail = document.getElementById("inputEmail").value;
+            const novaBio = document.getElementById("inputBio").value;
 
-                const li = document.createElement("li");
+            nomeUsuario.textContent = novoNome;
+            emailUsuario.textContent = novoEmail;
+            bioUsuario.textContent = novaBio;
 
-                li.innerHTML = `
-                    <input type="checkbox" ${meta.concluida ? "checked" : ""}>
-                    <span>${meta.texto}</span>
-                `;
+            localStorage.setItem("nome", novoNome);
+            localStorage.setItem("email", novoEmail);
+            localStorage.setItem("bio", novaBio);
 
-                const checkbox = li.querySelector("input");
+            fotoInput.style.display = "none";
+            document.getElementById("btnSalvar").style.display = "none";
+            document.getElementById("btnEditar").style.display = "inline-block";
+        });
 
-                checkbox.addEventListener("change", () => {
-
-                    metas[index].concluida = checkbox.checked;
-
-                    localStorage.setItem("metas", JSON.stringify(metas));
-
-                    verificarMetas();
-                });
-
-                metasLista.appendChild(li);
-            });
-        }
-
-
-        btnAdicionarMeta.addEventListener("click", () => {
-
-            if (inputMeta.value.trim() !== "") {
-
-                metas.push({
-                    texto: inputMeta.value,
-                    concluida: false
-                });
-
-                localStorage.setItem("metas", JSON.stringify(metas));
-
-                inputMeta.value = "";
-
-                renderizarMetas();
+        // Alterar foto
+        fotoInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    fotoPerfil.src = reader.result;
+                    localStorage.setItem("foto", reader.result);
+                };
+                reader.readAsDataURL(file);
             }
         });
 
-        renderizarMetas();
+        // Metas
+        const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
+        const inputMeta = document.getElementById("inputMeta");
+        const metasLista = document.getElementById("metasLista");
 
-
-        // ===============================
-        // EMAILJS
-        // ===============================
-
-        // coloque sua PUBLIC KEY aqui
-        emailjs.init("SUA_PUBLIC_KEY");
-
-
-        // ===============================
-        // VERIFICAR METAS
-        // ===============================
-
-        function verificarMetas() {
-
-            const todasConcluidas = metas.every(meta => meta.concluida);
-
-            if (todasConcluidas && metas.length > 0) {
-
-                enviarEmailParabens();
-
-            } else {
-
-                enviarEmailIncentivo();
+        btnAdicionarMeta.addEventListener("click", () => {
+            if (inputMeta.value.trim() !== "") {
+                adicionarMetaNaLista(inputMeta.value);
+                const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
+                metasSalvas.push(inputMeta.value);
+                localStorage.setItem("metas", JSON.stringify(metasSalvas));
+                inputMeta.value = "";
             }
-        }
+        });
 
-
-        // ===============================
-        // EMAIL PARABÉNS
-        // ===============================
-
-        function enviarEmailParabens() {
-
-            emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
-
-                nome: document.getElementById("nomeUsuario").innerText,
-
-                mensagem: "Parabéns! Você concluiu todas as metas da semana!"
-
-            }).then(() => {
-
-                console.log("Email de parabéns enviado!");
-
-            }).catch((erro) => {
-
-                console.log("Erro:", erro);
+        function adicionarMetaNaLista(meta) {
+            const li = document.createElement("li");
+            li.textContent = meta;
+            const btnExcluir = document.createElement("button");
+            btnExcluir.textContent = "❌";
+            btnExcluir.style.marginLeft = "10px";
+            btnExcluir.addEventListener("click", () => {
+                li.remove();
+                let metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
+                metasSalvas = metasSalvas.filter(m => m !== meta);
+                localStorage.setItem("metas", JSON.stringify(metasSalvas));
             });
+            li.appendChild(btnExcluir);
+            metasLista.appendChild(li);
         }
-
-
-        // ===============================
-        // EMAIL INCENTIVO
-        // ===============================
-
-        function enviarEmailIncentivo() {
-
-            emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
-
-                nome: document.getElementById("nomeUsuario").innerText,
-
-                mensagem: "Você ainda não concluiu suas metas da semana. Continue firme, você consegue!"
-
-            }).then(() => {
-
-                console.log("Email de incentivo enviado!");
-
-            }).catch((erro) => {
-
-                console.log("Erro:", erro);
-            });
-        }
-
     </script>
 
 </body>
-
 </html>
