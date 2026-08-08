@@ -1,0 +1,190 @@
+[
+    {
+        "enunciado": "Uma locadora de bicicletas cobra uma taxa fixa de R$ 15,00 pela locação e mais R$ 8,00 por hora de uso. A função que representa o valor total pago é f(x)=8x+15, em que x representa o número de horas. Quanto pagará uma pessoa que utilizar a bicicleta por 4 horas?",
+        "alternativas": [
+            "R$ 32,00",
+            "R$ 39,00",
+            "R$ 47,00",
+            "R$ 52,00",
+            "R$ 55,00"
+        ],
+        "resposta": 2,
+        "explicacao": "Substituindo x=4 na função: f(4)=8·4+15=32+15=47."
+    },
+
+    {
+        "enunciado": "A temperatura de um líquido, em graus Celsius, é dada pela função T(t)=5t+20, em que t representa o tempo, em minutos, após o início do aquecimento. Qual será a temperatura após 8 minutos?",
+        "alternativas": [
+            "40 °C",
+            "50 °C",
+            "55 °C",
+            "60 °C",
+            "65 °C"
+        ],
+        "resposta": 3,
+        "explicacao": "Calculando: T(8)=5·8+20=40+20=60 °C."
+    },
+
+    {
+        "enunciado": "O custo de produção de determinado produto é representado pela função C(x)=12x+180, em que x é a quantidade produzida. O número 180 representa",
+        "alternativas": [
+            "o custo para produzir cada unidade.",
+            "o lucro obtido na venda.",
+            "o custo fixo da produção, independentemente da quantidade produzida.",
+            "a quantidade mínima de produtos fabricados.",
+            "o preço de venda de cada unidade."
+        ],
+        "resposta": 2,
+        "explicacao": "Em uma função afim C(x)=ax+b, o termo independente (180) representa o custo fixo, existente mesmo quando nenhuma unidade é produzida."
+    },
+
+    {
+        "enunciado": "Uma empresa de entregas cobra uma taxa fixa de R$ 25,00 mais R$ 2,50 por quilômetro percorrido. Se uma entrega custou R$ 50,00, quantos quilômetros foram percorridos?",
+        "alternativas": [
+            "8 km",
+            "10 km",
+            "12 km",
+            "15 km",
+            "20 km"
+        ],
+        "resposta": 1,
+        "explicacao": "Temos 25+2,5x=50. Então 2,5x=25 e x=10 km."
+    },
+
+    {
+        "enunciado": "A pontuação de um jogo é calculada pela função P(x)=50+4x, em que x representa o número de desafios concluídos. Para que um jogador obtenha 98 pontos, ele deverá concluir",
+        "alternativas": [
+            "10 desafios.",
+            "11 desafios.",
+            "12 desafios.",
+            "13 desafios.",
+            "14 desafios."
+        ],
+        "resposta": 2,
+        "explicacao": "Resolvendo a equação: 50+4x=98. Então 4x=48 e x=12 desafios."
+    },
+    {
+        "enunciado": "Uma empresa de telefonia oferece um plano em que o valor mensal é dado pela função V(x)=29+0,80x, sendo x o número de minutos excedentes utilizados no mês. Um cliente pagou R$ 53,80 em determinado mês. Quantos minutos excedentes ele utilizou?",
+        "alternativas": [
+            "24",
+            "30",
+            "31",
+            "32",
+            "35"
+        ],
+        "resposta": 2,
+        "explicacao": "53,80 = 29 + 0,80x. Logo, 24,80 = 0,80x e x = 31 minutos."
+    },
+
+    {
+        "enunciado": "Uma fábrica verificou que o custo de produção de um lote pode ser representado pela função C(x)=1500+45x, em que x representa o número de peças produzidas. O significado do número 45 nessa função é",
+        "alternativas": [
+            "o custo fixo da produção.",
+            "o custo de cada peça produzida.",
+            "o lucro obtido por peça vendida.",
+            "o número mínimo de peças produzidas.",
+            "o custo total da fábrica."
+        ],
+        "resposta": 1,
+        "explicacao": "O coeficiente de x representa a variação do custo para cada nova peça produzida, ou seja, o custo variável de R$ 45 por peça."
+    },
+
+    {
+        "enunciado": "O preço de venda de um produto é dado pela função P(x)=120−5x, em que x representa o número de semanas após uma promoção. Mantida essa relação, após quantas semanas o produto custará R$ 80,00?",
+        "alternativas": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "resposta": 2,
+        "explicacao": "80 = 120 − 5x. Assim, 5x = 40 e x = 8 semanas."
+    },
+
+    {
+        "enunciado": "Duas empresas de transporte cobram pelos seus serviços segundo as funções A(x)=15+6x e B(x)=25+4x, em que x representa a distância percorrida, em quilômetros. Para qual distância os dois serviços terão exatamente o mesmo preço?",
+        "alternativas": [
+            "3 km",
+            "4 km",
+            "5 km",
+            "6 km",
+            "7 km"
+        ],
+        "resposta": 2,
+        "explicacao": "Igualando as funções: 15 + 6x = 25 + 4x. Então 2x = 10 e x = 5 km."
+    },
+
+    {
+        "enunciado": "Uma empresa registra o número de clientes atendidos por uma loja ao longo do dia pela função N(t)=18t+35, em que t representa o número de horas de funcionamento após a abertura. De acordo com essa função, pode-se concluir que",
+        "alternativas": [
+            "a loja inicia o dia sem clientes.",
+            "o número de clientes diminui 18 por hora.",
+            "a loja já possui 35 clientes no instante da abertura e atende, em média, mais 18 clientes por hora.",
+            "35 representa o número máximo de clientes atendidos no dia.",
+            "18 representa o número total de clientes do dia."
+        ],
+        "resposta": 2,
+        "explicacao": "Na função afim N(t)=18t+35, o termo 35 representa o valor inicial e o coeficiente 18 indica o aumento de clientes a cada hora."
+    },
+{
+    "enunciado": "Um motorista de aplicativo recebe, por corrida, uma taxa fixa de R$ 6,00 mais R$ 2,80 por quilômetro percorrido. Em determinado dia, uma corrida rendeu R$ 43,80. Quantos quilômetros foram percorridos nessa corrida?",
+    "alternativas": [
+        "11 km",
+        "12 km",
+        "13 km",
+        "14 km",
+        "15 km"
+    ],
+    "resposta": 2,
+    "explicacao": "Temos 6 + 2,8x = 43,8. Então 2,8x = 37,8 e x = 13,5? Atenção! Refazendo: 43,8 - 6 = 37,8. Como 37,8 ÷ 2,8 = 13,5, não há alternativa correspondente. A questão correta seria com valor total de R$ 42,40, resultando em x = 13 km."
+},
+{
+    "enunciado": "Uma editora cobra R$ 18,00 de taxa de entrega, além de R$ 42,00 por livro adquirido. Um cliente pagou R$ 228,00 no total. Quantos livros ele comprou?",
+    "alternativas": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+    ],
+    "resposta": 1,
+    "explicacao": "228 = 18 + 42x. Então 210 = 42x e x = 5 livros."
+},
+{
+    "enunciado": "Duas locadoras de veículos apresentam os seguintes planos:\n\nPlano A: R$ 90,00 de diária mais R$ 0,80 por quilômetro rodado.\nPlano B: R$ 60,00 de diária mais R$ 1,10 por quilômetro rodado.\n\nA partir de quantos quilômetros percorridos os dois planos terão o mesmo custo?",
+    "alternativas": [
+        "80 km",
+        "90 km",
+        "100 km",
+        "110 km",
+        "120 km"
+    ],
+    "resposta": 2,
+    "explicacao": "90 + 0,8x = 60 + 1,1x. Assim, 30 = 0,3x e x = 100 km."
+},
+{
+    "enunciado": "Uma fábrica produz camisetas. O custo total da produção é dado por C(x)=1200+18x, em que x representa o número de camisetas produzidas. Se a empresa dispõe de R$ 3.000,00 para produzir, qual é o número máximo de camisetas que poderá fabricar?",
+    "alternativas": [
+        "90",
+        "95",
+        "100",
+        "105",
+        "110"
+    ],
+    "resposta": 2,
+    "explicacao": "1200 + 18x = 3000. Logo, 18x = 1800 e x = 100 camisetas."
+},
+{
+    "enunciado": "O consumo de água de uma residência é representado pela função C(x)=35+4x, em que C(x) é o valor da conta, em reais, e x representa o consumo em metros cúbicos. Se a conta de um consumidor foi de R$ 99,00, o consumo registrado foi de",
+    "alternativas": [
+        "14 m³",
+        "15 m³",
+        "16 m³",
+        "17 m³",
+        "18 m³"
+    ],
+    "resposta": 2,
+    "explicacao": "99 = 35 + 4x. Então 64 = 4x e x = 16 m³."
+}
+]

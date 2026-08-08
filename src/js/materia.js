@@ -8,57 +8,81 @@ function formatarNome(texto) {
         .replace(/\b\w/g, letra => letra.toUpperCase());
 }
 
-let materias = [];
+const grupos = {
+    "ciencias-humanas": [
+        "historia",
+        "geografia",
+        "filosofia",
+        "sociologia",
+        "artes"
+    ],
 
-async function carregarMaterias() {
-    const resposta = await fetch("data/index.json");
-    materias = await resposta.json();
+    "ciencias-natureza": [
+        "biologia",
+        "fisica",
+        "quimica"
+    ],
 
-    console.log(materias);
-}
+    "linguagens": [
+        "portugues",
+        "literatura",
+        "ingles",
+        "espanhol"
+    ],
 
-carregarMaterias();
+    "matematica": [
+        "matematica"
+    ]
+};
+
+const nomesGrupos = {
+    "ciencias-humanas": "Ciências Humanas",
+    "ciencias-natureza": "Ciências da Natureza",
+    "linguagens": "Linguagens",
+    "matematica": "Matemática"
+};
 
 botoes.forEach(botao => {
 
     botao.addEventListener("click", () => {
 
-        const nomeMateria = botao.dataset.materia;
+        const grupo = botao.dataset.materia;
 
-        titulo.textContent = botao.textContent;
-
-        const materia = materias.find(m => m.materia === nomeMateria);
+        titulo.textContent =
+            nomesGrupos[grupo] || formatarNome(grupo);
 
         lista.innerHTML = "";
 
-        materia.conteudos.forEach(conteudo => {
+        const materias = grupos[grupo];
+
+        if (!materias) {
+            return;
+        }
+
+        materias.forEach(materia => {
 
             lista.innerHTML += `
-            <li class="item-conteudo"
-                data-materia="${nomeMateria}"
-                data-conteudo="${conteudo}">
-                ${formatarNome(conteudo)}
-            </li>
-`;
-
+                <li
+                    class="item-conteudo"
+                    data-materia="${materia}"
+                >
+                    ${formatarNome(materia)}
+                </li>
+            `;
         });
-
     });
-
 });
 
-lista.addEventListener("click", (evento) => {
+lista.addEventListener("click", evento => {
 
-    if(evento.target.classList.contains("item-conteudo")){
+    const item = evento.target.closest(".item-conteudo");
 
-        console.log("clicou");
-
-        const materia = evento.target.dataset.materia;
-        const conteudo = evento.target.dataset.conteudo;
-
-        window.location.href =
-        `questao.html?materia=${materia}&conteudo=${conteudo}`;
-
+    if (!item) {
+        return;
     }
 
+    const materia = item.dataset.materia;
+
+    window.location.href =
+        `questao.html?materia=${materia}`;
 });

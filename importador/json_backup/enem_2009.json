@@ -1,0 +1,626 @@
+[
+    {
+        "ano": 2009,
+        "numero": 1,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "A atmosfera terrestre é composta pelos gases nitrogênio (N2) e oxigênio (O2), que somam cerca de 99%, e por gases traços, entre eles o gás carbônico (CO2), vapor de água (H2O), metano (CH4), ozônio (O3) e o óxido nitroso (N2O), que compõem o restante 1% do ar que respiramos. Os gases traços, por serem constituídos por pelo menos três átomos, conseguem absorver o calor irradiado pela Terra, aquecendo o planeta. Esse fenômeno, que acontece  \nhá bilhões de anos, é chamado de efeito estufa. A partir da Revolução Industrial (século XIX), a concentração de gases traços na atmosfera, em particular o CO2, tem aumentado significativamente, o que resultou no aumento da temperatura em escala global. Mais recentemente, outro fator tornou-se diretamente envolvido no aumento da concentração de CO2 na atmosfera: o desmatamento.\n\nBROWN, I. F.; ALECHANDRE, A. S. Conceitos básicos sobre clima,carbono, florestas e comunidades. A.G. Moreira & S. Schwartzman. As mudanças climáticas globais e os ecossistemas brasileiros. Brasília: Instituto de Pesquisa Ambiental da Amazônia, 2000 (adaptado).\n\nConsiderando o texto, uma alternativa viável para combater o efeito estufa é",
+        "alternativas": [
+            "Reduzir o calor irradiado pela Terra mediante a substituição da produção primária pela industrialização refrigerada.",
+            "Promover a queima da biomassa vegetal, responsável pelo aumento do efeito estufa devido à produção de CH4.",
+            "Reduzir o desmatamento, mantendo-se, assim, o potencial da vegetação em absorver o CO2 da atmosfera.",
+            "Aumentar a concentração atmosférica de H2O, molécula capaz de absorver grande quantidade de calor.",
+            "Remover moléculas orgânicas polares da atmosfera, diminuindo a capacidade delas de reter calor."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 2,
+        "disciplina": "ciencias-natureza",
+        "lingua": null,
+        "enunciado": "Analise a figura.\n\n![](https://enem.dev/2009/questions/2/7af3247b-4580-4b52-8d5a-b64887db9b0e.png)\n\nSupondo que seja necessário dar um título para essa figura, a alternativa que melhor traduziria o processo representado seria:",
+        "alternativas": [
+            "Concentração média de álcool no sangue ao longo do dia.",
+            "Variação da frequência da ingestão de álcool ao longo das horas.",
+            "Concentração mínima de álcool no sangue a partir de diferentes dosagens.",
+            "Estimativa de tempo necessário para metabolizar diferentes quantidades de álcool.",
+            "Representação gráfica da distribuição de frequência de álcool em determinada hora do dia."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 3,
+        "disciplina": "ciencias-natureza",
+        "lingua": null,
+        "enunciado": "Estima-se que haja atualmente no mundo 40 milhões de pessoas infectadas pelo HIV (o vírus que causa a AIDS), sendo que as taxas de novas infecções continuam crescendo, principalmente na África, Ásia e Rússia. Nesse cenário de pandemia, uma vacina contra o HIV teria imenso impacto, pois salvaria milhões de vidas. Certamente seria um marco na história planetária e também uma esperança para as populações carentes de tratamento antiviral e de acompanhamento médico.\n\nTANURI, A.; FERREIRA JUNIOR, O. C. Vacina contra Aids: desafios e esperanças. Ciência Hoje (44) 26, 2009 (adaptado).\n\nUma vacina eficiente contra o HIV deveria",
+        "alternativas": [
+            "Induzir a imunidade, para proteger o organismo da contaminação viral.",
+            "Ser capaz de alterar o genoma do organismo portador, induzindo a síntese de enzimas protetoras.",
+            "Produzir antígenos capazes de se ligarem ao vírus, impedindo que este entre nas células do organismo humano.",
+            "Ser amplamente aplicada em animais, visto que esses são os principais transmissores do vírus para os seres humanos.",
+            "Estimular a imunidade, minimizando a transmissão do vírus por gotículas de saliva."
+        ],
+        "resposta": 0,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 4,
+        "disciplina": "ciencias-natureza",
+        "lingua": null,
+        "enunciado": "Em um experimento, preparou-se um conjunto de plantas por técnica de clonagem a partir de uma planta original que apresentava folhas verdes. Esse conjunto foi dividido em dois grupos, que foram tratados de maneira idêntica, com exceção das condições de iluminação, sendo um grupo exposto a ciclos de iluminação solar natural e outro mantido no escuro. Após alguns dias, observou-se que o grupo exposto à luz apresentava folhas verdes como a planta original e o grupo cultivado no escuro apresentava folhas amareladas.\n\nAo final do experimento, os dois grupos de plantas apresentaram",
+        "alternativas": [
+            "Os genótipos e os fenótipos idênticos.",
+            "Os genótipos idênticos e os fenótipos diferentes.",
+            "Diferenças nos genótipos e fenótipos.",
+            "O mesmo fenótipo e apenas dois genótipos diferentes.",
+            "O mesmo fenótipo e grande variedade de genótipos."
+        ],
+        "resposta": 1,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 5,
+        "disciplina": "ciencias-natureza",
+        "lingua": null,
+        "enunciado": "Na linha de uma tradição antiga, o astrônomo grego Ptolomeu (100-170 d.C.) afirmou a tese do geocentrismo, segundo a qual a Terra seria o centro do universo, sendo que o Sol, a Lua e os planetas girariam em seu redor em órbitas circulares. A teoria de Ptolomeu resolvia de modo razoável os problemas astronômicos da sua época. Vários séculos mais tarde, o clérigo e astrônomo polonês Nicolau Copérnico (1473-1543), ao encontrar inexatidões na teoria de Ptolomeu, formulou a teoria do heliocentrismo, segundo a qual o Sol deveria ser considerado o centro do universo, com a Terra, a Lua e os planetas girando circularmente em torno dele. Por fim, o astrônomo e matemático alemão Johannes Kepler (1571- 1630), depois de estudar o planeta Marte por cerca de trinta anos, verificou que a sua órbita é elíptica. Esse resultado generalizou-se para os demais planetas.\n\nA respeito dos estudiosos citados no texto, é correto afirmar que",
+        "alternativas": [
+            "Ptolomeu apresentou as ideias mais valiosas, por serem mais antigas e tradicionais.",
+            "Copérnico desenvolveu a teoria do heliocentrismo inspirado no contexto político do Rei Sol.",
+            "Copérnico viveu em uma época em que a pesquisa científica era livre e amplamente incentivada pelas autoridades.",
+            "Kepler estudou o planeta Marte para atender às necessidades de expansão econômica e científica da Alemanha.",
+            "Kepler apresentou uma teoria científica que, graças aos métodos aplicados, pôde ser testada e generalizada."
+        ],
+        "resposta": 4,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 6,
+        "disciplina": "ciencias-natureza",
+        "lingua": null,
+        "enunciado": "O ciclo biogeoquímico do carbono compreende diversos compartimentos, entre os quais a Terra, a atmosfera e os oceanos, e diversos processos que permitem a transferência de compostos entre esses reservatórios. Os estoques de carbono armazenados na forma de recursos não renováveis, por exemplo, o petróleo, são limitados, sendo de grande relevância que se perceba a importância da substituição de combustíveis fósseis por combustíveis de fontes renováveis.\n\nA utilização de combustíveis fósseis interfere no ciclo do carbono, pois provoca",
+        "alternativas": [
+            "Aumento da porcentagem de carbono contido na Terra.",
+            "Redução na taxa de fotossíntese dos vegetais superiores.",
+            "Aumento da produção de carboidratos de origem vegetal.",
+            "Aumento na quantidade de carbono presente na atmosfera.",
+            "Redução da quantidade global de carbono armazenado nos oceanos."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 7,
+        "disciplina": "ciencias-natureza",
+        "lingua": null,
+        "enunciado": "Um novo método para produzir insulina artificial que utiliza tecnologia de DNA recombinante foi desenvolvido por pesquisadores do Departamento de Biologia Celular da Universidade de Brasília (UnB) em parceria com a iniciativa privada. Os pesquisadores modificaram geneticamente a bactéria Escherichia coli para torná-la capaz de sintetizar o hormônio. O processo permitiu fabricar insulina em maior quantidade e em apenas 30 dias, um terço do tempo necessário para obtê-la pelo método tradicional, que consiste na extração do hormônio a partir do pâncreas de animais abatidos.\n\nCiência Hoje, 24 abr. 2001. Disponível em: http://cienciahoje.uol.com.br (adaptado).\n\nA produção de insulina pela técnica do DNA recombinante tem, como consequência,",
+        "alternativas": [
+            "O aperfeiçoamento do processo de extração de insulina a partir do pâncreas suíno.",
+            "A seleção de microrganismos resistentes a antibióticos.",
+            "O progresso na técnica da síntese química de hormônios.",
+            "Impacto favorável na saúde de indivíduos diabéticos.",
+            "A criação de animais transgênicos."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 8,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "A economia moderna depende da disponibilidade de muita energia em diferentes formas, para funcionar e crescer. No Brasil, o consumo total de energia pelas indústrias cresceu mais de quatro vezes no período entre 1970 e 2005. Enquanto os investimentos em energias limpas e renováveis, como solar e eólica, ainda são incipientes, ao se avaliar a possibilidade de instalação de usinas geradoras de energia elétrica, diversos fatores devem ser levados em consideração, tais como os impactos causados ao ambiente e às populações locais.\n\nRICARDO, B.; CAMPANILI, M. **Almanaque Brasil Socioambiental.** São Paulo: Instituto Socioambiental, 2007 (adaptado).\n\nEm uma situação hipotética, optou-se por construir uma usina hidrelétrica em região que abrange diversas quedas d’água em rios cercados por mata, alegando-se que causaria impacto ambiental muito menor que uma usina termelétrica. Entre os possíveis impactos da instalação de uma usina hidrelétrica nessa região, inclui-se",
+        "alternativas": [
+            "A poluição da água por metais da usina.",
+            "A destruição do habitat de animais terrestres.",
+            "O aumento expressivo na liberação de CO2 para a atmosfera.",
+            "O consumo não renovável de toda água que passa pelas turbinas.",
+            "O aprofundamento no leito do rio, com a menor deposição de resíduos no trecho de rio anterior à represa."
+        ],
+        "resposta": 1,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 9,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "As mudanças climáticas e da vegetação ocorridas nos trópicos da América do Sul têm sido bem documentadas por diversos autores, existindo um grande acúmulo de evidências geológicas ou paleoclimatológicas que evidenciam essas mudanças ocorridas durante o Quaternário nessa região. Essas mudanças resultaram em restrição da distribuição das florestas pluviais, com expansões concomitantes de habitats não-florestais durante períodos áridos (glaciais), seguido da expansão das florestas pluviais e restrição das áreas não-florestais durante períodos úmidos (interglaciais).\n\nDisponível em: http://zoo.bio.ufpr.br. Acesso em: 1 maio 2009.\n\nDurante os períodos glaciais,",
+        "alternativas": [
+            "As áreas não-florestais ficam restritas a refúgios ecológicos devido à baixa adaptabilidade de espécies não-florestais a ambientes áridos.",
+            "Grande parte da diversidade de espécies vegetais é reduzida, uma vez que necessitam de condições semelhantes a dos períodos interglaciais.",
+            "A vegetação comum ao cerrado deve ter se limitado a uma pequena região do centro do Brasil, da qual se expandiu até atingir a atual distribuição.",
+            "Plantas com adaptações ao clima árido, como o desenvolvimento de estruturas que reduzem a perda de água, devem apresentar maior área de distribuição.",
+            "Florestas tropicais como a amazônica apresentam distribuição geográfica mais ampla, uma vez que são densas e diminuem a ação da radiação solar sobre o solo e reduzem os efeitos da aridez."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 10,
+        "disciplina": "ciencias-natureza",
+        "lingua": null,
+        "enunciado": "A fotossíntese é importante para a vida na Terra. Nos cloroplastos dos organismos fotossintetizantes, a energia solar é convertida em energia química que, juntamente com água e gás carbônico (CO2), é utilizada para a síntese de compostos orgânicos (carboidratos). A fotossíntese é o único processo de importância biológica capaz de realizar essa conversão. Todos os organismos, incluindo os produtores, aproveitam a energia armazenada nos carboidratos para impulsionar os processos celulares, liberando CO2 para a atmosfera e água para a célula por meio da respiração celular. Além disso, grande fração dos recursos energéticos do planeta, produzidos tanto no presente (biomassa) como em tempos remotos (combustível fóssil), é resultante da atividade fotossintética.\n\nAs informações sobre obtenção e transformação dos recursos naturais por meio dos processos vitais de fotossíntese e respiração, descritas no texto, permitem concluir que",
+        "alternativas": [
+            "O CO2 e a água são moléculas de alto teor energético.",
+            "Os carboidratos convertem energia solar em energia química.",
+            "A vida na Terra depende, em última análise, da energia proveniente do Sol.",
+            "O processo respiratório é responsável pela retirada de carbono da atmosfera.",
+            "A produção de biomassa e de combustível fóssil, por si, é responsável pelo aumento de CO2 atmosférico."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 50,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "A primeira metade do século XX foi marcada por conflitos e processos que a inscreveram como um dos mais violentos períodos da história humana.\n\nEntre os principais fatores que estiveram na origem dos conflitos ocorridos durante a primeira metade do século XX estão",
+        "alternativas": [
+            "A crise do colonialismo, a ascensão do nacionalismo e do totalitarismo.",
+            "O enfraquecimento do império britânico, a Grande Depressão e a corrida nuclear.",
+            "O declínio britânico, o fracasso da Liga das Nações e a Revolução Cubana.",
+            "A corrida armamentista, o terceiro-mundismo e o expansionismo soviético.",
+            "A Revolução Bolchevique, o imperialismo e a unificação da Alemanha."
+        ],
+        "resposta": 0,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 51,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "Os regimes totalitários da primeira metade do século XX apoiaram-se fortemente na mobilização da juventude em torno da defesa de ideias grandiosas para o futuro da nação. Nesses projetos, os jovens deveriam entender que só havia uma pessoa digna de ser amada e obedecida, que era o líder. Tais movimentos sociais juvenis contribuíram para a implantação e a sustentação do nazismo, na Alemanha, e do fascismo, na Itália, Espanha e Portugal.\n\nA atuação desses movimentos juvenis caracterizava-se:",
+        "alternativas": [
+            "Pelo sectarismo e pela forma violenta e radical com que enfrentavam os opositores ao regime.",
+            "Pelas propostas de conscientização da população acerca dos seus direitos como cidadãos.",
+            "Pela promoção de um modo de vida saudável, que mostrava os jovens como exemplos a seguir.",
+            "Pelo diálogo, ao organizar debates que opunham jovens idealistas e velhas lideranças conservadoras.",
+            "Pelos métodos políticos populistas e pela organização de comícios multitudinários."
+        ],
+        "resposta": 0,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 52,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "Do ponto de vista geopolítico, a Guerra Fria dividiu a Europa em dois blocos. Essa divisão propiciou a formação de alianças antagônicas de caráter militar, como a OTAN, que aglutinava os países do bloco ocidental, e o Pacto de Varsóvia, que concentrava os do bloco oriental. É importante destacar que, na formação da OTAN, estão presentes, além dos países do oeste europeu, os EUA e o Canadá. Essa divisão histórica atingiu igualmente os âmbitos político e econômico que se refletia pela opção entre os modelos capitalista e socialista.\n\nEssa divisão europeia ficou conhecida como",
+        "alternativas": [
+            "Cortina de Ferro.",
+            "Muro de Berlim.",
+            "União Europeia.",
+            "Convenção de Ramsar.",
+            "Conferência de Estocolmo."
+        ],
+        "resposta": 0,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 53,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "O ano de 1968 ficou conhecido pela efervescência social, tal como se pode comprovar pelo seguinte trecho, retirado de texto sobre propostas preliminares para uma revolução cultural: “É preciso discutir em todos os lugares e com todos. O dever de ser responsável e pensar politicamente diz respeito a todos, não é privilégio de uma minoria de iniciados. Não devemos nos surpreender com o caos das ideias, pois essa é a condição para a emergência de novas ideias. Os pais do regime devem compreender que autonomia não é uma palavra vã; ela supõe a partilha do poder, ou seja, a mudança de sua natureza. Que ninguém tente rotular o movimento atual; ele não tem etiquetas e não precisa delas”.\n\nJournal de la comune étudiante. Textes et documents. Paris: Seuil, 1969 (adaptado)\n\nOs movimentos sociais, que marcaram o ano de 1968,",
+        "alternativas": [
+            "Foram manifestações desprovidas de conotação política, que tinham o objetivo de questionar a rigidez dos padrões de comportamento social fundados em valores tradicionais da moral religiosa.",
+            "Restringiram-se às sociedades de países desenvolvidos, onde a industrialização avançada, a penetração dos meios de comunicação de massa e a alienação cultural que deles resultava eram mais evidentes.",
+            "Resultaram no fortalecimento do conservadorismo político, social e religioso que prevaleceu nos países ocidentais durante as décadas de 70 e 80.",
+            "Tiveram baixa repercussão no plano político, apesar de seus fortes desdobramentos nos planos social e cultural, expressos na mudança de costumes e na contracultura.",
+            "Inspiraram futuras mobilizações, como o pacifismo, o ambientalismo, a promoção da equidade de gêneros e a defesa dos direitos das minorias."
+        ],
+        "resposta": 4,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 54,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "Os Yanomami constituem uma sociedade indígena do norte da Amazônia e formam um amplo conjunto linguístico e cultural. Para os Yanomami, urihi, a “terrafloresta”, não é um mero cenário inerte, objeto de exploração econômica, e sim uma entidade viva, animada por uma dinâmica de trocas entre os diversos seres que a povoam. A floresta possui um sopro vital, wixia, que é muito longo. Se não a desmatarmos, ela não morrerá. Ela não se decompõe, isto é, não se desfaz. É graças ao seu sopro úmido que as plantas crescem. A floresta não está morta pois, se fosse assim, as florestas não teriam folhas. Tampouco se veria água. Segundo os Yanomami, se os brancos os fizerem desaparecer para desmatá-la e morar no seu lugar, ficarão pobres e acabarão tendo fome e sede.\n\nALBERT, B. Yanomami, o espírito da floresta. **Almanaque Brasil Socioambiental.** São Paulo: ISA, 2007 (adaptado).\n\nDe acordo com o texto, os Yanomami acreditam que",
+        "alternativas": [
+            "A floresta não possui organismos decompositores.",
+            "O potencial econômico da floresta deve ser explorado.",
+            "O homem branco convive harmonicamente com urihi.",
+            "As folhas e a água são menos importantes para a floresta que seu sopro vital.",
+            "Wixia é a capacidade que tem a floresta de se sustentar por meio de processos vitais."
+        ],
+        "resposta": 4,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 55,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "null\n\nO fim da Guerra Fria e da bipolaridade, entre as décadas de 1980 e 1990, gerou expectativas de que seria instaurada uma ordem internacional marcada pela redução de conflitos e pela multipolaridade. O panorama estratégico do mundo pós-Guerra Fria apresenta",
+        "alternativas": [
+            "O aumento de conflitos internos associados ao nacionalismo, às disputas étnicas, ao extremismo religioso e ao fortalecimento de ameaças como o terrorismo, o tráfico de drogas e o crime organizado.",
+            "O fim da corrida armamentista e a redução dos gastos militares das grandes potências, o que se traduziu em maior estabilidade nos continentes europeu e asiático, que tinham sido palco da Guerra Fria.",
+            "O desengajamento das grandes potências, pois as intervenções militares em regiões assoladas por conflitos passaram a ser realizadas pela Organização das Nações Unidas (ONU), com maior envolvimento de países emergentes.",
+            "A plena vigência do Tratado de Não Proliferação, que afastou a possibilidade de um conflito nuclear como ameaça global, devido à crescente consciência política internacional acerca desse perigo.",
+            "A condição dos EUA como única superpotência, mas que se submetem às decisões da ONU no que concerne às ações militares."
+        ],
+        "resposta": 0,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 56,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "Na democracia estado-unidense, os cidadãos são incluídos na sociedade pelo exercício pleno dos direitos políticos e também pela ideia geral de direito de propriedade. Compete ao governo garantir que esse direito não seja violado. Como consequência, mesmo aqueles que possuem uma pequena propriedade sentem-se cidadãos de pleno direito.\n\nNa tradição política dos EUA, uma forma de incluir socialmente os cidadãos é",
+        "alternativas": [
+            "Submeter o indivíduo à proteção do governo.",
+            "Hierarquizar os indivíduos segundo suas posses.",
+            "Estimular a formação de propriedades comunais.",
+            "Vincular democracia e possibilidades econômicas individuais.",
+            "Defender a obrigação de que todos os indivíduos tenham propriedades."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 57,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "Na década de 30 do século XIX, Tocqueville escreveu as seguintes linhas a respeito da moralidade nos EUA: “A opinião pública norte-americana é particularmente dura com a falta de moral, pois esta desvia a atenção frente à busca do bem-estar e prejudica a harmonia doméstica, que é tão essencial ao sucesso dos negócios. Nesse sentido, pode-se dizer que ser casto é uma questão de honra”.\n\nTOCQUEVILLE, A. Democracy in America. Chicago: Encyclopædia Britannica, Inc., Great Books 44, 1990 (adaptado).\n\nDo trecho, infere-se que, para Tocqueville, os norte- americanos do seu tempo",
+        "alternativas": [
+            "Buscavam o êxito, descurando as virtudes cívicas.",
+            "Tinham na vida moral uma garantia de enriquecimento rápido.",
+            "Valorizavam um conceito de honra dissociado do comportamento ético.",
+            "Relacionavam a conduta moral dos indivíduos com o progresso econômico.",
+            "Acreditavam que o comportamento casto perturbava a harmonia doméstica."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 58,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "Segundo Aristóteles, “na cidade com o melhor conjunto de normas e naquela dotada de homens absolutamente justos, os cidadãos não devem viver uma vida de trabalho trivial ou de negócios — esses tipos de vida são desprezíveis e incompatíveis com as qualidades morais —, tampouco devem ser agricultores os aspirantes à cidadania, pois o lazer é indispensável ao desenvolvimento das qualidades morais e à prática das atividades políticas”.\n\nVAN ACKER, T. _Grécia. A vida cotidiana na cidade-Estado_. São Paulo: Atual, 1994.\n\nO trecho, retirado da obra Política, de Aristóteles, permite compreender que a cidadania:",
+        "alternativas": [
+            "Possui uma dimensão histórica que deve ser criticada, pois é condenável que os políticos de qualquer época fiquem entregues à ociosidade, enquanto o resto dos cidadãos tem de trabalhar.",
+            "Era entendida como uma dignidade própria dos grupos sociais superiores, fruto de uma concepção política profundamente hierarquizada da sociedade.",
+            "Estava vinculada, na Grécia Antiga, a uma percepção política democrática, que levava todos os habitantes da pólis a participarem da vida cívica.",
+            "Tinha profundas conexões com a justiça, razão pela qual o tempo livre dos cidadãos deveria ser dedicado às atividades vinculadas aos tribunais.",
+            "Vivida pelos atenienses era, de fato, restrita àqueles que se dedicavam à política e que tinham tempo para resolver os problemas da cidade."
+        ],
+        "resposta": 1,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 59,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "Para Caio Prado Jr., a formação brasileira se completaria no momento em que fosse superada a nossa herança de inorganicidade social ― o oposto da interligação com objetivos internos ― trazida da colônia. Este momento alto estaria, ou esteve, no futuro. Se passarmos a Sérgio Buarque de Holanda, encontraremos algo análogo. O país será moderno e estará formado quando superar a sua herança portuguesa, rural e autoritária, quando então teríamos um país democrático. Também aqui o ponto de chegada está mais adiante, na dependência das decisões do presente. Celso Furtado, por seu turno, dirá que a nação não se completa enquanto as alavancas do comando, principalmente do econômico, não passarem para dentro do país. Como para os outros dois, a conclusão do processo encontra-se no futuro, que agora parece remoto.\n\nSCHWARZ, R. Os sete fôlegos de um livro. Sequências brasileiras. São Paulo: Cia. das Letras,1999 (adaptado).\n\nAcerca das expectativas quanto à formação do Brasil, a sentença que sintetiza os pontos de vista apresentados no texto é:",
+        "alternativas": [
+            "Brasil, um país que vai pra frente.",
+            "Brasil, a eterna esperança.",
+            "Brasil, glória no passado, grandeza no presente.",
+            "Brasil, terra bela, pátria grande.",
+            "Brasil, gigante pela própria natureza."
+        ],
+        "resposta": 1,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 93,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "Analise as seguintes avaliações de possíveis resultados de  \num teste na Internet.\n\n![](https://enem.dev/2009/questions/93/78a6b697-0241-4008-8983-636d150e26a1.png)\n\nDepreende-se, a partir desse conjunto de informações, que o teste que deu origem a esses resultados, além de estabelecer um perfil para o usuário de sites de relacionamento, apresenta preocupação com hábitos e propõe mudanças de comportamento direcionadas",
+        "alternativas": [
+            "Ao adolescente que acessa sites de entretenimento.",
+            "Ao profissional interessado em aperfeiçoamento tecnológico.",
+            "À pessoa que usa os sites de relacionamento para complementar seu círculo de amizades.",
+            "Ao usuário que reserva mais tempo aos sites de relacionamento do que ao convívio pessoal com os amigos.",
+            "Ao leitor que se interessa em aprender sobre o funcionamento de diversos tipos de sites de relacionamento."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 94,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "A música pode ser definida como a combinação de sons ao longo do tempo. Cada produto final oriundo da infinidade de combinações possíveis será diferente, dependendo da escolha das notas, de suas durações, dos instrumentos utilizados, do estilo de música, da nacionalidade do compositor e do período em que as obras foram compostas.\n\n![](https://enem.dev/2009/questions/94/282c49bb-1204-48bd-94f0-655923c3210e.png)\n\n![](https://enem.dev/2009/questions/94/c2791052-0250-4108-b050-c836866cc800.png)\n\nFigura 1 – http://images.quebarato.com.br/photos/big/2/D/15A12D\\_2.jpg.  \nFigura 2 – http://ourinhos.prefeituramunicipal.net/dados/fotos/2009/07/07/normal.  \nFigura 3 – http://www.edmontonculturalcapital.com/gallery/edjazzfestival/JazzQuartet.jpg  \nFigura 4 – http://www.filmica.com/jacintaescudos/archivos/Led-Zeppelin.jpg.\n\nDas figuras que apresentam grupos musicais em ação, pode-se concluir que o(os) grupo(s) mostrado(s) na(s) figura(s)",
+        "alternativas": [
+            "1 executa um gênero característico da música brasileira, conhecido como chorinho.",
+            "2 executa um gênero característico da música clássica, cujo compositor mais conhecido é Tom Jobim.",
+            "3 executa um gênero característico da música europeia, que tem como representantes Beethoven e Mozart.",
+            "4 executa um tipo de música caracterizada pelos instrumentos acústicos, cuja intensidade e nível de ruído permanecem na faixa dos 30 aos 40 decibéis.",
+            "1 a 4 apresentam um produto final bastante semelhante, uma vez que as possibilidades de combinações sonoras ao longo do tempo são limitadas."
+        ],
+        "resposta": 0,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 95,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "No programa do balé Parade, apresentado em 18 de maio de 1917, foi empregada publicamente, pela primeira vez, a palavra _sur-realisme_. Pablo Picasso desenhou o cenário e a indumentária, cujo efeito foi tão surpreendente que se sobrepôs à coreografia. A música de Erik Satie era uma mistura de _jazz_, música popular e sons reais tais como tiros de pistola, combinados com as imagens do balé de Charlie Chaplin, caubóis e vilões, mágica chinesa e _Ragtime_. Os tempos não eram propícios para receber a nova mensagem cênica demasiado provocativa devido ao repicar da máquina de escrever, aos zumbidos de sirene e dínamo e aos rumores de aeroplano previstos por Cocteau para a partitura de Satie. Já a ação coreográfica confirmava a tendência marcadamente teatral da gestualidade cênica, dada pela justaposição, colagem de ações isoladas seguindo um estímulo musical.\n\nSILVA, S. M. **O surrealismo e a dança**. GUINSBURG, J.; LEIRNER (Org.). O surrealismo. São Paulo: Perspectiva, 2008 (adaptado).\n\nAs manifestações corporais na história das artes da cena muitas vezes demonstram as condições cotidianas de um determinado grupo social, como se pode observar na descrição acima do balé Parade, o qual reflete",
+        "alternativas": [
+            "A falta de diversidade cultural na sua proposta estética.",
+            "A alienação dos artistas em relação às tensões da Segunda Guerra Mundial.",
+            "Uma disputa cênica entre as linguagens das artes visuais, do figurino e da música.",
+            "As inovações tecnológicas nas partes cênicas, musicais, coreográficas e de figurino.",
+            "Uma narrativa com encadeamentos claramente lógicos e lineares."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 96,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "![](https://enem.dev/2009/questions/96/05bce341-8926-454e-8c24-49814582373d.jpg)\n\nOs principais recursos utilizados para envolvimento e adesão do leitor à campanha institucional incluem",
+        "alternativas": [
+            "O emprego de enumeração de itens e apresentação de títulos expressivos.",
+            "O uso de orações subordinadas condicionais e temporais.",
+            "O emprego de pronomes como “você” e “sua” e o uso do imperativo.",
+            "A construção de figuras metafóricas e o uso de repetição.",
+            "O fornecimento de número de telefone gratuito para contato."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 97,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "![](https://enem.dev/2009/questions/97/21bc16d2-a579-454e-ade1-28f57b52d15d.jpg)\n\nO texto tem o objetivo de solucionar um problema social,",
+        "alternativas": [
+            "Descrevendo a situação do país em relação à gripe suína.",
+            "Alertando a população para o risco de morte pela Influenza A.",
+            "Informando a população sobre a iminência de uma pandemia de Influenza A.",
+            "Orientando a população sobre os sintomas da gripe suína e procedimentos para evitar a contaminação.",
+            "Convocando toda a população para se submeter a exames de detecção da gripe suína."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 98,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "**Para o Mano Caetano**\n\nO que fazer do ouro de tolo  \nQuando um doce bardo brada a toda brida,  \nEm velas pandas, suas esquisitas rimas?  \nGeografia de verdades, Guanabaras postiças  \nSaudades banguelas, tropicais preguiças?\n\nA boca cheia de dentes  \nDe um implacável sorriso  \nMorre a cada instante  \nQue devora a voz do morto, e com isso,  \nRessuscita vampira, sem o menor aviso\n\n\\[…\\]  \nE eu _soy_ lobo-bolo? lobo-bolo  \nTipo pra rimar com ouro de tolo?  \nOh, Narciso Peixe Ornamental!  \n_Tease me_, _tease me_ outra vez¹  \nOu em banto baiano  \nOu em português de Portugal  \nSe quiser, até mesmo em americano  \nDe Natal  \n\\[…\\]\n\n_¹Tease me_ (caçoe de mim, importune-me).\n\nLOBÃO. Disponível em: http://vagalume.uol.com.br.  \nAcesso em: 14 ago. 2009 (adaptado).\n\nNa letra da canção apresentada, o compositor Lobão explora vários recursos da língua portuguesa, a fim de conseguir efeitos estéticos ou de sentido. Nessa letra, o autor explora o extrato sonoro do idioma e o uso de termos coloquiais na seguinte passagem:",
+        "alternativas": [
+            "“Quando um doce bardo brada a toda brida” (v. 2).",
+            "“Em velas pandas, suas esquisitas rimas?” (v. 3).",
+            "“Que devora a voz do morto” (v. 9).",
+            "“lobo-bolo//Tipo pra rimar com ouro de tolo? (v. 11-12)",
+            "“Tease me, tease me outra vez” (v. 14)"
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 99,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "**Cárcere das almas**\n\nAh! Toda a alma num cárcere anda presa,  \nSoluçando nas trevas, entre as grades  \nDo calabouço olhando imensidades,  \nMares, estrelas, tardes, natureza.\n\nTudo se veste de uma igual grandeza  \nQuando a alma entre grilhões as liberdades  \nSonha e, sonhando, as imortalidades  \nRasga no etéreo o Espaço da Pureza.\n\nÓ almas presas, mudas e fechadas  \nNas prisões colossais e abandonadas,  \nDa Dor no calabouço, atroz, funéreo!\n\nNesses silêncios solitários, graves,  \nque chaveiro do Céu possui as chaves  \npara abrir-vos as portas do Mistério?!\n\nCRUZ E SOUSA, J. **Poesia completa.** Florianópolis: Fundação Catarinense de Cultura /  \nFundação Banco do Brasil, 1993.\n\nOs elementos formais e temáticos relacionados ao contexto cultural do Simbolismo encontrados no poema Cárcere das almas, de Cruz e Sousa, são",
+        "alternativas": [
+            "A opção pela abordagem, em linguagem simples e direta, de temas filosóficos.",
+            "A prevalência do lirismo amoroso e intimista em relação à temática nacionalista.",
+            "O refinamento estético da forma poética e o tratamento metafísico de temas universais.",
+            "A evidente preocupação do eu lírico com a realidade social expressa em imagens poéticas inovadoras.",
+            "A liberdade formal da estrutura poética que dispensa a rima e a métrica tradicionais em favor de temas do cotidiano."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 100,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "![](https://enem.dev/2009/questions/100/8d5cbf39-b768-437a-a494-eb718d3f64a5.jpg)\n\nTendo em vista a segunda fala do personagem entrevistado, constata-se que",
+        "alternativas": [
+            "O entrevistado deseja convencer o jornalista a não publicar um livro.",
+            "O principal objetivo do entrevistado é explicar o significado da palavra motivação.",
+            "São utilizados diversos recursos da linguagem literária, tais como a metáfora e a metonímia.",
+            "O entrevistado deseja informar de modo objetivo o jornalista sobre as etapas de produção de um livro.",
+            "O principal objetivo do entrevistado é evidenciar seu sentimento com relação ao processo de produção de um livro."
+        ],
+        "resposta": 4,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 102,
+        "disciplina": "linguagens",
+        "lingua": null,
+        "enunciado": "Gênero dramático é aquele em que o artista usa como intermediária entre si e o público a representação. A palavra vem do grego _drao_ (fazer) e quer dizer ação. A peça teatral é, pois, uma composição literária destinada à apresentação por atores em um palco, atuando e dialogando entre si. O texto dramático é complementado pela atuação dos atores no espetáculo teatral e possui uma estrutura específica, caracterizada: 1) pela presença de personagens que devem estar ligados com lógica uns aos outros e à ação; 2) pela ação dramática (trama, enredo), que é o conjunto de atos dramáticos, maneiras de ser e de agir das personagens encadeadas à unidade do efeito e segundo uma ordem composta de exposição, conflito, complicação, clímax e desfecho; 3) pela situação ou ambiente, que é o conjunto de circunstâncias físicas, sociais, espirituais em que se situa a ação; 4) pelo tema, ou seja, a ideia que o autor (dramaturgo) deseja expor, ou sua interpretação real por meio da representação.\n\nCOUTINHO, A. **Notas de teoria literária.** Rio de Janeiro:  \nCivilização Brasileira, 1973 (adaptado).\n\nConsiderando o texto e analisando os elementos que constituem um espetáculo teatral, conclui-se que",
+        "alternativas": [
+            "A criação do espetáculo teatral apresenta-se como um fenômeno de ordem individual, pois não é possível sua concepção de forma coletiva.",
+            "O cenário onde se desenrola a ação cênica é concebido e construído pelo cenógrafo de modo autônomo e independente do tema da peça e do trabalho interpretativo dos atores.",
+            "O texto cênico pode originar-se dos mais variados gêneros textuais, como contos, lendas, romances, poesias, crônicas, notícias, imagens e fragmentos textuais, entre outros.",
+            "O corpo do ator na cena tem pouca importância na comunicação teatral, visto que o mais importante é a expressão verbal, base da comunicação cênica em toda a trajetória do teatro até os dias atuais.",
+            "A iluminação e o som de um espetáculo cênico independem do processo de produção/recepção do espetáculo teatral, já que se trata de linguagens artísticas diferentes, agregadas posteriormente à cena teatral."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 137,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "O mapa ao lado representa um bairro de determinada cidade, no qual as flechas indicam o sentido das mãos do tráfego. Sabe-se que esse bairro foi planejado e que cada quadra representada na figura é um terreno quadrado, de lado igual a 200 metros.\n\n![](https://enem.dev/2009/questions/137/d56b6567-20da-46f3-92e0-42b14796b37b.jpg)\n\nDesconsiderando-se a largura das ruas, qual seria o tempo, em minutos, que um ônibus, em velocidade constante e igual a 40 km/h, partindo do ponto X, demoraria para chegar até o ponto Y?",
+        "alternativas": [
+            "25 min.",
+            "15 min.",
+            "2,5 min.",
+            "1,5 min.",
+            "0,15 min."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 138,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "A população mundial está ficando mais velha, os índices de natalidade diminuíram e a expectativa de vida aumentou. No gráfico seguinte, são apresentados dados obtidos por pesquisa realizada pela Organização das Nações Unidas (ONU), a respeito da quantidade de pessoas com 60 anos ou mais em todo o mundo. Os números da coluna da direita representam as faixas percentuais. Por exemplo, em 1950 havia 95 milhões de pessoas com 60 anos ou mais nos países desenvolvidos, número entre 10% e 15% da população total nos países desenvolvidos.\n\n![](https://enem.dev/2009/questions/138/2f19ef3b-7481-42c2-9c55-03664846dacc.jpg)\n\nSuponha que o modelo exponencial y = 363e0,03x, em que x = 0 corresponde ao ano 2000, x = 1 corresponde ao ano 2001, e assim sucessivamente, e que y é a população em milhões de habitantes no ano x, seja usado para estimar essa população com 60 anos ou mais de idade nos países em desenvolvimento entre 2010 e 2050.\n\nDesse modo, considerando e0,3 = 1,35, estima-se que a população com 60 anos ou mais estará, em 2030, entre",
+        "alternativas": [
+            "490 e 510 milhões.",
+            "550 e 620 milhões.",
+            "780 e 800 milhões.",
+            "810 e 860 milhões.",
+            "870 e 910 milhões."
+        ],
+        "resposta": 4,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 139,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "A população mundial está ficando mais velha, os índices de natalidade diminuíram e a expectativa de vida aumentou. No gráfico seguinte, são apresentados dados obtidos por pesquisa realizada pela Organização das Nações Unidas (ONU), a respeito da quantidade de pessoas com 60 anos ou mais em todo o mundo. Os números da coluna da direita representam as faixas percentuais. Por exemplo, em 1950 havia 95 milhões de pessoas com 60 anos ou mais nos países desenvolvidos, número entre 10% e 15% da população total nos países desenvolvidos.\n\n![](https://enem.dev/2009/questions/139/ce6a3e69-a428-4ce0-9247-80452dcdca20.jpg)\n\nEm 2050, a probabilidade de se escolher, aleatoriamente, uma pessoa com 60 anos ou mais de idade, na população dos países desenvolvidos, será um número mais próximo de",
+        "alternativas": [
+            "1/2.",
+            "7/20.",
+            "8/25.",
+            "1/5.",
+            "3/25."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 140,
+        "disciplina": "ciencias-humanas",
+        "lingua": null,
+        "enunciado": "O governo cedeu terrenos para que famílias construíssem suas residências com a condição de que no mínimo 94% da área do terreno fosse mantida como área de preservação ambiental. Ao receber o terreno retangular ABCD, em que AB= BC/2 , Antônio demarcou uma área quadrada no vértice A, para a construção de sua residência, de acordo com o desenho, no qual AE = AB/5 é lado do quadrado.\n\n![](https://enem.dev/2009/questions/140/ef5fc6bc-3de0-4ee7-ae4c-cdbca574c187.jpg)\n\nNesse caso, a área definida por Antônio atingiria exatamente o limite determinado pela condição se ele",
+        "alternativas": [
+            "Duplicasse a medida do lado do quadrado.",
+            "Triplicasse a medida do lado do quadrado.",
+            "Triplicasse a área do quadrado.",
+            "Ampliasse a medida do lado do quadrado em 4%.",
+            "Ampliasse a área do quadrado em 4%."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 141,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "Uma resolução do Conselho Nacional de Política Energética (CNPE) estabeleceu a obrigatoriedade de adição de biodiesel ao óleo diesel comercializado nos postos. A exigência é que, a partir de 1.º de julho de 2009, 4% do volume da mistura final seja formada por biodiesel. Até junho de 2009, esse percentual era de 3%. Essa medida estimula a demanda de biodiesel, bem como possibilita a redução da importação de dísel de petróleo.\n\nDisponível em: http://www1.folha.uol.com.br.  \nAcesso em: 12 jul. 2009 (adaptado).\n\nEstimativas indicam que, com a adição de 4% de biodiesel ao dísel, serão consumidos 925 milhões de litros de biodiesel no segundo semestre de 2009. Considerando-se essa estimativa, para o mesmo volume da mistura final dísel/biodiesel consumida no segundo semestre de 2009, qual seria o consumo de biodiesel com a adição de 3%?",
+        "alternativas": [
+            "27,75 milhões de litros.",
+            "37,00 milhões de litros.",
+            "231,25 milhões de litros.",
+            "693,75 milhões de litros.",
+            "888,00 milhões de litros."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 142,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "A suspeita de que haveria uma relação causal entre tabagismo e câncer de pulmão foi levantada pela primeira vez a partir de observações clínicas. Para testar essa possível associação, foram conduzidos inúmeros estudos epidemiológicos. Dentre esses, houve o estudo do número de casos de câncer em relação ao número de cigarros consumidos por dia, cujos resultados são mostrados no gráfico a seguir.\n\n![](https://enem.dev/2009/questions/142/c56fbd08-b377-40bd-831c-b571ed7638fe.jpg)\n\nDe acordo com as informações do gráfico,",
+        "alternativas": [
+            "O consumo diário de cigarros e o número de casos de câncer de pulmão são grandezas inversamente proporcionais.",
+            "O consumo diário de cigarros e o número de casos de câncer de pulmão são grandezas que não se relacionam.",
+            "O consumo diário de cigarros e o número de casos de câncer de pulmão são grandezas diretamente proporcionais.",
+            "Uma pessoa não fumante certamente nunca será diagnosticada com câncer de pulmão.",
+            "O consumo diário de cigarros e o número de casos de câncer de pulmão são grandezas que estão relacionadas, mas sem proporcionalidade."
+        ],
+        "resposta": 4,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 143,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "O gráfico a seguir mostra a evolução, de abril de 2008 a maio de 2009, da população economicamente ativa para seis Regiões Metropolitanas pesquisadas.\n\n![](https://enem.dev/2009/questions/143/d9c2ead9-7b0d-4ba9-bf7d-53d4e3024558.jpg)\n\nDisponível em: www.ibge.gov.br.\n\nConsiderando que a taxa de crescimento da população economicamente ativa, entre 05/09 e 06/09, seja de 4%, então o número de pessoas economicamente ativas em 06/09 será igual a",
+        "alternativas": [
+            "23.940.",
+            "32.228.",
+            "920.800.",
+            "23.940.800.",
+            "32.228.000."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 144,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "A música e a matemática se encontram na representação dos tempos das notas musicais, conforme a figura seguinte.\n\n![](https://enem.dev/2009/questions/144/e592d2d8-7aca-4cb8-8a1c-3d01b64706a6.jpg)\n\nUm compasso é uma unidade musical composta por determinada quantidade de notas musicais em que a soma das durações coincide com a fração indicada como fórmula do compasso. Por exemplo, se a fórmula de compasso for 1/2 , poderia ter um compasso ou com duas semínimas ou uma mínima ou quatro colcheias, sendo possível a combinação de diferentes figuras.\n\nUm trecho musical de oito compassos, cuja fórmula é 3/4 , poderia ser preenchido com",
+        "alternativas": [
+            "24 fusas.",
+            "3 semínimas.",
+            "8 semínimas.",
+            "24 colcheias e 12 semínimas.",
+            "16 semínimas e 8 semicolcheias."
+        ],
+        "resposta": 3,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 145,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "null\n\nO controle de qualidade de uma empresa fabricante de telefones celulares aponta que a probabilidade de um aparelho de determinado modelo apresentar defeito de fabricação é de 0,2%. Se uma loja acaba de vender 4 aparelhos desse modelo para um cliente, qual é a probabilidade de esse cliente sair da loja com exatamente dois aparelhos defeituosos?",
+        "alternativas": [
+            "2 × (0,2%)4.",
+            "4 × (0,2%)2.",
+            "6 × (0,2%)2  × (99,8%)2.",
+            "4 × (0,2%).",
+            "6 × (0,2%) × (99,8%)."
+        ],
+        "resposta": 2,
+        "explicacao": ""
+    },
+    {
+        "ano": 2009,
+        "numero": 146,
+        "disciplina": "matematica",
+        "lingua": null,
+        "enunciado": "Uma pousada oferece pacotes promocionais para atrair casais a se hospedarem por até oito dias. A hospedagem seria em apartamento de luxo e, nos três primeiros dias, a diária custaria R$ 150,00, preço da diária fora da promoção. Nos três dias seguintes, seria aplicada uma redução no valor da diária, cuja taxa média de variação, a cada dia, seria de R$ 20,00. Nos dois dias restantes, seria mantido o preço do sexto dia. Nessas condições, um modelo para a promoção idealizada é apresentado no gráfico a seguir, no qual o valor da diária é função do tempo medido em número de dias.\n\n![](https://enem.dev/2009/questions/146/6e823a1c-778f-4d1a-89e6-06619fba287a.jpg)\n\nDe acordo com os dados e com o modelo, comparando o preço que um casal pagaria pela hospedagem por sete dias fora da promoção, um casal que adquirir o pacote promocional por oito dias fará uma economia de",
+        "alternativas": [
+            "R$ 90,00.",
+            "R$ 110,00.",
+            "R$ 130,00.",
+            "R$ 150,00.",
+            "R$ 170,00."
+        ],
+        "resposta": 0,
+        "explicacao": ""
+    }
+]
