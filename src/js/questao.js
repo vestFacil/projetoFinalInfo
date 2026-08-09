@@ -32,6 +32,7 @@ let quantidadeQuestoes = 10;
 function formatarNome(texto) {
     return texto
         .replaceAll("_", " ")
+        .replaceAll("-", " ")
         .replace(/\b\w/g, letra => letra.toUpperCase());
 }
 
@@ -75,18 +76,6 @@ function carregarProgresso() {
     return true;
 }
 
-iniciar.addEventListener("click", async () => {
-    quantidadeQuestoes = Number(quantidade.value);
-
-    popup.style.display = "none";
-
-    const continuando = carregarProgresso();
-
-    if (!continuando) {
-        await carregarQuestoes();
-    }
-});
-
 async function carregarQuestoes() {
     try {
         if (!materia) {
@@ -95,12 +84,24 @@ async function carregarQuestoes() {
             );
         }
 
+        let pasta = materia;
+        let nomeArquivo = materia;
+
+        if (
+            materia === "nao-classificadas" ||
+            materia === "nao_classificadas"
+        ) {
+            pasta = "nao-classificadas";
+            nomeArquivo = "nao_classificadas";
+        }
+
         const caminho =
-            `data/${materia}/${materia}.json`;
+            `data/${pasta}/${nomeArquivo}.json`;
 
         console.log("Carregando:", caminho);
 
-        const resposta = await fetch(caminho);
+        const resposta =
+            await fetch(caminho);
 
         if (!resposta.ok) {
             throw new Error(
@@ -108,7 +109,8 @@ async function carregarQuestoes() {
             );
         }
 
-        questoes = await resposta.json();
+        questoes =
+            await resposta.json();
 
         if (!Array.isArray(questoes)) {
             throw new Error(
@@ -122,22 +124,18 @@ async function carregarQuestoes() {
             );
         }
 
-        questoesSelecionadas = [...questoes]
-            .sort(() => Math.random() - 0.5)
-            .slice(
-                0,
-                Math.min(
-                    quantidadeQuestoes,
-                    questoes.length
-                )
-            );
+        console.log(
+            `${questoes.length} questões carregadas.`
+        );
 
-        numeroQuestao = 0;
-        pontos = 0;
+        configurarQuantidade(
+            questoes.length
+        );
 
-        mostrarQuestao();
+        return true;
 
     } catch (erro) {
+
         console.error(erro);
 
         popup.style.display = "none";
@@ -153,10 +151,107 @@ async function carregarQuestoes() {
 
         resultado.textContent =
             erro.message;
+
+        return false;
     }
 }
 
+function configurarQuantidade(total) {
+
+    quantidade.innerHTML = "";
+
+    const opcoes = [5, 10, 20];
+
+    opcoes.forEach(valor => {
+
+        if (total >= valor) {
+
+            quantidade.innerHTML += `
+                <option value="${valor}">
+                    ${valor} questões
+                </option>
+            `;
+
+        }
+
+    });
+
+    if (total > 20) {
+
+        quantidade.innerHTML += `
+            <option value="${total}">
+                ${total} questões
+            </option>
+        `;
+
+    } else if (total > 0 && total < 20) {
+
+        if (
+            total !== 5 &&
+            total !== 10
+        ) {
+
+            quantidade.innerHTML += `
+                <option value="${total}">
+                    ${total} questões
+                </option>
+            `;
+
+        }
+
+    }
+
+    if (total >= 10) {
+
+        quantidade.value = "10";
+
+    } else if (total >= 5) {
+
+        quantidade.value = "5";
+
+    } else {
+
+        quantidade.value =
+            String(total);
+    }
+
+    quantidadeQuestoes =
+        Number(quantidade.value);
+}
+
+iniciar.addEventListener("click", () => {
+
+    const continuando =
+        carregarProgresso();
+
+    if (continuando) {
+
+        popup.style.display = "none";
+
+        return;
+    }
+
+    quantidadeQuestoes =
+        Number(quantidade.value);
+
+    questoesSelecionadas =
+        [...questoes]
+            .sort(() => Math.random() - 0.5)
+            .slice(
+                0,
+                quantidadeQuestoes
+            );
+
+    numeroQuestao = 0;
+    pontos = 0;
+
+    popup.style.display = "none";
+
+    mostrarQuestao();
+});
+
 function mostrarQuestao() {
+
     respondeu = false;
 
     botaoResponder.disabled = false;
@@ -169,22 +264,44 @@ function mostrarQuestao() {
         return;
     }
 
-    respostaCorreta = questao.resposta;
-    explicacao = questao.explicacao || "";
+    respostaCorreta =
+        questao.resposta;
+
+    explicacao =
+        questao.explicacao || "";
+
+    let nomeTitulo = materia;
+
+    if (
+        materia === "nao-classificadas" ||
+        materia === "nao_classificadas"
+    ) {
+        nomeTitulo = "Não classificadas";
+    }
 
     titulo.textContent =
-        formatarNome(materia);
+        formatarNome(nomeTitulo);
 
     contador.textContent =
         `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
 
-    enunciado.textContent =
+    let textoEnunciado =
         questao.enunciado || "";
+
+    textoEnunciado =
+        textoEnunciado.replace(
+            /!\[\]\(\[?([^\s\]\)]+)\]?\)?/g,
+            '<img src="$1" class="imagem-questao" alt="Imagem da questão">'
+        );
+
+    enunciado.innerHTML =
+        textoEnunciado;
 
     alternativas.innerHTML = "";
     resultado.textContent = "";
 
     if (!Array.isArray(questao.alternativas)) {
+
         alternativas.innerHTML =
             "<p>Esta questão não possui alternativas disponíveis.</p>";
 
@@ -196,7 +313,11 @@ function mostrarQuestao() {
         const letra =
             String.fromCharCode(65 + index);
 
-        if (alt === null || alt === undefined) {
+        if (
+            alt === null ||
+            alt === undefined
+        ) {
+
             alternativas.innerHTML += `
                 <label
                     class="alternativa"
@@ -227,6 +348,7 @@ function mostrarQuestao() {
                 ${alt}
             </label>
         `;
+
     });
 }
 
@@ -236,11 +358,13 @@ botaoResponder.addEventListener("click", () => {
         return;
     }
 
-    const selecionada = document.querySelector(
-        'input[name="resposta"]:checked'
-    );
+    const selecionada =
+        document.querySelector(
+            'input[name="resposta"]:checked'
+        );
 
     if (!selecionada) {
+
         resultado.textContent =
             "Escolha uma alternativa!";
 
@@ -253,21 +377,30 @@ botaoResponder.addEventListener("click", () => {
     botaoProxima.disabled = false;
 
     document
-        .querySelectorAll('input[name="resposta"]')
+        .querySelectorAll(
+            'input[name="resposta"]'
+        )
         .forEach(radio => {
+
             radio.disabled = true;
+
         });
 
     const valorSelecionado =
         Number(selecionada.value);
 
-    if (valorSelecionado === respostaCorreta) {
+    if (
+        valorSelecionado ===
+        respostaCorreta
+    ) {
 
         resultado.textContent =
             "✅ Você acertou!" +
-            (explicacao
-                ? "\n\n" + explicacao
-                : "");
+            (
+                explicacao
+                    ? "\n\n" + explicacao
+                    : ""
+            );
 
         pontos++;
 
@@ -275,9 +408,11 @@ botaoResponder.addEventListener("click", () => {
 
         resultado.textContent =
             "❌ Você errou!" +
-            (explicacao
-                ? "\n\n" + explicacao
-                : "");
+            (
+                explicacao
+                    ? "\n\n" + explicacao
+                    : ""
+            );
     }
 
     document
@@ -285,18 +420,30 @@ botaoResponder.addEventListener("click", () => {
         .forEach(alternativa => {
 
             const valor =
-                Number(alternativa.dataset.index);
+                Number(
+                    alternativa.dataset.index
+                );
 
-            if (valor === respostaCorreta) {
-                alternativa.classList.add("correta");
+            if (
+                valor ===
+                respostaCorreta
+            ) {
+
+                alternativa.classList.add(
+                    "correta"
+                );
             }
 
             if (
                 valor === valorSelecionado &&
                 valor !== respostaCorreta
             ) {
-                alternativa.classList.add("errada");
+
+                alternativa.classList.add(
+                    "errada"
+                );
             }
+
         });
 
     salvarProgresso();
@@ -333,10 +480,16 @@ window.addEventListener(
     "beforeunload",
     event => {
 
-        if (questoesSelecionadas.length > 0) {
+        if (
+            questoesSelecionadas.length > 0
+        ) {
 
             event.preventDefault();
             event.returnValue = "";
+
         }
+
     }
 );
+
+carregarQuestoes();

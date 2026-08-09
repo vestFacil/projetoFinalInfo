@@ -213,3 +213,15 @@ body {
     cursor: not-allowed;
     transform: none;
 }
+
+.imagem-questao {
+    display: block;
+    max-width: 100%;
+    max-height: 500px;
+    margin: 20px auto;
+    object-fit: contain;
+}
+
+#resultado {
+    white-space: pre-line;
+}

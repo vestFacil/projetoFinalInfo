@@ -2,45 +2,29 @@ const titulo = document.getElementById("tituloMateria");
 const lista = document.getElementById("listaConteudos");
 const botoes = document.querySelectorAll(".btn-materia");
 
+let dados = null;
+
 function formatarNome(texto) {
     return texto
         .replaceAll("_", " ")
         .replace(/\b\w/g, letra => letra.toUpperCase());
 }
 
-const grupos = {
-    "ciencias-humanas": [
-        "historia",
-        "geografia",
-        "filosofia",
-        "sociologia",
-        "artes"
-    ],
+fetch("data/index_novo.json")
+    .then(resposta => {
+        if (!resposta.ok) {
+            throw new Error("Não foi possível carregar o index.json");
+        }
 
-    "ciencias-natureza": [
-        "biologia",
-        "fisica",
-        "quimica"
-    ],
-
-    "linguagens": [
-        "portugues",
-        "literatura",
-        "ingles",
-        "espanhol"
-    ],
-
-    "matematica": [
-        "matematica"
-    ]
-};
-
-const nomesGrupos = {
-    "ciencias-humanas": "Ciências Humanas",
-    "ciencias-natureza": "Ciências da Natureza",
-    "linguagens": "Linguagens",
-    "matematica": "Matemática"
-};
+        return resposta.json();
+    })
+    .then(json => {
+        dados = json;
+    })
+    .catch(erro => {
+        console.error(erro);
+        titulo.textContent = "Erro ao carregar as matérias.";
+    });
 
 botoes.forEach(botao => {
 
@@ -48,29 +32,52 @@ botoes.forEach(botao => {
 
         const grupo = botao.dataset.materia;
 
-        titulo.textContent =
-            nomesGrupos[grupo] || formatarNome(grupo);
-
         lista.innerHTML = "";
 
-        const materias = grupos[grupo];
+        if (grupo === "nao_classificadas") {
 
-        if (!materias) {
+            titulo.textContent = "Questões não classificadas";
+
+            lista.innerHTML = `
+                <li
+                    class="item-conteudo"
+                    data-materia="nao_classificadas"
+                >
+                    Questões não classificadas
+                </li>
+            `;
+
             return;
         }
 
-        materias.forEach(materia => {
+        if (!dados) {
+            return;
+        }
+
+        const area = dados.areas.find(
+            item => item.id === grupo
+        );
+
+        if (!area) {
+            return;
+        }
+
+        titulo.textContent = area.nome;
+
+        area.materias.forEach(materia => {
 
             lista.innerHTML += `
                 <li
                     class="item-conteudo"
-                    data-materia="${materia}"
+                    data-materia="${materia.id}"
                 >
-                    ${formatarNome(materia)}
+                    ${materia.nome}
                 </li>
             `;
         });
+
     });
+
 });
 
 lista.addEventListener("click", evento => {

@@ -1,0 +1,408 @@
+[
+  {
+    "id": 1,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "idioma": null,
+    "conteudo": "Educação Física",
+    "subconteudo": "Esportes",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Em uma escola, o professor de Educação Física propôs uma atividade em que os estudantes deveriam adaptar as regras de um jogo coletivo para permitir a participação de todos, independentemente do nível de habilidade motora. A turma decidiu reduzir o tamanho da quadra, permitir mais passes antes da finalização e criar regras que favorecessem a participação de estudantes que tinham maior dificuldade. Essa proposta está relacionada principalmente à",
+    "alternativas": [
+      "valorização do rendimento esportivo individual.",
+      "especialização precoce dos estudantes.",
+      "inclusão e democratização das práticas esportivas.",
+      "seleção dos estudantes com maior capacidade física.",
+      "substituição dos esportes coletivos por atividades individuais."
+    ],
+    "resposta": 2,
+    "explicacao": "A adaptação das regras busca garantir a participação de todos, caracterizando uma perspectiva inclusiva e democrática da prática esportiva."
+  },
+  {
+    "id": 2,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "idioma": null,
+    "conteudo": "Educação Física",
+    "subconteudo": "Corpo e saúde",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Durante uma campanha escolar sobre qualidade de vida, os estudantes discutiram a importância da prática regular de atividades físicas. Um dos grupos destacou que os benefícios não estão relacionados apenas ao desempenho esportivo, mas também à manutenção da saúde e à melhoria da disposição para as atividades cotidianas. Essa abordagem compreende a atividade física como uma prática relacionada",
+    "alternativas": [
+      "exclusivamente à competição esportiva.",
+      "à promoção da saúde e da qualidade de vida.",
+      "somente ao desenvolvimento da força muscular.",
+      "à obtenção de resultados em competições profissionais.",
+      "exclusivamente à redução do peso corporal."
+    ],
+    "resposta": 1,
+    "explicacao": "A prática regular de atividades físicas pode contribuir para a saúde, o bem-estar e a qualidade de vida, não se limitando ao desempenho competitivo."
+  },
+  {
+    "id": 3,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "idioma": null,
+    "conteudo": "Educação Física",
+    "subconteudo": "Jogos e brincadeiras",
+    "dificuldade": "Fácil",
+    "habilidade": "",
+    "enunciado": "Em determinada comunidade, crianças costumam brincar de amarelinha, pega-pega e outras atividades transmitidas entre diferentes gerações. Mesmo sem equipamentos sofisticados, essas práticas permanecem presentes no cotidiano das crianças. A permanência dessas atividades demonstra que os jogos e as brincadeiras",
+    "alternativas": [
+      "dependem exclusivamente de equipamentos tecnológicos.",
+      "possuem apenas finalidade competitiva.",
+      "fazem parte das manifestações culturais de diferentes grupos sociais.",
+      "devem ser substituídos por esportes institucionalizados.",
+      "são práticas sem relação com a cultura."
+    ],
+    "resposta": 2,
+    "explicacao": "Jogos e brincadeiras são manifestações culturais que podem ser transmitidas entre gerações e assumir diferentes características conforme o grupo social."
+  },
+  {
+    "id": 4,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Esportes",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "O futebol praticado em diferentes regiões do Brasil apresenta variações nas formas de jogar, nas estratégias utilizadas e até nas regras adotadas em determinadas situações informais. Essas diferenças mostram que uma mesma modalidade esportiva pode ser ressignificada conforme o contexto social em que é praticada. Esse fenômeno evidencia a relação entre esporte e",
+    "alternativas": [
+      "isolamento cultural.",
+      "padronização absoluta das práticas corporais.",
+      "diversidade cultural.",
+      "eliminação das manifestações populares.",
+      "redução das práticas corporais à competição."
+    ],
+    "resposta": 2,
+    "explicacao": "As diferentes formas de praticar uma modalidade revelam que as práticas esportivas também são influenciadas pelos contextos culturais."
+  },
+  {
+    "id": 5,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Práticas corporais",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Uma escola passou a oferecer aulas de dança, capoeira, esportes, ginástica e lutas. O objetivo da proposta era ampliar as possibilidades de participação dos estudantes e apresentar diferentes formas de utilização do corpo. A diversidade de atividades proposta pela escola contribui para",
+    "alternativas": [
+      "restringir as experiências corporais dos estudantes.",
+      "valorizar diferentes manifestações da cultura corporal.",
+      "priorizar exclusivamente os esportes de alto rendimento.",
+      "eliminar práticas corporais tradicionais.",
+      "estabelecer um único padrão de movimento corporal."
+    ],
+    "resposta": 1,
+    "explicacao": "A diversidade de práticas permite conhecer diferentes manifestações da cultura corporal e ampliar as experiências dos estudantes."
+  },
+  {
+    "id": 6,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Corpo e saúde",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Uma estudante passa grande parte do dia sentada estudando e utilizando dispositivos eletrônicos. Para modificar sua rotina, ela passou a realizar pequenas caminhadas, utilizar escadas em vez do elevador e fazer pausas durante períodos prolongados de estudo. Essas mudanças representam",
+    "alternativas": [
+      "a substituição completa do exercício estruturado.",
+      "a incorporação de atividades físicas ao cotidiano.",
+      "a prática exclusiva de exercícios de alta intensidade.",
+      "uma estratégia voltada apenas para o desempenho esportivo.",
+      "uma redução da movimentação corporal diária."
+    ],
+    "resposta": 1,
+    "explicacao": "Pequenas mudanças na rotina podem aumentar a movimentação corporal diária e contribuir para um estilo de vida mais ativo."
+  },
+  {
+    "id": 7,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Esportes",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "Em uma competição escolar, o professor percebeu que alguns estudantes evitavam participar porque acreditavam que somente aqueles com maior desempenho físico deveriam competir. Para modificar essa percepção, o professor propôs equipes formadas de maneira diversificada e avaliou os estudantes também pela cooperação e pelo respeito às regras. A proposta do professor busca",
+    "alternativas": [
+      "priorizar exclusivamente o resultado final.",
+      "valorizar apenas estudantes com maior desempenho.",
+      "ampliar a dimensão educativa das práticas esportivas.",
+      "eliminar a cooperação durante os jogos.",
+      "transformar a atividade em uma competição profissional."
+    ],
+    "resposta": 2,
+    "explicacao": "A proposta amplia o significado da competição ao valorizar cooperação, respeito e participação, características importantes da dimensão educativa do esporte."
+  },
+  {
+    "id": 8,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Lutas",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Durante uma aula sobre lutas, os estudantes conheceram práticas como capoeira, judô e karatê. O professor destacou que essas manifestações possuem histórias, valores e formas de organização próprias. Ao trabalhar essas práticas na escola, é importante compreendê-las como",
+    "alternativas": [
+      "formas exclusivamente violentas de confronto.",
+      "atividades destinadas somente a atletas profissionais.",
+      "manifestações da cultura corporal.",
+      "práticas sem influência histórica.",
+      "atividades que devem ser ensinadas apenas pela competição."
+    ],
+    "resposta": 2,
+    "explicacao": "As lutas possuem dimensões históricas, culturais, sociais e educativas, sendo consideradas manifestações da cultura corporal."
+  },
+  {
+    "id": 9,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Dança",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Em um projeto escolar, estudantes pesquisaram danças tradicionais de diferentes regiões brasileiras e apresentaram suas características para os colegas. Durante as apresentações, foram discutidos aspectos históricos, musicais e sociais relacionados a cada manifestação. Essa atividade contribui principalmente para",
+    "alternativas": [
+      "uniformizar as manifestações culturais.",
+      "valorizar a diversidade das manifestações corporais.",
+      "substituir manifestações populares por danças esportivas.",
+      "considerar apenas os aspectos técnicos da dança.",
+      "separar a dança de seus contextos culturais."
+    ],
+    "resposta": 1,
+    "explicacao": "Conhecer diferentes danças e seus contextos permite reconhecer e valorizar a diversidade cultural presente nas práticas corporais."
+  },
+  {
+    "id": 10,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Ginástica",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Uma praça pública passou a oferecer aulas gratuitas de ginástica para moradores de diferentes idades. A iniciativa utiliza um espaço público e busca possibilitar a participação da população em atividades corporais. Uma consequência social esperada dessa iniciativa é",
+    "alternativas": [
+      "a restrição do acesso às práticas corporais.",
+      "a democratização do acesso às atividades físicas.",
+      "a valorização exclusiva do esporte profissional.",
+      "a redução da utilização dos espaços públicos.",
+      "a substituição das atividades coletivas por práticas individuais."
+    ],
+    "resposta": 1,
+    "explicacao": "A oferta gratuita de atividades em espaços públicos amplia o acesso da população às práticas corporais."
+  },
+  {
+    "id": 11,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Esportes",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "Grandes eventos esportivos movimentam investimentos, atraem turistas e recebem ampla cobertura dos meios de comunicação. Ao mesmo tempo, esses eventos podem contribuir para a construção de identidades coletivas e para a divulgação de práticas culturais. Essa situação demonstra que o esporte contemporâneo possui dimensões",
+    "alternativas": [
+      "somente biológicas.",
+      "exclusivamente recreativas.",
+      "sociais, econômicas e culturais.",
+      "apenas individuais.",
+      "exclusivamente relacionadas à saúde."
+    ],
+    "resposta": 2,
+    "explicacao": "O esporte contemporâneo ultrapassa a dimensão da prática corporal, envolvendo aspectos sociais, econômicos, culturais e midiáticos."
+  },
+  {
+    "id": 12,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Corpo e saúde",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "Uma campanha publicitária apresenta determinado padrão corporal como símbolo de sucesso e saúde. Após discutir a campanha, estudantes perceberam que diferentes corpos podem apresentar características distintas e que saúde não pode ser definida apenas pela aparência física. A análise crítica dessa campanha permite questionar",
+    "alternativas": [
+      "a existência de diferentes práticas corporais.",
+      "a influência dos meios de comunicação sobre as concepções de corpo.",
+      "a importância da atividade física para a saúde.",
+      "a necessidade de alimentação adequada.",
+      "a existência de esportes coletivos."
+    ],
+    "resposta": 1,
+    "explicacao": "A mídia pode influenciar concepções sociais sobre o corpo. A análise crítica permite perceber que padrões de aparência não devem ser confundidos automaticamente com saúde."
+  },
+  {
+    "id": 13,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Jogos e brincadeiras",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Em uma escola, estudantes propuseram substituir parte dos jogos digitais utilizados durante o intervalo por brincadeiras tradicionais escolhidas coletivamente. A atividade possibilitou que alunos de diferentes turmas compartilhassem experiências e conhecessem brincadeiras que não faziam parte de seu cotidiano. Essa iniciativa favorece principalmente",
+    "alternativas": [
+      "a redução das interações sociais.",
+      "a valorização e transmissão de manifestações culturais.",
+      "o abandono de práticas tradicionais.",
+      "a especialização esportiva precoce.",
+      "a diminuição da participação coletiva."
+    ],
+    "resposta": 1,
+    "explicacao": "As brincadeiras tradicionais podem atuar como formas de transmissão cultural e favorecer a interação entre diferentes grupos."
+  },
+  {
+    "id": 14,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Práticas corporais",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "Em uma comunidade, moradores utilizam uma praça para caminhar, jogar futebol, andar de bicicleta e realizar atividades recreativas. Entretanto, a falta de iluminação e de manutenção limita a utilização do espaço em determinados horários. A situação evidencia que a participação da população em práticas corporais também depende",
+    "alternativas": [
+      "exclusivamente da motivação individual.",
+      "da existência de condições adequadas de acesso e infraestrutura.",
+      "somente da capacidade física dos indivíduos.",
+      "da participação em competições oficiais.",
+      "exclusivamente da existência de academias privadas."
+    ],
+    "resposta": 1,
+    "explicacao": "O acesso às práticas corporais é influenciado por fatores sociais e estruturais, como a disponibilidade, segurança e qualidade dos espaços públicos."
+  },
+  {
+    "id": 15,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Esportes",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Em determinado jogo coletivo, uma equipe percebeu que um dos integrantes possuía dificuldade para realizar determinadas ações. Os demais jogadores passaram a organizar as jogadas de maneira que esse integrante também pudesse participar das decisões e das ações do jogo. Essa estratégia valoriza",
+    "alternativas": [
+      "a exclusão dos participantes com dificuldades.",
+      "a competição individual.",
+      "a cooperação e a inclusão.",
+      "o desempenho exclusivamente técnico.",
+      "a especialização de cada jogador."
+    ],
+    "resposta": 2,
+    "explicacao": "A organização das ações para garantir a participação de todos valoriza a cooperação e a inclusão."
+  },
+  {
+    "id": 16,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Capoeira",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "A capoeira reúne movimentos corporais, música, instrumentos, canto e elementos históricos relacionados à formação da sociedade brasileira. Por apresentar diferentes dimensões em uma mesma manifestação, seu estudo na escola pode contribuir para",
+    "alternativas": [
+      "reduzir a capoeira a uma modalidade esportiva competitiva.",
+      "compreender relações entre corpo, cultura e história.",
+      "eliminar seus elementos musicais.",
+      "considerá-la apenas como uma forma de exercício físico.",
+      "separá-la das manifestações culturais brasileiras."
+    ],
+    "resposta": 1,
+    "explicacao": "A capoeira articula elementos corporais, musicais, históricos e culturais, permitindo uma abordagem ampla da cultura corporal."
+  },
+  {
+    "id": 17,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Esportes",
+    "dificuldade": "Média",
+    "habilidade": "",
+    "enunciado": "Em uma competição escolar, uma equipe venceu a partida, mas seus integrantes foram advertidos por atitudes desrespeitosas em relação aos adversários. Ao discutir o ocorrido, o professor destacou que a prática esportiva envolve não apenas o resultado, mas também atitudes relacionadas à convivência. Nesse contexto, destaca-se o valor do",
+    "alternativas": [
+      "individualismo.",
+      "respeito e fair play.",
+      "rendimento máximo.",
+      "confronto físico.",
+      "resultado acima de qualquer princípio."
+    ],
+    "resposta": 1,
+    "explicacao": "O fair play envolve respeito às regras, aos adversários e aos princípios éticos presentes na prática esportiva."
+  },
+  {
+    "id": 18,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Corpo e saúde",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "Um município desenvolveu um programa que incentiva deslocamentos realizados a pé ou de bicicleta, associando essas práticas à melhoria da mobilidade urbana e à promoção de hábitos mais ativos. A proposta relaciona atividade física e",
+    "alternativas": [
+      "mobilidade urbana e qualidade de vida.",
+      "redução da circulação de pessoas.",
+      "aumento exclusivo do transporte individual motorizado.",
+      "especialização esportiva.",
+      "competição entre os moradores."
+    ],
+    "resposta": 0,
+    "explicacao": "Deslocamentos ativos, como caminhar e pedalar, podem relacionar mobilidade urbana, prática corporal e qualidade de vida."
+  },
+  {
+    "id": 19,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Práticas corporais",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "Durante uma aula, estudantes compararam diferentes formas de manifestação corporal presentes em comunidades brasileiras. Algumas estavam associadas a festas populares, outras a práticas religiosas, esportivas ou recreativas. A análise dessas manifestações permite compreender que o corpo também é utilizado como meio de",
+    "alternativas": [
+      "expressão cultural e social.",
+      "isolamento entre grupos.",
+      "eliminação das tradições.",
+      "padronização dos costumes.",
+      "negação das diferenças culturais."
+    ],
+    "resposta": 0,
+    "explicacao": "As manifestações corporais podem expressar valores, tradições, identidades e formas de organização social."
+  },
+  {
+    "id": 20,
+    "banca": "ENEM",
+    "ano": null,
+    "numero": null,
+    "disciplina": "educacao_fisica",
+    "subconteudo": "Esportes",
+    "dificuldade": "Difícil",
+    "habilidade": "",
+    "enunciado": "Uma escola organizou uma semana de práticas corporais na qual os estudantes puderam escolher entre diferentes modalidades esportivas, danças, lutas, jogos e atividades recreativas. Ao final, os professores observaram que muitos estudantes participaram de práticas que nunca haviam experimentado. A principal contribuição da proposta foi",
+    "alternativas": [
+      "restringir as experiências corporais aos esportes mais populares.",
+      "estimular a ampliação do repertório de práticas corporais.",
+      "selecionar os estudantes com maior desempenho físico.",
+      "priorizar exclusivamente atividades competitivas.",
+      "estabelecer uma única forma de utilização do corpo."
+    ],
+    "resposta": 1,
+    "explicacao": "A oferta diversificada permite que os estudantes conheçam diferentes práticas corporais e ampliem seu repertório cultural e motor."
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "areas": [
+    {
+      "id": "linguagens",
+      "nome": "Linguagens",
+      "materias": [
+        {
+          "id": "portugues",
+          "nome": "Português"
+        },
+        {
+          "id": "literatura",
+          "nome": "Literatura"
+        },
+        {
+          "id": "ingles",
+          "nome": "Inglês"
+        },
+        {
+          "id": "espanhol",
+          "nome": "Espanhol"
+        },
+        {
+          "id": "artes",
+          "nome": "Artes"
+        },
+        {
+          "id": "educacao_fisica",
+          "nome": "Educação Física"
+        }
+      ]
+    },
+    {
+      "id": "ciencias-humanas",
+      "nome": "Ciências Humanas",
+      "materias": [
+        {
+          "id": "historia",
+          "nome": "História"
+        },
+        {
+          "id": "geografia",
+          "nome": "Geografia"
+        },
+        {
+          "id": "filosofia",
+          "nome": "Filosofia"
+        },
+        {
+          "id": "sociologia",
+          "nome": "Sociologia"
+        }
+      ]
+    },
+    {
+      "id": "ciencias-natureza",
+      "nome": "Ciências da Natureza",
+      "materias": [
+        {
+          "id": "biologia",
+          "nome": "Biologia"
+        },
+        {
+          "id": "fisica",
+          "nome": "Física"
+        },
+        {
+          "id": "quimica",
+          "nome": "Química"
+        }
+      ]
+    },
+    {
+      "id": "matematica",
+      "nome": "Matemática",
+      "materias": [
+        {
+          "id": "matematica",
+          "nome": "Matemática"
+        }
+      ]
+    }
+  ],
+  "nao_classificadas": {
+    "id": "nao_classificadas",
+    "nome": "Questões não classificadas"
+  }
+}
