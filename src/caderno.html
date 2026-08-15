@@ -1,14 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Caderno</title>
+
     <link rel="stylesheet" href="css/caderno.css">
 </head>
+
 <body>
-    <div class="topo">
+
+    <header class="topo">
         <p>Caderno</p>
-    </div>
+    </header>
+
+    <main class="caderno">
+
+        <section class="nova-anotacao">
+
+            <h2>Nova anotação</h2>
+
+            <label for="materia">Matéria</label>
+
+            <select id="materia">
+                <option value="">Selecione uma matéria</option>
+                <option value="portugues">Português</option>
+                <option value="literatura">Literatura</option>
+                <option value="artes">Artes</option>
+                <option value="historia">História</option>
+                <option value="geografia">Geografia</option>
+                <option value="filosofia">Filosofia</option>
+                <option value="sociologia">Sociologia</option>
+                <option value="biologia">Biologia</option>
+                <option value="quimica">Química</option>
+                <option value="fisica">Física</option>
+                <option value="matematica">Matemática</option>
+                <option value="ingles">Inglês</option>
+                <option value="espanhol">Espanhol</option>
+            </select>
+
+
+            <label for="titulo">Título</label>
+
+            <input
+                type="text"
+                id="titulo"
+                placeholder="Ex.: Leis de Newton"
+            >
+
+
+            <label for="anotacao">Anotação</label>
+
+            <textarea
+                id="anotacao"
+                placeholder="Escreva sua anotação aqui..."
+            ></textarea>
+
+
+            <button id="salvar">
+                Salvar anotação
+            </button>
+
+        </section>
+
+
+        <section class="minhas-anotacoes">
+
+            <h2>Minhas anotações</h2>
+
+
+            <div class="filtros">
+
+                <input
+                    type="text"
+                    id="pesquisa"
+                    placeholder="Pesquisar anotação..."
+                >
+
+                <select id="filtro-materia">
+
+                    <option value="">
+                        Todas as matérias
+                    </option>
+
+                    <option value="portugues">Português</option>
+                    <option value="literatura">Literatura</option>
+                    <option value="artes">Artes</option>
+                    <option value="historia">História</option>
+                    <option value="geografia">Geografia</option>
+                    <option value="filosofia">Filosofia</option>
+                    <option value="sociologia">Sociologia</option>
+                    <option value="biologia">Biologia</option>
+                    <option value="quimica">Química</option>
+                    <option value="fisica">Física</option>
+                    <option value="matematica">Matemática</option>
+                    <option value="ingles">Inglês</option>
+                    <option value="espanhol">Espanhol</option>
+
+                </select>
+
+            </div>
+
+
+            <div id="lista-anotacoes">
+
+                <!-- As anotações aparecerão aqui pelo JavaScript -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/caderno.js"></script>
+
 </body>
+
 </html>

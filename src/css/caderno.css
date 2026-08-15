@@ -1,20 +1,537 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: aliceblue;
+    background-color: #f5f5ff;
+    color: #333;
+    font-family: Arial, sans-serif;
 }
+
+
+/* TOPO */
 
 .topo {
     display: flex;
     align-items: center;
+
     width: 100%;
     height: 12vh;
-    background-color: rgb(89, 89, 223);
+
+    background-color: #5959df;
+
+    box-shadow: 0 3px 12px rgba(60, 60, 150, 0.18);
 }
 
-.topo p{
+.topo p {
     margin: 0;
-    font-size: 3rem;
     margin-left: 20px;
-    color: aliceblue;
+
+    font-size: 3rem;
+    font-weight: 600;
+
+    color: #f5f5ff;
+}
+
+
+/* CADERNO */
+
+.caderno {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 88vh;
+
+    gap: 35px;
+
+    padding: 55px 5%;
+
+    box-sizing: border-box;
+}
+
+
+/* NOVA ANOTAÇÃO */
+
+.nova-anotacao {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: 50%;
+    max-width: 700px;
+    height: 650px;
+
+    background-color: #5959df;
+
+    border-radius: 16px;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 8px 25px rgba(60, 60, 150, 0.18);
+}
+
+
+.nova-anotacao h2 {
+    width: 100%;
+
+    color: #f5f5ff;
+
+    font-size: 2rem;
+    font-weight: 600;
+
+    margin: 0 0 28px 0;
+}
+
+
+.nova-anotacao label {
+    color: #f5f5ff;
+
+    font-size: 1.05rem;
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+/* CAMPOS */
+
+#materia,
+#titulo,
+#anotacao {
+    background-color: #ffffff;
+
+    color: #333;
+
+    border: 2px solid transparent;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#materia {
+    width: 100%;
+    height: 40px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    padding: 5px 10px;
+
+    box-sizing: border-box;
+}
+
+
+#titulo {
+    width: 100%;
+    height: 40px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    padding: 8px 12px;
+
+    box-sizing: border-box;
+}
+
+
+#anotacao {
+    width: 100%;
+    height: 250px;
+    max-height: 250px;
+
+    margin-bottom: 25px;
+
+    border-radius: 8px;
+
+    padding: 12px;
+
+    resize: none;
+    overflow-y: auto;
+
+    box-sizing: border-box;
+
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+
+/* FOCO */
+
+#materia:focus,
+#titulo:focus,
+#anotacao:focus,
+#pesquisa:focus,
+#filtro-materia:focus {
+    outline: none;
+
+    border-color: #8585ee;
+
+    box-shadow: 0 0 0 3px rgba(133, 133, 238, 0.18);
+}
+
+
+/* BOTÃO SALVAR */
+
+#salvar {
+    width: 32%;
+    min-width: 140px;
+    height: 42px;
+
+    margin: 0 auto;
+
+    border-radius: 8px;
+    border: none;
+
+    background-color: #f5f5ff;
+
+    color: #5959df;
+
+    font-size: 1.05rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+#salvar:hover {
+    background-color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+#salvar:active {
+    transform: translateY(0);
+}
+
+
+/* MINHAS ANOTAÇÕES */
+
+.minhas-anotacoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 50%;
+    max-width: 700px;
+    height: 650px;
+
+    padding: 35px;
+
+    background-color: #5959df;
+
+    border-radius: 16px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+    box-shadow: 0 8px 25px rgba(60, 60, 150, 0.18);
+}
+
+
+.minhas-anotacoes h2 {
+    width: 100%;
+
+    color: #f5f5ff;
+
+    font-size: 2rem;
+    font-weight: 600;
+
+    margin-top: 0;
+    margin-bottom: 22px;
+}
+
+
+/* FILTROS */
+
+.filtros {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    width: 100%;
+
+    margin-bottom: 22px;
+}
+
+
+#pesquisa,
+#filtro-materia {
+    width: 100%;
+    height: 42px;
+
+    padding: 8px 12px;
+
+    border: 2px solid transparent;
+
+    border-radius: 8px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    color: #333;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#pesquisa {
+    outline: none;
+}
+
+
+#filtro-materia {
+    cursor: pointer;
+}
+
+
+/* LISTA */
+
+#lista-anotacoes {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+
+/* ANOTAÇÃO */
+
+.anotacao {
+    width: 100%;
+
+    padding: 22px;
+
+    background-color: #ffffff;
+
+    border-radius: 12px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.anotacao:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.11);
+}
+
+
+.anotacao small {
+    color: #5959df;
+
+    font-weight: bold;
+}
+
+
+.anotacao h3 {
+    margin-top: 8px;
+    margin-bottom: 10px;
+
+    color: #333;
+
+    font-size: 1.25rem;
+}
+
+
+.anotacao p {
+    margin: 0;
+
+    color: #555;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+}
+
+
+/* BOTÕES DAS ANOTAÇÕES */
+
+.botoes-anotacao {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.botoes-anotacao button {
+    margin: 0;
+    padding: 0;
+
+    width: 90px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.editar,
+.excluir {
+    background-color: #5959df;
+
+    color: #f5f5ff;
+}
+
+
+.editar:hover,
+.excluir:hover {
+    background-color: #4646c0;
+
+    transform: translateY(-2px);
+}
+
+
+.editar:active,
+.excluir:active {
+    transform: translateY(0);
+}
+
+
+/* SEM ANOTAÇÕES */
+
+.sem-anotacoes {
+    width: 100%;
+
+    color: #f5f5ff;
+
+    font-size: 1.1rem;
+
+    text-align: center;
+
+    line-height: 1.5;
+}
+
+
+/* BARRA DE ROLAGEM */
+
+.minhas-anotacoes::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.minhas-anotacoes::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+}
+
+
+.minhas-anotacoes::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.45);
+
+    border-radius: 10px;
+}
+
+
+.minhas-anotacoes::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+
+    .caderno {
+        flex-direction: column;
+        align-items: center;
+
+        padding: 40px 5%;
+    }
+
+    .nova-anotacao,
+    .minhas-anotacoes {
+        width: 90%;
+        max-width: 700px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .topo {
+        height: 10vh;
+    }
+
+    .topo p {
+        font-size: 2rem;
+    }
+
+    .caderno {
+        padding: 30px 15px;
+
+        gap: 25px;
+    }
+
+    .nova-anotacao,
+    .minhas-anotacoes {
+        width: 100%;
+
+        height: auto;
+        min-height: 600px;
+
+        padding: 22px;
+    }
+
+    .nova-anotacao h2,
+    .minhas-anotacoes h2 {
+        font-size: 1.6rem;
+    }
+
+    #anotacao {
+        height: 220px;
+        max-height: 220px;
+    }
+
+    #salvar {
+        width: 50%;
+    }
+
 }

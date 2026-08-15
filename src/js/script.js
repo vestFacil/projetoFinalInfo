@@ -1,4 +1,3 @@
-
 document.getElementById("materia").addEventListener("click", () => {
     window.location.href = "materia.html";
 });

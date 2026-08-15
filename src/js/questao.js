@@ -19,69 +19,99 @@ const popup = document.getElementById("popupConfiguracao");
 const areaQuestao = document.getElementById("questao");
 
 let respostaCorreta;
-let explicacao;
 
 let questoes = [];
 let questoesSelecionadas = [];
 
 let numeroQuestao = 0;
 let pontos = 0;
+
 let respondeu = false;
 let quantidadeQuestoes = 10;
 
+
 function formatarNome(texto) {
+
     return texto
         .replaceAll("_", " ")
         .replaceAll("-", " ")
         .replace(/\b\w/g, letra => letra.toUpperCase());
+
 }
 
+
 function salvarProgresso() {
+
     const progresso = {
+
         materia,
+
         questoes: questoesSelecionadas,
+
         numeroQuestao,
+
         pontos,
+
         quantidade: quantidadeQuestoes
+
     };
 
     localStorage.setItem(
         "progressoQuestao",
         JSON.stringify(progresso)
     );
+
 }
 
+
 function carregarProgresso() {
-    const salvo = localStorage.getItem("progressoQuestao");
+
+    const salvo =
+        localStorage.getItem("progressoQuestao");
 
     if (!salvo) {
         return false;
     }
 
-    const progresso = JSON.parse(salvo);
+    const progresso =
+        JSON.parse(salvo);
 
     if (progresso.materia !== materia) {
         return false;
     }
 
-    questoesSelecionadas = progresso.questoes;
-    numeroQuestao = progresso.numeroQuestao;
-    pontos = progresso.pontos;
-    quantidadeQuestoes = progresso.quantidade;
+    questoesSelecionadas =
+        progresso.questoes;
 
-    quantidade.value = quantidadeQuestoes;
+    numeroQuestao =
+        progresso.numeroQuestao;
+
+    pontos =
+        progresso.pontos;
+
+    quantidadeQuestoes =
+        progresso.quantidade;
+
+    quantidade.value =
+        quantidadeQuestoes;
 
     mostrarQuestao();
 
     return true;
+
 }
 
+
 async function carregarQuestoes() {
+
     try {
+
         if (!materia) {
+
             throw new Error(
                 "Nenhuma matéria foi informada."
             );
+
         }
 
         let pasta = materia;
@@ -91,37 +121,49 @@ async function carregarQuestoes() {
             materia === "nao-classificadas" ||
             materia === "nao_classificadas"
         ) {
+
             pasta = "nao-classificadas";
+
             nomeArquivo = "nao_classificadas";
+
         }
 
         const caminho =
             `data/${pasta}/${nomeArquivo}.json`;
 
-        console.log("Carregando:", caminho);
+        console.log(
+            "Carregando:",
+            caminho
+        );
 
         const resposta =
             await fetch(caminho);
 
         if (!resposta.ok) {
+
             throw new Error(
                 `Arquivo não encontrado: ${caminho}`
             );
+
         }
 
         questoes =
             await resposta.json();
 
         if (!Array.isArray(questoes)) {
+
             throw new Error(
                 "O arquivo JSON não contém uma lista de questões."
             );
+
         }
 
         if (questoes.length === 0) {
+
             throw new Error(
                 "Esse arquivo não possui questões."
             );
+
         }
 
         console.log(
@@ -139,6 +181,7 @@ async function carregarQuestoes() {
         console.error(erro);
 
         popup.style.display = "none";
+
         areaQuestao.style.display = "block";
 
         titulo.textContent =
@@ -153,8 +196,11 @@ async function carregarQuestoes() {
             erro.message;
 
         return false;
+
     }
+
 }
+
 
 function configurarQuantidade(total) {
 
@@ -184,7 +230,10 @@ function configurarQuantidade(total) {
             </option>
         `;
 
-    } else if (total > 0 && total < 20) {
+    } else if (
+        total > 0 &&
+        total < 20
+    ) {
 
         if (
             total !== 5 &&
@@ -213,52 +262,71 @@ function configurarQuantidade(total) {
 
         quantidade.value =
             String(total);
+
     }
 
     quantidadeQuestoes =
         Number(quantidade.value);
+
 }
 
-iniciar.addEventListener("click", () => {
 
-    const continuando =
-        carregarProgresso();
+iniciar.addEventListener(
+    "click",
+    () => {
 
-    if (continuando) {
+        const continuando =
+            carregarProgresso();
 
-        popup.style.display = "none";
+        if (continuando) {
 
-        return;
+            popup.style.display =
+                "none";
+
+            return;
+
+        }
+
+        quantidadeQuestoes =
+            Number(quantidade.value);
+
+        questoesSelecionadas =
+            [...questoes]
+                .sort(
+                    () => Math.random() - 0.5
+                )
+                .slice(
+                    0,
+                    quantidadeQuestoes
+                );
+
+        numeroQuestao = 0;
+
+        pontos = 0;
+
+        popup.style.display =
+            "none";
+
+        mostrarQuestao();
+
     }
+);
 
-    quantidadeQuestoes =
-        Number(quantidade.value);
-
-    questoesSelecionadas =
-        [...questoes]
-            .sort(() => Math.random() - 0.5)
-            .slice(
-                0,
-                quantidadeQuestoes
-            );
-
-    numeroQuestao = 0;
-    pontos = 0;
-
-    popup.style.display = "none";
-
-    mostrarQuestao();
-});
 
 function mostrarQuestao() {
 
     respondeu = false;
 
-    botaoResponder.disabled = false;
-    botaoProxima.disabled = true;
+    botaoResponder.disabled =
+        false;
+
+    botaoProxima.disabled =
+        true;
 
     const questao =
-        questoesSelecionadas[numeroQuestao];
+        questoesSelecionadas[
+            numeroQuestao
+        ];
 
     if (!questao) {
         return;
@@ -267,16 +335,17 @@ function mostrarQuestao() {
     respostaCorreta =
         questao.resposta;
 
-    explicacao =
-        questao.explicacao || "";
-
-    let nomeTitulo = materia;
+    let nomeTitulo =
+        materia;
 
     if (
         materia === "nao-classificadas" ||
         materia === "nao_classificadas"
     ) {
-        nomeTitulo = "Não classificadas";
+
+        nomeTitulo =
+            "Não classificadas";
+
     }
 
     titulo.textContent =
@@ -297,26 +366,56 @@ function mostrarQuestao() {
     enunciado.innerHTML =
         textoEnunciado;
 
-    alternativas.innerHTML = "";
-    resultado.textContent = "";
+    alternativas.innerHTML =
+        "";
 
-    if (!Array.isArray(questao.alternativas)) {
+    resultado.textContent =
+        "";
+
+    if (
+        !Array.isArray(
+            questao.alternativas
+        )
+    ) {
 
         alternativas.innerHTML =
             "<p>Esta questão não possui alternativas disponíveis.</p>";
 
         return;
+
     }
 
-    questao.alternativas.forEach((alt, index) => {
+    questao.alternativas.forEach(
+        (alt, index) => {
 
-        const letra =
-            String.fromCharCode(65 + index);
+            const letra =
+                String.fromCharCode(
+                    65 + index
+                );
 
-        if (
-            alt === null ||
-            alt === undefined
-        ) {
+            if (
+                alt === null ||
+                alt === undefined
+            ) {
+
+                alternativas.innerHTML += `
+                    <label
+                        class="alternativa"
+                        data-index="${index}"
+                    >
+                        <input
+                            type="radio"
+                            name="resposta"
+                            value="${index}"
+                        >
+
+                        Alternativa ${letra}
+                    </label>
+                `;
+
+                return;
+
+            }
 
             alternativas.innerHTML += `
                 <label
@@ -328,153 +427,157 @@ function mostrarQuestao() {
                         name="resposta"
                         value="${index}"
                     >
-                    Alternativa ${letra}
+
+                    ${alt}
                 </label>
             `;
 
+        }
+    );
+
+}
+
+
+botaoResponder.addEventListener(
+    "click",
+    () => {
+
+        if (respondeu) {
             return;
         }
 
-        alternativas.innerHTML += `
-            <label
-                class="alternativa"
-                data-index="${index}"
-            >
-                <input
-                    type="radio"
-                    name="resposta"
-                    value="${index}"
-                >
-                ${alt}
-            </label>
-        `;
-
-    });
-}
-
-botaoResponder.addEventListener("click", () => {
-
-    if (respondeu) {
-        return;
-    }
-
-    const selecionada =
-        document.querySelector(
-            'input[name="resposta"]:checked'
-        );
-
-    if (!selecionada) {
-
-        resultado.textContent =
-            "Escolha uma alternativa!";
-
-        return;
-    }
-
-    respondeu = true;
-
-    botaoResponder.disabled = true;
-    botaoProxima.disabled = false;
-
-    document
-        .querySelectorAll(
-            'input[name="resposta"]'
-        )
-        .forEach(radio => {
-
-            radio.disabled = true;
-
-        });
-
-    const valorSelecionado =
-        Number(selecionada.value);
-
-    if (
-        valorSelecionado ===
-        respostaCorreta
-    ) {
-
-        resultado.textContent =
-            "✅ Você acertou!" +
-            (
-                explicacao
-                    ? "\n\n" + explicacao
-                    : ""
+        const selecionada =
+            document.querySelector(
+                'input[name="resposta"]:checked'
             );
 
-        pontos++;
+        if (!selecionada) {
 
-    } else {
+            resultado.textContent =
+                "Escolha uma alternativa!";
 
-        resultado.textContent =
-            "❌ Você errou!" +
-            (
-                explicacao
-                    ? "\n\n" + explicacao
-                    : ""
+            return;
+
+        }
+
+        respondeu = true;
+
+        botaoResponder.disabled =
+            true;
+
+        botaoProxima.disabled =
+            false;
+
+        document
+            .querySelectorAll(
+                'input[name="resposta"]'
+            )
+            .forEach(
+                radio => {
+                    radio.disabled = true;
+                }
             );
-    }
 
-    document
-        .querySelectorAll(".alternativa")
-        .forEach(alternativa => {
+        const valorSelecionado =
+            Number(
+                selecionada.value
+            );
 
-            const valor =
-                Number(
-                    alternativa.dataset.index
-                );
+        if (
+            valorSelecionado ===
+            respostaCorreta
+        ) {
 
-            if (
-                valor ===
-                respostaCorreta
-            ) {
+            resultado.textContent =
+                "✅ Você acertou!";
 
-                alternativa.classList.add(
-                    "correta"
-                );
-            }
+            pontos++;
 
-            if (
-                valor === valorSelecionado &&
-                valor !== respostaCorreta
-            ) {
+        } else {
 
-                alternativa.classList.add(
-                    "errada"
-                );
-            }
+            resultado.textContent =
+                "❌ Você errou!";
 
-        });
+        }
 
-    salvarProgresso();
-});
+        document
+            .querySelectorAll(
+                ".alternativa"
+            )
+            .forEach(
+                alternativa => {
 
-botaoProxima.addEventListener("click", () => {
+                    const valor =
+                        Number(
+                            alternativa.dataset.index
+                        );
 
-    numeroQuestao++;
+                    if (
+                        valor ===
+                        respostaCorreta
+                    ) {
 
-    if (
-        numeroQuestao <
-        questoesSelecionadas.length
-    ) {
+                        alternativa.classList.add(
+                            "correta"
+                        );
+
+                    }
+
+                    if (
+                        valor === valorSelecionado &&
+                        valor !== respostaCorreta
+                    ) {
+
+                        alternativa.classList.add(
+                            "errada"
+                        );
+
+                    }
+
+                }
+            );
 
         salvarProgresso();
 
-        mostrarQuestao();
-
-    } else {
-
-        resultado.textContent =
-            `Fim! Você acertou ${pontos} de ${questoesSelecionadas.length} questões.`;
-
-        botaoResponder.disabled = true;
-        botaoProxima.disabled = true;
-
-        localStorage.removeItem(
-            "progressoQuestao"
-        );
     }
-});
+);
+
+
+botaoProxima.addEventListener(
+    "click",
+    () => {
+
+        numeroQuestao++;
+
+        if (
+            numeroQuestao <
+            questoesSelecionadas.length
+        ) {
+
+            salvarProgresso();
+
+            mostrarQuestao();
+
+        } else {
+
+            resultado.textContent =
+                `Fim! Você acertou ${pontos} de ${questoesSelecionadas.length} questões.`;
+
+            botaoResponder.disabled =
+                true;
+
+            botaoProxima.disabled =
+                true;
+
+            localStorage.removeItem(
+                "progressoQuestao"
+            );
+
+        }
+
+    }
+);
+
 
 window.addEventListener(
     "beforeunload",
@@ -485,11 +588,13 @@ window.addEventListener(
         ) {
 
             event.preventDefault();
+
             event.returnValue = "";
 
         }
 
     }
 );
+
 
 carregarQuestoes();
