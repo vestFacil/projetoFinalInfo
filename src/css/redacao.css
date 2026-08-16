@@ -12,11 +12,12 @@ body {
 TOPO
 ========================= */
 .topo {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
     height: 12vh;
-    background-color: rgb(89, 89, 223); /* Lilás/Azul */
+    background-color: rgb(89, 89, 223);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
@@ -26,6 +27,41 @@ TOPO
     margin-left: 20px;
     color: aliceblue;
     font-weight: bold;
+}
+
+/* =========================
+BOTÃO INÍCIO
+========================= */
+
+.botao-inicio {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    color: rgb(89, 89, 223);
+
+    border-radius: 14px;
+
+    text-decoration: none;
+    font-size: 26px;
+
+    box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+
+    transition: 0.3s;
+}
+
+.botao-inicio:hover {
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 7px 15px rgba(0,0,0,0.25);
 }
 
 /* =========================
@@ -80,7 +116,7 @@ h3 {
 .nota-detalhada {
     margin-top: 15px;
     padding: 15px;
-    background: #eef2ff; /* Lilás bem clarinho */
+    background: #eef2ff;
     border-radius: 12px;
 }
 

@@ -19,53 +19,36 @@ const popup = document.getElementById("popupConfiguracao");
 const areaQuestao = document.getElementById("questao");
 
 let respostaCorreta;
-
 let questoes = [];
 let questoesSelecionadas = [];
-
 let numeroQuestao = 0;
 let pontos = 0;
-
 let respondeu = false;
 let quantidadeQuestoes = 10;
 
-
 function formatarNome(texto) {
-
     return texto
         .replaceAll("_", " ")
         .replaceAll("-", " ")
         .replace(/\b\w/g, letra => letra.toUpperCase());
-
 }
 
-
 function salvarProgresso() {
-
     const progresso = {
-
         materia,
-
         questoes: questoesSelecionadas,
-
         numeroQuestao,
-
         pontos,
-
         quantidade: quantidadeQuestoes
-
     };
 
     localStorage.setItem(
         "progressoQuestao",
         JSON.stringify(progresso)
     );
-
 }
 
-
 function carregarProgresso() {
-
     const salvo =
         localStorage.getItem("progressoQuestao");
 
@@ -98,20 +81,14 @@ function carregarProgresso() {
     mostrarQuestao();
 
     return true;
-
 }
 
-
 async function carregarQuestoes() {
-
     try {
-
         if (!materia) {
-
             throw new Error(
                 "Nenhuma matéria foi informada."
             );
-
         }
 
         let pasta = materia;
@@ -121,11 +98,8 @@ async function carregarQuestoes() {
             materia === "nao-classificadas" ||
             materia === "nao_classificadas"
         ) {
-
             pasta = "nao-classificadas";
-
             nomeArquivo = "nao_classificadas";
-
         }
 
         const caminho =
@@ -140,30 +114,24 @@ async function carregarQuestoes() {
             await fetch(caminho);
 
         if (!resposta.ok) {
-
             throw new Error(
                 `Arquivo não encontrado: ${caminho}`
             );
-
         }
 
         questoes =
             await resposta.json();
 
         if (!Array.isArray(questoes)) {
-
             throw new Error(
                 "O arquivo JSON não contém uma lista de questões."
             );
-
         }
 
         if (questoes.length === 0) {
-
             throw new Error(
                 "Esse arquivo não possui questões."
             );
-
         }
 
         console.log(
@@ -177,11 +145,9 @@ async function carregarQuestoes() {
         return true;
 
     } catch (erro) {
-
         console.error(erro);
 
         popup.style.display = "none";
-
         areaQuestao.style.display = "block";
 
         titulo.textContent =
@@ -196,14 +162,10 @@ async function carregarQuestoes() {
             erro.message;
 
         return false;
-
     }
-
 }
 
-
 function configurarQuantidade(total) {
-
     quantidade.innerHTML = "";
 
     const opcoes = [5, 10, 20];
@@ -217,9 +179,7 @@ function configurarQuantidade(total) {
                     ${valor} questões
                 </option>
             `;
-
         }
-
     });
 
     if (total > 20) {
@@ -245,9 +205,7 @@ function configurarQuantidade(total) {
                     ${total} questões
                 </option>
             `;
-
         }
-
     }
 
     if (total >= 10) {
@@ -262,14 +220,11 @@ function configurarQuantidade(total) {
 
         quantidade.value =
             String(total);
-
     }
 
     quantidadeQuestoes =
         Number(quantidade.value);
-
 }
-
 
 iniciar.addEventListener(
     "click",
@@ -284,7 +239,6 @@ iniciar.addEventListener(
                 "none";
 
             return;
-
         }
 
         quantidadeQuestoes =
@@ -301,17 +255,14 @@ iniciar.addEventListener(
                 );
 
         numeroQuestao = 0;
-
         pontos = 0;
 
         popup.style.display =
             "none";
 
         mostrarQuestao();
-
     }
 );
-
 
 function mostrarQuestao() {
 
@@ -336,20 +287,22 @@ function mostrarQuestao() {
         questao.resposta;
 
     let nomeTitulo =
-        materia;
+    materia;
 
     if (
         materia === "nao-classificadas" ||
         materia === "nao_classificadas"
     ) {
-
         nomeTitulo =
             "Não classificadas";
-
     }
 
-    titulo.textContent =
-        formatarNome(nomeTitulo);
+    if (materia === "portugues") {
+        titulo.textContent = "Línguas";
+    } else {
+        titulo.textContent =
+            formatarNome(nomeTitulo);
+    }
 
     contador.textContent =
         `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
@@ -382,7 +335,6 @@ function mostrarQuestao() {
             "<p>Esta questão não possui alternativas disponíveis.</p>";
 
         return;
-
     }
 
     questao.alternativas.forEach(
@@ -408,13 +360,11 @@ function mostrarQuestao() {
                             name="resposta"
                             value="${index}"
                         >
-
                         Alternativa ${letra}
                     </label>
                 `;
 
                 return;
-
             }
 
             alternativas.innerHTML += `
@@ -427,16 +377,12 @@ function mostrarQuestao() {
                         name="resposta"
                         value="${index}"
                     >
-
                     ${alt}
                 </label>
             `;
-
         }
     );
-
 }
-
 
 botaoResponder.addEventListener(
     "click",
@@ -457,7 +403,6 @@ botaoResponder.addEventListener(
                 "Escolha uma alternativa!";
 
             return;
-
         }
 
         respondeu = true;
@@ -497,7 +442,6 @@ botaoResponder.addEventListener(
 
             resultado.textContent =
                 "❌ Você errou!";
-
         }
 
         document
@@ -520,7 +464,6 @@ botaoResponder.addEventListener(
                         alternativa.classList.add(
                             "correta"
                         );
-
                     }
 
                     if (
@@ -531,17 +474,13 @@ botaoResponder.addEventListener(
                         alternativa.classList.add(
                             "errada"
                         );
-
                     }
-
                 }
             );
 
         salvarProgresso();
-
     }
 );
-
 
 botaoProxima.addEventListener(
     "click",
@@ -572,12 +511,9 @@ botaoProxima.addEventListener(
             localStorage.removeItem(
                 "progressoQuestao"
             );
-
         }
-
     }
 );
-
 
 window.addEventListener(
     "beforeunload",
@@ -588,13 +524,9 @@ window.addEventListener(
         ) {
 
             event.preventDefault();
-
             event.returnValue = "";
-
         }
-
     }
 );
-
 
 carregarQuestoes();

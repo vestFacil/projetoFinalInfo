@@ -11,7 +11,13 @@
 <body>
 
     <header class="topo">
+
+        <a href="index.html" class="botao-inicio" title="Voltar ao início">
+            🏠
+        </a>
+
         <p>Meu Perfil</p>
+
     </header>
 
     <main class="perfil-container">
@@ -33,10 +39,12 @@
                 <h3>Questões Resolvidas</h3>
                 <p id="questoesResolvidas">0</p>
             </div>
+
             <div class="box">
                 <h3>Média Redação</h3>
                 <p id="mediaRedacao">0</p>
             </div>
+
             <div class="box">
                 <h3>Dias Estudando</h3>
                 <p id="diasEstudando">0</p>
@@ -52,118 +60,7 @@
 
     </main>
 
-    <script>
-        const nomeUsuario = document.getElementById("nomeUsuario");
-        const emailUsuario = document.getElementById("emailUsuario");
-        const bioUsuario = document.getElementById("bioUsuario");
-        const fotoPerfil = document.getElementById("fotoPerfil");
-        const fotoInput = document.getElementById("fotoInput");
-
-        const questoesResolvidas = document.getElementById("questoesResolvidas");
-        const mediaRedacao = document.getElementById("mediaRedacao");
-        const diasEstudando = document.getElementById("diasEstudando");
-
-        // Carregar dados ao abrir
-        window.onload = () => {
-            if (localStorage.getItem("nome")) nomeUsuario.textContent = localStorage.getItem("nome");
-            if (localStorage.getItem("email")) emailUsuario.textContent = localStorage.getItem("email");
-            if (localStorage.getItem("bio")) bioUsuario.textContent = localStorage.getItem("bio");
-            if (localStorage.getItem("foto")) fotoPerfil.src = localStorage.getItem("foto");
-
-            // Estatísticas
-            questoesResolvidas.textContent = localStorage.getItem("questoesResolvidas") || 0;
-            mediaRedacao.textContent = localStorage.getItem("mediaRedacao") || 0;
-
-            // Dias estudando: incrementa se for um novo dia
-            const hoje = new Date().toDateString();
-            const ultimoAcesso = localStorage.getItem("ultimoAcesso");
-            let dias = parseInt(localStorage.getItem("diasEstudando")) || 0;
-
-            if (ultimoAcesso !== hoje) {
-                dias++;
-                localStorage.setItem("diasEstudando", dias);
-                localStorage.setItem("ultimoAcesso", hoje);
-            }
-            diasEstudando.textContent = dias;
-
-            // Metas
-            const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
-            metasSalvas.forEach(meta => adicionarMetaNaLista(meta));
-        };
-
-        // Editar perfil
-        document.getElementById("btnEditar").addEventListener("click", () => {
-            nomeUsuario.innerHTML = `<input type="text" id="inputNome" value="${nomeUsuario.textContent}">`;
-            emailUsuario.innerHTML = `<input type="email" id="inputEmail" value="${emailUsuario.textContent}">`;
-            bioUsuario.innerHTML = `<input type="text" id="inputBio" value="${bioUsuario.textContent}">`;
-            fotoInput.style.display = "block";
-
-            document.getElementById("btnEditar").style.display = "none";
-            document.getElementById("btnSalvar").style.display = "inline-block";
-        });
-
-        document.getElementById("btnSalvar").addEventListener("click", () => {
-            const novoNome = document.getElementById("inputNome").value;
-            const novoEmail = document.getElementById("inputEmail").value;
-            const novaBio = document.getElementById("inputBio").value;
-
-            nomeUsuario.textContent = novoNome;
-            emailUsuario.textContent = novoEmail;
-            bioUsuario.textContent = novaBio;
-
-            localStorage.setItem("nome", novoNome);
-            localStorage.setItem("email", novoEmail);
-            localStorage.setItem("bio", novaBio);
-
-            fotoInput.style.display = "none";
-            document.getElementById("btnSalvar").style.display = "none";
-            document.getElementById("btnEditar").style.display = "inline-block";
-        });
-
-        // Alterar foto
-        fotoInput.addEventListener("change", (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                    fotoPerfil.src = reader.result;
-                    localStorage.setItem("foto", reader.result);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Metas
-        const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
-        const inputMeta = document.getElementById("inputMeta");
-        const metasLista = document.getElementById("metasLista");
-
-        btnAdicionarMeta.addEventListener("click", () => {
-            if (inputMeta.value.trim() !== "") {
-                adicionarMetaNaLista(inputMeta.value);
-                const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
-                metasSalvas.push(inputMeta.value);
-                localStorage.setItem("metas", JSON.stringify(metasSalvas));
-                inputMeta.value = "";
-            }
-        });
-
-        function adicionarMetaNaLista(meta) {
-            const li = document.createElement("li");
-            li.textContent = meta;
-            const btnExcluir = document.createElement("button");
-            btnExcluir.textContent = "❌";
-            btnExcluir.style.marginLeft = "10px";
-            btnExcluir.addEventListener("click", () => {
-                li.remove();
-                let metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
-                metasSalvas = metasSalvas.filter(m => m !== meta);
-                localStorage.setItem("metas", JSON.stringify(metasSalvas));
-            });
-            li.appendChild(btnExcluir);
-            metasLista.appendChild(li);
-        }
-    </script>
+    <script src="js/perfil.js"></script>
 
 </body>
 </html>

@@ -4,36 +4,42 @@
     <meta charset="UTF-8">
     <title>Redação</title>
     <link rel="stylesheet" href="css/redacao.css">
-    <!-- Biblioteca OCR -->
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
 </head>
+
 <body>
+
     <!-- TOPO -->
     <div class="topo">
+
+        <a href="index.html" class="botao-inicio" title="Voltar ao início">
+            🏠
+        </a>
+
         <p>Redação</p>
+
     </div>
 
     <!-- CONTAINER -->
     <div class="container">
-        <!-- Upload da foto da redação -->
+
         <input type="file" id="fotoRedacao" accept="image/*">
+
         <br><br>
 
-        <!-- Botão de análise -->
         <button id="analisar">Analisar Redação</button>
 
-        <!-- Resultado -->
         <h3>Texto extraído:</h3>
         <p id="textoExtraido"></p>
 
         <h3>Nota atribuída:</h3>
         <p id="resultadoNota"></p>
 
-        <!-- Detalhamento da nota -->
         <div class="nota-detalhada" id="detalhesNota"></div>
+
     </div>
 
-    <!-- Script separado -->
     <script src="js/redacao.js"></script>
+
 </body>
 </html>

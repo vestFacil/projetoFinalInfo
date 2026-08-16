@@ -6,10 +6,13 @@ body {
     font-family: Arial, sans-serif;
 }
 
-
-/* TOPO */
+/* =========================
+TOPO
+========================= */
 
 .topo {
+    position: relative;
+
     display: flex;
     align-items: center;
 
@@ -22,8 +25,7 @@ body {
 }
 
 .topo p {
-    margin: 0;
-    margin-left: 20px;
+    margin: 0 0 0 20px;
 
     font-size: 3rem;
     font-weight: 600;
@@ -31,8 +33,47 @@ body {
     color: #f5f5ff;
 }
 
+/* =========================
+BOTÃO INÍCIO
+========================= */
 
-/* CADERNO */
+.botao-inicio {
+    position: absolute;
+
+    right: 30px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffffff;
+    color: #5959df;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+    font-size: 26px;
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+
+    transition: 0.3s ease;
+}
+
+.botao-inicio:hover {
+    transform: translateY(-50%) scale(1.08);
+
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+CADERNO
+========================= */
 
 .caderno {
     display: flex;
@@ -50,8 +91,9 @@ body {
     box-sizing: border-box;
 }
 
-
-/* NOVA ANOTAÇÃO */
+/* =========================
+NOVA ANOTAÇÃO
+========================= */
 
 .nova-anotacao {
     display: flex;
@@ -74,7 +116,6 @@ body {
     box-shadow: 0 8px 25px rgba(60, 60, 150, 0.18);
 }
 
-
 .nova-anotacao h2 {
     width: 100%;
 
@@ -86,7 +127,6 @@ body {
     margin: 0 0 28px 0;
 }
 
-
 .nova-anotacao label {
     color: #f5f5ff;
 
@@ -96,8 +136,9 @@ body {
     margin-bottom: 8px;
 }
 
-
-/* CAMPOS */
+/* =========================
+CAMPOS
+========================= */
 
 #materia,
 #titulo,
@@ -112,7 +153,6 @@ body {
         border-color 0.2s ease,
         box-shadow 0.2s ease;
 }
-
 
 #materia {
     width: 100%;
@@ -129,7 +169,6 @@ body {
     box-sizing: border-box;
 }
 
-
 #titulo {
     width: 100%;
     height: 40px;
@@ -142,7 +181,6 @@ body {
 
     box-sizing: border-box;
 }
-
 
 #anotacao {
     width: 100%;
@@ -164,8 +202,9 @@ body {
     line-height: 1.5;
 }
 
-
-/* FOCO */
+/* =========================
+FOCO
+========================= */
 
 #materia:focus,
 #titulo:focus,
@@ -179,8 +218,9 @@ body {
     box-shadow: 0 0 0 3px rgba(133, 133, 238, 0.18);
 }
 
-
-/* BOTÃO SALVAR */
+/* =========================
+BOTÃO SALVAR
+========================= */
 
 #salvar {
     width: 32%;
@@ -207,7 +247,6 @@ body {
         background-color 0.2s ease;
 }
 
-
 #salvar:hover {
     background-color: #ffffff;
 
@@ -216,13 +255,13 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-
 #salvar:active {
     transform: translateY(0);
 }
 
-
-/* MINHAS ANOTAÇÕES */
+/* =========================
+MINHAS ANOTAÇÕES
+========================= */
 
 .minhas-anotacoes {
     display: flex;
@@ -246,7 +285,6 @@ body {
     box-shadow: 0 8px 25px rgba(60, 60, 150, 0.18);
 }
 
-
 .minhas-anotacoes h2 {
     width: 100%;
 
@@ -259,8 +297,9 @@ body {
     margin-bottom: 22px;
 }
 
-
-/* FILTROS */
+/* =========================
+FILTROS
+========================= */
 
 .filtros {
     display: flex;
@@ -272,7 +311,6 @@ body {
 
     margin-bottom: 22px;
 }
-
 
 #pesquisa,
 #filtro-materia {
@@ -296,18 +334,17 @@ body {
         box-shadow 0.2s ease;
 }
 
-
 #pesquisa {
     outline: none;
 }
-
 
 #filtro-materia {
     cursor: pointer;
 }
 
-
-/* LISTA */
+/* =========================
+LISTA
+========================= */
 
 #lista-anotacoes {
     display: flex;
@@ -318,8 +355,9 @@ body {
     width: 100%;
 }
 
-
-/* ANOTAÇÃO */
+/* =========================
+ANOTAÇÃO
+========================= */
 
 .anotacao {
     width: 100%;
@@ -339,20 +377,17 @@ body {
         box-shadow 0.2s ease;
 }
 
-
 .anotacao:hover {
     transform: translateY(-2px);
 
     box-shadow: 0 7px 18px rgba(0, 0, 0, 0.11);
 }
 
-
 .anotacao small {
     color: #5959df;
 
     font-weight: bold;
 }
-
 
 .anotacao h3 {
     margin-top: 8px;
@@ -362,7 +397,6 @@ body {
 
     font-size: 1.25rem;
 }
-
 
 .anotacao p {
     margin: 0;
@@ -374,8 +408,9 @@ body {
     white-space: pre-wrap;
 }
 
-
-/* BOTÕES DAS ANOTAÇÕES */
+/* =========================
+BOTÕES DAS ANOTAÇÕES
+========================= */
 
 .botoes-anotacao {
     display: flex;
@@ -385,7 +420,6 @@ body {
 
     margin-top: 18px;
 }
-
 
 .botoes-anotacao button {
     margin: 0;
@@ -410,14 +444,12 @@ body {
         transform 0.2s ease;
 }
 
-
 .editar,
 .excluir {
     background-color: #5959df;
 
     color: #f5f5ff;
 }
-
 
 .editar:hover,
 .excluir:hover {
@@ -426,14 +458,14 @@ body {
     transform: translateY(-2px);
 }
 
-
 .editar:active,
 .excluir:active {
     transform: translateY(0);
 }
 
-
-/* SEM ANOTAÇÕES */
+/* =========================
+SEM ANOTAÇÕES
+========================= */
 
 .sem-anotacoes {
     width: 100%;
@@ -447,13 +479,13 @@ body {
     line-height: 1.5;
 }
 
-
-/* BARRA DE ROLAGEM */
+/* =========================
+BARRA DE ROLAGEM
+========================= */
 
 .minhas-anotacoes::-webkit-scrollbar {
     width: 8px;
 }
-
 
 .minhas-anotacoes::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.12);
@@ -461,20 +493,19 @@ body {
     border-radius: 10px;
 }
 
-
 .minhas-anotacoes::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.45);
 
     border-radius: 10px;
 }
 
-
 .minhas-anotacoes::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.65);
 }
 
-
-/* RESPONSIVIDADE */
+/* =========================
+RESPONSIVIDADE
+========================= */
 
 @media (max-width: 900px) {
 
@@ -490,9 +521,7 @@ body {
         width: 90%;
         max-width: 700px;
     }
-
 }
-
 
 @media (max-width: 600px) {
 
@@ -502,6 +531,15 @@ body {
 
     .topo p {
         font-size: 2rem;
+    }
+
+    .botao-inicio {
+        right: 20px;
+
+        width: 45px;
+        height: 45px;
+
+        font-size: 23px;
     }
 
     .caderno {
@@ -533,5 +571,4 @@ body {
     #salvar {
         width: 50%;
     }
-
 }

@@ -13,7 +13,7 @@ function formatarNome(texto) {
 fetch("data/index_novo.json")
     .then(resposta => {
         if (!resposta.ok) {
-            throw new Error("Não foi possível carregar o index.json");
+            throw new Error("Não foi possível carregar o index_novo.json");
         }
 
         return resposta.json();

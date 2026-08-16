@@ -7,27 +7,81 @@ body {
 }
 
 
-/* TOPO */
+/* =========================
+TOPO
+========================= */
 
 .topo {
+    position: relative;
+
     display: flex;
     align-items: center;
+
     width: 100%;
     height: 12vh;
+
     background-color: #5959df;
+
     box-shadow: 0 3px 12px rgba(89, 89, 223, 0.25);
 }
 
 .topo p {
-    margin: 0;
-    margin-left: 20px;
+    margin: 0 0 0 20px;
+
     font-size: 3rem;
+
     color: #f5f5ff;
+
     font-weight: 600;
 }
 
 
-/* CORPO */
+/* =========================
+BOTÃO INÍCIO
+========================= */
+
+.botao-inicio {
+    position: absolute;
+
+    right: 30px;
+    top: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ffffff;
+
+    color: #5959df;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    font-size: 26px;
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+
+    z-index: 10;
+
+    transition: 0.3s ease;
+}
+
+.botao-inicio:hover {
+    transform: scale(1.08);
+
+    background-color: #ffffff;
+
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+CORPO
+========================= */
 
 .corpo {
     margin: 45px 5%;
@@ -35,12 +89,16 @@ body {
 
 .corpo p {
     font-size: 1.5rem;
+
     color: #44448f;
+
     margin-bottom: 20px;
 }
 
 
-/* PESQUISA */
+/* =========================
+PESQUISA
+========================= */
 
 .corpo input {
     width: 30%;
@@ -55,9 +113,11 @@ body {
     font-size: 1rem;
 
     border-radius: 10px;
+
     border: 1px solid #d2d2ef;
 
     background-color: #ffffff;
+
     color: #333;
 
     outline: none;
@@ -71,23 +131,31 @@ body {
 
 .corpo input:focus {
     border-color: #5959df;
+
     box-shadow: 0 0 0 3px rgba(89, 89, 223, 0.12);
 }
 
 
-/* GRID DAS MATÉRIAS */
+/* =========================
+GRID DAS MATÉRIAS
+========================= */
 
 .materias {
     display: grid;
+
     grid-template-columns: repeat(4, 1fr);
+
     gap: 20px;
 }
 
 
-/* BOTÕES */
+/* =========================
+BOTÕES DAS MATÉRIAS
+========================= */
 
 .btn-materia {
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -97,9 +165,11 @@ body {
     background-color: #ffffff;
 
     border: 1px solid #e3e3f5;
+
     border-radius: 14px;
 
     font-size: 18px;
+
     font-weight: bold;
 
     color: #4f4fbf;
@@ -115,9 +185,9 @@ body {
         color 0.2s ease;
 }
 
-
 .btn-materia:hover {
     background-color: #5959df;
+
     color: #f5f5ff;
 
     transform: translateY(-4px);
@@ -125,13 +195,14 @@ body {
     box-shadow: 0 8px 20px rgba(89, 89, 223, 0.25);
 }
 
-
 .btn-materia:active {
     transform: translateY(-1px);
 }
 
 
-/* CONTEÚDO */
+/* =========================
+CONTEÚDO
+========================= */
 
 .conteudo {
     margin: 45px 5%;
@@ -139,6 +210,7 @@ body {
 
 #listaConteudos {
     list-style: none;
+
     padding: 0;
     margin: 0;
 
@@ -154,7 +226,9 @@ body {
 }
 
 
-/* ITENS DOS CONTEÚDOS */
+/* =========================
+ITENS DOS CONTEÚDOS
+========================= */
 
 #listaConteudos li {
     padding: 16px 20px;
@@ -173,11 +247,9 @@ body {
     color: #44448f;
 }
 
-
 #listaConteudos li:last-child {
     border-bottom: none;
 }
-
 
 #listaConteudos li:hover {
     background-color: #eeeeff;
@@ -188,7 +260,9 @@ body {
 }
 
 
-/* RESPONSIVIDADE */
+/* =========================
+RESPONSIVIDADE
+========================= */
 
 @media (max-width: 900px) {
 
@@ -213,17 +287,29 @@ body {
         font-size: 2rem;
     }
 
+    .botao-inicio {
+        right: 20px;
+        top: 15px;
+
+        width: 45px;
+        height: 45px;
+
+        font-size: 23px;
+    }
+
     .corpo {
         margin: 30px 20px;
     }
 
     .corpo input {
         width: 100%;
+
         min-width: 0;
     }
 
     .materias {
         grid-template-columns: 1fr;
+
         gap: 15px;
     }
 
