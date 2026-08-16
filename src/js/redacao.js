@@ -5,62 +5,89 @@ document.getElementById("analisar").addEventListener("click", () => {
         return;
     }
 
-    // Usando Tesseract.js para extrair texto da imagem
     Tesseract.recognize(file, 'por')
         .then(({ data: { text } }) => {
             document.getElementById("textoExtraido").textContent = text;
 
-            // Critérios do ENEM (cada eixo até 200 pontos)
             let notaFinal = 0;
             let detalhes = {};
 
-            // 1. Domínio da norma culta
+            // Critérios ENEM
             const errosComuns = ["vc", "pq", "tb", "naum"];
             let erros = errosComuns.filter(e => text.includes(e)).length;
-            detalhes.normaCulta = (erros === 0 ? 200 : 150);
+            detalhes.normaCulta = erros === 0 ? 200 : erros <= 2 ? 150 : 100;
             notaFinal += detalhes.normaCulta;
 
-            // 2. Compreensão da proposta
             const temas = ["sociedade", "educação", "direitos", "cidadania", "violência"];
             let temasEncontrados = temas.filter(t => text.includes(t)).length;
-            detalhes.compreensao = (temasEncontrados > 2 ? 200 : 150);
+            detalhes.compreensao = temasEncontrados >= 3 ? 200 : temasEncontrados === 2 ? 150 : 50;
             notaFinal += detalhes.compreensao;
 
-            // 3. Organização do texto
             if (text.toLowerCase().includes("introdução") && text.toLowerCase().includes("conclusão")) {
                 detalhes.organizacao = 200;
-            } else {
+            } else if (text.toLowerCase().includes("introdução") || text.toLowerCase().includes("conclusão")) {
                 detalhes.organizacao = 150;
+            } else {
+                detalhes.organizacao = 100;
             }
             notaFinal += detalhes.organizacao;
 
-            // 4. Argumentação
-            const conectores = ["portanto", "porque", "assim", "logo", "dessa forma"];
+            const conectores = ["portanto", "porque", "assim", "logo", "dessa forma", "além disso", "contudo"];
             let conectoresUsados = conectores.filter(c => text.includes(c)).length;
-            detalhes.argumentacao = (conectoresUsados >= 2 ? 200 : 150);
-            notaFinal += detalhes.argumentacao;
+            detalhes.coesao = conectoresUsados >= 3 ? 200 : conectoresUsados === 2 ? 150 : 100;
+            notaFinal += detalhes.coesao;
 
-            // 5. Proposta de intervenção
-            const intervencao = ["deve-se", "é necessário", "precisa", "proposta"];
+            const intervencao = ["governo", "sociedade", "escola", "campanha", "política pública"];
             let intervencaoUsada = intervencao.filter(i => text.includes(i)).length;
-            detalhes.intervencao = (intervencaoUsada > 0 ? 200 : 100);
+            detalhes.intervencao = intervencaoUsada >= 2 && (text.includes("deve") || text.includes("precisa")) ? 200 : intervencaoUsada === 1 ? 150 : 50;
             notaFinal += detalhes.intervencao;
 
-            // Limitar a nota a 1000
             if (notaFinal > 1000) notaFinal = 1000;
 
             document.getElementById("resultadoNota").textContent = `Sua nota simulada é: ${notaFinal}`;
 
-            // Mostrar detalhamento
             document.getElementById("detalhesNota").innerHTML = `
                 <p>Norma Culta: ${detalhes.normaCulta}/200</p>
-                <p>Compreensão da Proposta: ${detalhes.compreensao}/200</p>
-                <p>Organização: ${detalhes.organizacao}/200</p>
-                <p>Argumentação: ${detalhes.argumentacao}/200</p>
+                <p>Compreensão do Tema: ${detalhes.compreensao}/200</p>
+                <p>Organização das Ideias: ${detalhes.organizacao}/200</p>
+                <p>Coesão e Conectividade: ${detalhes.coesao}/200</p>
                 <p>Proposta de Intervenção: ${detalhes.intervencao}/200</p>
             `;
 
-            // Salvar no perfil
+            // Gráfico de barras
+            const ctx = document.getElementById("graficoNota").getContext("2d");
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Norma Culta", "Compreensão", "Organização", "Coesão", "Intervenção"],
+                    datasets: [{
+                        label: 'Pontuação (0-200)',
+                        data: [
+                            detalhes.normaCulta,
+                            detalhes.compreensao,
+                            detalhes.organizacao,
+                            detalhes.coesao,
+                            detalhes.intervencao
+                        ],
+                        backgroundColor: [
+                            '#4a00e0',
+                            '#8e2de2',
+                            '#5c9ead',
+                            '#7fb069',
+                            '#f2a65a'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 200
+                        }
+                    }
+                }
+            });
+
             localStorage.setItem("mediaRedacao", notaFinal);
         })
         .catch(err => {

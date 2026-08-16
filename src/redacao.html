@@ -5,41 +5,36 @@
     <title>Redação</title>
     <link rel="stylesheet" href="css/redacao.css">
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
     <!-- TOPO -->
     <div class="topo">
-
-        <a href="index.html" class="botao-inicio" title="Voltar ao início">
-            🏠
-        </a>
-
+        <a href="index.html" class="botao-inicio" title="Voltar ao início">🏠</a>
         <p>Redação</p>
-
     </div>
 
     <!-- CONTAINER -->
     <div class="container">
-
         <input type="file" id="fotoRedacao" accept="image/*">
-
         <br><br>
-
         <button id="analisar">Analisar Redação</button>
 
-        <h3>Texto extraído:</h3>
-        <p id="textoExtraido"></p>
+        <div class="resultado">
+            <h3>Texto extraído:</h3>
+            <p id="textoExtraido"></p>
 
-        <h3>Nota atribuída:</h3>
-        <p id="resultadoNota"></p>
+            <h3>Nota atribuída:</h3>
+            <p id="resultadoNota"></p>
 
-        <div class="nota-detalhada" id="detalhesNota"></div>
+            <div class="nota-detalhada" id="detalhesNota"></div>
 
+            <canvas id="graficoNota" width="400" height="200"></canvas>
+        </div>
     </div>
 
     <script src="js/redacao.js"></script>
-
 </body>
 </html>
+
