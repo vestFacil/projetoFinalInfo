@@ -62,5 +62,40 @@
 
     <script src="js/perfil.js"></script>
 
+    <script>
+window.onload = () => {
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuario) {
+        alert("Você precisa fazer login primeiro!");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // Buscar dados do perfil no servidor Node.js
+    fetch("http://localhost:3000/perfil/" + usuario.id)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("nomeUsuario").textContent = data.nome;
+            document.getElementById("emailUsuario").textContent = data.email;
+            document.getElementById("fotoPerfil").src = data.foto || "img/user.png";
+
+            // Estatísticas
+            document.getElementById("questoesResolvidas").textContent = data.questoes_resolvidas;
+            document.getElementById("mediaRedacao").textContent = data.media_redacao;
+            document.getElementById("diasEstudando").textContent = data.dias_estudando;
+
+            // Metas
+            const metasLista = document.getElementById("metasLista");
+            metasLista.innerHTML = "";
+            data.metas.forEach(meta => {
+                const li = document.createElement("li");
+                li.textContent = meta.descricao + (meta.concluida ? " ✅" : "");
+                metasLista.appendChild(li);
+            });
+        });
+};
+</script>
+
 </body>
 </html>
+
