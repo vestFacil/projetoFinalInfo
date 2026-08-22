@@ -1,0 +1,25 @@
+<form onsubmit="login(event)">
+  <input type="email" id="loginEmail" placeholder="Email" required>
+  <input type="password" id="loginSenha" placeholder="Senha" required>
+  <button type="submit">Login</button>
+</form>
+
+<script>
+function login(e) {
+    e.preventDefault();
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: document.getElementById("loginEmail").value,
+            senha: document.getElementById("loginSenha").value
+        })
+    }).then(res => {
+        if (res.ok) return res.json();
+        else throw new Error("Login inválido");
+    }).then(user => {
+        localStorage.setItem("usuarioLogado", JSON.stringify(user));
+        window.location.href = "perfil.html";
+    }).catch(err => alert(err.message));
+}
+</script>
