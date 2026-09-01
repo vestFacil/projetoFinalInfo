@@ -8,18 +8,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-console.log("Tentando conectar com:", {
-  user: "projeto",
-  password: "12345"
-});
-
-
 // Conexão com MySQL
 const db = mysql.createConnection({
     host: "localhost",
-    user: "projeto",
-    password: "12345",
+    user: "root",
+    password: "root",
     database: "projeto_final"
+});
+
+// Testando a conexão
+db.connect((err) => {
+    if (err) {
+        console.error("Erro ao conectar ao MySQL:", err);
+        return;
+    }
+    console.log("Conectado ao MySQL com sucesso!");
 });
 
 // Configuração do Nodemailer (Gmail)
@@ -34,33 +37,39 @@ const transporter = nodemailer.createTransport({
 // Cadastro
 app.post("/cadastro", (req, res) => {
     const { nome, email, senha, bio } = req.body;
-    db.query("INSERT INTO usuarios (nome, email, senha, bio) VALUES (?, ?, ?, ?)",
+    db.query(
+        "INSERT INTO usuarios (nome, email, senha, bio) VALUES (?, ?, ?, ?)",
         [nome, email, senha, bio],
         (err) => {
             if (err) return res.status(500).send(err);
             res.send("Usuário cadastrado!");
-        });
+        }
+    );
 });
 
 // Login com envio de e-mail
 app.post("/login", (req, res) => {
     const { email, senha } = req.body;
-    db.query("SELECT * FROM usuarios WHERE email=? AND senha=?", [email, senha], (err, results) => {
-        if (err) return res.status(500).send(err);
-        if (results.length > 0) {
-            const usuario = results[0];
-            // Enviar e-mail de confirmação
-            transporter.sendMail({
-                from: "seuemail@gmail.com",
-                to: usuario.email,
-                subject: "Confirmação de Login",
-                text: `Olá ${usuario.nome}, você acabou de realizar login. Foi você mesmo?`
-            });
-            res.json(usuario);
-        } else {
-            res.status(401).send("Credenciais inválidas");
+    db.query(
+        "SELECT * FROM usuarios WHERE email=? AND senha=?",
+        [email, senha],
+        (err, results) => {
+            if (err) return res.status(500).send(err);
+            if (results.length > 0) {
+                const usuario = results[0];
+                // Enviar e-mail de confirmação
+                transporter.sendMail({
+                    from: "seuemail@gmail.com",
+                    to: usuario.email,
+                    subject: "Confirmação de Login",
+                    text: `Olá ${usuario.nome}, você acabou de realizar login. Foi você mesmo?`
+                });
+                res.json(usuario);
+            } else {
+                res.status(401).send("Credenciais inválidas");
+            }
         }
-    });
+    );
 });
 
 // Perfil (dados + estatísticas + metas)
@@ -86,16 +95,20 @@ app.get("/perfil/:id", (req, res) => {
 // Atualizar estatísticas
 app.post("/estatisticas", (req, res) => {
     const { usuarioId, questoes, media, dias } = req.body;
-    db.query("UPDATE estatisticas SET questoes_resolvidas=?, media_redacao=?, dias_estudando=?, ultimo_acesso=CURDATE() WHERE usuario_id=?",
+    db.query(
+        "UPDATE estatisticas SET questoes_resolvidas=?, media_redacao=?, dias_estudando=?, ultimo_acesso=CURDATE() WHERE usuario_id=?",
         [questoes, media, dias, usuarioId],
         (err, result) => {
             if (err) return res.status(500).send(err);
             if (result.affectedRows === 0) {
-                db.query("INSERT INTO estatisticas (usuario_id, questoes_resolvidas, media_redacao, dias_estudando, ultimo_acesso) VALUES (?, ?, ?, ?, CURDATE())",
-                    [usuarioId, questoes, media, dias]);
+                db.query(
+                    "INSERT INTO estatisticas (usuario_id, questoes_resolvidas, media_redacao, dias_estudando, ultimo_acesso) VALUES (?, ?, ?, ?, CURDATE())",
+                    [usuarioId, questoes, media, dias]
+                );
             }
             res.send("Estatísticas atualizadas!");
-        });
+        }
+    );
 });
 
 // Metas: adicionar, concluir, excluir
