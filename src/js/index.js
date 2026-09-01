@@ -8,6 +8,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+console.log("Tentando conectar com:", {
+  user: "projeto",
+  password: "12345"
+});
+
+
 // Conexão com MySQL
 const db = mysql.createConnection({
     host: "localhost",
