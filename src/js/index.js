@@ -36,15 +36,20 @@ const transporter = nodemailer.createTransport({
 
 // Cadastro
 app.post("/cadastro", (req, res) => {
-    const { nome, email, senha, bio } = req.body;
-    db.query(
-        "INSERT INTO usuarios (nome, email, senha, bio) VALUES (?, ?, ?, ?)",
-        [nome, email, senha, bio],
-        (err) => {
-            if (err) return res.status(500).send(err);
-            res.send("Usuário cadastrado!");
+  const { nome, email, senha, bio } = req.body;
+  db.query(
+    "INSERT INTO usuarios (nome, email, senha, bio) VALUES (?, ?, ?, ?)",
+    [nome, email, senha, bio],
+    (err) => {
+      if (err) {
+        if (err.code === "ER_DUP_ENTRY") {
+          return res.status(400).send("Esse e-mail já está cadastrado. Faça login.");
         }
-    );
+        return res.status(500).send(err);
+      }
+      res.send("Usuário cadastrado!");
+    }
+  );
 });
 
 // Login com envio de e-mail

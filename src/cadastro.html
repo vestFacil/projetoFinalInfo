@@ -28,19 +28,17 @@
           bio: document.getElementById("bio").value
         })
       })
-      .then(res => {
-        if (res.ok) return res.json();
-        else throw new Error("Erro no cadastro");
+      ..then(res => {
+       if (!res.ok) return res.text().then(msg => { throw new Error(msg) });
+      return res.json();
       })
       .then(user => {
-        // Salva o usuário logado no localStorage
-        localStorage.setItem("usuarioLogado", JSON.stringify(user));
-        alert("Cadastro realizado com sucesso!");
-        window.location.href = "perfil.html";
+      localStorage.setItem("usuarioLogado", JSON.stringify(user));
+      alert("Cadastro realizado com sucesso!");
+      window.location.href = "perfil.html";
       })
       .catch(err => alert(err.message));
     }
   </script>
 </body>
 </html>
-
