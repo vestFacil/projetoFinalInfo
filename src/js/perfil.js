@@ -1,110 +1,121 @@
- const nomeUsuario = document.getElementById("nomeUsuario");
-        const emailUsuario = document.getElementById("emailUsuario");
-        const bioUsuario = document.getElementById("bioUsuario");
-        const fotoPerfil = document.getElementById("fotoPerfil");
-        const fotoInput = document.getElementById("fotoInput");
+document.addEventListener("DOMContentLoaded", () => {
+    const nomeUsuario = document.getElementById("nomeUsuario");
+    const emailUsuario = document.getElementById("emailUsuario");
+    const bioUsuario = document.getElementById("bioUsuario");
+    const fotoPerfil = document.getElementById("fotoPerfil");
+    const fotoInput = document.getElementById("fotoInput");
 
-        const questoesResolvidas = document.getElementById("questoesResolvidas");
-        const mediaRedacao = document.getElementById("mediaRedacao");
-        const diasEstudando = document.getElementById("diasEstudando");
+    const questoesResolvidas = document.getElementById("questoesResolvidas");
+    const mediaRedacao = document.getElementById("mediaRedacao");
+    const diasEstudando = document.getElementById("diasEstudando");
 
-        // Carregar dados ao abrir
-        window.onload = () => {
-            if (localStorage.getItem("nome")) nomeUsuario.textContent = localStorage.getItem("nome");
-            if (localStorage.getItem("email")) emailUsuario.textContent = localStorage.getItem("email");
-            if (localStorage.getItem("bio")) bioUsuario.textContent = localStorage.getItem("bio");
-            if (localStorage.getItem("foto")) fotoPerfil.src = localStorage.getItem("foto");
+    const btnEditar = document.getElementById("btnEditar");
+    const btnSalvar = document.getElementById("btnSalvar");
 
-            // Estatísticas
-            questoesResolvidas.textContent = localStorage.getItem("questoesResolvidas") || 0;
-            mediaRedacao.textContent = localStorage.getItem("mediaRedacao") || 0;
+    const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
+    const inputMeta = document.getElementById("inputMeta");
+    const metasLista = document.getElementById("metasLista");
 
-            // Dias estudando: incrementa se for um novo dia
-            const hoje = new Date().toDateString();
-            const ultimoAcesso = localStorage.getItem("ultimoAcesso");
-            let dias = parseInt(localStorage.getItem("diasEstudando")) || 0;
+    // Verifica login
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuario) {
+        alert("Você precisa fazer login primeiro!");
+        window.location.href = "login.html";
+        return;
+    }
 
-            if (ultimoAcesso !== hoje) {
-                dias++;
-                localStorage.setItem("diasEstudando", dias);
-                localStorage.setItem("ultimoAcesso", hoje);
-            }
-            diasEstudando.textContent = dias;
+    // Carregar dados do servidor
+    fetch("http://localhost:3000/perfil/" + usuario.id)
+        .then(res => res.json())
+        .then(data => {
+            nomeUsuario.textContent = data.nome;
+            emailUsuario.textContent = data.email;
+            bioUsuario.textContent = data.bio || "Sem bio";
+            fotoPerfil.src = data.foto || "img/user.png";
 
-            // Metas
-            const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
-            metasSalvas.forEach(meta => adicionarMetaNaLista(meta));
-        };
+            questoesResolvidas.textContent = data.questoes_resolvidas || 0;
+            mediaRedacao.textContent = data.media_redacao || 0;
+            diasEstudando.textContent = data.dias_estudando || 0;
 
-        // Editar perfil
-        document.getElementById("btnEditar").addEventListener("click", () => {
-            nomeUsuario.innerHTML = `<input type="text" id="inputNome" value="${nomeUsuario.textContent}">`;
-            emailUsuario.innerHTML = `<input type="email" id="inputEmail" value="${emailUsuario.textContent}">`;
-            bioUsuario.innerHTML = `<input type="text" id="inputBio" value="${bioUsuario.textContent}">`;
-            fotoInput.style.display = "block";
+            metasLista.innerHTML = "";
+            data.metas.forEach(meta => adicionarMetaNaLista(meta.descricao, meta.concluida));
+        })
+        .catch(err => console.error("Erro ao carregar perfil:", err));
 
-            document.getElementById("btnEditar").style.display = "none";
-            document.getElementById("btnSalvar").style.display = "inline-block";
-        });
+    // Editar perfil
+    btnEditar.addEventListener("click", () => {
+        nomeUsuario.innerHTML = `<input type="text" id="inputNome" value="${nomeUsuario.textContent}">`;
+        emailUsuario.innerHTML = `<input type="email" id="inputEmail" value="${emailUsuario.textContent}">`;
+        bioUsuario.innerHTML = `<input type="text" id="inputBio" value="${bioUsuario.textContent}">`;
+        fotoInput.style.display = "block";
 
-        document.getElementById("btnSalvar").addEventListener("click", () => {
-            const novoNome = document.getElementById("inputNome").value;
-            const novoEmail = document.getElementById("inputEmail").value;
-            const novaBio = document.getElementById("inputBio").value;
+        btnEditar.style.display = "none";
+        btnSalvar.style.display = "inline-block";
+    });
 
-            nomeUsuario.textContent = novoNome;
-            emailUsuario.textContent = novoEmail;
-            bioUsuario.textContent = novaBio;
+    btnSalvar.addEventListener("click", () => {
+        const novoNome = document.getElementById("inputNome").value;
+        const novoEmail = document.getElementById("inputEmail").value;
+        const novaBio = document.getElementById("inputBio").value;
 
-            localStorage.setItem("nome", novoNome);
-            localStorage.setItem("email", novoEmail);
-            localStorage.setItem("bio", novaBio);
-
+        fetch("http://localhost:3000/perfil/" + usuario.id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome: novoNome, email: novoEmail, bio: novaBio })
+        })
+        .then(res => res.json())
+        .then(data => {
+            nomeUsuario.textContent = data.nome;
+            emailUsuario.textContent = data.email;
+            bioUsuario.textContent = data.bio;
             fotoInput.style.display = "none";
-            document.getElementById("btnSalvar").style.display = "none";
-            document.getElementById("btnEditar").style.display = "inline-block";
-        });
+            btnSalvar.style.display = "none";
+            btnEditar.style.display = "inline-block";
+        })
+        .catch(err => alert("Erro ao salvar perfil: " + err.message));
+    });
 
-        // Alterar foto
-        fotoInput.addEventListener("change", (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                    fotoPerfil.src = reader.result;
-                    localStorage.setItem("foto", reader.result);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Metas
-        const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
-        const inputMeta = document.getElementById("inputMeta");
-        const metasLista = document.getElementById("metasLista");
-
-        btnAdicionarMeta.addEventListener("click", () => {
-            if (inputMeta.value.trim() !== "") {
-                adicionarMetaNaLista(inputMeta.value);
-                const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
-                metasSalvas.push(inputMeta.value);
-                localStorage.setItem("metas", JSON.stringify(metasSalvas));
-                inputMeta.value = "";
-            }
-        });
-
-        function adicionarMetaNaLista(meta) {
-            const li = document.createElement("li");
-            li.textContent = meta;
-            const btnExcluir = document.createElement("button");
-            btnExcluir.textContent = "❌";
-            btnExcluir.style.marginLeft = "10px";
-            btnExcluir.addEventListener("click", () => {
-                li.remove();
-                let metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
-                metasSalvas = metasSalvas.filter(m => m !== meta);
-                localStorage.setItem("metas", JSON.stringify(metasSalvas));
-            });
-            li.appendChild(btnExcluir);
-            metasLista.appendChild(li);
+    // Alterar foto
+    fotoInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                fetch("http://localhost:3000/perfil/" + usuario.id + "/foto", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ foto: reader.result })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    fotoPerfil.src = data.foto;
+                })
+                .catch(err => alert("Erro ao salvar foto: " + err.message));
+            };
+            reader.readAsDataURL(file);
         }
+    });
+
+    // Metas
+    btnAdicionarMeta.addEventListener("click", () => {
+        if (inputMeta.value.trim() !== "") {
+            fetch("http://localhost:3000/perfil/" + usuario.id + "/metas", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ descricao: inputMeta.value })
+            })
+            .then(res => res.json())
+            .then(meta => {
+                adicionarMetaNaLista(meta.descricao, meta.concluida);
+                inputMeta.value = "";
+            })
+            .catch(err => alert("Erro ao adicionar meta: " + err.message));
+        }
+    });
+
+    function adicionarMetaNaLista(descricao, concluida) {
+        const li = document.createElement("li");
+        li.textContent = descricao + (concluida ? " ✅" : "");
+        metasLista.appendChild(li);
+    }
+});
