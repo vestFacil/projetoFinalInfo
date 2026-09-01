@@ -16,13 +16,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputMeta = document.getElementById("inputMeta");
     const metasLista = document.getElementById("metasLista");
 
-    // Verifica login
-    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuario) {
-        alert("Você precisa fazer login primeiro!");
+ 
+// Verifica login
+const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+if (!usuario) {
+    // Cria aviso visual
+    const aviso = document.createElement("div");
+    aviso.textContent = "⚠️ Você ainda não fez login. Alguns recursos podem não estar disponíveis.";
+    aviso.style.backgroundColor = "#ffeb3b";
+    aviso.style.padding = "10px";
+    aviso.style.marginBottom = "10px";
+    aviso.style.textAlign = "center";
+    aviso.style.fontWeight = "bold";
+
+    // Cria botão de login
+    const btnLogin = document.createElement("button");
+    btnLogin.textContent = "Fazer Login";
+    btnLogin.style.marginLeft = "15px";
+    btnLogin.style.padding = "5px 10px";
+    btnLogin.style.cursor = "pointer";
+    btnLogin.style.border = "none";
+    btnLogin.style.backgroundColor = "#1976d2";
+    btnLogin.style.color = "white";
+    btnLogin.style.borderRadius = "4px";
+
+    // Ação do botão
+    btnLogin.addEventListener("click", () => {
         window.location.href = "login.html";
-        return;
-    }
+    });
+
+    aviso.appendChild(btnLogin);
+    document.body.prepend(aviso);
+
+    // Continua normalmente sem redirecionar
+}
 
     // Carregar dados do servidor
     fetch("http://localhost:3000/perfil/" + usuario.id)
