@@ -11,17 +11,13 @@
 <body>
 
     <header class="topo">
-
-        <a href="index.html" class="botao-inicio" title="Voltar ao início">
-            🏠
-        </a>
-
+        <a href="index.html" class="botao-inicio" title="Voltar ao início">🏠</a>
         <p>Meu Perfil</p>
-
     </header>
 
     <main class="perfil-container">
 
+        <!-- Card do perfil -->
         <section class="perfil-card">
             <img src="img/user.png" alt="Foto do usuário" class="foto" id="fotoPerfil">
             <input type="file" id="fotoInput" accept="image/*" style="display:none">
@@ -34,6 +30,7 @@
             <button id="btnSalvar" style="display:none">Salvar</button>
         </section>
 
+        <!-- Estatísticas -->
         <section class="estatisticas">
             <div class="box">
                 <h3>Questões Resolvidas</h3>
@@ -51,6 +48,7 @@
             </div>
         </section>
 
+        <!-- Metas -->
         <section class="metas">
             <h2>Metas da Semana</h2>
             <input type="text" id="inputMeta" placeholder="Digite uma meta">
@@ -60,42 +58,7 @@
 
     </main>
 
+    <!-- Script externo que cuida de tudo -->
     <script src="js/perfil.js"></script>
-
-    <script>
-window.onload = () => {
-    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuario) {
-        alert("Você precisa fazer login primeiro!");
-        window.location.href = "login.html";
-        return;
-    }
-
-    // Buscar dados do perfil no servidor Node.js
-    fetch("http://localhost:3000/perfil/" + usuario.id)
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("nomeUsuario").textContent = data.nome;
-            document.getElementById("emailUsuario").textContent = data.email;
-            document.getElementById("fotoPerfil").src = data.foto || "img/user.png";
-
-            // Estatísticas
-            document.getElementById("questoesResolvidas").textContent = data.questoes_resolvidas;
-            document.getElementById("mediaRedacao").textContent = data.media_redacao;
-            document.getElementById("diasEstudando").textContent = data.dias_estudando;
-
-            // Metas
-            const metasLista = document.getElementById("metasLista");
-            metasLista.innerHTML = "";
-            data.metas.forEach(meta => {
-                const li = document.createElement("li");
-                li.textContent = meta.descricao + (meta.concluida ? " ✅" : "");
-                metasLista.appendChild(li);
-            });
-        });
-};
-</script>
-
 </body>
 </html>
-
