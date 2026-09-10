@@ -3,17 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeUsuario = document.getElementById("nomeUsuario");
     const emailUsuario = document.getElementById("emailUsuario");
     const bioUsuario = document.getElementById("bioUsuario");
-
     const fotoPerfil = document.getElementById("fotoPerfil");
     const fotoInput = document.getElementById("fotoInput");
-
     const questoesResolvidas = document.getElementById("questoesResolvidas");
     const mediaRedacao = document.getElementById("mediaRedacao");
     const diasEstudando = document.getElementById("diasEstudando");
-
     const btnEditar = document.getElementById("btnEditar");
     const btnSalvar = document.getElementById("btnSalvar");
-
     const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
     const inputMeta = document.getElementById("inputMeta");
     const metasLista = document.getElementById("metasLista");
@@ -52,7 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         btnCadastro.addEventListener("click", () => {
+
             window.location.href = "cadastro.html";
+
         });
 
 
@@ -64,7 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
         btnEditar.textContent = "Cadastrar-se";
 
         btnEditar.addEventListener("click", () => {
+
             window.location.href = "cadastro.html";
+
         });
 
         return;
@@ -80,10 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => {
 
             if (!res.ok) {
+
                 throw new Error("Erro ao buscar perfil.");
+
             }
 
             return res.json();
+
         })
 
         .then(data => {
@@ -131,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
                 });
+
             }
 
         })
@@ -188,13 +192,19 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "PUT",
 
             headers: {
+
                 "Content-Type": "application/json"
+
             },
 
             body: JSON.stringify({
+
                 nome: novoNome,
+
                 email: novoEmail,
+
                 bio: novaBio
+
             })
 
         })
@@ -202,9 +212,13 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => {
 
             if (!res.ok) {
+
                 return res.text().then(msg => {
+
                     throw new Error(msg);
+
                 });
+
             }
 
             return res.json();
@@ -295,12 +309,13 @@ document.addEventListener("DOMContentLoaded", () => {
     btnAdicionarMeta.addEventListener("click", () => {
 
         if (inputMeta.value.trim() === "") {
+
             return;
+
         }
 
 
         const descricao = inputMeta.value.trim();
-
 
         adicionarMetaNaLista(descricao, false);
 
