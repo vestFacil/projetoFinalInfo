@@ -342,6 +342,57 @@ body {
     object-fit: contain;
 }
 
+.botoes-questao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+
+#voltar,
+#proxima {
+    width: 220px;
+    height: 50px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: rgb(89, 89, 223);
+
+    color: aliceblue;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+#voltar:hover,
+#proxima:hover {
+    background-color: rgb(70, 70, 190);
+    transform: translateY(-2px);
+}
+
+
+#voltar:disabled,
+#proxima:disabled {
+    background-color: #b7b7b7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.botao-inicio {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    text-decoration: none;
+    z-index: 1000;
+}
 
 /* RESPONSIVIDADE */
 

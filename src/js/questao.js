@@ -15,8 +15,13 @@ const contador = document.getElementById("contador");
 const quantidade = document.getElementById("quantidade");
 const iniciar = document.getElementById("iniciar");
 
+const botaoContinuar = document.getElementById("continuar");
+botaoContinuar.style.display = "none";
+
 const popup = document.getElementById("popupConfiguracao");
 const areaQuestao = document.getElementById("questao");
+
+const botaoVoltar = document.getElementById("voltar");
 
 let respostaCorreta;
 let questoes = [];
@@ -25,6 +30,8 @@ let numeroQuestao = 0;
 let pontos = 0;
 let respondeu = false;
 let quantidadeQuestoes = 10;
+let respostasFeitas = {};
+let xpTotalAtual = 0;
 
 function formatarNome(texto) {
     return texto
@@ -39,7 +46,8 @@ function salvarProgresso() {
         questoes: questoesSelecionadas,
         numeroQuestao,
         pontos,
-        quantidade: quantidadeQuestoes
+        quantidade: quantidadeQuestoes,
+        respostasFeitas
     };
 
     localStorage.setItem(
@@ -77,6 +85,9 @@ function carregarProgresso() {
 
     quantidade.value =
         quantidadeQuestoes;
+
+    respostasFeitas =
+        progresso.respostasFeitas || {};
 
     mostrarQuestao();
 
@@ -141,6 +152,24 @@ async function carregarQuestoes() {
         configurarQuantidade(
             questoes.length
         );
+
+        const salvo =
+            localStorage.getItem("progressoQuestao");
+
+        if (salvo) {
+
+            const progresso =
+                JSON.parse(salvo);
+
+            if (
+                progresso.materia === materia &&
+                Array.isArray(progresso.questoes) &&
+                progresso.questoes.length > 0
+            ) {
+                botaoContinuar.style.display = "block";
+            }
+
+        }
 
         return true;
 
@@ -226,20 +255,10 @@ function configurarQuantidade(total) {
         Number(quantidade.value);
 }
 
+
 iniciar.addEventListener(
     "click",
     () => {
-
-        const continuando =
-            carregarProgresso();
-
-        if (continuando) {
-
-            popup.style.display =
-                "none";
-
-            return;
-        }
 
         quantidadeQuestoes =
             Number(quantidade.value);
@@ -254,8 +273,15 @@ iniciar.addEventListener(
                     quantidadeQuestoes
                 );
 
+        botaoResponder.style.display = "";
+        botaoProxima.style.display = "";
+        botaoVoltar.style.display = "";
+
         numeroQuestao = 0;
         pontos = 0;
+        respostasFeitas = {};
+
+        botaoContinuar.style.display = "none";
 
         popup.style.display =
             "none";
@@ -264,15 +290,43 @@ iniciar.addEventListener(
     }
 );
 
+botaoContinuar.addEventListener(
+    "click",
+    () => {
+
+        const continuando =
+            carregarProgresso();
+
+        if (!continuando) {
+            return;
+        }
+
+        botaoResponder.style.display = "";
+        botaoProxima.style.display = "";
+        botaoVoltar.style.display = "";
+
+        popup.style.display = "none";
+
+        mostrarQuestao();
+    }
+);
+
 function mostrarQuestao() {
 
-    respondeu = false;
+    const respostaAnterior =
+        respostasFeitas[numeroQuestao];
+
+    respondeu =
+        respostaAnterior !== undefined;
 
     botaoResponder.disabled =
-        false;
+        respondeu;
 
     botaoProxima.disabled =
-        true;
+        !respondeu;
+
+    botaoVoltar.disabled =
+        numeroQuestao === 0;
 
     const questao =
         questoesSelecionadas[
@@ -382,11 +436,109 @@ function mostrarQuestao() {
             `;
         }
     );
+
+        // Restaurar resposta anterior, caso exista
+
+    if (respostaAnterior !== undefined) {
+
+        const radio =
+            document.querySelector(
+                `input[name="resposta"][value="${respostaAnterior.respostaUsuario}"]`
+            );
+
+        if (radio) {
+            radio.checked = true;
+        }
+
+        document
+            .querySelectorAll(
+                'input[name="resposta"]'
+            )
+            .forEach(radio => {
+                radio.disabled = true;
+            });
+
+        document
+            .querySelectorAll(
+                ".alternativa"
+            )
+            .forEach(alternativa => {
+
+                const valor =
+                    Number(
+                        alternativa.dataset.index
+                    );
+
+                if (
+                    valor ===
+                    respostaCorreta
+                ) {
+                    alternativa.classList.add(
+                        "correta"
+                    );
+                }
+
+                if (
+                    valor ===
+                    respostaAnterior.respostaUsuario &&
+                    valor !== respostaCorreta
+                ) {
+                    alternativa.classList.add(
+                        "errada"
+                    );
+                }
+            });
+
+        resultado.textContent =
+            respostaAnterior.acertou
+                ? "✅ Você acertou!"
+                : "❌ Você errou!";
+    }
+}
+
+async function registrarRespostaNoServidor(valorSelecionado) {
+    try {
+       const usuarioLogado =
+    JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuarioLogado || !usuarioLogado.id) {
+        console.warn("Usuário não identificado.");
+        return null;
+    }
+
+    const usuarioId = usuarioLogado.id;
+
+        const questao = questoesSelecionadas[numeroQuestao];
+
+        const resposta = await fetch("http://localhost:3000/questoes/responder", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                usuarioId: Number(usuarioId),
+                questaoId: `${materia}-${numeroQuestao}`,
+                materia: materia,
+                respostaUsuario: valorSelecionado,
+                respostaCorreta: respostaCorreta
+            })
+        });
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao registrar resposta no servidor.");
+        }
+
+        return await resposta.json();
+
+    } catch (erro) {
+        console.error("Erro ao registrar resposta:", erro);
+        return null;
+    }
 }
 
 botaoResponder.addEventListener(
     "click",
-    () => {
+    async () => {
 
         if (respondeu) {
             return;
@@ -428,21 +580,49 @@ botaoResponder.addEventListener(
                 selecionada.value
             );
 
-        if (
-            valorSelecionado ===
-            respostaCorreta
-        ) {
+        const acertou =
+    valorSelecionado === respostaCorreta;
 
-            resultado.textContent =
-                "✅ Você acertou!";
+    respostasFeitas[numeroQuestao] = {
+        respostaUsuario: valorSelecionado,
+        respostaCorreta: respostaCorreta,
+        acertou: acertou
+    };
 
-            pontos++;
+    if (acertou) {
 
-        } else {
+        resultado.textContent =
+            "✅ Você acertou!";
 
-            resultado.textContent =
-                "❌ Você errou!";
-        }
+        pontos++;
+
+    } else {
+
+        resultado.textContent =
+            "❌ Você errou!";
+    }
+
+    // Registrar resposta no banco
+    const dadosServidor =
+        await registrarRespostaNoServidor(
+            valorSelecionado
+        );
+
+    if (dadosServidor) {
+
+        console.log(
+            "Resposta registrada:",
+            dadosServidor
+        );
+
+        xpTotalAtual = dadosServidor.xpTotal;
+
+        if (dadosServidor.xpGanho > 0) {
+            resultado.textContent +=
+                ` +${dadosServidor.xpGanho} XP!`;
+        }   
+
+}
 
         document
             .querySelectorAll(
@@ -499,19 +679,42 @@ botaoProxima.addEventListener(
 
         } else {
 
-            resultado.textContent =
-                `Fim! Você acertou ${pontos} de ${questoesSelecionadas.length} questões.`;
+            resultado.innerHTML =
+                `🎉 Você terminou!<br>
+                Você acertou ${pontos} de ${questoesSelecionadas.length} questões.<br>
+                ⭐ XP total: ${xpTotalAtual}`;
 
-            botaoResponder.disabled =
-                true;
+            botaoResponder.style.display = "none";
+            botaoProxima.style.display = "none";
+            botaoVoltar.style.display = "none";
 
-            botaoProxima.disabled =
-                true;
+            alternativas.innerHTML = "";
+
+            enunciado.innerHTML =
+                `<strong>Você terminou todas as questões!</strong>`;
+
+            contador.textContent = "Fim!";
 
             localStorage.removeItem(
                 "progressoQuestao"
             );
         }
+    }
+);
+
+botaoVoltar.addEventListener(
+    "click",
+    () => {
+
+        if (numeroQuestao === 0) {
+            return;
+        }
+
+        numeroQuestao--;
+
+        salvarProgresso();
+
+        mostrarQuestao();
     }
 );
 

@@ -9,6 +9,11 @@
 <body>
 
     <!-- Popup -->
+
+    <a href="index.html" class="botao-inicio" title="Voltar ao início">
+    🏠
+    </a>
+
     <div id="popupConfiguracao" class="popup">
 
         <div class="popup-conteudo">
@@ -24,12 +29,20 @@
         </select>
 
         <p class="aviso">
-            Ao clicar em "Próxima Questão", não será possível voltar para a questão anterior.
+         Você poderá voltar para questões anteriores enquanto estiver respondendo esta lista.
         </p>
 
-<button id="iniciar">
-    Começar
-</button>
+        <div class="botoes-lista">
+
+            <button id="continuar">
+                ▶ Continuar lista
+            </button>
+
+            <button id="iniciar">
+                🔄 Nova lista
+            </button>
+
+        </div>
 
         </div>
 
@@ -52,9 +65,17 @@
 
         <p id="resultado"></p>
 
+        <div class="botoes-questao">
+
+        <button id="voltar" disabled>
+            ← Voltar
+        </button>
+
         <button id="proxima">
             Próxima Questão
         </button>
+
+</div>
 
     </div>
 

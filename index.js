@@ -224,6 +224,232 @@ app.put("/perfil/:id", (req, res) => {
     );
 });
 
+// ========================
+// QUESTÕES - REGISTRAR RESPOSTA
+// ========================
+
+app.post("/questoes/responder", (req, res) => {
+
+    const {
+        usuarioId,
+        questaoId,
+        materia,
+        respostaUsuario,
+        respostaCorreta
+    } = req.body;
+
+    // Verificar dados obrigatórios
+    if (
+        !usuarioId ||
+        !questaoId ||
+        !materia ||
+        respostaUsuario === undefined ||
+        respostaCorreta === undefined
+    ) {
+        return res.status(400).json({
+            erro: "Dados da resposta incompletos."
+        });
+    }
+
+    const acertou =
+        Number(respostaUsuario) === Number(respostaCorreta);
+
+    // XP recebido pela questão
+    const xpGanho = acertou ? 10 : 0;
+
+    // Revisão daqui a 10 dias
+    const dataRevisao = new Date();
+    dataRevisao.setDate(
+        dataRevisao.getDate() + 10
+    );
+
+    const dataRevisaoFormatada =
+        dataRevisao.toISOString().split("T")[0];
+
+    // Buscar estatísticas do usuário
+    db.query(
+        `SELECT *
+         FROM estatisticas
+         WHERE usuario_id = ?`,
+        [usuarioId],
+
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao buscar estatísticas."
+                });
+            }
+
+            const salvarResposta = (estatisticas) => {
+
+                let xpAtual =
+                    estatisticas?.xp || 0;
+
+                let sequenciaAtual =
+                    estatisticas?.sequencia_atual || 0;
+
+                let maiorSequencia =
+                    estatisticas?.maior_sequencia || 0;
+
+                // Atualizar sequência
+                if (acertou) {
+
+                    sequenciaAtual++;
+
+                    if (
+                        sequenciaAtual >
+                        maiorSequencia
+                    ) {
+                        maiorSequencia =
+                            sequenciaAtual;
+                    }
+
+                } else {
+
+                    sequenciaAtual = 0;
+                }
+
+                const novoXp =
+                    xpAtual + xpGanho;
+
+                // Se ainda não existir estatística,
+                // cria o registro.
+                if (!estatisticas) {
+
+                    db.query(
+                        `INSERT INTO estatisticas
+                        (
+                            usuario_id,
+                            questoes_resolvidas,
+                            xp,
+                            sequencia_atual,
+                            maior_sequencia,
+                            ultimo_acesso
+                        )
+                        VALUES (?, 1, ?, ?, ?, CURDATE())`,
+
+                        [
+                            usuarioId,
+                            novoXp,
+                            sequenciaAtual,
+                            maiorSequencia
+                        ],
+
+                        (err) => {
+
+                            if (err) {
+                                console.error(err);
+
+                                return res.status(500).json({
+                                    erro: "Erro ao criar estatísticas."
+                                });
+                            }
+
+                            salvarHistorico();
+                        }
+                    );
+
+                } else {
+
+                    db.query(
+                        `UPDATE estatisticas
+                         SET
+                            questoes_resolvidas =
+                                questoes_resolvidas + 1,
+                            xp = ?,
+                            sequencia_atual = ?,
+                            maior_sequencia = ?,
+                            ultimo_acesso = CURDATE()
+                         WHERE usuario_id = ?`,
+
+                        [
+                            novoXp,
+                            sequenciaAtual,
+                            maiorSequencia,
+                            usuarioId
+                        ],
+
+                        (err) => {
+
+                            if (err) {
+                                console.error(err);
+
+                                return res.status(500).json({
+                                    erro: "Erro ao atualizar estatísticas."
+                                });
+                            }
+
+                            salvarHistorico();
+                        }
+                    );
+                }
+
+                function salvarHistorico() {
+
+                    db.query(
+                        `INSERT INTO respostas_questoes
+                        (
+                            usuario_id,
+                            questao_id,
+                            materia,
+                            resposta_usuario,
+                            resposta_correta,
+                            acertou,
+                            data_revisao
+                        )
+                        VALUES (?, ?, ?, ?, ?, ?, ?)`,
+
+                        [
+                            usuarioId,
+                            questaoId,
+                            materia,
+                            respostaUsuario,
+                            respostaCorreta,
+                            acertou ? 1 : 0,
+                            dataRevisaoFormatada
+                        ],
+
+                        (err) => {
+
+                            if (err) {
+                                console.error(err);
+
+                                return res.status(500).json({
+                                    erro: "Erro ao salvar histórico da questão."
+                                });
+                            }
+
+                            res.json({
+                                sucesso: true,
+                                acertou,
+                                xpGanho,
+                                xpTotal: novoXp,
+                                sequenciaAtual,
+                                maiorSequencia,
+                                dataRevisao:
+                                    dataRevisaoFormatada
+                            });
+                        }
+                    );
+                }
+            };
+
+            if (resultados.length === 0) {
+
+                salvarResposta(null);
+
+            } else {
+
+                salvarResposta(
+                    resultados[0]
+                );
+            }
+        }
+    );
+});
 
 // ========================
 // ESTATÍSTICAS
