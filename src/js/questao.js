@@ -11,17 +11,16 @@ const botaoProxima = document.getElementById("proxima");
 
 const resultado = document.getElementById("resultado");
 const contador = document.getElementById("contador");
+const statusQuestao = document.getElementById("statusQuestao");
 
 const quantidade = document.getElementById("quantidade");
 const iniciar = document.getElementById("iniciar");
-
-const botaoContinuar = document.getElementById("continuar");
-botaoContinuar.style.display = "none";
 
 const popup = document.getElementById("popupConfiguracao");
 const areaQuestao = document.getElementById("questao");
 
 const botaoVoltar = document.getElementById("voltar");
+const sequencia = document.getElementById("sequencia");
 
 let respostaCorreta;
 let questoes = [];
@@ -32,6 +31,9 @@ let respondeu = false;
 let quantidadeQuestoes = 10;
 let respostasFeitas = {};
 let xpTotalAtual = 0;
+let xpInicialQuiz = null;
+let xpGanhoQuiz = 0;
+let questoesRespondidas = [];
 
 function formatarNome(texto) {
     return texto
@@ -94,6 +96,44 @@ function carregarProgresso() {
     return true;
 }
 
+async function carregarQuestoesRespondidas() {
+    try {
+        const usuarioLogado =
+            JSON.parse(localStorage.getItem("usuarioLogado"));
+
+        if (!usuarioLogado || !usuarioLogado.id) {
+            questoesRespondidas = [];
+            return;
+        }
+
+        const resposta = await fetch(
+            `http://localhost:3000/questoes/respondidas/${usuarioLogado.id}/${materia}`
+        );
+
+        if (!resposta.ok) {
+            throw new Error(
+                "Erro ao buscar questões respondidas."
+            );
+        }
+
+        questoesRespondidas =
+            await resposta.json();
+
+        console.log(
+            "Questões já respondidas:",
+            questoesRespondidas
+        );
+
+    } catch (erro) {
+        console.error(
+            "Erro ao carregar questões respondidas:",
+            erro
+        );
+
+        questoesRespondidas = [];
+    }
+}
+
 async function carregarQuestoes() {
     try {
         if (!materia) {
@@ -152,24 +192,6 @@ async function carregarQuestoes() {
         configurarQuantidade(
             questoes.length
         );
-
-        const salvo =
-            localStorage.getItem("progressoQuestao");
-
-        if (salvo) {
-
-            const progresso =
-                JSON.parse(salvo);
-
-            if (
-                progresso.materia === materia &&
-                Array.isArray(progresso.questoes) &&
-                progresso.questoes.length > 0
-            ) {
-                botaoContinuar.style.display = "block";
-            }
-
-        }
 
         return true;
 
@@ -281,31 +303,8 @@ iniciar.addEventListener(
         pontos = 0;
         respostasFeitas = {};
 
-        botaoContinuar.style.display = "none";
-
         popup.style.display =
             "none";
-
-        mostrarQuestao();
-    }
-);
-
-botaoContinuar.addEventListener(
-    "click",
-    () => {
-
-        const continuando =
-            carregarProgresso();
-
-        if (!continuando) {
-            return;
-        }
-
-        botaoResponder.style.display = "";
-        botaoProxima.style.display = "";
-        botaoVoltar.style.display = "";
-
-        popup.style.display = "none";
 
         mostrarQuestao();
     }
@@ -360,6 +359,16 @@ function mostrarQuestao() {
 
     contador.textContent =
         `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
+
+    const questaoId =
+    `${materia}-${questoes.indexOf(questao)}`;
+
+    if (questoesRespondidas.includes(questaoId)) {
+        statusQuestao.textContent =
+            "🟢 Questão já respondida";
+    } else {
+        statusQuestao.textContent = "";
+    }    
 
     let textoEnunciado =
         questao.enunciado || "";
@@ -517,7 +526,7 @@ async function registrarRespostaNoServidor(valorSelecionado) {
             },
             body: JSON.stringify({
                 usuarioId: Number(usuarioId),
-                questaoId: `${materia}-${numeroQuestao}`,
+                questaoId: `${materia}-${questoes.indexOf(questao)}`,
                 materia: materia,
                 respostaUsuario: valorSelecionado,
                 respostaCorreta: respostaCorreta
@@ -615,12 +624,28 @@ botaoResponder.addEventListener(
             dadosServidor
         );
 
+        const questaoAtual =
+        questoesSelecionadas[numeroQuestao];
+
+        const questaoIdAtual =
+            `${materia}-${questoes.indexOf(questaoAtual)}`;
+
+        const xpGanho = dadosServidor.xpGanho || 0;
+
+        if (xpInicialQuiz === null) {
+            xpInicialQuiz = dadosServidor.xpTotal - xpGanho;
+        }
+
+        xpGanhoQuiz += xpGanho;
         xpTotalAtual = dadosServidor.xpTotal;
 
-        if (dadosServidor.xpGanho > 0) {
+        sequencia.textContent =
+            `🔥 Sequência atual: ${dadosServidor.sequenciaAtual} acertos`;
+
+        if (xpGanho > 0) {
             resultado.textContent +=
-                ` +${dadosServidor.xpGanho} XP!`;
-        }   
+                ` +${xpGanho} XP!`;
+        }  
 
 }
 
@@ -666,23 +691,37 @@ botaoProxima.addEventListener(
     "click",
     () => {
 
+        // Marcar a questão atual como respondida
+        if (respondeu) {
+            const questaoAtual =
+                questoesSelecionadas[numeroQuestao];
+
+            const questaoIdAtual =
+                `${materia}-${questoes.indexOf(questaoAtual)}`;
+
+            if (!questoesRespondidas.includes(questaoIdAtual)) {
+                questoesRespondidas.push(questaoIdAtual);
+            }
+        }
+
+        // Ir para a próxima questão
         numeroQuestao++;
 
         if (
             numeroQuestao <
             questoesSelecionadas.length
         ) {
-
             salvarProgresso();
-
             mostrarQuestao();
 
         } else {
 
             resultado.innerHTML =
                 `🎉 Você terminou!<br>
-                Você acertou ${pontos} de ${questoesSelecionadas.length} questões.<br>
-                ⭐ XP total: ${xpTotalAtual}`;
+                Você acertou ${pontos} de ${questoesSelecionadas.length} questões.<br><br>
+                ⭐ XP que você já tinha: ${xpInicialQuiz || 0}<br>
+                ✨ XP ganho nesta atividade: +${xpGanhoQuiz}<br>
+                🏆 XP total: ${xpTotalAtual}`;
 
             botaoResponder.style.display = "none";
             botaoProxima.style.display = "none";
@@ -694,6 +733,7 @@ botaoProxima.addEventListener(
                 `<strong>Você terminou todas as questões!</strong>`;
 
             contador.textContent = "Fim!";
+            statusQuestao.textContent = "";
 
             localStorage.removeItem(
                 "progressoQuestao"
@@ -732,4 +772,9 @@ window.addEventListener(
     }
 );
 
-carregarQuestoes();
+async function iniciarPagina() {
+    await carregarQuestoes();
+    await carregarQuestoesRespondidas();
+}
+
+iniciarPagina();

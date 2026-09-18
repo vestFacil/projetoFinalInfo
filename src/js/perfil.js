@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
     const inputMeta = document.getElementById("inputMeta");
     const metasLista = document.getElementById("metasLista");
+    const maiorSequencia = document.getElementById("maiorSequencia");
 
 
     // ==========================================
@@ -118,6 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             diasEstudando.textContent =
                 data.dias_estudando || 0;
+
+            maiorSequencia.textContent =
+                data.maior_sequencia || 0;
 
 
             // Metas
