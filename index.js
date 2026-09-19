@@ -481,6 +481,186 @@ app.post("/questoes/responder", (req, res) => {
 });
 
 // ========================
+// DESAFIO DO DIA - CONCLUIR
+// ========================
+
+app.post("/desafios/concluir", (req, res) => {
+    const { usuarioId } = req.body;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    // Verifica se o desafio de hoje já foi concluído
+    db.query(
+        `SELECT id
+         FROM desafios_diarios
+         WHERE usuario_id = ?
+           AND data_desafio = CURDATE()
+         LIMIT 1`,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+                return res.status(500).json({
+                    erro: "Erro ao verificar desafio diário."
+                });
+            }
+
+            // Se já existe, não entrega XP novamente
+            if (resultados.length > 0) {
+                return res.json({
+                    sucesso: true,
+                    jaConcluido: true,
+                    xpGanho: 0,
+                    mensagem: "Desafio de hoje já foi concluído."
+                });
+            }
+
+            const recompensaXP = 20;
+
+            // Buscar estatísticas do usuário
+            db.query(
+                `SELECT *
+                 FROM estatisticas
+                 WHERE usuario_id = ?`,
+                [usuarioId],
+                (err, estatisticasResultados) => {
+
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).json({
+                            erro: "Erro ao buscar estatísticas."
+                        });
+                    }
+
+                    const estatisticas =
+                        estatisticasResultados[0];
+
+                    // Se ainda não existe estatística,
+                    // cria com os 20 XP da recompensa.
+                    if (!estatisticas) {
+
+                        db.query(
+                            `INSERT INTO estatisticas
+                            (
+                                usuario_id,
+                                questoes_resolvidas,
+                                xp,
+                                sequencia_atual,
+                                maior_sequencia,
+                                ultimo_acesso
+                            )
+                            VALUES (?, 0, ?, 0, 0, CURDATE())`,
+                            [
+                                usuarioId,
+                                recompensaXP
+                            ],
+                            (err) => {
+
+                                if (err) {
+                                    console.error(err);
+                                    return res.status(500).json({
+                                        erro: "Erro ao adicionar recompensa."
+                                    });
+                                }
+
+                                registrarDesafio();
+                            }
+                        );
+
+                    } else {
+
+                        const novoXp =
+                            (estatisticas.xp || 0) +
+                            recompensaXP;
+
+                        db.query(
+                            `UPDATE estatisticas
+                             SET xp = ?,
+                                 ultimo_acesso = CURDATE()
+                             WHERE usuario_id = ?`,
+                            [
+                                novoXp,
+                                usuarioId
+                            ],
+                            (err) => {
+
+                                if (err) {
+                                    console.error(err);
+                                    return res.status(500).json({
+                                        erro: "Erro ao atualizar XP."
+                                    });
+                                }
+
+                                registrarDesafio();
+                            }
+                        );
+                    }
+
+                    function registrarDesafio() {
+
+                        db.query(
+                            `INSERT INTO desafios_diarios
+                            (
+                                usuario_id,
+                                data_desafio,
+                                concluido,
+                                recompensa_xp
+                            )
+                            VALUES (?, CURDATE(), TRUE, ?)`,
+                            [
+                                usuarioId,
+                                recompensaXP
+                            ],
+                            (err) => {
+
+                                if (err) {
+                                    console.error(err);
+                                    return res.status(500).json({
+                                        erro: "Erro ao registrar desafio."
+                                    });
+                                }
+
+                                // Buscar XP atualizado
+                                db.query(
+                                    `SELECT xp
+                                     FROM estatisticas
+                                     WHERE usuario_id = ?`,
+                                    [usuarioId],
+                                    (err, xpResultados) => {
+
+                                        if (err) {
+                                            console.error(err);
+                                            return res.status(500).json({
+                                                erro: "Erro ao buscar XP atualizado."
+                                            });
+                                        }
+
+                                        res.json({
+                                            sucesso: true,
+                                            jaConcluido: false,
+                                            xpGanho: recompensaXP,
+                                            xpTotal:
+                                                xpResultados[0]?.xp || 0,
+                                            mensagem:
+                                                "Desafio concluído! +20 XP"
+                                        });
+                                    }
+                                );
+                            }
+                        );
+                    }
+                }
+            );
+        }
+    );
+});
+
+// ========================
 // QUESTÕES - JÁ RESPONDIDAS
 // ========================
 

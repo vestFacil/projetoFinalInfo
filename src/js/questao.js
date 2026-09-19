@@ -1,26 +1,28 @@
 const url = new URLSearchParams(window.location.search);
 
-const materia = url.get("materia");
+const modo = url.get("modo");
+
+const materia =
+    url.get("materia") ||
+    (modo === "desafio"
+        ? "nao_classificadas"
+        : null);
 
 const titulo = document.getElementById("titulo");
 const enunciado = document.getElementById("enunciado");
 const alternativas = document.getElementById("alternativas");
-
 const botaoResponder = document.getElementById("responder");
 const botaoProxima = document.getElementById("proxima");
-
 const resultado = document.getElementById("resultado");
 const contador = document.getElementById("contador");
 const statusQuestao = document.getElementById("statusQuestao");
-
 const quantidade = document.getElementById("quantidade");
 const iniciar = document.getElementById("iniciar");
-
 const popup = document.getElementById("popupConfiguracao");
 const areaQuestao = document.getElementById("questao");
-
 const botaoVoltar = document.getElementById("voltar");
 const sequencia = document.getElementById("sequencia");
+
 
 let respostaCorreta;
 let questoes = [];
@@ -118,12 +120,7 @@ async function carregarQuestoesRespondidas() {
 
         questoesRespondidas =
             await resposta.json();
-
-        console.log(
-            "Questões já respondidas:",
-            questoesRespondidas
-        );
-
+            
     } catch (erro) {
         console.error(
             "Erro ao carregar questões respondidas:",
@@ -136,7 +133,7 @@ async function carregarQuestoesRespondidas() {
 
 async function carregarQuestoes() {
     try {
-        if (!materia) {
+        if (!materia && modo !== "desafio") {
             throw new Error(
                 "Nenhuma matéria foi informada."
             );
@@ -145,7 +142,10 @@ async function carregarQuestoes() {
         let pasta = materia;
         let nomeArquivo = materia;
 
-        if (
+        if (modo === "desafio") {
+            pasta = "nao-classificadas";
+            nomeArquivo = "nao_classificadas";
+        } else if (
             materia === "nao-classificadas" ||
             materia === "nao_classificadas"
         ) {
@@ -155,11 +155,6 @@ async function carregarQuestoes() {
 
         const caminho =
             `data/${pasta}/${nomeArquivo}.json`;
-
-        console.log(
-            "Carregando:",
-            caminho
-        );
 
         const resposta =
             await fetch(caminho);
@@ -184,10 +179,6 @@ async function carregarQuestoes() {
                 "Esse arquivo não possui questões."
             );
         }
-
-        console.log(
-            `${questoes.length} questões carregadas.`
-        );
 
         configurarQuantidade(
             questoes.length
@@ -282,8 +273,12 @@ iniciar.addEventListener(
     "click",
     () => {
 
-        quantidadeQuestoes =
-            Number(quantidade.value);
+        if (modo === "desafio") {
+            quantidadeQuestoes = 5;
+        } else {
+            quantidadeQuestoes =
+                Number(quantidade.value);
+        }
 
         questoesSelecionadas =
             [...questoes]
@@ -339,26 +334,7 @@ function mostrarQuestao() {
     respostaCorreta =
         questao.resposta;
 
-    let nomeTitulo =
-    materia;
-
-    if (
-        materia === "nao-classificadas" ||
-        materia === "nao_classificadas"
-    ) {
-        nomeTitulo =
-            "Não classificadas";
-    }
-
-    if (materia === "portugues") {
-        titulo.textContent = "Línguas";
-    } else {
-        titulo.textContent =
-            formatarNome(nomeTitulo);
-    }
-
-    contador.textContent =
-        `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
+    let nomeTitulo = materia;
 
     const questaoId =
     `${materia}-${questoes.indexOf(questao)}`;
@@ -368,7 +344,10 @@ function mostrarQuestao() {
             "🟢 Questão já respondida";
     } else {
         statusQuestao.textContent = "";
-    }    
+    }
+
+    contador.textContent =
+        `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
 
     let textoEnunciado =
         questao.enunciado || "";
@@ -618,12 +597,6 @@ botaoResponder.addEventListener(
         );
 
     if (dadosServidor) {
-
-        console.log(
-            "Resposta registrada:",
-            dadosServidor
-        );
-
         const questaoAtual =
         questoesSelecionadas[numeroQuestao];
 
@@ -689,7 +662,7 @@ botaoResponder.addEventListener(
 
 botaoProxima.addEventListener(
     "click",
-    () => {
+    async () => {
 
         // Marcar a questão atual como respondida
         if (respondeu) {
@@ -699,8 +672,14 @@ botaoProxima.addEventListener(
             const questaoIdAtual =
                 `${materia}-${questoes.indexOf(questaoAtual)}`;
 
-            if (!questoesRespondidas.includes(questaoIdAtual)) {
-                questoesRespondidas.push(questaoIdAtual);
+            if (
+                !questoesRespondidas.includes(
+                    questaoIdAtual
+                )
+            ) {
+                questoesRespondidas.push(
+                    questaoIdAtual
+                );
             }
         }
 
@@ -716,24 +695,139 @@ botaoProxima.addEventListener(
 
         } else {
 
+            // =========================
+            // FINAL DO DESAFIO
+            // =========================
+
+            let xpDesafio = 0;
+            let mensagemDesafio = "";
+
+            if (modo === "desafio") {
+
+                try {
+
+                    const usuarioLogado =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "usuarioLogado"
+                            )
+                        );
+
+                    if (
+                        usuarioLogado &&
+                        usuarioLogado.id
+                    ) {
+
+                        const respostaDesafio =
+                            await fetch(
+                                "http://localhost:3000/desafios/concluir",
+                                {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        usuarioId:
+                                            Number(
+                                                usuarioLogado.id
+                                            )
+                                    })
+                                }
+                            );
+
+                        const dadosDesafio =
+                            await respostaDesafio.json();
+
+                        if (!respostaDesafio.ok) {
+                            throw new Error(
+                                dadosDesafio.erro ||
+                                "Erro ao concluir desafio."
+                            );
+                        }
+
+                        xpDesafio =
+                            Number(
+                                dadosDesafio.xpGanho
+                            ) || 0;
+
+                        if (
+                            dadosDesafio.jaConcluido
+                        ) {
+                            mensagemDesafio =
+                                "🎯 Desafio de hoje já havia sido concluído.";
+                        } else {
+                            mensagemDesafio =
+                                "🎯 Desafio concluído! +20 XP";
+                        }
+
+                        // O XP retornado pelo servidor
+                        // é o valor mais atualizado.
+                        if (
+                            dadosDesafio.xpTotal !==
+                            undefined
+                        ) {
+                            xpTotalAtual =
+                                Number(
+                                    dadosDesafio.xpTotal
+                                );
+                        }
+
+                    } else {
+
+                        mensagemDesafio =
+                            "⚠️ Não foi possível identificar o usuário.";
+
+                    }
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro ao concluir desafio:",
+                        erro
+                    );
+
+                    mensagemDesafio =
+                        "⚠️ Não foi possível registrar a recompensa do desafio.";
+                }
+            }
+
+            // =========================
+            // RESULTADO FINAL
+            // =========================
+
             resultado.innerHTML =
                 `🎉 Você terminou!<br>
                 Você acertou ${pontos} de ${questoesSelecionadas.length} questões.<br><br>
                 ⭐ XP que você já tinha: ${xpInicialQuiz || 0}<br>
-                ✨ XP ganho nesta atividade: +${xpGanhoQuiz}<br>
+                ✨ XP ganho nas questões: +${xpGanhoQuiz}<br>
+                ${modo === "desafio"
+                    ? `🎯 XP do Desafio do Dia: +${xpDesafio}<br>
+                       ${mensagemDesafio}<br>`
+                    : ""
+                }
                 🏆 XP total: ${xpTotalAtual}`;
 
-            botaoResponder.style.display = "none";
-            botaoProxima.style.display = "none";
-            botaoVoltar.style.display = "none";
+            botaoResponder.style.display =
+                "none";
 
-            alternativas.innerHTML = "";
+            botaoProxima.style.display =
+                "none";
+
+            botaoVoltar.style.display =
+                "none";
+
+            alternativas.innerHTML =
+                "";
 
             enunciado.innerHTML =
                 `<strong>Você terminou todas as questões!</strong>`;
 
-            contador.textContent = "Fim!";
-            statusQuestao.textContent = "";
+            contador.textContent =
+                "Fim!";
+
+            statusQuestao.textContent =
+                "";
 
             localStorage.removeItem(
                 "progressoQuestao"
@@ -773,8 +867,20 @@ window.addEventListener(
 );
 
 async function iniciarPagina() {
+
     await carregarQuestoes();
+
     await carregarQuestoesRespondidas();
+
+    if (modo === "desafio") {
+
+        quantidadeQuestoes = 5;
+
+        iniciar.click();
+
+        popup.style.display = "none";
+        areaQuestao.style.display = "block";
+    }
 }
 
 iniciarPagina();
