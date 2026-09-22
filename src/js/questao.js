@@ -8,6 +8,8 @@ const materia =
         ? "nao_classificadas"
         : null);
 
+const questaoRevisao = url.get("revisar");        
+
 const titulo = document.getElementById("titulo");
 const enunciado = document.getElementById("enunciado");
 const alternativas = document.getElementById("alternativas");
@@ -142,10 +144,7 @@ async function carregarQuestoes() {
         let pasta = materia;
         let nomeArquivo = materia;
 
-        if (modo === "desafio") {
-            pasta = "nao-classificadas";
-            nomeArquivo = "nao_classificadas";
-        } else if (
+        if (
             materia === "nao-classificadas" ||
             materia === "nao_classificadas"
         ) {
@@ -273,7 +272,10 @@ iniciar.addEventListener(
     "click",
     () => {
 
-        if (modo === "desafio") {
+        if (
+            modo === "desafio" ||
+            modo === "desafioExtra"
+        ) {
             quantidadeQuestoes = 5;
         } else {
             quantidadeQuestoes =
@@ -869,9 +871,11 @@ window.addEventListener(
 async function iniciarPagina() {
 
     await carregarQuestoes();
-
     await carregarQuestoesRespondidas();
 
+    // =========================
+    // DESAFIO DO DIA
+    // =========================
     if (modo === "desafio") {
 
         quantidadeQuestoes = 5;
@@ -880,6 +884,138 @@ async function iniciarPagina() {
 
         popup.style.display = "none";
         areaQuestao.style.display = "block";
+
+    // =========================
+    // DESAFIO EXTRA
+    // =========================
+    } else if (modo === "desafioExtra") {
+
+        const usuarioLogado =
+            JSON.parse(
+                localStorage.getItem("usuarioLogado")
+            );
+
+        if (!usuarioLogado || !usuarioLogado.id) {
+
+            popup.style.display = "none";
+            areaQuestao.style.display = "block";
+
+            titulo.textContent =
+                "Desafio Extra indisponível";
+
+            enunciado.textContent =
+                "Não foi possível identificar o usuário.";
+
+            alternativas.innerHTML = "";
+
+            return;
+        }
+
+        try {
+
+            const resposta =
+                await fetch(
+                    `http://localhost:3000/desafios/extras/${usuarioLogado.id}`
+                );
+
+            const dados =
+                await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(
+                    dados.erro ||
+                    "Erro ao verificar Desafio Extra."
+                );
+            }
+
+            // Não possui Desafio Extra desbloqueado
+            if (!dados.disponivel) {
+
+                popup.style.display = "none";
+                areaQuestao.style.display = "block";
+
+                titulo.textContent =
+                    "Desafio Extra indisponível";
+
+                enunciado.textContent =
+                    "Você precisa resgatar o Desafio Extra na loja para poder realizá-lo.";
+
+                alternativas.innerHTML = "";
+
+                return;
+            }
+
+            // Possui Desafio Extra desbloqueado
+            quantidadeQuestoes = 5;
+
+            iniciar.click();
+
+            popup.style.display = "none";
+            areaQuestao.style.display = "block";
+
+        } catch (erro) {
+
+            console.error(
+                "Erro ao verificar Desafio Extra:",
+                erro
+            );
+
+            popup.style.display = "none";
+            areaQuestao.style.display = "block";
+
+            titulo.textContent =
+                "Erro ao carregar Desafio Extra";
+
+            enunciado.textContent =
+                "Não foi possível verificar se o Desafio Extra está disponível.";
+
+            alternativas.innerHTML = "";
+
+        }
+
+    // =========================
+    // REVISÃO
+    // =========================
+    } else if (modo === "revisao") {
+
+        const indiceRevisao =
+            Number(
+                questaoRevisao
+                    .split("-")
+                    .pop()
+            );
+
+        const questaoEncontrada =
+            questoes[indiceRevisao];
+
+        if (!questaoEncontrada) {
+
+            popup.style.display = "none";
+            areaQuestao.style.display = "block";
+
+            titulo.textContent =
+                "Questão não encontrada";
+
+            enunciado.textContent =
+                "Não foi possível encontrar essa questão.";
+
+            alternativas.innerHTML = "";
+
+            return;
+        }
+
+        questoesSelecionadas = [
+            questaoEncontrada
+        ];
+
+        numeroQuestao = 0;
+        pontos = 0;
+        respostasFeitas = {};
+
+        popup.style.display = "none";
+        areaQuestao.style.display = "block";
+
+        mostrarQuestao();
     }
 }
 

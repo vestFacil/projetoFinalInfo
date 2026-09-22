@@ -417,50 +417,96 @@ app.post("/questoes/responder", (req, res) => {
 
                         function salvarHistorico() {
 
-                            db.query(
-                                `INSERT INTO respostas_questoes
-                                (
-                                    usuario_id,
-                                    questao_id,
-                                    materia,
-                                    resposta_usuario,
-                                    resposta_correta,
-                                    acertou,
-                                    data_revisao
-                                )
-                                VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                                [
-                                    usuarioId,
-                                    questaoId,
-                                    materia,
-                                    respostaUsuario,
-                                    respostaCorreta,
-                                    acertou ? 1 : 0,
-                                    dataRevisaoFormatada
-                                ],
-                                (err) => {
+                            if (jaRespondida) {
 
-                                    if (err) {
-                                        console.error(err);
+                                db.query(
+                                    `UPDATE respostas_questoes
+                                    SET
+                                        resposta_usuario = ?,
+                                        resposta_correta = ?,
+                                        acertou = ?,
+                                        data_resposta = CURDATE(),
+                                        data_revisao = ?
+                                    WHERE id = ?`,
+                                    [
+                                        respostaUsuario,
+                                        respostaCorreta,
+                                        acertou ? 1 : 0,
+                                        dataRevisaoFormatada,
+                                        respostasAnteriores[0].id
+                                    ],
+                                    (err) => {
 
-                                        return res.status(500).json({
-                                            erro: "Erro ao salvar histórico da questão."
+                                        if (err) {
+                                            console.error(err);
+
+                                            return res.status(500).json({
+                                                erro: "Erro ao atualizar histórico da questão."
+                                            });
+                                        }
+
+                                        res.json({
+                                            sucesso: true,
+                                            acertou,
+                                            jaRespondida,
+                                            xpGanho,
+                                            xpTotal: novoXp,
+                                            sequenciaAtual,
+                                            maiorSequencia,
+                                            dataRevisao:
+                                                dataRevisaoFormatada
                                         });
                                     }
+                                );
 
-                                    res.json({
-                                        sucesso: true,
+                            } else {
+
+                                db.query(
+                                    `INSERT INTO respostas_questoes
+                                    (
+                                        usuario_id,
+                                        questao_id,
+                                        materia,
+                                        resposta_usuario,
+                                        resposta_correta,
                                         acertou,
-                                        jaRespondida,
-                                        xpGanho,
-                                        xpTotal: novoXp,
-                                        sequenciaAtual,
-                                        maiorSequencia,
-                                        dataRevisao:
-                                            dataRevisaoFormatada
-                                    });
-                                }
-                            );
+                                        data_resposta,
+                                        data_revisao
+                                    )
+                                    VALUES (?, ?, ?, ?, ?, ?, CURDATE(), ?)`,
+                                    [
+                                        usuarioId,
+                                        questaoId,
+                                        materia,
+                                        respostaUsuario,
+                                        respostaCorreta,
+                                        acertou ? 1 : 0,
+                                        dataRevisaoFormatada
+                                    ],
+                                    (err) => {
+
+                                        if (err) {
+                                            console.error(err);
+
+                                            return res.status(500).json({
+                                                erro: "Erro ao salvar histórico da questão."
+                                            });
+                                        }
+
+                                        res.json({
+                                            sucesso: true,
+                                            acertou,
+                                            jaRespondida,
+                                            xpGanho,
+                                            xpTotal: novoXp,
+                                            sequenciaAtual,
+                                            maiorSequencia,
+                                            dataRevisao:
+                                                dataRevisaoFormatada
+                                        });
+                                    }
+                                );
+                            }
                         }
                     };
 
@@ -694,6 +740,50 @@ app.get("/questoes/respondidas/:usuarioId/:materia", (req, res) => {
     );
 });
 
+// ========================
+// ÁREA DE REVISÃO
+// ========================
+
+app.get("/questoes/revisao/:usuarioId", (req, res) => {
+
+    const { usuarioId } = req.params;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `SELECT
+            questao_id,
+            materia,
+            resposta_usuario,
+            resposta_correta,
+            acertou,
+            data_resposta,
+            data_revisao
+         FROM respostas_questoes
+         WHERE usuario_id = ?
+         AND data_revisao <= CURDATE()
+         ORDER BY data_revisao ASC
+         `,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao buscar questões para revisão."
+                });
+            }
+
+            res.json(resultados);
+        }
+    );
+});
+
 
 // ========================
 // ESTATÍSTICAS
@@ -819,6 +909,279 @@ app.delete("/metas/:id", (req, res) => {
     );
 });
 
+app.get("/loja", (req, res) => {
+
+    db.query(
+        `SELECT
+            id,
+            nome,
+            descricao,
+            custo_xp,
+            recompensa
+         FROM loja_xp
+         WHERE ativo = TRUE
+         ORDER BY custo_xp ASC`,
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao carregar itens da loja."
+                });
+            }
+
+            res.json(resultados);
+        }
+    );
+
+});
+
+app.get("/loja/xp/:usuarioId", (req, res) => {
+
+    const { usuarioId } = req.params;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `SELECT xp
+         FROM estatisticas
+         WHERE usuario_id = ?`,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao buscar XP."
+                });
+            }
+
+            if (resultados.length === 0) {
+                return res.json({
+                    xp: 0
+                });
+            }
+
+            res.json({
+                xp: resultados[0].xp || 0
+            });
+        }
+    );
+
+});
+
+app.post("/loja/resgatar", (req, res) => {
+
+    const {
+        usuarioId,
+        itemId
+    } = req.body;
+
+    if (!usuarioId || !itemId) {
+        return res.status(400).json({
+            erro: "Usuário ou item não informado."
+        });
+    }
+
+    // Buscar o item da loja
+    db.query(
+        `SELECT
+            id,
+            nome,
+            custo_xp
+         FROM loja_xp
+         WHERE id = ?
+           AND ativo = TRUE`,
+        [itemId],
+        (err, itens) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao buscar item."
+                });
+            }
+
+            if (itens.length === 0) {
+                return res.status(404).json({
+                    erro: "Item não encontrado."
+                });
+            }
+
+            const item = itens[0];
+
+            const custoXP =
+                item.custo_xp;
+
+            // Buscar XP atual do usuário
+            db.query(
+                `SELECT xp
+                 FROM estatisticas
+                 WHERE usuario_id = ?`,
+                [usuarioId],
+                (err, resultados) => {
+
+                    if (err) {
+                        console.error(err);
+
+                        return res.status(500).json({
+                            erro: "Erro ao buscar XP."
+                        });
+                    }
+
+                    const xpAtual =
+                        resultados.length > 0
+                            ? resultados[0].xp || 0
+                            : 0;
+
+                    // Verificar se possui XP suficiente
+                    if (xpAtual < custoXP) {
+
+                        return res.status(400).json({
+                            erro:
+                                "Você não tem XP suficiente."
+                        });
+                    }
+
+                    const novoXP =
+                        xpAtual - custoXP;
+
+                    // Se for Desafio Extra,
+                    // registrar o desafio antes de descontar o XP
+                    if (item.nome === "Desafio extra") {
+
+                        db.query(
+                            `INSERT INTO desafios_extras
+                            (
+                                usuario_id,
+                                item_loja_id,
+                                data_resgate,
+                                concluido
+                            )
+                            VALUES (?, ?, CURDATE(), FALSE)`,
+                            [
+                                usuarioId,
+                                item.id
+                            ],
+                            (err) => {
+
+                                if (err) {
+                                    console.error(err);
+
+                                    return res.status(500).json({
+                                        erro:
+                                            "Erro ao liberar o desafio extra."
+                                    });
+                                }
+
+                                descontarXP();
+                            }
+                        );
+
+                    } else {
+
+                        // Outros itens continuam
+                        // funcionando normalmente
+                        descontarXP();
+                    }
+
+                    function descontarXP() {
+
+                        db.query(
+                            `UPDATE estatisticas
+                             SET xp = ?
+                             WHERE usuario_id = ?`,
+                            [
+                                novoXP,
+                                usuarioId
+                            ],
+                            (err) => {
+
+                                if (err) {
+                                    console.error(err);
+
+                                    return res.status(500).json({
+                                        erro:
+                                            "Erro ao descontar XP."
+                                    });
+                                }
+
+                                res.json({
+                                    sucesso: true,
+
+                                    mensagem:
+                                        item.nome === "Desafio extra"
+                                            ? "Desafio extra desbloqueado!"
+                                            : "Item resgatado com sucesso!",
+
+                                    xpRestante: novoXP,
+
+                                    desafioExtra:
+                                        item.nome === "Desafio extra"
+                                });
+                            }
+                        );
+                    }
+                }
+            );
+        }
+    );
+
+});
+
+app.get("/desafios/extras/:usuarioId", (req, res) => {
+
+    const { usuarioId } = req.params;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `SELECT
+            id,
+            item_loja_id,
+            data_resgate,
+            concluido
+         FROM desafios_extras
+         WHERE usuario_id = ?
+           AND concluido = FALSE
+         ORDER BY id DESC
+         LIMIT 1`,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao buscar desafio extra."
+                });
+            }
+
+            if (resultados.length === 0) {
+                return res.json({
+                    disponivel: false
+                });
+            }
+
+            res.json({
+                disponivel: true,
+                desafio: resultados[0]
+            });
+        }
+    );
+
+});
 
 // ========================
 // SERVIDOR

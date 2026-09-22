@@ -14,3 +14,7 @@ document.getElementById("btnDesafio").addEventListener("click", () => {
     window.location.href =
     "questao.html?modo=desafio&materia=nao_classificadas";
 });
+
+document.getElementById("btnRevisao").addEventListener("click", () => {
+    window.location.href = "revisao.html";
+});
