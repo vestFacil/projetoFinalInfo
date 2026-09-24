@@ -795,6 +795,78 @@ botaoProxima.addEventListener(
             }
 
             // =========================
+            // CONCLUIR DESAFIO EXTRA
+            // =========================
+
+            let mensagemDesafioExtra = "";
+
+            if (modo === "desafioExtra") {
+
+                try {
+
+                    const usuarioLogado =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "usuarioLogado"
+                            )
+                        );
+
+                    if (
+                        usuarioLogado &&
+                        usuarioLogado.id
+                    ) {
+
+                        const respostaExtra =
+                            await fetch(
+                                "http://localhost:3000/desafios/extras/concluir",
+                                {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        usuarioId:
+                                            Number(
+                                                usuarioLogado.id
+                                            )
+                                    })
+                                }
+                            );
+
+                        const dadosExtra =
+                            await respostaExtra.json();
+
+                        if (!respostaExtra.ok) {
+                            throw new Error(
+                                dadosExtra.erro ||
+                                "Erro ao concluir Desafio Extra."
+                            );
+                        }
+
+                        mensagemDesafioExtra =
+                            "🎯 Desafio Extra concluído!";
+
+                    } else {
+
+                        mensagemDesafioExtra =
+                            "⚠️ Não foi possível identificar o usuário.";
+
+                    }
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro ao concluir Desafio Extra:",
+                        erro
+                    );
+
+                    mensagemDesafioExtra =
+                        "⚠️ Não foi possível registrar a conclusão do Desafio Extra.";
+                }
+            }
+
+            // =========================
             // RESULTADO FINAL
             // =========================
 
@@ -805,9 +877,15 @@ botaoProxima.addEventListener(
                 ✨ XP ganho nas questões: +${xpGanhoQuiz}<br>
                 ${modo === "desafio"
                     ? `🎯 XP do Desafio do Dia: +${xpDesafio}<br>
-                       ${mensagemDesafio}<br>`
+                    ${mensagemDesafio}<br>`
                     : ""
                 }
+
+                ${modo === "desafioExtra"
+                    ? `${mensagemDesafioExtra}<br>`
+                    : ""
+                }
+
                 🏆 XP total: ${xpTotalAtual}`;
 
             botaoResponder.style.display =
@@ -834,6 +912,7 @@ botaoProxima.addEventListener(
             localStorage.removeItem(
                 "progressoQuestao"
             );
+            history.replaceState(null, "", "index.html");
         }
     }
 );

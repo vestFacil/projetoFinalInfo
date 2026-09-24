@@ -1085,12 +1085,49 @@ app.post("/loja/resgatar", (req, res) => {
                             }
                         );
 
-                    } else {
+                        } else if (
+                            item.nome === "Dica de estudo" ||
+                            item.nome === "Mensagem motivacional"
+                        ) {
 
-                        // Outros itens continuam
-                        // funcionando normalmente
-                        descontarXP();
-                    }
+                            db.query(
+                                `INSERT INTO recompensas_usuario
+                                (
+                                    usuario_id,
+                                    item_loja_id,
+                                    data_compra,
+                                    data_expiracao
+                                )
+                                VALUES (
+                                    ?,
+                                    ?,
+                                    NOW(),
+                                    DATE_ADD(NOW(), INTERVAL 3 DAY)
+                                )`,
+                                [
+                                    usuarioId,
+                                    item.id
+                                ],
+                                (err) => {
+
+                                    if (err) {
+                                        console.error(err);
+
+                                        return res.status(500).json({
+                                            erro:
+                                                "Erro ao liberar a recompensa."
+                                        });
+                                    }
+
+                                    descontarXP();
+                                }
+                            );
+
+                        } else {
+
+                            descontarXP();
+
+                        }
 
                     function descontarXP() {
 
@@ -1181,6 +1218,244 @@ app.get("/desafios/extras/:usuarioId", (req, res) => {
         }
     );
 
+});
+
+app.post("/desafios/extras/concluir", (req, res) => {
+
+    const { usuarioId } = req.body;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `UPDATE desafios_extras
+         SET concluido = TRUE
+         WHERE usuario_id = ?
+           AND item_loja_id = 2
+           AND concluido = FALSE
+         ORDER BY id DESC
+         LIMIT 1`,
+        [usuarioId],
+        (err, resultado) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao concluir Desafio Extra."
+                });
+            }
+
+            if (resultado.affectedRows === 0) {
+                return res.status(404).json({
+                    erro: "Nenhum Desafio Extra disponível."
+                });
+            }
+
+            res.json({
+                sucesso: true,
+                mensagem: "Desafio Extra concluído!"
+            });
+        }
+    );
+
+});
+
+app.get("/recompensas/:usuarioId", (req, res) => {
+
+    const { usuarioId } = req.params;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `SELECT
+            r.id,
+            r.item_loja_id,
+            r.data_compra,
+            r.data_expiracao,
+            l.nome
+         FROM recompensas_usuario r
+         INNER JOIN loja_xp l
+             ON l.id = r.item_loja_id
+         WHERE r.usuario_id = ?
+           AND r.data_expiracao > NOW()
+         ORDER BY r.data_expiracao DESC`,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro:
+                        "Erro ao buscar recompensas."
+                });
+            }
+
+            res.json(resultados);
+        }
+    );
+
+});
+
+app.get("/recompensas/dica/:usuarioId", (req, res) => {
+
+    const { usuarioId } = req.params;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `SELECT id
+         FROM recompensas_usuario
+         WHERE usuario_id = ?
+           AND item_loja_id = 1
+           AND data_expiracao > NOW()
+         ORDER BY data_expiracao DESC
+         LIMIT 1`,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao verificar a dica."
+                });
+            }
+
+            if (resultados.length === 0) {
+                return res.status(403).json({
+                    erro: "Você não possui uma Dica de Estudo ativa."
+                });
+            }
+
+            const dicas = [
+                "Quando errar uma questão, tente entender o motivo do erro antes de passar para a próxima.",
+                "Depois de estudar um assunto, resolva algumas questões sobre ele para testar seu conhecimento.",
+                "Tente explicar o conteúdo com suas próprias palavras. Isso ajuda a perceber o que você realmente entendeu.",
+                "Faça pequenas pausas durante os estudos para manter a concentração.",
+                "Revise conteúdos que você já estudou depois de alguns dias para ajudar na memorização.",
+                "Alterne entre teoria e exercícios para tornar seus estudos mais ativos."
+            ];
+
+            const indice =
+                Math.floor(
+                    Math.random() * dicas.length
+                );
+
+            res.json({
+                dica: dicas[indice]
+            });
+
+        }
+    );
+
+});
+
+app.get("/recompensas/mensagem/:usuarioId", (req, res) => {
+
+    const { usuarioId } = req.params;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `SELECT id
+         FROM recompensas_usuario
+         WHERE usuario_id = ?
+           AND item_loja_id = 3
+           AND data_expiracao > NOW()
+         ORDER BY data_expiracao DESC
+         LIMIT 1`,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao verificar a mensagem."
+                });
+            }
+
+            if (resultados.length === 0) {
+                return res.status(403).json({
+                    erro:
+                        "Você não possui uma Mensagem Motivacional ativa."
+                });
+            }
+
+            const mensagens = [
+                "Você não precisa estudar tudo de uma vez. Um pouco todos os dias já faz diferença!",
+                "Cada questão respondida é um passo a mais na sua preparação. Continue!",
+                "Não desista por causa de uma questão difícil. Errar também faz parte do aprendizado!",
+                "Seu esforço de hoje pode fazer toda a diferença amanhã.",
+                "Você já chegou até aqui. Continue avançando!",
+                "A constância é mais importante do que estudar muito em um único dia."
+            ];
+
+            const indice =
+                Math.floor(
+                    Math.random() * mensagens.length
+                );
+
+            res.json({
+                mensagem: mensagens[indice]
+            });
+
+        }
+    );
+
+});
+
+app.get("/desafios/status/:usuarioId", (req, res) => {
+
+    const { usuarioId } = req.params;
+
+    if (!usuarioId) {
+        return res.status(400).json({
+            erro: "Usuário não informado."
+        });
+    }
+
+    db.query(
+        `SELECT concluido
+         FROM desafios_diarios
+         WHERE usuario_id = ?
+           AND data_desafio = CURDATE()
+         LIMIT 1`,
+        [usuarioId],
+        (err, resultados) => {
+
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    erro: "Erro ao verificar desafio."
+                });
+            }
+
+            res.json({
+                concluido:
+                    resultados.length > 0 &&
+                    resultados[0].concluido === 1
+            });
+        }
+    );
 });
 
 // ========================
