@@ -871,22 +871,109 @@ botaoProxima.addEventListener(
             // =========================
 
             resultado.innerHTML =
-                `🎉 Você terminou!<br>
-                Você acertou ${pontos} de ${questoesSelecionadas.length} questões.<br><br>
-                ⭐ XP que você já tinha: ${xpInicialQuiz || 0}<br>
-                ✨ XP ganho nas questões: +${xpGanhoQuiz}<br>
-                ${modo === "desafio"
-                    ? `🎯 XP do Desafio do Dia: +${xpDesafio}<br>
-                    ${mensagemDesafio}<br>`
-                    : ""
-                }
+                `
+                <div class="resumo-final">
 
-                ${modo === "desafioExtra"
-                    ? `${mensagemDesafioExtra}<br>`
-                    : ""
-                }
+                    <h2>Lista concluída!</h2>
 
-                🏆 XP total: ${xpTotalAtual}`;
+
+                    <div class="resultado-acertos">
+
+                        <strong>
+                            ${pontos} / ${questoesSelecionadas.length}
+                        </strong>
+
+                        <span>
+                            questões acertadas
+                        </span>
+
+                    </div>
+
+
+                    <div class="resumo-xp">
+
+                        <div class="xp-item">
+
+                            <span>
+                                XP anterior
+                            </span>
+
+                            <strong>
+                                ${xpInicialQuiz || 0}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="xp-item">
+
+                            <span>
+                                XP ganho
+                            </span>
+
+                            <strong>
+                                +${xpGanhoQuiz}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="xp-item destaque">
+
+                            <span>
+                                XP total
+                            </span>
+
+                            <strong>
+                                ${xpTotalAtual}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    ${
+                        modo === "desafio"
+                            ? `
+                                <div class="mensagem-final desafio-final">
+
+                                    <strong>
+                                        ${mensagemDesafio}
+                                    </strong>
+
+                                    ${
+                                        xpDesafio > 0
+                                            ? `
+                                                <span>
+                                                    Recompensa: +${xpDesafio} XP
+                                                </span>
+                                            `
+                                            : ""
+                                    }
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        modo === "desafioExtra"
+                            ? `
+                                <div class="mensagem-final">
+
+                                    <strong>
+                                        ${mensagemDesafioExtra}
+                                    </strong>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+                </div>
+                `;
 
             botaoResponder.style.display =
                 "none";
@@ -946,6 +1033,22 @@ window.addEventListener(
         }
     }
 );
+
+document.addEventListener("keydown", (evento) => {
+
+    if (evento.key === "ArrowRight") {
+        if (!botaoProxima.disabled) {
+            botaoProxima.click();
+        }
+    }
+
+    if (evento.key === "ArrowLeft") {
+        if (!botaoVoltar.disabled) {
+            botaoVoltar.click();
+        }
+    }
+
+});
 
 async function iniciarPagina() {
 

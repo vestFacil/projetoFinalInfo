@@ -1,71 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Questões</title>
+
     <link rel="stylesheet" href="css/questao.css">
 </head>
+
 <body>
 
-    <button id="btnRecompensas">
-    ✨ Minhas recompensas
-</button>
+    <!-- BOTÃO INÍCIO -->
 
-<div id="painelRecompensas" style="display: none;">
-
-    <h2>✨ Minhas recompensas</h2>
-
-    <button id="btnMensagem">
-        💬 Ver mensagem motivacional
-    </button>
-
-    <button id="btnDica">
-        📚 Ver dica de estudo
-    </button>
-
-    <p id="resultadoRecompensa"></p>
-
-</div>
-
-    <!-- Popup -->
-
-    <a href="index.html" class="botao-inicio" title="Voltar ao início">
-    🏠
+    <a
+        href="index.html"
+        class="botao-inicio"
+        title="Voltar ao início"
+        aria-label="Voltar ao início"
+    >
+        🏠
     </a>
 
-    <div id="popupConfiguracao" class="popup">
+
+    <!-- RECOMPENSAS -->
+
+    <button
+        id="btnRecompensas"
+        type="button"
+    >
+        Minhas recompensas
+    </button>
+
+
+    <div
+        id="painelRecompensas"
+        style="display: none;"
+    >
+
+        <h2>Minhas recompensas</h2>
+
+        <button
+            id="btnMensagem"
+            type="button"
+        >
+            Ver mensagem motivacional
+        </button>
+
+        <button
+            id="btnDica"
+            type="button"
+        >
+            Ver dica de estudo
+        </button>
+
+        <p id="resultadoRecompensa"></p>
+
+    </div>
+
+
+    <!-- POPUP DE CONFIGURAÇÃO -->
+
+    <div
+        id="popupConfiguracao"
+        class="popup"
+    >
 
         <div class="popup-conteudo">
 
             <div class="titulo">
+
                 <h1>Configuração da Lista</h1>
+
             </div>
 
-          <select id="quantidade">
-            <option value="5">5 questões</option>
-            <option value="10">10 questões</option>
-            <option value="20">20 questões</option>
-        </select>
 
-        <p class="aviso">
-         Você poderá voltar para questões anteriores enquanto estiver respondendo esta lista.
-        </p>
+            <select id="quantidade">
 
-        <div class="botoes-lista">
+                <option value="5">
+                    5 questões
+                </option>
 
-            <button id="iniciar">
-                🔄 Nova lista
-            </button>
+                <option value="10">
+                    10 questões
+                </option>
 
-        </div>
+                <option value="20">
+                    20 questões
+                </option>
+
+            </select>
+
+
+            <p class="aviso">
+                Você poderá voltar para questões anteriores
+                enquanto estiver respondendo esta lista.
+            </p>
+
+
+            <div class="botoes-lista">
+
+                <button
+                    id="iniciar"
+                    type="button"
+                >
+                    Começar
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
-    <!-- Questões -->
-    <div id="questao">
+
+    <!-- ÁREA DAS QUESTÕES -->
+
+    <main id="questao">
+
+        <img
+            src="assets/corujaEstudando.png"
+            class="coruja-questao"
+            alt="Coruja estudando"
+        >
+
 
         <p id="contador"></p>
 
@@ -73,34 +132,60 @@
 
         <p id="sequencia"></p>
 
+
         <h1 id="titulo"></h1>
+
 
         <div id="enunciado"></div>
 
+
         <div id="alternativas"></div>
 
-        <button id="responder">
+
+        <button
+            id="responder"
+            type="button"
+        >
             Responder
         </button>
 
+
         <p id="resultado"></p>
+
+
+        <!-- NAVEGAÇÃO ENTRE QUESTÕES -->
 
         <div class="botoes-questao">
 
-        <button id="voltar" disabled>
-            ← Voltar
-        </button>
+            <button
+                id="voltar"
+                type="button"
+                disabled
+                title="Questão anterior"
+                aria-label="Questão anterior"
+            >
+                ←
+            </button>
 
-        <button id="proxima">
-            Próxima Questão
-        </button>
 
-</div>
+            <button
+                id="proxima"
+                type="button"
+                title="Próxima questão"
+                aria-label="Próxima questão"
+            >
+                →
+            </button>
 
-    </div>
+        </div>
+
+    </main>
+
 
     <script src="js/questao.js"></script>
+
     <script src="js/recompensa.js"></script>
 
 </body>
+
 </html>

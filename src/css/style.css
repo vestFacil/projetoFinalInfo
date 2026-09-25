@@ -1,65 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
 
+
+/* =========================
+   BASE
+   ========================= */
 
 * {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    background-color: aliceblue;
-    color: #333;
+
+    font-family: 'Nunito', sans-serif;
+
+    background-color: #F6EEDC;
+
+    color: #403746;
+
+    min-height: 100vh;
 }
 
 
-/* TOPO */
+/* =========================
+   TOPO
+   ========================= */
 
 .topo {
     display: flex;
+
     align-items: center;
-    height: 90px;
-    padding: 0 35px;
-    gap: 45px;
 
-    background-color: white;
+    height: 76px;
 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 0 42px;
+
+    gap: 36px;
+
+    background-color: #FFF9ED;
+
+    border-bottom: 1px solid #E8DCC8;
+
+    box-shadow:
+        0 3px 14px rgba(75, 55, 70, 0.07);
 
     position: relative;
+
     z-index: 10;
 }
 
 
 .iconePerfil {
-    width: 50px;
-    height: 50px;
+    width: 46px;
+
+    height: 46px;
+
     object-fit: contain;
+
     cursor: pointer;
 
-    transition: transform 0.3s ease;
+    transition:
+        transform 0.25s ease;
 }
 
 
 .iconePerfil:hover {
-    transform: scale(1.1);
+    transform:
+        scale(1.08)
+        rotate(2deg);
 }
 
 
 .topo p {
     margin: 0;
 
-    color: rgb(89, 89, 223);
+    color: #76558F;
 
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 0.98rem;
+
+    font-weight: 700;
 
     cursor: pointer;
 
     position: relative;
 
-    transition: transform 0.3s ease;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.topo p:hover {
+    color: #8B5FBF;
+
+    transform: translateY(-1px);
 }
 
 
@@ -69,19 +107,19 @@ body {
     position: absolute;
 
     left: 0;
-    bottom: -6px;
+
+    bottom: -7px;
 
     width: 0;
+
     height: 2px;
 
-    background-color: rgb(89, 89, 223);
+    border-radius: 5px;
 
-    transition: width 0.3s ease;
-}
+    background-color: #8B5FBF;
 
-
-.topo p:hover {
-    transform: translateY(-3px);
+    transition:
+        width 0.25s ease;
 }
 
 
@@ -90,165 +128,632 @@ body {
 }
 
 
-/* APRESENTAÇÃO */
+/* =========================
+   APRESENTAÇÃO
+   ========================= */
 
 .apresentacao {
-    width: 85%;
-    max-width: 1000px;
+    width: 94%;
 
-    margin: 70px auto 60px;
+    max-width: 1350px;
 
-    text-align: center;
+    min-height: 510px;
+
+    margin: 45px auto 75px;
+
+    padding: 65px 85px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 80px;
+
+    background-color: #FFF9ED;
+
+    border: 1px solid #E8DCC8;
+
+    border-radius: 32px;
+
+    box-shadow:
+        0 15px 38px
+        rgba(75, 55, 70, 0.08);
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+/* Detalhe decorativo superior */
+
+.apresentacao::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+
+    height: 330px;
+
+    border-radius: 50%;
+
+    background-color: #F0E5F5;
+
+    right: -100px;
+
+    top: -110px;
+
+    opacity: 0.75;
+}
+
+
+/* Detalhe decorativo inferior */
+
+.apresentacao::after {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+
+    height: 160px;
+
+    border-radius: 50%;
+
+    background-color: #F6EEDC;
+
+    left: -60px;
+
+    bottom: -60px;
+}
+
+
+/* Texto */
+
+.texto-apresentacao {
+    flex: 1;
+
+    max-width: 700px;
+
+    position: relative;
+
+    z-index: 2;
 }
 
 
 .apresentacao h1 {
-    margin-bottom: 20px;
+    margin: 0 0 22px;
 
-    color: rgb(89, 89, 223);
+    color: #76558F;
 
-    font-size: 2.8rem;
+    font-size: 3.5rem;
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
+    letter-spacing: -1.5px;
 }
 
 
-.apresentacao p {
-    max-width: 800px;
+.frase-apresentacao {
+    margin: 0 0 18px;
 
-    margin: 0 auto;
+    color: #403746;
 
-    color: #555;
+    font-size: 1.45rem;
 
-    font-size: 1.1rem;
-    line-height: 1.7;
+    font-weight: 700;
+
+    line-height: 1.5;
 }
 
 
-/* ESTRATÉGIAS */
+.subtexto-apresentacao {
+    margin: 0;
+
+    max-width: 630px;
+
+    color: #776D78;
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+
+/* Coruja */
+
+.coruja-apresentacao {
+    width: 330px;
+
+    max-width: 30vw;
+
+    height: auto;
+
+    object-fit: contain;
+
+    position: relative;
+
+    z-index: 2;
+
+    filter:
+        drop-shadow(
+            0 13px 15px
+            rgba(75, 55, 70, 0.13)
+        );
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.coruja-apresentacao:hover {
+    transform:
+        translateY(-9px)
+        rotate(2deg);
+}
+
+
+/* =========================
+   DESAFIO + REVISÃO
+   ========================= */
+
+.desafio-dia,
+.area-revisao {
+    width: 90%;
+
+    max-width: 1120px;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    padding: 42px 48px;
+
+    background-color: #FFF9ED;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 9px 25px
+        rgba(75, 55, 70, 0.065);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.desafio-dia:hover,
+.area-revisao:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 13px 30px
+        rgba(75, 55, 70, 0.085);
+}
+
+
+/* Faixa lateral */
+
+.desafio-dia::before,
+.area-revisao::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 7px;
+
+    height: 100%;
+
+    background-color: #8B5FBF;
+}
+
+
+/* Pequeno detalhe no canto */
+
+.desafio-dia::after,
+.area-revisao::after {
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    background-color: #F0E5F5;
+
+    right: -30px;
+
+    bottom: -30px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================
+   DESAFIO DO DIA
+   ========================= */
+
+.desafio-dia {
+    margin-bottom: 30px;
+
+    border:
+        1px solid #DCCBE5;
+}
+
+
+.desafio-dia h2 {
+    margin: 0 0 12px;
+
+    color: #76558F;
+
+    font-size: 1.9rem;
+
+    font-weight: 800;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.desafio-dia p {
+    margin: 8px 0;
+
+    color: #776D78;
+
+    line-height: 1.65;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+#recompensaDesafio {
+    margin-top: 13px;
+
+    margin-bottom: 24px;
+
+    color: #76558F;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   ÁREA DE REVISÃO
+   ========================= */
+
+.area-revisao {
+    margin-bottom: 80px;
+
+    border:
+        1px solid #DCCBE5;
+}
+
+
+.area-revisao h2 {
+    margin: 0 0 12px;
+
+    color: #76558F;
+
+    font-size: 1.9rem;
+
+    font-weight: 800;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.area-revisao p {
+    margin: 8px auto 24px;
+
+    max-width: 650px;
+
+    color: #776D78;
+
+    line-height: 1.65;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   ESTRATÉGIAS
+   ========================= */
 
 .estrategias {
     width: 90%;
-    max-width: 1200px;
 
-    margin: 0 auto 70px;
+    max-width: 1120px;
+
+    margin: 0 auto 75px;
 }
 
 
 .estrategias h2 {
-    margin-bottom: 30px;
+    margin: 0 0 25px;
 
-    color: rgb(89, 89, 223);
+    color: #403746;
 
-    font-size: 2rem;
+    font-size: 1.8rem;
+
+    font-weight: 800;
 }
 
 
 .cards-estrategias {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
-    gap: 22px;
+    gap: 20px;
 }
 
 
 .estrategia {
-    background-color: white;
+    min-height: 180px;
 
-    padding: 28px;
+    padding: 27px;
 
-    border-radius: 15px;
+    background-color: #FFF9ED;
 
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    border: 1px solid #E8DCC8;
 
-    border: 1px solid rgba(89, 89, 223, 0.08);
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(75, 55, 70, 0.05);
 
     transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 
 .estrategia:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
 
-    box-shadow: 0 10px 25px rgba(89, 89, 223, 0.18);
+    border-color: #C9B6D9;
+
+    box-shadow:
+        0 11px 25px
+        rgba(75, 55, 70, 0.09);
 }
 
 
 .estrategia h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
+    margin: 0 0 12px;
 
-    color: rgb(89, 89, 223);
+    color: #76558F;
 
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+
+    font-weight: 800;
 }
 
 
 .estrategia p {
     margin: 0;
 
-    color: #555;
+    color: #776D78;
 
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 
-/* DICA */
+/* =========================
+   DICA
+   ========================= */
 
 .dica {
     width: 90%;
-    max-width: 1200px;
 
-    margin: 0 auto 70px;
+    max-width: 1120px;
 
-    padding: 35px;
+    margin: 0 auto 75px;
 
-    background-color: rgb(89, 89, 223);
+    padding: 32px 38px;
 
-    border-radius: 15px;
+    background-color: #FFF9ED;
 
-    box-shadow: 0 8px 25px rgba(89, 89, 223, 0.25);
+    border-left:
+        5px solid #8B5FBF;
 
-    text-align: center;
+    border-radius: 16px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(75, 55, 70, 0.055);
+
+    text-align: left;
 }
 
 
 .dica h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
+    margin: 0 0 12px;
 
-    color: aliceblue;
+    color: #76558F;
 
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+
+    font-weight: 800;
 }
 
 
 .dica p {
-    max-width: 800px;
+    max-width: 850px;
 
-    margin: auto;
+    margin: 0;
 
-    color: aliceblue;
+    color: #776D78;
 
     line-height: 1.7;
 
-    font-size: 1.05rem;
+    font-size: 1rem;
 }
 
 
-/* TABLET */
+/* =========================
+   BOTÕES
+   ========================= */
+
+button {
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 12px 22px;
+
+    background-color: #76558F;
+
+    color: #FFFFFF;
+
+    font-family: inherit;
+
+    font-size: 0.98rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px
+        rgba(118, 85, 143, 0.12);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+button:hover {
+    background-color: #8B5FBF;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 16px
+        rgba(118, 85, 143, 0.2);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+button:disabled {
+    background-color: #D4CCCF;
+
+    color: #776D78;
+
+    cursor: default;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================
+   SELEÇÃO DE TEXTO
+   ========================= */
+
+::selection {
+    background-color: #DCCBE5;
+
+    color: #403746;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+@media (max-width: 1000px) {
+
+    .apresentacao {
+        width: 92%;
+
+        padding: 55px;
+
+        gap: 50px;
+    }
+
+
+    .apresentacao h1 {
+        font-size: 3rem;
+    }
+
+
+    .coruja-apresentacao {
+        width: 270px;
+    }
+}
+
 
 @media (max-width: 900px) {
 
-    .cards-estrategias {
-        grid-template-columns: repeat(2, 1fr);
+    .topo {
+        padding: 0 25px;
+
+        gap: 25px;
     }
 
+
+    .apresentacao {
+        min-height: 450px;
+
+        padding: 45px;
+
+        gap: 40px;
+    }
+
+
+    .apresentacao h1 {
+        font-size: 2.8rem;
+    }
+
+
+    .coruja-apresentacao {
+        width: 240px;
+    }
+
+
+    .cards-estrategias {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 }
 
-
-/* CELULAR */
 
 @media (max-width: 600px) {
 
@@ -265,29 +770,74 @@ body {
 
     .iconePerfil {
         width: 42px;
+
         height: 42px;
     }
 
 
     .topo p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
 
     .apresentacao {
-        width: 90%;
+        width: 92%;
 
-        margin-top: 45px;
+        min-height: auto;
+
+        margin-top: 30px;
+
+        margin-bottom: 55px;
+
+        padding: 42px 25px;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 28px;
+
+        border-radius: 24px;
     }
 
 
     .apresentacao h1 {
-        font-size: 2rem;
+        font-size: 2.3rem;
+
+        letter-spacing: -1px;
     }
 
 
-    .apresentacao p {
-        font-size: 1rem;
+    .frase-apresentacao {
+        font-size: 1.15rem;
+    }
+
+
+    .subtexto-apresentacao {
+        font-size: 0.98rem;
+    }
+
+
+    .coruja-apresentacao {
+        width: 195px;
+
+        max-width: 60vw;
+    }
+
+
+    .desafio-dia,
+    .area-revisao {
+        width: 92%;
+
+        padding: 34px 22px;
+
+        border-radius: 20px;
+    }
+
+
+    .desafio-dia h2,
+    .area-revisao h2 {
+        font-size: 1.55rem;
     }
 
 
@@ -297,12 +847,16 @@ body {
 
 
     .estrategias h2 {
-        font-size: 1.7rem;
+        font-size: 1.55rem;
+    }
+
+
+    .estrategia {
+        min-height: auto;
     }
 
 
     .dica {
-        padding: 25px;
+        padding: 27px 25px;
     }
-
 }

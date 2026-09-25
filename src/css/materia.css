@@ -1,8 +1,10 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #f5f5ff;
-    color: #333;
+
+    background-color: #F6EEDC;
+    color: #403746;
+
     font-family: Arial, sans-serif;
 }
 
@@ -20,9 +22,9 @@ TOPO
     width: 100%;
     height: 12vh;
 
-    background-color: #5959df;
+    background-color: #FFF9ED;
 
-    box-shadow: 0 3px 12px rgba(89, 89, 223, 0.25);
+    box-shadow: 0 3px 12px rgba(75, 55, 70, 0.10);
 }
 
 .topo p {
@@ -30,7 +32,7 @@ TOPO
 
     font-size: 3rem;
 
-    color: #f5f5ff;
+    color: #76558F;
 
     font-weight: 600;
 }
@@ -53,9 +55,9 @@ BOTÃO INÍCIO
     justify-content: center;
     align-items: center;
 
-    background-color: #ffffff;
+    background-color: #76558F;
 
-    color: #5959df;
+    color: #FFF9ED;
 
     border-radius: 14px;
 
@@ -63,7 +65,7 @@ BOTÃO INÍCIO
 
     font-size: 26px;
 
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 5px 12px rgba(75, 55, 70, 0.18);
 
     z-index: 10;
 
@@ -73,9 +75,9 @@ BOTÃO INÍCIO
 .botao-inicio:hover {
     transform: scale(1.08);
 
-    background-color: #ffffff;
+    background-color: #8B5FBF;
 
-    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 7px 15px rgba(75, 55, 70, 0.22);
 }
 
 
@@ -88,9 +90,9 @@ CORPO
 }
 
 .corpo p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 
-    color: #44448f;
+    color: #776D78;
 
     margin-bottom: 20px;
 }
@@ -114,25 +116,25 @@ PESQUISA
 
     border-radius: 10px;
 
-    border: 1px solid #d2d2ef;
+    border: 1px solid #DCCBE5;
 
-    background-color: #ffffff;
+    background-color: #FFF9ED;
 
-    color: #333;
+    color: #403746;
 
     outline: none;
 
     box-sizing: border-box;
 
-    box-shadow: 0 3px 10px rgba(89, 89, 223, 0.08);
+    box-shadow: 0 3px 10px rgba(75, 55, 70, 0.06);
 
     transition: 0.2s;
 }
 
 .corpo input:focus {
-    border-color: #5959df;
+    border-color: #76558F;
 
-    box-shadow: 0 0 0 3px rgba(89, 89, 223, 0.12);
+    box-shadow: 0 0 0 3px rgba(118, 85, 143, 0.10);
 }
 
 
@@ -162,9 +164,9 @@ BOTÕES DAS MATÉRIAS
     width: 100%;
     height: 75px;
 
-    background-color: #ffffff;
+    background-color: #FFF9ED;
 
-    border: 1px solid #e3e3f5;
+    border: 1px solid #E8DCC8;
 
     border-radius: 14px;
 
@@ -172,11 +174,11 @@ BOTÕES DAS MATÉRIAS
 
     font-weight: bold;
 
-    color: #4f4fbf;
+    color: #76558F;
 
     cursor: pointer;
 
-    box-shadow: 0 4px 12px rgba(89, 89, 223, 0.08);
+    box-shadow: 0 4px 12px rgba(75, 55, 70, 0.06);
 
     transition:
         transform 0.2s ease,
@@ -186,13 +188,13 @@ BOTÕES DAS MATÉRIAS
 }
 
 .btn-materia:hover {
-    background-color: #5959df;
+    background-color: #76558F;
 
-    color: #f5f5ff;
+    color: #FFF9ED;
 
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 
-    box-shadow: 0 8px 20px rgba(89, 89, 223, 0.25);
+    box-shadow: 0 7px 16px rgba(118, 85, 143, 0.18);
 }
 
 .btn-materia:active {
@@ -214,15 +216,15 @@ CONTEÚDO
     padding: 0;
     margin: 0;
 
-    background-color: #ffffff;
+    background-color: #FFF9ED;
 
     border-radius: 12px;
 
     overflow: hidden;
 
-    border: 1px solid #e3e3f5;
+    border: 1px solid #E8DCC8;
 
-    box-shadow: 0 4px 15px rgba(89, 89, 223, 0.08);
+    box-shadow: 0 4px 15px rgba(75, 55, 70, 0.06);
 }
 
 
@@ -235,7 +237,7 @@ ITENS DOS CONTEÚDOS
 
     cursor: pointer;
 
-    border-bottom: 1px solid #eeeeF7;
+    border-bottom: 1px solid #EEE5D8;
 
     transition:
         background-color 0.2s ease,
@@ -244,7 +246,7 @@ ITENS DOS CONTEÚDOS
 
     font-size: 1.1rem;
 
-    color: #44448f;
+    color: #776D78;
 }
 
 #listaConteudos li:last-child {
@@ -252,11 +254,11 @@ ITENS DOS CONTEÚDOS
 }
 
 #listaConteudos li:hover {
-    background-color: #eeeeff;
+    background-color: #F0E5F5;
 
-    padding-left: 27px;
+    padding-left: 25px;
 
-    color: #5959df;
+    color: #76558F;
 }
 
 
