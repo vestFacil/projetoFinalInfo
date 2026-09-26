@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <title>Redação</title>
     <link rel="stylesheet" href="css/redacao.css">
+
     <!-- Biblioteca para ler arquivos DOCX -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+
     <!-- Biblioteca para gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
     <!-- TOPO -->
     <div class="topo">
-        <a href="index.html" class="botao-inicio" title="Voltar ao início">🏠</a>
+        <a href="index.html" class="botao-inicio" title="Voltar ao início">
+            🏠
+        </a>
+
         <p>Redação</p>
     </div>
 
+
+    <!-- RECOMPENSAS -->
     <button id="btnRecompensas">
-    ✨ Minhas recompensas
+        ✨ Minhas recompensas
     </button>
 
     <div id="painelRecompensas" style="display: none;">
@@ -37,31 +45,62 @@
 
     </div>
 
+
     <!-- CONTAINER -->
     <div class="container">
-        <!-- Agora aceita DOCX -->
-        <input type="file" id="fotoRedacao" accept=".docx">
-        <br><br>
-        <button id="analisar">Analisar Redação</button>
 
+        <!-- CORUJINHA -->
+        <img
+            src="assets/coruja.png"
+            class="coruja-redacao"
+            alt="Coruja estudando"
+        >
+
+        <!-- Upload da redação -->
+        <input
+            type="file"
+            id="fotoRedacao"
+            accept=".docx"
+        >
+
+        <br><br>
+
+        <button id="analisar">
+            Analisar Redação
+        </button>
+
+
+        <!-- RESULTADO -->
         <div class="resultado">
+
             <h3>Texto extraído:</h3>
             <p id="textoExtraido"></p>
+
 
             <h3>Nota atribuída:</h3>
             <p id="resultadoNota"></p>
 
-            <div class="nota-detalhada" id="detalhesNota"></div>
 
-            <canvas id="graficoNota" width="400" height="200"></canvas>
+            <div
+                class="nota-detalhada"
+                id="detalhesNota">
+            </div>
+
+
+            <canvas
+                id="graficoNota"
+                width="400"
+                height="200">
+            </canvas>
+
         </div>
+
     </div>
 
-    <!-- Script separado -->
+
+    <!-- Scripts -->
     <script src="js/redacao.js"></script>
     <script src="js/recompensa.js"></script>
 
 </body>
 </html>
-
-

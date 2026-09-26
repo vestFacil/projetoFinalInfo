@@ -43,7 +43,7 @@ async function carregarLoja() {
             if (dadosDesafio.disponivel) {
 
                 desafioExtra.innerHTML = `
-                    <h2>🎯 Desafio Extra disponível!</h2>
+                    <h2>Desafio Extra disponível!</h2>
 
                     <p>
                         Você tem um desafio extra para realizar.

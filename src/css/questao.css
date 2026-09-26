@@ -131,6 +131,9 @@ body {
 
     background-color: rgba(64, 55, 70, 0.25);
 
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
     z-index: 100;
 }
 
@@ -292,11 +295,27 @@ body {
 ========================= */
 
 #titulo {
+    position: relative;
+
     margin: 0 75px 18px 0;
+    padding-top: 18px;
 
     color: #76558F;
-
     line-height: 1.35;
+}
+
+#titulo::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -55px;
+    right: -130px;
+
+    height: 1px;
+
+    background-color: #E8DCC8;
 }
 
 #enunciado {
@@ -431,16 +450,74 @@ body {
 ========================= */
 
 #resultado {
-    margin-top: 25px;
-    margin-bottom: 8px;
+    margin: 25px auto 8px;
+    padding: 10px 18px;
+
+    width: fit-content;
+    max-width: 90%;
+
+    background-color: #F0E5F5;
+    border: 1px solid #DCCBE5;
+    border-radius: 10px;
+
+    color: #76558F;
 
     text-align: center;
-
     font-weight: bold;
-
     line-height: 1.5;
 }
 
+#resultado:empty {
+    display: none;
+}
+
+.alternativa {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+}
+
+.texto-alternativa {
+    flex: 1;
+}
+
+.btn-cortar {
+    flex-shrink: 0;
+
+    padding: 4px 7px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #F0E5F5;
+    color: #76558F;
+
+    cursor: pointer;
+
+    font-size: 0.9rem;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-cortar:hover {
+    background-color: #E5D6EE;
+    transform: scale(1.05);
+}
+
+.alternativa.cortada {
+    opacity: 0.5;
+}
+
+.alternativa.cortada .texto-alternativa {
+    text-decoration: line-through;
+}
+
+.alternativa.cortada .btn-cortar {
+    background-color: #DCCBE5;
+}
 
 /* =========================
    BOTÕES DE NAVEGAÇÃO
@@ -500,9 +577,17 @@ body {
 }
 
 #voltar:disabled {
-    opacity: 0.35;
+    background-color: #E8E2E9;
+    border-color: #DDD5DF;
+    color: #B8AFBA;
+
+    opacity: 1;
 
     cursor: not-allowed;
+
+    box-shadow: none;
+
+    transform: none;
 }
 
 
@@ -612,6 +697,20 @@ body {
     color: #776D78;
 }
 
+#proxima:disabled {
+    background-color: #E8E2E9;
+    border-color: #DDD5DF;
+    color: #B8AFBA;
+
+    opacity: 1;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+
+    transform: none;
+}
+
 
 /* =========================
    RESPONSIVO
@@ -632,6 +731,43 @@ body {
     .resumo-xp {
         grid-template-columns: 1fr;
     }
+}
+
+#resultado.certa {
+    background-color: #E4F3E7;
+    border: 1px solid #8BC79A;
+    color: #315B3B;
+}
+
+#resultado.errada {
+    background-color: #F8E3E1;
+    border: 1px solid #D99A94;
+    color: #7A3934;
+}
+
+#resultado.certa,
+#resultado.errada {
+    position: absolute;
+
+    top: 82px;
+    right: 20px;
+
+    margin: 0;
+    padding: 7px 14px;
+
+    width: auto;
+    max-width: 130px;
+
+    z-index: 2;
+}
+
+.credito-enem {
+    margin: 0 0 5px;
+
+    color: #76558F;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 

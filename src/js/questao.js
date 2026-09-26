@@ -307,92 +307,111 @@ iniciar.addEventListener(
     }
 );
 
-function mostrarQuestao() {
+    function mostrarQuestao() {
 
-    const respostaAnterior =
-        respostasFeitas[numeroQuestao];
+        const respostaAnterior =
+            respostasFeitas[numeroQuestao];
 
-    respondeu =
-        respostaAnterior !== undefined;
+        respondeu =
+            respostaAnterior !== undefined;
 
-    botaoResponder.disabled =
-        respondeu;
+        botaoResponder.disabled =
+            respondeu;
 
-    botaoProxima.disabled =
-        !respondeu;
+        botaoProxima.disabled =
+            !respondeu;
 
-    botaoVoltar.disabled =
-        numeroQuestao === 0;
+        botaoVoltar.disabled =
+            numeroQuestao === 0;
 
-    const questao =
-        questoesSelecionadas[
-            numeroQuestao
-        ];
+        const questao =
+            questoesSelecionadas[
+                numeroQuestao
+            ];
 
-    if (!questao) {
-        return;
-    }
+        if (!questao) {
+            return;
+        }
 
-    respostaCorreta =
-        questao.resposta;
+        respostaCorreta =
+            questao.resposta;
 
-    let nomeTitulo = materia;
+        let nomeTitulo = materia;
 
-    const questaoId =
-    `${materia}-${questoes.indexOf(questao)}`;
+        const questaoId =
+        `${materia}-${questoes.indexOf(questao)}`;
 
-    if (questoesRespondidas.includes(questaoId)) {
-        statusQuestao.textContent =
-            "🟢 Questão já respondida";
-    } else {
-        statusQuestao.textContent = "";
-    }
+        if (questoesRespondidas.includes(questaoId)) {
+            statusQuestao.textContent =
+                "🟢 Questão já respondida";
+        } else {
+            statusQuestao.textContent = "";
+        }
 
-    contador.textContent =
-        `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
+        contador.textContent =
+            `Questão ${numeroQuestao + 1} de ${questoesSelecionadas.length}`;
 
-    let textoEnunciado =
-        questao.enunciado || "";
+        let textoEnunciado =
+            questao.enunciado || "";
 
-    textoEnunciado =
-        textoEnunciado.replace(
-            /!\[\]\(\[?([^\s\]\)]+)\]?\)?/g,
-            '<img src="$1" class="imagem-questao" alt="Imagem da questão">'
-        );
+        textoEnunciado =
+            textoEnunciado.replace(
+                /!\[\]\(\[?([^\s\]\)]+)\]?\)?/g,
+                '<img src="$1" class="imagem-questao" alt="Imagem da questão">'
+            );
 
-    enunciado.innerHTML =
-        textoEnunciado;
-
-    alternativas.innerHTML =
-        "";
-
-    resultado.textContent =
-        "";
-
-    if (
-        !Array.isArray(
-            questao.alternativas
-        )
-    ) {
+        enunciado.innerHTML =
+            textoEnunciado;
 
         alternativas.innerHTML =
-            "<p>Esta questão não possui alternativas disponíveis.</p>";
+            "";
 
-        return;
-    }
+        resultado.textContent =
+            "";
+        resultado.className = 
+            "";    
 
-    questao.alternativas.forEach(
-        (alt, index) => {
+        if (
+            !Array.isArray(
+                questao.alternativas
+            )
+        ) {
 
-            const letra =
-                String.fromCharCode(
-                    65 + index
-                );
+            alternativas.innerHTML =
+                "<p>Esta questão não possui alternativas disponíveis.</p>";
 
-            if (
-                alt === null ||
-                alt === undefined
-            ) {
+            return;
+        }
+
+        questao.alternativas.forEach(
+            (alt, index) => {
+
+                const letra =
+                    String.fromCharCode(
+                        65 + index
+                    );
+
+                if (
+                    alt === null ||
+                    alt === undefined
+                ) {
+
+                    alternativas.innerHTML += `
+                        <label
+                            class="alternativa"
+                            data-index="${index}"
+                        >
+                            <input
+                                type="radio"
+                                name="resposta"
+                                value="${index}"
+                            >
+                            Alternativa ${letra}
+                        </label>
+                    `;
+
+                    return;
+                }
 
                 alternativas.innerHTML += `
                     <label
@@ -404,87 +423,73 @@ function mostrarQuestao() {
                             name="resposta"
                             value="${index}"
                         >
-                        Alternativa ${letra}
+                        ${alt}
                     </label>
                 `;
+            }
+        );
 
-                return;
+            // Restaurar resposta anterior, caso exista
+
+        if (respostaAnterior !== undefined) {
+
+            const radio =
+                document.querySelector(
+                    `input[name="resposta"][value="${respostaAnterior.respostaUsuario}"]`
+                );
+
+            if (radio) {
+                radio.checked = true;
             }
 
-            alternativas.innerHTML += `
-                <label
-                    class="alternativa"
-                    data-index="${index}"
-                >
-                    <input
-                        type="radio"
-                        name="resposta"
-                        value="${index}"
-                    >
-                    ${alt}
-                </label>
-            `;
-        }
-    );
+            document
+                .querySelectorAll(
+                    'input[name="resposta"]'
+                )
+                .forEach(radio => {
+                    radio.disabled = true;
+                });
 
-        // Restaurar resposta anterior, caso exista
+            document
+                .querySelectorAll(
+                    ".alternativa"
+                )
+                .forEach(alternativa => {
 
-    if (respostaAnterior !== undefined) {
+                    const valor =
+                        Number(
+                            alternativa.dataset.index
+                        );
 
-        const radio =
-            document.querySelector(
-                `input[name="resposta"][value="${respostaAnterior.respostaUsuario}"]`
-            );
+                    if (
+                        valor ===
+                        respostaCorreta
+                    ) {
+                        alternativa.classList.add(
+                            "correta"
+                        );
+                    }
 
-        if (radio) {
-            radio.checked = true;
-        }
+                    if (
+                        valor ===
+                        respostaAnterior.respostaUsuario &&
+                        valor !== respostaCorreta
+                    ) {
+                        alternativa.classList.add(
+                            "errada"
+                        );
+                    }
+                });
 
-        document
-            .querySelectorAll(
-                'input[name="resposta"]'
-            )
-            .forEach(radio => {
-                radio.disabled = true;
-            });
-
-        document
-            .querySelectorAll(
-                ".alternativa"
-            )
-            .forEach(alternativa => {
-
-                const valor =
-                    Number(
-                        alternativa.dataset.index
-                    );
-
-                if (
-                    valor ===
-                    respostaCorreta
-                ) {
-                    alternativa.classList.add(
-                        "correta"
-                    );
+                if (respostaAnterior.acertou) {
+                    resultado.textContent = "Certa";
+                    resultado.className = "certa";
+                } else {
+                    resultado.textContent = "Errada";
+                    resultado.className = "errada";
                 }
-
-                if (
-                    valor ===
-                    respostaAnterior.respostaUsuario &&
-                    valor !== respostaCorreta
-                ) {
-                    alternativa.classList.add(
-                        "errada"
-                    );
-                }
-            });
-
-        resultado.textContent =
-            respostaAnterior.acertou
-                ? "✅ Você acertou!"
-                : "❌ Você errou!";
+        }
     }
-}
 
 async function registrarRespostaNoServidor(valorSelecionado) {
     try {
@@ -582,14 +587,16 @@ botaoResponder.addEventListener(
     if (acertou) {
 
         resultado.textContent =
-            "✅ Você acertou!";
+            "Certa";
+        resultado.className = "certa";    
 
         pontos++;
 
     } else {
 
         resultado.textContent =
-            "❌ Você errou!";
+            "Errada";
+        resultado.className = "errada";
     }
 
     // Registrar resposta no banco
@@ -616,11 +623,6 @@ botaoResponder.addEventListener(
 
         sequencia.textContent =
             `🔥 Sequência atual: ${dadosServidor.sequenciaAtual} acertos`;
-
-        if (xpGanho > 0) {
-            resultado.textContent +=
-                ` +${xpGanho} XP!`;
-        }  
 
 }
 
@@ -869,6 +871,8 @@ botaoProxima.addEventListener(
             // =========================
             // RESULTADO FINAL
             // =========================
+
+            
 
             resultado.innerHTML =
                 `

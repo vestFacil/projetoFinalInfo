@@ -1,43 +1,59 @@
-/* =========================
-BODY
-========================= */
+/* =========================================================
+   REDAÇÃO — VESTFÁCIL
+   ========================================================= */
+
 body {
-    padding: 0;
     margin: 0;
-    background-color: aliceblue;
+    padding: 0;
+
+    background-color: #F6EEDC;
+    color: #403746;
+
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* =========================
-TOPO
-========================= */
+
+/* =========================================================
+   TOPO
+   ========================================================= */
+
 .topo {
     position: relative;
+
     display: flex;
     align-items: center;
+
     width: 100%;
     height: 12vh;
-    background-color: rgb(89, 89, 223);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    background-color: #FFF9ED;
+
+    border-bottom: 1px solid #E8DCC8;
+
+    box-shadow: 0 3px 12px rgba(75, 55, 70, 0.08);
 }
 
 .topo p {
-    margin: 0;
+    margin: 0 0 0 28px;
+
+    color: #76558F;
+
     font-size: 3rem;
-    margin-left: 20px;
-    color: aliceblue;
-    font-weight: bold;
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
 }
 
-/* =========================
-BOTÃO INÍCIO
-========================= */
+
+/* =========================================================
+   BOTÃO INÍCIO
+   ========================================================= */
 
 .botao-inicio {
     position: absolute;
+
     right: 30px;
     top: 50%;
-    transform: translateY(-50%);
 
     width: 50px;
     height: 50px;
@@ -46,63 +62,527 @@ BOTÃO INÍCIO
     align-items: center;
     justify-content: center;
 
-    background-color: white;
-    color: rgb(89, 89, 223);
+    transform: translateY(-50%);
+
+    background-color: #76558F;
+    color: #FFF9ED;
 
     border-radius: 14px;
 
     text-decoration: none;
-    font-size: 26px;
 
-    box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+    font-size: 25px;
 
-    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(75, 55, 70, 0.14);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .botao-inicio:hover {
-    transform: translateY(-50%) scale(1.08);
-    box-shadow: 0 7px 15px rgba(0,0,0,0.25);
+    background-color: #8B5FBF;
+
+    transform: translateY(-50%) scale(1.05);
 }
 
-/* =========================
-CONTAINER
-========================= */
 
-.container {
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 25px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+/* =========================================================
+   BOTÃO DE RECOMPENSAS
+   ========================================================= */
 
-button {
-    padding: 12px 25px;
-    background: #8e2de2;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
+#btnRecompensas {
+    display: block;
+
+    margin: 18px 5% 0;
+
+    padding: 10px 17px;
+
+    background-color: #76558F;
+    color: #FFF9ED;
+
+    border: 1px solid #76558F;
+    border-radius: 11px;
+
+    font-size: 15px;
+    font-weight: bold;
+
     cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
+
+    box-shadow: 0 3px 9px rgba(75, 55, 70, 0.10);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-button:hover {
-    background: #4a00e0;
+#btnRecompensas:hover {
+    background-color: #8B5FBF;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 12px rgba(75, 55, 70, 0.13);
 }
 
-.resultado h3 {
-    margin-top: 20px;
-    color: #333;
+
+/* =========================================================
+   PAINEL DE RECOMPENSAS
+   ========================================================= */
+
+#painelRecompensas {
+    position: absolute;
+
+    top: 145px;
+    left: 5%;
+
+    width: 250px;
+
+    padding: 18px;
+
+    background-color: #FFF9ED;
+
+    border: 1px solid #C9B6D9;
+    border-radius: 14px;
+
+    box-shadow: 0 8px 22px rgba(75, 55, 70, 0.14);
+
+    z-index: 20;
 }
 
-#textoExtraido, #resultadoNota, #detalhesNota {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    margin-top: 10px;
+#painelRecompensas h2 {
+    margin: 0 0 14px;
+
+    color: #76558F;
+
+    font-size: 1.2rem;
+}
+
+#painelRecompensas button {
+    width: 100%;
+
+    margin-top: 8px;
+    padding: 10px;
+
+    background-color: #F0E5F5;
+    color: #76558F;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+#painelRecompensas button:hover {
+    background-color: #E6D7EF;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+#resultadoRecompensa {
+    margin: 14px 0 0;
+
+    padding: 11px;
+
+    background-color: #F6EEDC;
+
+    border: 1px solid #E8DCC8;
+    border-radius: 9px;
+
+    color: #776D78;
+
+    font-size: 14px;
     line-height: 1.5;
 }
 
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+   ========================================================= */
+
+.container {
+    position: relative;
+
+    width: 85%;
+    max-width: 900px;
+
+    margin: 35px auto 50px;
+
+    padding: 32px 40px 38px;
+
+    box-sizing: border-box;
+
+    background-color: #FFF9ED;
+
+    border: 1px solid #DCCBE5;
+    border-top: 4px solid #76558F;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 7px 22px rgba(75, 55, 70, 0.09),
+        0 2px 5px rgba(75, 55, 70, 0.04);
+}
+
+
+/* =========================================================
+   CORUJA
+   ========================================================= */
+
+.coruja-redacao {
+    position: absolute;
+
+    width: 92px;
+    height: auto;
+
+    top: -78px;
+    right: -34px;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    animation: corujaFlutuando 3.5s ease-in-out infinite;
+}
+
+@keyframes corujaFlutuando {
+
+    0% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+}
+
+
+/* =========================================================
+   ÁREA DE UPLOAD
+   ========================================================= */
+
+#fotoRedacao {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px;
+
+    background-color: #F6EEDC;
+
+    border: 2px dashed #BFA8D0;
+    border-radius: 11px;
+
+    color: #776D78;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#fotoRedacao:hover {
+    background-color: #F0E5F5;
+
+    border-color: #76558F;
+}
+
+
+/* =========================================================
+   BOTÕES GERAIS
+   ========================================================= */
+
+button {
+    padding: 12px 25px;
+
+    background-color: #76558F;
+    color: #FFF9ED;
+
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    box-shadow: 0 3px 9px rgba(75, 55, 70, 0.11);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: #8B5FBF;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(75, 55, 70, 0.14);
+}
+
+#analisar {
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   ÁREA DE RESULTADOS
+   ========================================================= */
+
+.resultado {
+    margin-top: 30px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #DCCBE5;
+}
+
+
+/* =========================================================
+   TÍTULOS DOS RESULTADOS
+   ========================================================= */
+
+.resultado h3 {
+    position: relative;
+
+    margin: 22px 0 10px;
+
+    padding-left: 12px;
+
+    color: #76558F;
+
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+.resultado h3::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 3px;
+
+    width: 4px;
+    height: calc(100% - 6px);
+
+    background-color: #8B5FBF;
+
+    border-radius: 4px;
+}
+
+.resultado h3:first-child {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   TEXTO EXTRAÍDO
+   ========================================================= */
+
+#textoExtraido {
+    width: 100%;
+    min-height: 100px;
+
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 15px;
+
+    background-color: #F6EEDC;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 11px;
+
+    color: #403746;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   NOTA
+   ========================================================= */
+
+#resultadoNota {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 16px;
+
+    background-color: #F0E5F5;
+
+    border: 1px solid #C9B6D9;
+    border-radius: 11px;
+
+    color: #76558F;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   DETALHES DA NOTA
+   ========================================================= */
+
+#detalhesNota {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 14px;
+    padding: 15px;
+
+    background-color: #F6EEDC;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 11px;
+
+    color: #403746;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   GRÁFICO
+   ========================================================= */
+
+#graficoNota {
+    display: block;
+
+    width: 100%;
+    max-width: 650px;
+
+    height: auto;
+
+    margin: 25px auto 5px;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    background-color: #FFF9ED;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .topo p {
+        margin-left: 25px;
+
+        font-size: 2.4rem;
+    }
+
+    .container {
+        width: 90%;
+
+        padding: 30px;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .topo {
+        height: 10vh;
+    }
+
+    .topo p {
+        margin-left: 18px;
+
+        font-size: 2rem;
+    }
+
+    .botao-inicio {
+        right: 18px;
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 22px;
+    }
+
+    #btnRecompensas {
+        margin-top: 15px;
+
+        font-size: 14px;
+    }
+
+    #painelRecompensas {
+        top: 125px;
+        left: 5%;
+
+        width: calc(90% - 36px);
+    }
+
+    .container {
+        width: 90%;
+
+        margin-top: 25px;
+
+        padding: 24px 18px 28px;
+
+        border-radius: 17px;
+    }
+
+    .coruja-redacao {
+        width: 70px;
+
+        top: -52px;
+        right: -22px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #fotoRedacao {
+        font-size: 14px;
+    }
+
+    .resultado {
+        margin-top: 25px;
+    }
+
+    .resultado h3 {
+        font-size: 1rem;
+    }
+
+    #graficoNota {
+        padding: 8px;
+    }
+}

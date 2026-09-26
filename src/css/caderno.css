@@ -1,13 +1,16 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #f5f5ff;
-    color: #333;
+
+    background-color: #F6EEDC;
+    color: #403746;
+
     font-family: Arial, sans-serif;
 }
 
+
 /* =========================
-TOPO
+   TOPO
 ========================= */
 
 .topo {
@@ -19,9 +22,11 @@ TOPO
     width: 100%;
     height: 12vh;
 
-    background-color: #5959df;
+    background-color: #FFF9ED;
 
-    box-shadow: 0 3px 12px rgba(60, 60, 150, 0.18);
+    border-bottom: 1px solid #E8DCC8;
+
+    box-shadow: 0 4px 15px rgba(75, 55, 70, 0.08);
 }
 
 .topo p {
@@ -30,11 +35,12 @@ TOPO
     font-size: 3rem;
     font-weight: 600;
 
-    color: #f5f5ff;
+    color: #76558F;
 }
 
+
 /* =========================
-BOTÃO INÍCIO
+   BOTÃO INÍCIO
 ========================= */
 
 .botao-inicio {
@@ -52,15 +58,15 @@ BOTÃO INÍCIO
     align-items: center;
     justify-content: center;
 
-    background-color: #ffffff;
-    color: #5959df;
+    background-color: #76558F;
+    color: #FFF9ED;
 
     border-radius: 14px;
 
     text-decoration: none;
     font-size: 26px;
 
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 5px 12px rgba(75, 55, 70, 0.16);
 
     transition: 0.3s ease;
 }
@@ -68,11 +74,119 @@ BOTÃO INÍCIO
 .botao-inicio:hover {
     transform: translateY(-50%) scale(1.08);
 
-    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
+    background-color: #8B5FBF;
+
+    box-shadow: 0 7px 16px rgba(75, 55, 70, 0.20);
 }
 
+
 /* =========================
-CADERNO
+   RECOMPENSAS
+========================= */
+
+#btnRecompensas {
+    display: block;
+
+    margin: 18px 5% 0;
+
+    padding: 10px 17px;
+
+    background-color: #FFF9ED;
+    color: #76558F;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(75, 55, 70, 0.07);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#btnRecompensas:hover {
+    background-color: #F0E5F5;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 13px rgba(75, 55, 70, 0.10);
+}
+
+
+/* =========================
+   PAINEL RECOMPENSAS
+========================= */
+
+#painelRecompensas {
+    position: absolute;
+
+    top: 145px;
+    left: 5%;
+
+    width: 250px;
+
+    padding: 18px;
+
+    background-color: #FFF9ED;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 15px;
+
+    box-shadow: 0 8px 22px rgba(75, 55, 70, 0.13);
+
+    z-index: 20;
+}
+
+#painelRecompensas h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    color: #76558F;
+
+    font-size: 1.1rem;
+}
+
+#painelRecompensas button {
+    width: 100%;
+
+    margin-top: 8px;
+    padding: 10px;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 9px;
+
+    background-color: #F0E5F5;
+    color: #76558F;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+#painelRecompensas button:hover {
+    background-color: #E5D6EE;
+
+    transform: translateY(-1px);
+}
+
+#resultadoRecompensa {
+    margin-bottom: 0;
+
+    color: #776D78;
+
+    line-height: 1.45;
+}
+
+
+/* =========================
+   CADERNO
 ========================= */
 
 .caderno {
@@ -86,16 +200,19 @@ CADERNO
 
     gap: 35px;
 
-    padding: 55px 5%;
+    padding: 35px 5% 55px;
 
     box-sizing: border-box;
 }
 
+
 /* =========================
-NOVA ANOTAÇÃO
+   NOVA ANOTAÇÃO
 ========================= */
 
 .nova-anotacao {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -105,21 +222,73 @@ NOVA ANOTAÇÃO
     max-width: 700px;
     height: 650px;
 
-    background-color: #5959df;
+    background-color: #F0E5F5;
 
-    border-radius: 16px;
+    border: 1px solid #DCCBE5;
+    border-radius: 20px;
 
     padding: 35px;
 
     box-sizing: border-box;
 
-    box-shadow: 0 8px 25px rgba(60, 60, 150, 0.18);
+    box-shadow:
+        0 8px 25px rgba(75, 55, 70, 0.10),
+        0 2px 4px rgba(75, 55, 70, 0.04);
+
+    overflow: hidden;
 }
 
+
+/* detalhe decorativo do painel */
+
+.nova-anotacao::before {
+    content: "";
+
+    position: absolute;
+
+    top: -45px;
+    right: -45px;
+
+    width: 130px;
+    height: 130px;
+
+    background-color: #E5D6EE;
+
+    border-radius: 50%;
+
+    opacity: 0.75;
+}
+
+.nova-anotacao::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -55px;
+    left: -55px;
+
+    width: 145px;
+    height: 145px;
+
+    background-color: #E5D6EE;
+
+    border-radius: 50%;
+
+    opacity: 0.45;
+}
+
+
+/* =========================
+   TÍTULO NOVA ANOTAÇÃO
+========================= */
+
 .nova-anotacao h2 {
+    position: relative;
+    z-index: 2;
+
     width: 100%;
 
-    color: #f5f5ff;
+    color: #76558F;
 
     font-size: 2rem;
     font-weight: 600;
@@ -127,8 +296,26 @@ NOVA ANOTAÇÃO
     margin: 0 0 28px 0;
 }
 
+.nova-anotacao h2::after {
+    content: "";
+
+    display: block;
+
+    width: 48px;
+    height: 3px;
+
+    margin-top: 9px;
+
+    background-color: #C9B6D9;
+
+    border-radius: 5px;
+}
+
 .nova-anotacao label {
-    color: #f5f5ff;
+    position: relative;
+    z-index: 2;
+
+    color: #76558F;
 
     font-size: 1.05rem;
     font-weight: 600;
@@ -136,22 +323,27 @@ NOVA ANOTAÇÃO
     margin-bottom: 8px;
 }
 
+
 /* =========================
-CAMPOS
+   CAMPOS
 ========================= */
 
 #materia,
 #titulo,
 #anotacao {
-    background-color: #ffffff;
+    position: relative;
+    z-index: 2;
 
-    color: #333;
+    background-color: #FFF9ED;
 
-    border: 2px solid transparent;
+    color: #403746;
+
+    border: 1px solid #DCCBE5;
 
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
 #materia {
@@ -160,7 +352,7 @@ CAMPOS
 
     margin-bottom: 20px;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     cursor: pointer;
 
@@ -175,7 +367,7 @@ CAMPOS
 
     margin-bottom: 20px;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     padding: 8px 12px;
 
@@ -189,7 +381,7 @@ CAMPOS
 
     margin-bottom: 25px;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     padding: 12px;
 
@@ -202,10 +394,6 @@ CAMPOS
     line-height: 1.5;
 }
 
-/* =========================
-FOCO
-========================= */
-
 #materia:focus,
 #titulo:focus,
 #anotacao:focus,
@@ -213,33 +401,41 @@ FOCO
 #filtro-materia:focus {
     outline: none;
 
-    border-color: #8585ee;
+    border-color: #8B5FBF;
 
-    box-shadow: 0 0 0 3px rgba(133, 133, 238, 0.18);
+    box-shadow:
+        0 0 0 3px rgba(139, 95, 191, 0.12),
+        0 4px 10px rgba(75, 55, 70, 0.05);
 }
 
+
 /* =========================
-BOTÃO SALVAR
+   BOTÃO SALVAR
 ========================= */
 
 #salvar {
+    position: relative;
+    z-index: 2;
+
     width: 32%;
     min-width: 140px;
     height: 42px;
 
     margin: 0 auto;
 
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
 
-    background-color: #f5f5ff;
+    background-color: #76558F;
 
-    color: #5959df;
+    color: #FFF9ED;
 
     font-size: 1.05rem;
     font-weight: bold;
 
     cursor: pointer;
+
+    box-shadow: 0 5px 12px rgba(75, 55, 70, 0.13);
 
     transition:
         transform 0.2s ease,
@@ -248,47 +444,49 @@ BOTÃO SALVAR
 }
 
 #salvar:hover {
-    background-color: #ffffff;
+    background-color: #8B5FBF;
 
     transform: translateY(-2px);
 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 7px 16px rgba(75, 55, 70, 0.17);
 }
 
 #salvar:active {
     transform: translateY(0);
 }
 
+
 /* =========================
-MINHAS ANOTAÇÕES
+   MINHAS ANOTAÇÕES
 ========================= */
 
 .minhas-anotacoes {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 50%;
     max-width: 700px;
     height: 650px;
-
     padding: 35px;
-
-    background-color: #5959df;
-
-    border-radius: 16px;
-
+    background-color: #F0E5F5;
+    border: 1px solid #DCCBE5;
+    border-radius: 20px;
     box-sizing: border-box;
-
-    overflow-y: auto;
-
-    box-shadow: 0 8px 25px rgba(60, 60, 150, 0.18);
+    box-shadow: 0 8px 25px rgba(75, 55, 70, 0.10),
+                0 2px 4px rgba(75, 55, 70, 0.04);
+    overflow: visible;
 }
+
+
+/* =========================
+   TÍTULO MINHAS ANOTAÇÕES
+========================= */
 
 .minhas-anotacoes h2 {
     width: 100%;
 
-    color: #f5f5ff;
+    color: #76558F;
 
     font-size: 2rem;
     font-weight: 600;
@@ -297,8 +495,24 @@ MINHAS ANOTAÇÕES
     margin-bottom: 22px;
 }
 
+.minhas-anotacoes h2::after {
+    content: "";
+
+    display: block;
+
+    width: 48px;
+    height: 3px;
+
+    margin-top: 9px;
+
+    background-color: #C9B6D9;
+
+    border-radius: 5px;
+}
+
+
 /* =========================
-FILTROS
+   FILTROS
 ========================= */
 
 .filtros {
@@ -319,15 +533,15 @@ FILTROS
 
     padding: 8px 12px;
 
-    border: 2px solid transparent;
+    border: 1px solid #DCCBE5;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     box-sizing: border-box;
 
-    background-color: #ffffff;
+    background-color: #FFF9ED;
 
-    color: #333;
+    color: #403746;
 
     transition:
         border-color 0.2s ease,
@@ -342,35 +556,44 @@ FILTROS
     cursor: pointer;
 }
 
+
 /* =========================
-LISTA
+   LISTA
 ========================= */
 
 #lista-anotacoes {
+    width: 100%;
     display: flex;
     flex-direction: column;
-
     gap: 18px;
-
-    width: 100%;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    padding: 5px 10px 5px 0;
+    box-sizing: border-box;
 }
 
+
 /* =========================
-ANOTAÇÃO
+   ANOTAÇÃO
 ========================= */
 
 .anotacao {
+    position: relative;
+
     width: 100%;
 
     padding: 22px;
 
-    background-color: #ffffff;
+    background-color: #FFF9ED;
 
-    border-radius: 12px;
+    border: 1px solid #E8DCC8;
+
+    border-radius: 14px;
 
     box-sizing: border-box;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 4px 12px rgba(75, 55, 70, 0.06);
 
     transition:
         transform 0.2s ease,
@@ -378,22 +601,30 @@ ANOTAÇÃO
 }
 
 .anotacao:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 
-    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.11);
+    box-shadow: 0 8px 18px rgba(75, 55, 70, 0.11);
 }
 
 .anotacao small {
-    color: #5959df;
+    display: inline-block;
+
+    padding: 4px 9px;
+
+    background-color: #F0E5F5;
+
+    border-radius: 20px;
+
+    color: #76558F;
 
     font-weight: bold;
 }
 
 .anotacao h3 {
-    margin-top: 8px;
+    margin-top: 10px;
     margin-bottom: 10px;
 
-    color: #333;
+    color: #403746;
 
     font-size: 1.25rem;
 }
@@ -401,15 +632,16 @@ ANOTAÇÃO
 .anotacao p {
     margin: 0;
 
-    color: #555;
+    color: #776D78;
 
     line-height: 1.6;
 
     white-space: pre-wrap;
 }
 
+
 /* =========================
-BOTÕES DAS ANOTAÇÕES
+   BOTÕES DAS ANOTAÇÕES
 ========================= */
 
 .botoes-anotacao {
@@ -430,7 +662,7 @@ BOTÕES DAS ANOTAÇÕES
 
     border: none;
 
-    border-radius: 7px;
+    border-radius: 8px;
 
     cursor: pointer;
 
@@ -446,14 +678,14 @@ BOTÕES DAS ANOTAÇÕES
 
 .editar,
 .excluir {
-    background-color: #5959df;
+    background-color: #76558F;
 
-    color: #f5f5ff;
+    color: #FFF9ED;
 }
 
 .editar:hover,
 .excluir:hover {
-    background-color: #4646c0;
+    background-color: #8B5FBF;
 
     transform: translateY(-2px);
 }
@@ -463,14 +695,15 @@ BOTÕES DAS ANOTAÇÕES
     transform: translateY(0);
 }
 
+
 /* =========================
-SEM ANOTAÇÕES
+   SEM ANOTAÇÕES
 ========================= */
 
 .sem-anotacoes {
     width: 100%;
 
-    color: #f5f5ff;
+    color: #76558F;
 
     font-size: 1.1rem;
 
@@ -479,8 +712,9 @@ SEM ANOTAÇÕES
     line-height: 1.5;
 }
 
+
 /* =========================
-BARRA DE ROLAGEM
+   BARRA DE ROLAGEM
 ========================= */
 
 .minhas-anotacoes::-webkit-scrollbar {
@@ -488,23 +722,53 @@ BARRA DE ROLAGEM
 }
 
 .minhas-anotacoes::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.12);
+    background: #E5D6EE;
 
     border-radius: 10px;
 }
 
 .minhas-anotacoes::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.45);
+    background: #C9B6D9;
 
     border-radius: 10px;
 }
 
 .minhas-anotacoes::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.65);
+    background: #B59CC8;
 }
 
 /* =========================
-RESPONSIVIDADE
+   CORUJA DO CADERNO
+========================= */
+
+.coruja-caderno {
+    position: absolute;
+    width: 105px;
+    height: auto;
+    top: -48px;
+    right: -20px;
+    z-index: 50;
+    pointer-events: none;
+    animation: corujaFlutuando 3s ease-in-out infinite;
+}
+
+@keyframes corujaFlutuando {
+    0% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+}
+
+
+/* =========================
+   RESPONSIVIDADE
 ========================= */
 
 @media (max-width: 900px) {
@@ -513,7 +777,7 @@ RESPONSIVIDADE
         flex-direction: column;
         align-items: center;
 
-        padding: 40px 5%;
+        padding: 35px 5% 40px;
     }
 
     .nova-anotacao,
@@ -521,9 +785,25 @@ RESPONSIVIDADE
         width: 90%;
         max-width: 700px;
     }
+
+    #btnRecompensas {
+        margin-left: 5%;
+    }
+
+    #painelRecompensas {
+        left: 5%;
+    }
 }
 
+
 @media (max-width: 600px) {
+
+    .coruja-caderno {
+        width: 78px;
+
+        top: -35px;
+        right: -10px;
+    }
 
     .topo {
         height: 10vh;
@@ -540,6 +820,22 @@ RESPONSIVIDADE
         height: 45px;
 
         font-size: 23px;
+    }
+
+    #btnRecompensas {
+        margin-top: 15px;
+        margin-left: 20px;
+
+        padding: 9px 12px;
+
+        font-size: 0.85rem;
+    }
+
+    #painelRecompensas {
+        top: 130px;
+        left: 20px;
+
+        width: 220px;
     }
 
     .caderno {
