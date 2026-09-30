@@ -23,7 +23,7 @@ async function carregarLoja() {
         } else {
 
             const respostaXP = await fetch(
-                `http://localhost:3000/loja/xp/${usuarioLogado.id}`
+                `https://vestfacil-api.onrender.com/loja/xp/${usuarioLogado.id}`
             );
 
             const dadosXP =
@@ -34,7 +34,7 @@ async function carregarLoja() {
 
             const respostaDesafio =
                 await fetch(
-                    `http://localhost:3000/desafios/extras/${usuarioLogado.id}`
+                    `https://vestfacil-api.onrender.com/desafios/extras/${usuarioLogado.id}`
                 );
 
             const dadosDesafio =
@@ -72,7 +72,7 @@ async function carregarLoja() {
         }
 
         const resposta = await fetch(
-            "http://localhost:3000/loja"
+            "https://vestfacil-api.onrender.com/loja"
         );
 
         const itens =
@@ -138,7 +138,7 @@ async function carregarLoja() {
 
                 const resposta =
                     await fetch(
-                        "http://localhost:3000/loja/resgatar",
+                        "https://vestfacil-api.onrender.com/loja/resgatar",
                         {
                             method: "POST",
 

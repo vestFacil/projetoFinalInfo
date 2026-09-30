@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // CARREGAR DADOS DO BANCO
     // ==========================================
 
-    fetch("http://localhost:3000/perfil/" + usuario.id)
+    fetch("https://vestfacil-api.onrender.com/perfil/" + usuario.id)
 
         .then(res => {
 
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("inputBio").value;
 
 
-        fetch("http://localhost:3000/perfil/" + usuario.id, {
+        fetch("https://vestfacil-api.onrender.com/perfil/" + usuario.id, {
 
             method: "PUT",
 

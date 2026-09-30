@@ -56,7 +56,7 @@ async function pegarMensagem() {
 
         const resposta =
             await fetch(
-                `http://localhost:3000/recompensas/mensagem/${usuarioLogado.id}`
+                `https://vestfacil-api.onrender.com/recompensas/mensagem/${usuarioLogado.id}`
             );
 
         const dados =
@@ -103,7 +103,7 @@ async function pegarDica() {
 
         const resposta =
             await fetch(
-                `http://localhost:3000/recompensas/dica/${usuarioLogado.id}`
+                `https://vestfacil-api.onrender.com/recompensas/dica/${usuarioLogado.id}`
             );
 
         const dados =

@@ -19,7 +19,7 @@ async function carregarRevisao() {
     try {
 
         const resposta = await fetch(
-            `http://localhost:3000/questoes/revisao/${usuarioLogado.id}`
+            `https://vestfacil-api.onrender.com/questoes/revisao/${usuarioLogado.id}`
         );
 
         const questoes =

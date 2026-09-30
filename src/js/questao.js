@@ -111,7 +111,7 @@ async function carregarQuestoesRespondidas() {
         }
 
         const resposta = await fetch(
-            `http://localhost:3000/questoes/respondidas/${usuarioLogado.id}/${materia}`
+            `https://vestfacil-api.onrender.com/questoes/respondidas/${usuarioLogado.id}/${materia}`
         );
 
         if (!resposta.ok) {
@@ -505,7 +505,7 @@ async function registrarRespostaNoServidor(valorSelecionado) {
 
         const questao = questoesSelecionadas[numeroQuestao];
 
-        const resposta = await fetch("http://localhost:3000/questoes/responder", {
+        const resposta = await fetch("https://vestfacil-api.onrender.com/questoes/responder", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -724,7 +724,7 @@ botaoProxima.addEventListener(
 
                         const respostaDesafio =
                             await fetch(
-                                "http://localhost:3000/desafios/concluir",
+                                "https://vestfacil-api.onrender.com/desafios/concluir",
                                 {
                                     method: "POST",
                                     headers: {
@@ -820,7 +820,7 @@ botaoProxima.addEventListener(
 
                         const respostaExtra =
                             await fetch(
-                                "http://localhost:3000/desafios/extras/concluir",
+                                "https://vestfacil-api.onrender.com/desafios/extras/concluir",
                                 {
                                     method: "POST",
                                     headers: {
@@ -1101,7 +1101,7 @@ async function iniciarPagina() {
 
             const resposta =
                 await fetch(
-                    `http://localhost:3000/desafios/extras/${usuarioLogado.id}`
+                    `https://vestfacil-api.onrender.com/desafios/extras/${usuarioLogado.id}`
                 );
 
             const dados =
