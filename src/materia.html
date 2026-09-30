@@ -1,81 +1,224 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Questões</title>
-    <link rel="stylesheet" href="css/materia.css">
+
+    <link
+        rel="stylesheet"
+        href="css/materia.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/recompensas.css"
+    >
+
 </head>
+
+
 <body>
 
-<a href="index.html" class="botao-inicio" title="Voltar para o início">
-    🏠
-</a>
 
-<div class="topo">
-    <p>Questões</p>
-</div>
+    <!-- AÇÕES DO CANTO SUPERIOR DIREITO -->
 
-<div class="corpo">
+    <div class="acoes-topo">
 
-    <button id="btnRecompensas">
-    ✨ Minhas recompensas
-    </button>
 
-    <div id="painelRecompensas" style="display: none;">
+        <!-- RECOMPENSAS -->
 
-        <h2>✨ Minhas recompensas</h2>
+        <button
+            id="btnRecompensas"
+            type="button"
+            title="Minhas recompensas"
+            aria-label="Minhas recompensas"
+        >
 
-        <button id="btnMensagem">
-            💬 Ver mensagem motivacional
+            <img
+                src="assets/estrela.png"
+                class="iconeRecompensas"
+                alt="Recompensas"
+            >
+
         </button>
 
-        <button id="btnDica">
-            📚 Ver dica de estudo
-        </button>
 
-        <p id="resultadoRecompensa"></p>
+        <!-- BOTÃO INÍCIO -->
+
+        <a
+            href="index.html"
+            class="botao-inicio"
+            title="Voltar para o início"
+            aria-label="Voltar para o início"
+        >
+
+            <img
+                src="assets/casa.png"
+                class="iconeInicio"
+                alt="Início"
+            >
+
+        </a>
+
+
+        <!-- PAINEL DE RECOMPENSAS -->
+
+        <div
+            id="painelRecompensas"
+            style="display: none;"
+        >
+
+            <h2>
+
+                <img
+                    src="assets/estrela.png"
+                    class="iconeRecompensas"
+                    alt="Recompensas"
+                >
+
+                Minhas recompensas
+
+            </h2>
+
+
+            <button
+                id="btnMensagem"
+                type="button"
+            >
+
+                Ver mensagem motivacional
+
+            </button>
+
+
+            <button
+                id="btnDica"
+                type="button"
+            >
+
+                Ver dica de estudo
+
+            </button>
+
+
+            <p id="resultadoRecompensa"></p>
+
+        </div>
+
 
     </div>
 
-    <p>Explore uma ampla coleção de questões do ENEM para treinar e testar seus conhecimentos.</p>
-    
-    <div class="materias">
 
-        <button class="btn-materia" data-materia="linguagens">
-            Linguagens
-        </button>
 
-        <button class="btn-materia" data-materia="ciencias-humanas">
-            Ciências Humanas
-        </button>
 
-        <button class="btn-materia" data-materia="ciencias-natureza">
-            Ciências da Natureza
-        </button>
+    <div class="topo">
 
-        <button class="btn-materia" data-materia="matematica">
-            Matemática
-        </button>
-
-        <button class="btn-materia" data-materia="nao_classificadas">
-            Questões não classificadas
-        </button>
+        <p>Questões</p>
 
     </div>
 
-</div>
 
-<section class="conteudo">
 
-    <h2 id="tituloMateria"></h2>
 
-    <div id="listaConteudos"></div>
+    <div class="corpo">
 
-</section>
 
-<script src="js/materia.js"></script>
-<script src="js/recompensa.js"></script>
+        <p>
+
+            Explore uma ampla coleção de questões do ENEM
+            para treinar e testar seus conhecimentos.
+
+        </p>
+
+
+        <div class="materias">
+
+
+            <button
+                class="btn-materia"
+                data-materia="linguagens"
+            >
+
+                Linguagens
+
+            </button>
+
+
+            <button
+                class="btn-materia"
+                data-materia="ciencias-humanas"
+            >
+
+                Ciências Humanas
+
+            </button>
+
+
+            <button
+                class="btn-materia"
+                data-materia="ciencias-natureza"
+            >
+
+                Ciências da Natureza
+
+            </button>
+
+
+            <button
+                class="btn-materia"
+                data-materia="matematica"
+            >
+
+                Matemática
+
+            </button>
+
+
+            <button
+                class="btn-materia"
+                data-materia="nao_classificadas"
+            >
+
+                Questões não classificadas
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <section class="conteudo">
+
+
+        <h2 id="tituloMateria"></h2>
+
+
+        <div id="listaConteudos"></div>
+
+
+    </section>
+
+
+
+
+    <script src="js/materia.js"></script>
+
+    <script src="js/recompensa.js"></script>
+
 
 </body>
+
 </html>

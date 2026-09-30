@@ -30,8 +30,10 @@ body {
 
     border-bottom: 1px solid #E8DCC8;
 
-    box-shadow: 0 3px 12px rgba(75, 55, 70, 0.08);
+    box-shadow:
+        0 3px 12px rgba(75, 55, 70, 0.08);
 }
+
 
 .topo p {
     margin: 0 0 0 28px;
@@ -42,164 +44,6 @@ body {
     font-weight: 600;
 
     letter-spacing: 0.3px;
-}
-
-
-/* =========================================================
-   BOTÃO INÍCIO
-   ========================================================= */
-
-.botao-inicio {
-    position: absolute;
-
-    right: 30px;
-    top: 50%;
-
-    width: 50px;
-    height: 50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transform: translateY(-50%);
-
-    background-color: #76558F;
-    color: #FFF9ED;
-
-    border-radius: 14px;
-
-    text-decoration: none;
-
-    font-size: 25px;
-
-    box-shadow: 0 4px 10px rgba(75, 55, 70, 0.14);
-
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.botao-inicio:hover {
-    background-color: #8B5FBF;
-
-    transform: translateY(-50%) scale(1.05);
-}
-
-
-/* =========================================================
-   BOTÃO DE RECOMPENSAS
-   ========================================================= */
-
-#btnRecompensas {
-    display: block;
-
-    margin: 18px 5% 0;
-
-    padding: 10px 17px;
-
-    background-color: #76558F;
-    color: #FFF9ED;
-
-    border: 1px solid #76558F;
-    border-radius: 11px;
-
-    font-size: 15px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow: 0 3px 9px rgba(75, 55, 70, 0.10);
-
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-#btnRecompensas:hover {
-    background-color: #8B5FBF;
-
-    transform: translateY(-1px);
-
-    box-shadow: 0 5px 12px rgba(75, 55, 70, 0.13);
-}
-
-
-/* =========================================================
-   PAINEL DE RECOMPENSAS
-   ========================================================= */
-
-#painelRecompensas {
-    position: absolute;
-
-    top: 145px;
-    left: 5%;
-
-    width: 250px;
-
-    padding: 18px;
-
-    background-color: #FFF9ED;
-
-    border: 1px solid #C9B6D9;
-    border-radius: 14px;
-
-    box-shadow: 0 8px 22px rgba(75, 55, 70, 0.14);
-
-    z-index: 20;
-}
-
-#painelRecompensas h2 {
-    margin: 0 0 14px;
-
-    color: #76558F;
-
-    font-size: 1.2rem;
-}
-
-#painelRecompensas button {
-    width: 100%;
-
-    margin-top: 8px;
-    padding: 10px;
-
-    background-color: #F0E5F5;
-    color: #76558F;
-
-    border: 1px solid #DCCBE5;
-    border-radius: 9px;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow: none;
-}
-
-#painelRecompensas button:hover {
-    background-color: #E6D7EF;
-
-    transform: none;
-
-    box-shadow: none;
-}
-
-#resultadoRecompensa {
-    margin: 14px 0 0;
-
-    padding: 11px;
-
-    background-color: #F6EEDC;
-
-    border: 1px solid #E8DCC8;
-    border-radius: 9px;
-
-    color: #776D78;
-
-    font-size: 14px;
-    line-height: 1.5;
 }
 
 
@@ -249,21 +93,29 @@ body {
 
     pointer-events: none;
 
-    animation: corujaFlutuando 3.5s ease-in-out infinite;
+    animation:
+        corujaFlutuando 3.5s ease-in-out infinite;
 }
+
 
 @keyframes corujaFlutuando {
 
     0% {
-        transform: translateY(0) rotate(-2deg);
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 
     50% {
-        transform: translateY(-5px) rotate(2deg);
+        transform:
+            translateY(-5px)
+            rotate(2deg);
     }
 
     100% {
-        transform: translateY(0) rotate(-2deg);
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 }
 
@@ -284,6 +136,7 @@ body {
     background-color: #F6EEDC;
 
     border: 2px dashed #BFA8D0;
+
     border-radius: 11px;
 
     color: #776D78;
@@ -294,6 +147,7 @@ body {
         background-color 0.2s ease,
         border-color 0.2s ease;
 }
+
 
 #fotoRedacao:hover {
     background-color: #F0E5F5;
@@ -310,17 +164,21 @@ button {
     padding: 12px 25px;
 
     background-color: #76558F;
+
     color: #FFF9ED;
 
     border: none;
+
     border-radius: 10px;
 
     cursor: pointer;
 
     font-size: 16px;
+
     font-weight: bold;
 
-    box-shadow: 0 3px 9px rgba(75, 55, 70, 0.11);
+    box-shadow:
+        0 3px 9px rgba(75, 55, 70, 0.11);
 
     transition:
         background-color 0.2s ease,
@@ -328,13 +186,17 @@ button {
         box-shadow 0.2s ease;
 }
 
+
 button:hover {
     background-color: #8B5FBF;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
-    box-shadow: 0 5px 12px rgba(75, 55, 70, 0.14);
+    box-shadow:
+        0 5px 12px rgba(75, 55, 70, 0.14);
 }
+
 
 #analisar {
     margin-top: 2px;
@@ -368,8 +230,10 @@ button:hover {
     color: #76558F;
 
     font-size: 1.15rem;
+
     font-weight: bold;
 }
+
 
 .resultado h3::before {
     content: "";
@@ -387,6 +251,7 @@ button:hover {
     border-radius: 4px;
 }
 
+
 .resultado h3:first-child {
     margin-top: 0;
 }
@@ -398,16 +263,19 @@ button:hover {
 
 #textoExtraido {
     width: 100%;
+
     min-height: 100px;
 
     box-sizing: border-box;
 
     margin: 0;
+
     padding: 15px;
 
     background-color: #F6EEDC;
 
     border: 1px solid #DCCBE5;
+
     border-radius: 11px;
 
     color: #403746;
@@ -415,6 +283,7 @@ button:hover {
     line-height: 1.6;
 
     white-space: pre-wrap;
+
     overflow-wrap: break-word;
 }
 
@@ -429,16 +298,19 @@ button:hover {
     box-sizing: border-box;
 
     margin: 0;
+
     padding: 16px;
 
     background-color: #F0E5F5;
 
     border: 1px solid #C9B6D9;
+
     border-radius: 11px;
 
     color: #76558F;
 
     font-size: 1.3rem;
+
     font-weight: bold;
 }
 
@@ -453,11 +325,13 @@ button:hover {
     box-sizing: border-box;
 
     margin-top: 14px;
+
     padding: 15px;
 
     background-color: #F6EEDC;
 
     border: 1px solid #DCCBE5;
+
     border-radius: 11px;
 
     color: #403746;
@@ -474,6 +348,7 @@ button:hover {
     display: block;
 
     width: 100%;
+
     max-width: 650px;
 
     height: auto;
@@ -487,6 +362,7 @@ button:hover {
     background-color: #FFF9ED;
 
     border: 1px solid #DCCBE5;
+
     border-radius: 13px;
 }
 
@@ -503,11 +379,13 @@ button:hover {
         font-size: 2.4rem;
     }
 
+
     .container {
         width: 90%;
 
         padding: 30px;
     }
+
 }
 
 
@@ -521,33 +399,13 @@ button:hover {
         height: 10vh;
     }
 
+
     .topo p {
         margin-left: 18px;
 
         font-size: 2rem;
     }
 
-    .botao-inicio {
-        right: 18px;
-
-        width: 44px;
-        height: 44px;
-
-        font-size: 22px;
-    }
-
-    #btnRecompensas {
-        margin-top: 15px;
-
-        font-size: 14px;
-    }
-
-    #painelRecompensas {
-        top: 125px;
-        left: 5%;
-
-        width: calc(90% - 36px);
-    }
 
     .container {
         width: 90%;
@@ -559,6 +417,7 @@ button:hover {
         border-radius: 17px;
     }
 
+
     .coruja-redacao {
         width: 70px;
 
@@ -566,23 +425,29 @@ button:hover {
         right: -22px;
     }
 
+
     button {
         width: 100%;
     }
+
 
     #fotoRedacao {
         font-size: 14px;
     }
 
+
     .resultado {
         margin-top: 25px;
     }
+
 
     .resultado h3 {
         font-size: 1rem;
     }
 
+
     #graficoNota {
         padding: 8px;
     }
+
 }

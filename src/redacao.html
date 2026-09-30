@@ -1,106 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Redação</title>
+
     <link rel="stylesheet" href="css/redacao.css">
+    <link rel="stylesheet" href="css/recompensas.css">
+
 
     <!-- Biblioteca para ler arquivos DOCX -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
 
+
     <!-- Biblioteca para gráficos -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
 
 <body>
 
-    <!-- TOPO -->
-    <div class="topo">
-        <a href="index.html" class="botao-inicio" title="Voltar ao início">
-            🏠
+
+    <!-- =====================================================
+         AÇÕES DO TOPO
+         ===================================================== -->
+
+    <div class="acoes-topo">
+
+
+        <!-- RECOMPENSAS -->
+
+        <button
+            id="btnRecompensas"
+            type="button"
+            title="Minhas recompensas"
+            aria-label="Minhas recompensas"
+        >
+
+            <img
+                src="assets/estrela.png"
+                class="iconeRecompensas"
+                alt="Recompensas"
+            >
+
+        </button>
+
+
+        <!-- BOTÃO INÍCIO -->
+
+        <a
+            href="index.html"
+            class="botao-inicio"
+            title="Voltar ao início"
+            aria-label="Voltar ao início"
+        >
+
+            <img
+                src="assets/casa.png"
+                class="iconeInicio"
+                alt="Início"
+            >
+
         </a>
 
-        <p>Redação</p>
-    </div>
 
+        <!-- PAINEL DE RECOMPENSAS -->
 
-    <!-- RECOMPENSAS -->
-    <button id="btnRecompensas">
-        ✨ Minhas recompensas
-    </button>
-
-    <div id="painelRecompensas" style="display: none;">
-
-        <h2>✨ Minhas recompensas</h2>
-
-        <button id="btnMensagem">
-            💬 Ver mensagem motivacional
-        </button>
-
-        <button id="btnDica">
-            📚 Ver dica de estudo
-        </button>
-
-        <p id="resultadoRecompensa"></p>
-
-    </div>
-
-
-    <!-- CONTAINER -->
-    <div class="container">
-
-        <!-- CORUJINHA -->
-        <img
-            src="assets/coruja.png"
-            class="coruja-redacao"
-            alt="Coruja estudando"
+        <div
+            id="painelRecompensas"
+            style="display: none;"
         >
 
-        <!-- Upload da redação -->
-        <input
-            type="file"
-            id="fotoRedacao"
-            accept=".docx"
-        >
 
-        <br><br>
+            <h2>
 
-        <button id="analisar">
-            Analisar Redação
-        </button>
+                <img
+                    src="assets/estrela.png"
+                    class="iconeRecompensas"
+                    alt="Recompensas"
+                >
 
+                Minhas recompensas
 
-        <!-- RESULTADO -->
-        <div class="resultado">
-
-            <h3>Texto extraído:</h3>
-            <p id="textoExtraido"></p>
+            </h2>
 
 
-            <h3>Nota atribuída:</h3>
-            <p id="resultadoNota"></p>
+            <button
+                id="btnMensagem"
+                type="button"
+            >
+                Ver mensagem motivacional
+            </button>
 
 
-            <div
-                class="nota-detalhada"
-                id="detalhesNota">
-            </div>
+            <button
+                id="btnDica"
+                type="button"
+            >
+                Ver dica de estudo
+            </button>
 
 
-            <canvas
-                id="graficoNota"
-                width="400"
-                height="200">
-            </canvas>
+            <p id="resultadoRecompensa"></p>
+
 
         </div>
 
     </div>
 
 
-    <!-- Scripts -->
+    <!-- =====================================================
+         TOPO
+         ===================================================== -->
+
+    <div class="topo">
+
+        <p>Redação</p>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTAINER
+         ===================================================== -->
+
+    <div class="container">
+
+
+        <!-- CORUJINHA -->
+
+        <img
+            src="assets/coruja.png"
+            class="coruja-redacao"
+            alt="Coruja estudando"
+        >
+
+
+        <!-- UPLOAD DA REDAÇÃO -->
+
+        <input
+            type="file"
+            id="fotoRedacao"
+            accept=".docx"
+        >
+
+
+        <br>
+        <br>
+
+
+        <button
+            id="analisar"
+            type="button"
+        >
+            Analisar Redação
+        </button>
+
+
+        <!-- =================================================
+             RESULTADO
+             ================================================= -->
+
+        <div class="resultado">
+
+
+            <h3>
+                Texto extraído:
+            </h3>
+
+
+            <p id="textoExtraido"></p>
+
+
+            <h3>
+                Nota atribuída:
+            </h3>
+
+
+            <p id="resultadoNota"></p>
+
+
+            <div
+                class="nota-detalhada"
+                id="detalhesNota"
+            ></div>
+
+
+            <canvas
+                id="graficoNota"
+                width="400"
+                height="200"
+            ></canvas>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+
     <script src="js/redacao.js"></script>
+
     <script src="js/recompensa.js"></script>
 
+
 </body>
+
 </html>

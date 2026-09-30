@@ -8,59 +8,95 @@
     <title>Questões</title>
 
     <link rel="stylesheet" href="css/questao.css">
+    <link rel="stylesheet" href="css/recompensas.css">
 </head>
 
 <body>
 
-    <!-- BOTÃO INÍCIO -->
+    <!-- =====================================================
+         BOTÕES DO CANTO SUPERIOR DIREITO
+         ===================================================== -->
 
-    <a
-        href="index.html"
-        class="botao-inicio"
-        title="Voltar ao início"
-        aria-label="Voltar ao início"
-    >
-        🏠
-    </a>
+    <div class="acoes-topo">
 
-
-    <!-- RECOMPENSAS -->
-
-    <button
-        id="btnRecompensas"
-        type="button"
-    >
-        Minhas recompensas
-    </button>
-
-
-    <div
-        id="painelRecompensas"
-        style="display: none;"
-    >
-
-        <h2>Minhas recompensas</h2>
+        <!-- RECOMPENSAS -->
 
         <button
-            id="btnMensagem"
+            id="btnRecompensas"
             type="button"
+            title="Minhas recompensas"
+            aria-label="Minhas recompensas"
         >
-            Ver mensagem motivacional
+            <img
+                src="assets/estrela.png"
+                class="iconeRecompensas"
+                alt="Recompensas"
+            >
         </button>
 
-        <button
-            id="btnDica"
-            type="button"
-        >
-            Ver dica de estudo
-        </button>
 
-        <p id="resultadoRecompensa"></p>
+        <!-- BOTÃO INÍCIO -->
+
+        <a
+            href="index.html"
+            class="botao-inicio"
+            title="Voltar ao início"
+            aria-label="Voltar ao início"
+        >
+            <img
+                src="assets/casa.png"
+                class="iconeInicio"
+                alt="Início"
+            >
+        </a>
+
+
+        <!-- PAINEL DE RECOMPENSAS -->
+
+        <div
+            id="painelRecompensas"
+            style="display: none;"
+        >
+
+            <h2>
+
+                <img
+                    src="assets/estrela.png"
+                    class="iconeRecompensas"
+                    alt="Recompensas"
+                >
+
+                Minhas recompensas
+
+            </h2>
+
+
+            <button
+                id="btnMensagem"
+                type="button"
+            >
+                Ver mensagem motivacional
+            </button>
+
+
+            <button
+                id="btnDica"
+                type="button"
+            >
+                Ver dica de estudo
+            </button>
+
+
+            <p id="resultadoRecompensa"></p>
+
+        </div>
 
     </div>
 
 
-    <!-- POPUP DE CONFIGURAÇÃO -->
+    <!-- =====================================================
+         POPUP DE CONFIGURAÇÃO
+         ===================================================== -->
 
     <div
         id="popupConfiguracao"
@@ -115,7 +151,9 @@
     </div>
 
 
-    <!-- ÁREA DAS QUESTÕES -->
+    <!-- =====================================================
+         ÁREA DAS QUESTÕES
+         ===================================================== -->
 
     <main id="questao">
 
@@ -125,11 +163,17 @@
             alt="Coruja estudando"
         >
 
-        <p class="credito-enem">ENEM</p>
+
+        <p class="credito-enem">
+            ENEM
+        </p>
+
 
         <p id="contador"></p>
 
+
         <p id="statusQuestao"></p>
+
 
         <p id="sequencia"></p>
 
@@ -154,7 +198,9 @@
         <p id="resultado"></p>
 
 
-        <!-- NAVEGAÇÃO ENTRE QUESTÕES -->
+        <!-- =================================================
+             NAVEGAÇÃO ENTRE QUESTÕES
+             ================================================= -->
 
         <div class="botoes-questao">
 
@@ -182,6 +228,10 @@
 
     </main>
 
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
 
     <script src="js/questao.js"></script>
 

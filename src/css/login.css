@@ -1,46 +1,263 @@
+/* =========================================================
+   LOGIN — VESTFÁCIL
+   ========================================================= */
+
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #5a5ae0, #8e8eff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #F6EEDC;
+
+    color: #403746;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* =========================================================
+   CONTAINER DE LOGIN
+   ========================================================= */
 
 .login-container {
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  text-align: center;
-  width: 300px;
+    position: relative;
+
+    width: 340px;
+
+    padding: 38px 40px 32px;
+
+    box-sizing: border-box;
+
+    background-color: #FFF9ED;
+
+    border: 1px solid #E1D3E7;
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(75, 55, 70, 0.10),
+        0 2px 5px rgba(75, 55, 70, 0.04);
 }
+
+
+/* =========================================================
+   CORUJINHA 🦉
+   ========================================================= */
+
+.login-container::after {
+    content: "";
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    top: -57px;
+    right: -27px;
+
+    background-image: url("../assets/coruja_estudando.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    pointer-events: none;
+
+    animation: corujaLogin 3.5s ease-in-out infinite;
+}
+
+@keyframes corujaLogin {
+
+    0% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
 
 .login-container h2 {
-  margin-bottom: 20px;
-  color: #5a5ae0;
+    margin: 0 0 26px;
+
+    color: #76558F;
+
+    font-size: 2rem;
+    font-weight: 600;
 }
+
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
 
 .login-container input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+    width: 100%;
+
+    padding: 13px 14px;
+
+    box-sizing: border-box;
+
+    background-color: #F6EEDC;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 10px;
+
+    color: #403746;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+.login-container input::placeholder {
+    color: #776D78;
+}
+
+.login-container input:focus {
+    background-color: #FFF9ED;
+
+    border-color: #8B5FBF;
+
+    box-shadow: 0 0 0 3px rgba(139, 95, 191, 0.10);
+}
+
+
+/* =========================================================
+   BOTÃO LOGIN
+   ========================================================= */
+
 .login-container button {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #5a5ae0, #8e8eff);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 13px;
+
+    background-color: #76558F;
+    color: #FFF9ED;
+
+    border: none;
+    border-radius: 10px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(75, 55, 70, 0.12);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .login-container button:hover {
-  background: linear-gradient(135deg, #4a4ac0, #6e6ee0);
+    background-color: #8B5FBF;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 13px rgba(75, 55, 70, 0.15);
+}
+
+.login-container button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   LINK DE CADASTRO
+   ========================================================= */
+
+.login-container p {
+    margin: 22px 0 0;
+
+    color: #776D78;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.login-container a {
+    color: #76558F;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.login-container a:hover {
+    color: #8B5FBF;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 340px;
+
+        padding: 34px 25px 28px;
+
+        border-radius: 18px;
+    }
+
+    .login-container::after {
+        width: 68px;
+        height: 68px;
+
+        top: -46px;
+        right: -18px;
+    }
+
+    .login-container h2 {
+        font-size: 1.8rem;
+    }
 }

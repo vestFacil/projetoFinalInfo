@@ -3,67 +3,213 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Meu Perfil</title>
+
     <link rel="stylesheet" href="css/perfil.css">
 </head>
 
+
 <body>
 
+
+    <!-- =====================================================
+         CABEÇALHO
+         ===================================================== -->
+
     <header class="topo">
-        <a href="index.html" class="botao-inicio" title="Voltar ao início">🏠</a>
+
+        <a
+            href="index.html"
+            class="botao-inicio"
+            title="Voltar ao início"
+            aria-label="Voltar ao início"
+        >
+
+            <img
+                src="assets/casa.png"
+                class="iconeInicio"
+                alt="Início"
+            >
+
+        </a>
+
+
         <p>Meu Perfil</p>
+
     </header>
+
+
+    <!-- =====================================================
+         PERFIL
+         ===================================================== -->
 
     <main class="perfil-container">
 
+
         <!-- Card do perfil -->
+
         <section class="perfil-card">
-            <img src="img/user.png" alt="Foto do usuário" class="foto" id="fotoPerfil">
-            <input type="file" id="fotoInput" accept="image/*" style="display:none">
 
-            <h2 id="nomeUsuario">Nome usuário</h2>
-            <p>Email: <span id="emailUsuario">@email.com</span></p>
-            <p>Meta: <span id="bioUsuario">bio</span></p>
+            <img
+                src="img/user.png"
+                alt="Foto do usuário"
+                class="foto"
+                id="fotoPerfil"
+            >
 
-            <button id="btnEditar">Editar Perfil</button>
-            <button id="btnSalvar" style="display:none">Salvar</button>
+            <input
+                type="file"
+                id="fotoInput"
+                accept="image/*"
+                style="display:none"
+            >
+
+
+            <h2 id="nomeUsuario">
+                Nome usuário
+            </h2>
+
+
+            <p>
+                Email:
+                <span id="emailUsuario">
+                    @email.com
+                </span>
+            </p>
+
+
+            <p>
+                Meta:
+                <span id="bioUsuario">
+                    bio
+                </span>
+            </p>
+
+
+            <button id="btnEditar" type="button">
+                Editar Perfil
+            </button>
+
+
+            <button
+                id="btnSalvar"
+                type="button"
+                style="display:none"
+            >
+                Salvar
+            </button>
+
         </section>
 
-        <!-- Estatísticas -->
+
+        <!-- =================================================
+             ESTATÍSTICAS
+             ================================================= -->
+
         <section class="estatisticas">
-            <div class="box">
-                <h3>Questões Resolvidas</h3>
-                <p id="questoesResolvidas">0</p>
-            </div>
+
 
             <div class="box">
-                <h3>Média Redação</h3>
-                <p id="mediaRedacao">0</p>
+
+                <h3>
+                    Questões Resolvidas
+                </h3>
+
+                <p id="questoesResolvidas">
+                    0
+                </p>
+
             </div>
 
-            <div class="box">
-                <h3>Dias Estudando</h3>
-                <p id="diasEstudando">0</p>
-            </div>
 
             <div class="box">
-                <h3>🏆 Maior Sequência</h3>
-                <p id="maiorSequencia">0</p>
+
+                <h3>
+                    Média Redação
+                </h3>
+
+                <p id="mediaRedacao">
+                    0
+                </p>
+
             </div>
+
+
+            <div class="box">
+
+                <h3>
+                    Dias Estudando
+                </h3>
+
+                <p id="diasEstudando">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="box">
+
+                <h3>
+                    🏆 Maior Sequência
+                </h3>
+
+                <p id="maiorSequencia">
+                    0
+                </p>
+
+            </div>
+
         </section>
 
-        <!-- Metas -->
+
+        <!-- =================================================
+             METAS
+             ================================================= -->
+
         <section class="metas">
-            <h2>Metas da Semana</h2>
-            <input type="text" id="inputMeta" placeholder="Digite uma meta">
-            <button id="btnAdicionarMeta">Adicionar Meta</button>
+
+            <h2>
+                Metas da Semana
+            </h2>
+
+
+            <input
+                type="text"
+                id="inputMeta"
+                placeholder="Digite uma meta"
+            >
+
+
+            <button
+                id="btnAdicionarMeta"
+                type="button"
+            >
+                Adicionar Meta
+            </button>
+
+
             <ul id="metasLista"></ul>
+
         </section>
+
 
     </main>
 
-    <!-- Script externo que cuida de tudo -->
+
+    <!-- =====================================================
+         SCRIPT
+         ===================================================== -->
+
     <script src="js/perfil.js"></script>
+
+
 </body>
+
 </html>

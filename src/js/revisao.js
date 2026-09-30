@@ -63,7 +63,7 @@ async function carregarRevisao() {
         if (questoes.length === 0) {
 
             listaRevisao.innerHTML =
-                "<p>📚 Você ainda não respondeu nenhuma questão.</p>";
+                "<p>Nenhuma questão está disponível para revisão agora.</p>";
 
             return;
         }

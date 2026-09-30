@@ -8,6 +8,7 @@
     <title>VestFacil</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/recompensas.css">
 </head>
 
 <body>
@@ -28,60 +29,78 @@
 
         <p id="caderno">Caderno</p>
 
-        <p id="loja"> Loja</p>
+        <p id="loja">Loja</p>
 
     </div>
 
-    <button id="btnRecompensas">
-    ✨ Minhas recompensas
-    </button>
 
-    <div id="painelRecompensas" style="display: none;">
+    <!-- RECOMPENSAS -->
 
-        <h2>✨ Minhas recompensas</h2>
+    <div class="acoes-recompensas">
 
-        <button id="btnMensagem">
-            💬 Ver mensagem motivacional
+        <button
+            id="btnRecompensas"
+            title="Minhas recompensas"
+        >
+            <img
+                src="assets/estrela.png"
+                class="iconeRecompensas"
+                alt="Ícone de recompensas"
+            >
         </button>
 
-        <button id="btnDica">
-            📚 Ver dica de estudo
-        </button>
+        <div
+            id="painelRecompensas"
+            style="display: none;"
+        >
 
-        <p id="resultadoRecompensa"></p>
+            <h2><img src="assets/estrela.png" class="iconeRecompensas" alt="Ícone de recompensas">Minhas recompensas</h2>
+
+            <button id="btnMensagem">
+                Ver mensagem motivacional
+            </button>
+
+            <button id="btnDica">
+                Ver dica de estudo
+            </button>
+
+            <p id="resultadoRecompensa"></p>
+
+        </div>
 
     </div>
 
 
     <section class="apresentacao">
 
-    <div class="texto-apresentacao">
+        <div class="texto-apresentacao">
 
-        <h1>Bem-vindo ao VestFácil!</h1>
+            <h1>Bem-vindo ao VestFácil!</h1>
 
-        <p>
-            Estude para o ENEM de um jeito mais leve,
-            organizado e do seu jeito.
-        </p>
+            <p>
+                Estude para o ENEM de um jeito mais leve,
+                organizado e do seu jeito.
+            </p>
 
-        <p class="subtexto-apresentacao">
-            Pratique com questões, acompanhe seu progresso,
-            revise seus erros e mantenha sua sequência de estudos.
-        </p>
+            <p class="subtexto-apresentacao">
+                Pratique com questões, acompanhe seu progresso,
+                revise seus erros e mantenha sua sequência de estudos.
+            </p>
 
-    </div>
+        </div>
 
-    <img
-        src="assets/coruja.png"
-        class="coruja-apresentacao"
-        alt="Coruja estudando"
-    >
+        <img
+            src="assets/coruja.png"
+            class="coruja-apresentacao"
+            alt="Coruja estudando"
+        >
 
-</section>
+    </section>
+
 
     <section class="desafio-dia">
 
-        <h2>🎯 Desafio do Dia</h2>
+        <h2>Desafio do Dia</h2>
 
         <p id="descricaoDesafio">
             Responda 5 questões hoje e mantenha seu ritmo de estudos!
@@ -97,9 +116,10 @@
 
     </section>
 
+
     <section class="area-revisao">
 
-        <h2>📚 Área de Revisão</h2>
+        <h2>Área de Revisão</h2>
 
         <p>
             Revise questões que você já respondeu e fortaleça seus conhecimentos!

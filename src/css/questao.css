@@ -45,79 +45,6 @@ body {
 
 
 /* =========================
-   RECOMPENSAS
-========================= */
-
-#btnRecompensas {
-    position: absolute;
-    left: 30px;
-    top: 20px;
-
-    padding: 11px 16px;
-
-    background-color: #FFF9ED;
-    color: #76558F;
-
-    border: 1px solid #DCCBE5;
-    border-radius: 10px;
-
-    font-weight: bold;
-    cursor: pointer;
-
-    box-shadow: 0 3px 10px rgba(75, 55, 70, 0.08);
-}
-
-#btnRecompensas:hover {
-    background-color: #F0E5F5;
-}
-
-#painelRecompensas {
-    position: absolute;
-    top: 75px;
-    left: 30px;
-
-    width: 250px;
-
-    padding: 18px;
-
-    background-color: #FFF9ED;
-
-    border: 1px solid #E8DCC8;
-    border-radius: 14px;
-
-    box-shadow: 0 6px 18px rgba(75, 55, 70, 0.12);
-
-    z-index: 20;
-}
-
-#painelRecompensas h2 {
-    margin-top: 0;
-    color: #76558F;
-    font-size: 1.1rem;
-}
-
-#painelRecompensas button {
-    width: 100%;
-
-    margin-top: 8px;
-    padding: 9px;
-
-    border: 1px solid #DCCBE5;
-    border-radius: 8px;
-
-    background-color: #F0E5F5;
-    color: #76558F;
-
-    cursor: pointer;
-}
-
-#resultadoRecompensa {
-    margin-bottom: 0;
-    line-height: 1.4;
-}
-
-
-/* =========================
    POPUP
 ========================= */
 
@@ -759,6 +686,36 @@ body {
     max-width: 130px;
 
     z-index: 2;
+}
+
+/* =====================================================
+   RESULTADO FINAL DA LISTA
+   ===================================================== */
+
+#resultado:has(.resumo-final) {
+    position: static;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 25px 0 8px;
+    padding: 0;
+
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+
+    color: inherit;
+
+    text-align: initial;
+    font-weight: normal;
+
+    z-index: auto;
+}
+
+.resumo-final {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .credito-enem {

@@ -1,0 +1,257 @@
+/* =========================================================
+   ÁREA DE REVISÃO — VESTFÁCIL
+   ========================================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: #F6EEDC;
+    color: #403746;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+main {
+    width: 85%;
+    max-width: 1000px;
+
+    margin: 50px auto;
+
+    padding: 35px 40px 45px;
+
+    box-sizing: border-box;
+
+    background-color: #FFF9ED;
+
+    border: 1px solid #DCCBE5;
+    border-top: 4px solid #76558F;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 7px 22px rgba(75, 55, 70, 0.09),
+        0 2px 5px rgba(75, 55, 70, 0.04);
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+h1 {
+    margin: 0 0 10px;
+
+    color: #76558F;
+
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TEXTO INTRODUTÓRIO
+   ========================================================= */
+
+main > p {
+    margin: 0 0 30px;
+
+    color: #776D78;
+
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   LISTA DE QUESTÕES
+   ========================================================= */
+
+#listaRevisao {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   CARD DA QUESTÃO
+   ========================================================= */
+
+.questao-revisao {
+    padding: 22px;
+
+    background-color: #F6EEDC;
+
+    border: 1px solid #DCCBE5;
+    border-radius: 15px;
+
+    box-shadow:
+        0 3px 10px rgba(75, 55, 70, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.questao-revisao:hover {
+    transform: translateY(-2px);
+
+    border-color: #C9B6D9;
+
+    box-shadow:
+        0 6px 14px rgba(75, 55, 70, 0.09);
+}
+
+
+/* =========================================================
+   TÍTULO DO CARD
+   ========================================================= */
+
+.questao-revisao h3 {
+    margin: 0 0 16px;
+
+    color: #76558F;
+
+    font-size: 1.15rem;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+   ========================================================= */
+
+.questao-revisao p {
+    margin: 8px 0;
+
+    color: #776D78;
+
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.questao-revisao strong {
+    color: #403746;
+}
+
+
+/* =========================================================
+   BOTÃO REVISAR
+   ========================================================= */
+
+.btn-revisar {
+    margin-top: 15px;
+
+    padding: 11px 18px;
+
+    background-color: #76558F;
+    color: #FFF9ED;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 9px rgba(75, 55, 70, 0.11);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-revisar:hover {
+    background-color: #8B5FBF;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(75, 55, 70, 0.14);
+}
+
+
+/* =========================================================
+   MENSAGENS
+   ========================================================= */
+
+#listaRevisao > p {
+    margin: 10px 0 0;
+    padding: 18px;
+
+    background-color: #F0E5F5;
+
+    border: 1px solid #C9B6D9;
+    border-radius: 12px;
+
+    color: #776D78;
+
+    text-align: center;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    main {
+        width: 90%;
+
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    main {
+        width: 90%;
+
+        margin: 25px auto;
+
+        padding: 25px 18px 30px;
+
+        border-radius: 17px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    main > p {
+        font-size: 0.9rem;
+    }
+
+    .questao-revisao {
+        padding: 18px;
+    }
+
+    .questao-revisao h3 {
+        font-size: 1rem;
+    }
+
+    .btn-revisar {
+        width: 100%;
+    }
+}

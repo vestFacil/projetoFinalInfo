@@ -1,290 +1,634 @@
-body{
-    background: linear-gradient(180deg, #eef5ff 0%, #dfefff 100%);
+/* =========================================================
+   PERFIL — VESTFÁCIL
+   ========================================================= */
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
     min-height: 100vh;
+
+    background-color: #F6EEDC;
+    color: #403746;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* =========================
-TOPO
-========================= */
 
-.topo{
+/* =========================================================
+   TOPO
+   ========================================================= */
+
+.topo {
     position: relative;
+
     display: flex;
-    background: linear-gradient(135deg, rgb(89, 89, 223), rgb(120, 120, 255));
-    color: aliceblue;
-    height: 320px;
-    justify-content: center;
     align-items: center;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    justify-content: center;
+
+    width: 100%;
+    height: 220px;
+
+    background-color: #76558F;
+
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+
+    box-shadow:
+        0 7px 18px rgba(118, 85, 143, 0.18);
+
+    z-index: 2;
 }
 
-.topo p{
-    font-size: 4rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+
+.topo p {
+    margin: 0;
+
+    color: #FFF9ED;
+
+    font-size: 3.1rem;
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
 }
 
-/* BOTÃO INÍCIO */
 
-.botao-inicio{
+/* =========================================================
+   BOTÃO INÍCIO
+   ========================================================= */
+
+.botao-inicio {
     position: absolute;
-    right: 30px;
-    top: 30px;
 
-    width: 50px;
-    height: 50px;
+    top: 22px;
+    right: 25px;
+
+    width: 48px;
+    height: 48px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background-color: white;
-    color: rgb(89, 89, 223);
+    background-color: #F0E5F5;
 
-    border-radius: 14px;
+    border: 2px solid #C9B6D9;
+    border-radius: 50%;
 
     text-decoration: none;
-    font-size: 26px;
 
-    box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+    box-shadow:
+        0 4px 10px rgba(60, 40, 75, 0.14);
 
-    transition: 0.3s;
+    z-index: 10;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
 }
 
-.botao-inicio:hover{
-    transform: scale(1.08);
-    box-shadow: 0 7px 15px rgba(0,0,0,0.25);
+
+.botao-inicio .iconeInicio {
+    width: 45px;
+    height: 45px;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.2s ease;
 }
 
-/* =========================
-CONTAINER
-========================= */
 
-.perfil-container{
-    width: 85%;
+.botao-inicio:hover {
+    background-color: #FFF9ED;
+
+    transform: translateY(-2px);
+}
+
+
+.botao-inicio:hover .iconeInicio {
+    transform:
+        scale(1.06)
+        rotate(3deg);
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.perfil-container {
+    position: relative;
+
+    width: 86%;
     max-width: 1100px;
-    margin: -90px auto 40px auto;
+
+    margin: -55px auto 55px;
+
+    z-index: 3;
 }
 
-/* =========================
-CARD PERFIL
-========================= */
 
-.perfil-card{
-    background-color: white;
-    border-radius: 30px;
-    padding: 35px;
+/* =========================================================
+   CARD DO PERFIL
+   ========================================================= */
+
+.perfil-card {
+    position: relative;
+
+    padding: 35px 35px 32px;
+
+    background-color: #FFF9ED;
+
+    border: 2px solid #C9B6D9;
+    border-radius: 24px;
+
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    transition: 0.3s;
+
+    box-shadow:
+        0 8px 20px rgba(118, 85, 143, 0.11);
+
+    /*
+       Importante:
+       o card NÃO se movimenta no hover.
+       Isso evita sobreposição com o cabeçalho.
+    */
+
+    transition:
+        box-shadow 0.2s ease;
 }
 
-.perfil-card:hover{
-    transform: translateY(-3px);
+
+.perfil-card:hover {
+    box-shadow:
+        0 10px 24px rgba(118, 85, 143, 0.14);
 }
 
-.foto{
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    border: 6px solid rgb(89, 89, 223);
-    object-fit: cover;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+/* =========================================================
+   FOTO
+   ========================================================= */
+
+.foto {
+    width: 145px;
+    height: 145px;
 
     display: block;
-    margin: 0 auto 20px auto;
+
+    margin: 5px auto 18px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 6px solid #C9B6D9;
+
+    background-color: #F0E5F5;
+
+    box-shadow:
+        0 5px 14px rgba(118, 85, 143, 0.13);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
 }
 
-.foto:hover{
+
+.foto:hover {
+    border-color: #8B5FBF;
+
     transform: scale(1.03);
 }
 
-#fotoInput{
-    margin-top: 15px;
-    font-size: 0.95rem;
-}
 
-.perfil-card h2{
-    margin-top: 18px;
-    color: rgb(89, 89, 223);
-    font-size: 2rem;
-}
-
-.perfil-card p{
-    font-size: 1.1rem;
-    color: #444;
-    margin: 10px 0;
-}
-
-/* =========================
-BOTÕES
-========================= */
-
-button{
-    background: linear-gradient(135deg, rgb(89, 89, 223), rgb(120, 120, 255));
-    color: white;
-    border: none;
-    padding: 13px 28px;
-    border-radius: 14px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 18px;
-    transition: 0.3s;
-    font-weight: bold;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-}
-
-button:hover{
-    background: linear-gradient(135deg, rgb(67, 67, 190), rgb(95, 95, 240));
-    transform: scale(1.03);
-}
-
-/* =========================
-ESTATÍSTICAS
-========================= */
-
-.estatisticas{
-    display: flex;
-    gap: 20px;
-    margin-top: 35px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.box{
-    background-color: white;
-    flex: 1;
-    min-width: 220px;
-    padding: 25px;
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
-
-.box:hover{
-    transform: translateY(-5px);
-}
-
-.box h3{
-    color: rgb(89, 89, 223);
-    font-size: 1.3rem;
-}
-
-.box p{
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
+#fotoInput {
     margin-top: 10px;
+
+    color: #776D78;
+
+    font-size: 0.9rem;
 }
 
-/* =========================
-METAS
-========================= */
 
-.metas{
-    background-color: white;
-    margin-top: 35px;
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
+/* =========================================================
+   INFORMAÇÕES DO PERFIL
+   ========================================================= */
 
-.metas h2{
-    color: rgb(89, 89, 223);
-    margin-bottom: 20px;
+.perfil-card h2 {
+    margin: 15px 0 10px;
+
+    color: #76558F;
+
     font-size: 2rem;
+    font-weight: 600;
 }
 
-/* INPUT META */
 
-#inputMeta{
-    width: 70%;
-    padding: 14px;
-    border-radius: 12px;
-    border: 2px solid #d0d7ff;
+.perfil-card p {
+    margin: 8px 0;
+
+    color: #776D78;
+
+    font-size: 1.05rem;
+}
+
+
+.perfil-card p span {
+    color: #403746;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+button {
+    padding: 12px 24px;
+
+    background-color: #76558F;
+
+    color: #FFF9ED;
+
+    border: none;
+    border-radius: 11px;
+
+    cursor: pointer;
+
     font-size: 1rem;
-    outline: none;
-    transition: 0.3s;
+    font-weight: bold;
+
+    margin-top: 17px;
+
+    box-shadow:
+        0 4px 9px rgba(118, 85, 143, 0.14);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-#inputMeta:focus{
-    border-color: rgb(89, 89, 223);
-    box-shadow: 0 0 10px rgba(89,89,223,0.2);
+
+button:hover {
+    background-color: #8B5FBF;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 12px rgba(118, 85, 143, 0.18);
 }
 
-/* LISTA */
 
-#metasLista{
+/* =========================================================
+   ESTATÍSTICAS
+   ========================================================= */
+
+.estatisticas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 17px;
+
     margin-top: 25px;
+}
+
+
+/* =========================================================
+   CARDS DE ESTATÍSTICA
+   ========================================================= */
+
+.box {
+    min-height: 145px;
+
+    padding: 23px 17px;
+
+    box-sizing: border-box;
+
+    background-color: #F0E5F5;
+
+    border: 1px solid #C9B6D9;
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 13px rgba(118, 85, 143, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.box:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 17px rgba(118, 85, 143, 0.11);
+}
+
+
+.box h3 {
+    margin: 0 0 12px;
+
+    color: #76558F;
+
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+
+.box p {
+    margin: 0;
+
+    color: #403746;
+
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   METAS
+   ========================================================= */
+
+.metas {
+    margin-top: 25px;
+
+    padding: 30px;
+
+    background-color: #FFF9ED;
+
+    border: 2px solid #C9B6D9;
+    border-radius: 20px;
+
+    box-shadow:
+        0 7px 18px rgba(118, 85, 143, 0.08);
+}
+
+
+.metas h2 {
+    margin: 0 0 20px;
+
+    color: #76558F;
+
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUT META
+   ========================================================= */
+
+#inputMeta {
+    width: 70%;
+
+    padding: 13px 15px;
+
+    box-sizing: border-box;
+
+    background-color: #F6EEDC;
+
+    border: 2px solid #C9B6D9;
+    border-radius: 11px;
+
+    color: #403746;
+
+    font-size: 1rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#inputMeta::placeholder {
+    color: #776D78;
+}
+
+
+#inputMeta:focus {
+    background-color: #FFF9ED;
+
+    border-color: #76558F;
+
+    box-shadow:
+        0 0 0 3px #F0E5F5;
+}
+
+
+/* =========================================================
+   LISTA DE METAS
+   ========================================================= */
+
+#metasLista {
+    margin-top: 22px;
+
     padding-left: 0;
 }
 
-#metasLista li{
-    list-style: none;
-    background-color: #f4f7ff;
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 15px;
-    font-size: 1.1rem;
+
+#metasLista li {
     display: flex;
     align-items: center;
+
     gap: 12px;
-    transition: 0.3s;
+
+    margin-bottom: 12px;
+
+    padding: 14px 16px;
+
+    list-style: none;
+
+    background-color: #F0E5F5;
+
+    border: 1px solid #D8C5E3;
+
+    border-radius: 13px;
+
+    color: #403746;
+
+    font-size: 1.05rem;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
-#metasLista li:hover{
-    background-color: #e8eeff;
+
+#metasLista li:hover {
+    background-color: #E8D9EF;
+
+    transform: translateX(2px);
 }
 
-#metasLista input[type="checkbox"]{
+
+#metasLista input[type="checkbox"] {
     width: 20px;
     height: 20px;
+
+    accent-color: #76558F;
+
     cursor: pointer;
 }
 
-/* =========================
-RESPONSIVO
-========================= */
 
-@media(max-width: 768px){
+/* =========================================================
+   RESPONSIVO — TABLET
+   ========================================================= */
 
-    .topo{
-        height: 250px;
+@media (max-width: 900px) {
+
+    .estatisticas {
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
-    .topo p{
+}
+
+
+/* =========================================================
+   RESPONSIVO — CELULAR
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .topo {
+        height: 190px;
+
+        border-bottom-left-radius: 35px;
+        border-bottom-right-radius: 35px;
+    }
+
+
+    .topo p {
         font-size: 2.5rem;
-        text-align: center;
     }
 
-    .botao-inicio{
-    right: 20px;
-    top: 20px;
-    width: 45px;
-    height: 45px;
-    font-size: 23px;
+
+    .botao-inicio {
+        top: 15px;
+        right: 15px;
+
+        width: 44px;
+        height: 44px;
     }
 
-    .perfil-container{
+
+    .botao-inicio .iconeInicio {
+        width: 44px;
+        height: 44px;
+    }
+
+
+    .perfil-container {
         width: 92%;
+
+        margin-top: -40px;
     }
 
-    #inputMeta{
+
+    .perfil-card {
+        padding: 30px 20px;
+    }
+
+
+    #inputMeta {
         width: 100%;
-        margin-bottom: 10px;
     }
 
-    button{
+
+    .metas {
+        padding: 27px 20px;
+    }
+
+
+    .metas button {
         width: 100%;
     }
 
-    .perfil-card{
-        padding: 25px;
+}
+
+
+/* =========================================================
+   RESPONSIVO — CELULAR PEQUENO
+   ========================================================= */
+
+@media (max-width: 550px) {
+
+    .topo {
+        height: 160px;
     }
+
+
+    .topo p {
+        font-size: 2rem;
+    }
+
+
+    .perfil-container {
+        width: 92%;
+
+        margin-top: -30px;
+    }
+
+
+    .perfil-card {
+        padding: 27px 15px;
+
+        border-radius: 19px;
+    }
+
+
+    .foto {
+        width: 125px;
+        height: 125px;
+    }
+
+
+    .perfil-card h2 {
+        font-size: 1.6rem;
+    }
+
+
+    .perfil-card p {
+        font-size: 0.95rem;
+    }
+
+
+    .estatisticas {
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+    }
+
+
+    .box {
+        min-height: 120px;
+
+        padding: 20px;
+    }
+
+
+    .box p {
+        font-size: 1.8rem;
+    }
+
+
+    .metas h2 {
+        font-size: 1.5rem;
+    }
+
 }

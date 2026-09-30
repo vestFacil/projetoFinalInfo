@@ -67,18 +67,25 @@ main::after {
     animation: corujaLoja 3.5s ease-in-out infinite;
 }
 
+
 @keyframes corujaLoja {
 
     0% {
-        transform: translateY(0) rotate(-2deg);
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 
     50% {
-        transform: translateY(-6px) rotate(2deg);
+        transform:
+            translateY(-6px)
+            rotate(2deg);
     }
 
     100% {
-        transform: translateY(0) rotate(-2deg);
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 }
 
@@ -120,6 +127,7 @@ main > p {
     font-size: 16px;
 }
 
+
 #xpAtual {
     color: #76558F;
 
@@ -147,10 +155,12 @@ main > p {
 
     color: #403746;
 
-    box-shadow: 0 4px 12px rgba(75, 55, 70, 0.05);
+    box-shadow:
+        0 4px 12px rgba(75, 55, 70, 0.05);
 
     overflow: hidden;
 }
+
 
 #desafioExtra::after {
     content: "✦";
@@ -165,6 +175,7 @@ main > p {
     font-size: 20px;
 }
 
+
 #desafioExtra h2 {
     margin: 0 35px 8px 0;
 
@@ -174,6 +185,7 @@ main > p {
     font-weight: bold;
 }
 
+
 #desafioExtra p {
     margin: 0 0 15px;
 
@@ -181,6 +193,7 @@ main > p {
 
     line-height: 1.5;
 }
+
 
 #desafioExtra button {
     padding: 10px 18px;
@@ -196,17 +209,20 @@ main > p {
 
     cursor: pointer;
 
-    box-shadow: 0 3px 8px rgba(75, 55, 70, 0.10);
+    box-shadow:
+        0 3px 8px rgba(75, 55, 70, 0.10);
 
     transition:
         background-color 0.2s ease,
         transform 0.2s ease;
 }
 
+
 #desafioExtra button:hover {
     background-color: #8B5FBF;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -217,7 +233,8 @@ main > p {
 #listaLoja {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 20px;
 
@@ -247,7 +264,8 @@ main > p {
     border: 1px solid #E1D3E7;
     border-radius: 17px;
 
-    box-shadow: 0 4px 12px rgba(75, 55, 70, 0.06);
+    box-shadow:
+        0 4px 12px rgba(75, 55, 70, 0.06);
 
     transition:
         transform 0.2s ease,
@@ -255,12 +273,15 @@ main > p {
         background-color 0.2s ease;
 }
 
+
 #listaLoja > div:hover {
     background-color: #FFF9ED;
 
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 
-    box-shadow: 0 7px 17px rgba(75, 55, 70, 0.09);
+    box-shadow:
+        0 7px 17px rgba(75, 55, 70, 0.09);
 }
 
 
@@ -322,17 +343,20 @@ main > p {
 
     cursor: pointer;
 
-    box-shadow: 0 3px 8px rgba(75, 55, 70, 0.09);
+    box-shadow:
+        0 3px 8px rgba(75, 55, 70, 0.09);
 
     transition:
         background-color 0.2s ease,
         transform 0.2s ease;
 }
 
+
 #listaLoja button:hover {
     background-color: #8B5FBF;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -352,6 +376,7 @@ main > p {
     box-shadow: none;
 }
 
+
 #listaLoja button:disabled:hover {
     background-color: #D8D0D8;
 
@@ -370,9 +395,81 @@ main > p {
     background-color: #F6EEDC;
 
     border: 1px solid #E8DCC8;
+
     border-radius: 10px;
 
     color: #776D78;
+}
+
+
+/* =========================================================
+   🏠 BOTÃO INÍCIO
+   ========================================================= */
+
+.botao-inicio {
+    position: fixed;
+
+    top: 20px;
+    right: 24px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: transparent;
+
+    border: none;
+
+    border-radius: 0;
+
+    text-decoration: none;
+
+    box-shadow: none;
+
+    z-index: 1000;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+/* =========================================================
+   🏠 IMAGEM DA CASINHA
+   ========================================================= */
+
+.botao-inicio .iconeInicio {
+    width: 48px;
+    height: 48px;
+
+    display: block;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.botao-inicio:hover {
+    background-color: transparent;
+
+    box-shadow: none;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.botao-inicio:hover .iconeInicio {
+    transform:
+        scale(1.06)
+        rotate(3deg);
 }
 
 
@@ -388,9 +485,11 @@ main > p {
         padding: 32px;
     }
 
+
     #listaLoja {
         grid-template-columns: 1fr;
     }
+
 
     main::after {
         width: 90px;
@@ -400,15 +499,36 @@ main > p {
         right: -20px;
     }
 
+
     h1 {
         font-size: 2.2rem;
     }
+
 }
 
 
 /* =========================================================
    CELULAR
    ========================================================= */
+
+@media (max-width: 600px) {
+
+    .botao-inicio {
+        top: 15px;
+        right: 15px;
+
+        width: 44px;
+        height: 44px;
+    }
+
+
+    .botao-inicio .iconeInicio {
+        width: 44px;
+        height: 44px;
+    }
+
+}
+
 
 @media (max-width: 550px) {
 
@@ -422,6 +542,7 @@ main > p {
         border-radius: 18px;
     }
 
+
     main::after {
         width: 70px;
         height: 70px;
@@ -430,13 +551,16 @@ main > p {
         right: -14px;
     }
 
+
     h1 {
         font-size: 2rem;
     }
 
+
     main > p {
         font-size: 14px;
     }
+
 
     #listaLoja > div {
         min-height: 160px;
@@ -444,7 +568,9 @@ main > p {
         padding: 18px;
     }
 
+
     #desafioExtra button {
         width: 100%;
     }
+
 }

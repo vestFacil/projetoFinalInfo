@@ -3,72 +3,204 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Caderno</title>
 
     <link rel="stylesheet" href="css/caderno.css">
+    <link rel="stylesheet" href="css/recompensas.css">
 </head>
+
 
 <body>
 
-    <header class="topo">
 
-    <a href="index.html" class="botao-inicio" title="Voltar ao início">
-        🏠
-    </a>
+    <!-- =====================================================
+         AÇÕES DO TOPO
+         ===================================================== -->
 
-    <p>Caderno</p>
+    <div class="acoes-topo">
 
-</header>
 
-    <button id="btnRecompensas">
-        ✨ Minhas recompensas
-    </button>
+        <!-- RECOMPENSAS -->
 
-    <div id="painelRecompensas" style="display: none;">
+        <button
+            id="btnRecompensas"
+            type="button"
+            title="Minhas recompensas"
+            aria-label="Minhas recompensas"
+        >
 
-        <h2>✨ Minhas recompensas</h2>
+            <img
+                src="assets/estrela.png"
+                class="iconeRecompensas"
+                alt="Recompensas"
+            >
 
-        <button id="btnMensagem">
-            💬 Ver mensagem motivacional
         </button>
 
-        <button id="btnDica">
-            📚 Ver dica de estudo
-        </button>
 
-        <p id="resultadoRecompensa"></p>
+        <!-- BOTÃO INÍCIO -->
+
+        <a
+            href="index.html"
+            class="botao-inicio"
+            title="Voltar ao início"
+            aria-label="Voltar ao início"
+        >
+
+            <img
+                src="assets/casa.png"
+                class="iconeInicio"
+                alt="Início"
+            >
+
+        </a>
+
+
+        <!-- PAINEL DE RECOMPENSAS -->
+
+        <div
+            id="painelRecompensas"
+            style="display: none;"
+        >
+
+
+            <h2>
+
+                <img
+                    src="assets/estrela.png"
+                    class="iconeRecompensas"
+                    alt="Recompensas"
+                >
+
+                Minhas recompensas
+
+            </h2>
+
+
+            <button
+                id="btnMensagem"
+                type="button"
+            >
+                Ver mensagem motivacional
+            </button>
+
+
+            <button
+                id="btnDica"
+                type="button"
+            >
+                Ver dica de estudo
+            </button>
+
+
+            <p id="resultadoRecompensa"></p>
+
+
+        </div>
 
     </div>
 
+
+    <!-- =====================================================
+         TOPO
+         ===================================================== -->
+
+    <header class="topo">
+
+        <p>Caderno</p>
+
+    </header>
+
+
+    <!-- =====================================================
+         CADERNO
+         ===================================================== -->
+
     <main class="caderno">
+
+
+        <!-- =================================================
+             NOVA ANOTAÇÃO
+             ================================================= -->
 
         <section class="nova-anotacao">
 
             <h2>Nova anotação</h2>
 
-            <label for="materia">Matéria</label>
+
+            <label for="materia">
+                Matéria
+            </label>
+
 
             <select id="materia">
-                <option value="">Selecione uma matéria</option>
-                <option value="portugues">Português</option>
-                <option value="literatura">Literatura</option>
-                <option value="artes">Artes</option>
-                <option value="historia">História</option>
-                <option value="geografia">Geografia</option>
-                <option value="filosofia">Filosofia</option>
-                <option value="sociologia">Sociologia</option>
-                <option value="biologia">Biologia</option>
-                <option value="quimica">Química</option>
-                <option value="fisica">Física</option>
-                <option value="matematica">Matemática</option>
-                <option value="ingles">Inglês</option>
-                <option value="espanhol">Espanhol</option>
+
+                <option value="">
+                    Selecione uma matéria
+                </option>
+
+                <option value="portugues">
+                    Português
+                </option>
+
+                <option value="literatura">
+                    Literatura
+                </option>
+
+                <option value="artes">
+                    Artes
+                </option>
+
+                <option value="historia">
+                    História
+                </option>
+
+                <option value="geografia">
+                    Geografia
+                </option>
+
+                <option value="filosofia">
+                    Filosofia
+                </option>
+
+                <option value="sociologia">
+                    Sociologia
+                </option>
+
+                <option value="biologia">
+                    Biologia
+                </option>
+
+                <option value="quimica">
+                    Química
+                </option>
+
+                <option value="fisica">
+                    Física
+                </option>
+
+                <option value="matematica">
+                    Matemática
+                </option>
+
+                <option value="ingles">
+                    Inglês
+                </option>
+
+                <option value="espanhol">
+                    Espanhol
+                </option>
+
             </select>
 
 
-            <label for="titulo">Título</label>
+            <label for="titulo">
+                Título
+            </label>
+
 
             <input
                 type="text"
@@ -77,7 +209,10 @@
             >
 
 
-            <label for="anotacao">Anotação</label>
+            <label for="anotacao">
+                Anotação
+            </label>
+
 
             <textarea
                 id="anotacao"
@@ -85,14 +220,24 @@
             ></textarea>
 
 
-            <button id="salvar">
+            <button
+                id="salvar"
+                type="button"
+            >
                 Salvar anotação
             </button>
 
         </section>
 
 
-       <section class="minhas-anotacoes">
+        <!-- =================================================
+             MINHAS ANOTAÇÕES
+             ================================================= -->
+
+        <section class="minhas-anotacoes">
+
+
+            <!-- CORUJINHA -->
 
             <img
                 src="assets/coruja.png"
@@ -100,9 +245,16 @@
                 alt="Coruja"
             >
 
-            <h2>Minhas anotações</h2>
+
+            <h2>
+                Minhas anotações
+            </h2>
+
+
+            <!-- FILTROS -->
 
             <div class="filtros">
+
 
                 <input
                     type="text"
@@ -110,30 +262,71 @@
                     placeholder="Pesquisar anotação..."
                 >
 
+
                 <select id="filtro-materia">
 
                     <option value="">
                         Todas as matérias
                     </option>
 
-                    <option value="portugues">Português</option>
-                    <option value="literatura">Literatura</option>
-                    <option value="artes">Artes</option>
-                    <option value="historia">História</option>
-                    <option value="geografia">Geografia</option>
-                    <option value="filosofia">Filosofia</option>
-                    <option value="sociologia">Sociologia</option>
-                    <option value="biologia">Biologia</option>
-                    <option value="quimica">Química</option>
-                    <option value="fisica">Física</option>
-                    <option value="matematica">Matemática</option>
-                    <option value="ingles">Inglês</option>
-                    <option value="espanhol">Espanhol</option>
+                    <option value="portugues">
+                        Português
+                    </option>
+
+                    <option value="literatura">
+                        Literatura
+                    </option>
+
+                    <option value="artes">
+                        Artes
+                    </option>
+
+                    <option value="historia">
+                        História
+                    </option>
+
+                    <option value="geografia">
+                        Geografia
+                    </option>
+
+                    <option value="filosofia">
+                        Filosofia
+                    </option>
+
+                    <option value="sociologia">
+                        Sociologia
+                    </option>
+
+                    <option value="biologia">
+                        Biologia
+                    </option>
+
+                    <option value="quimica">
+                        Química
+                    </option>
+
+                    <option value="fisica">
+                        Física
+                    </option>
+
+                    <option value="matematica">
+                        Matemática
+                    </option>
+
+                    <option value="ingles">
+                        Inglês
+                    </option>
+
+                    <option value="espanhol">
+                        Espanhol
+                    </option>
 
                 </select>
 
             </div>
 
+
+            <!-- LISTA -->
 
             <div id="lista-anotacoes">
 
@@ -146,8 +339,14 @@
     </main>
 
 
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+
     <script src="js/caderno.js"></script>
-    <script src="js/recompensa.js"></script>   
+
+    <script src="js/recompensa.js"></script>
+
 
 </body>
 
