@@ -46,7 +46,7 @@ async function verificarDesafioDoDia() {
 
         const resposta =
             await fetch(
-                `http://localhost:3000/desafios/status/${usuarioLogado.id}`
+                `https://vestfacil-api.onrender.com/desafios/status/${usuarioLogado.id}`,
             );
 
         const dados =

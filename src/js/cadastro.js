@@ -1,7 +1,8 @@
 function cadastrar(e) {
+
     e.preventDefault();
 
-    fetch("http://localhost:3000/cadastro", {
+    fetch("https://vestfacil-api.onrender.com/cadastro", {
         method: "POST",
 
         headers: {

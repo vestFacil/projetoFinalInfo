@@ -54,7 +54,9 @@ async function carregarDesafioExtra() {
             `;
 
             const btnDesafioExtra =
-                document.getElementById("btnDesafioExtra");
+                document.getElementById(
+                    "btnDesafioExtra"
+                );
 
             btnDesafioExtra.addEventListener(
                 "click",
@@ -249,6 +251,7 @@ async function carregarLoja() {
                                     "usuarioLogado"
                                 )
                             );
+
 
                         if (
                             !usuarioLogado ||
