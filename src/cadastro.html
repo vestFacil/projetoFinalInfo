@@ -1,22 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Cadastro</title>
+
   <link rel="stylesheet" href="css/cadastro.css">
+
+  <!-- Ícone da aba -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/coruja.png"
+  >
 </head>
+
 <body>
+
   <div class="cadastro-container">
+
     <h2>Cadastrar</h2>
+
     <form id="cadastroForm" onsubmit="cadastrar(event)">
-      <input type="text" id="nome" placeholder="Nome" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="senha" placeholder="Senha" required>
-      <input type="text" id="bio" placeholder="Curso de interesse" required>
-      <button type="submit">Cadastrar</button>
+
+      <input
+        type="text"
+        id="nome"
+        placeholder="Nome"
+        required
+      >
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+        required
+      >
+
+      <input
+        type="password"
+        id="senha"
+        placeholder="Senha"
+        required
+      >
+
+      <input
+        type="text"
+        id="bio"
+        placeholder="Curso de interesse"
+        required
+      >
+
+      <button type="submit">
+        Cadastrar
+      </button>
+
     </form>
-    <p>Já tem conta? <a href="login.html">Faça login</a></p>
+
+    <p>
+      Já tem conta?
+      <a href="login.html">Faça login</a>
+    </p>
+
   </div>
+
   <script src="js/cadastro.js"></script>
+
 </body>
+
 </html>

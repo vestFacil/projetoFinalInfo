@@ -200,6 +200,37 @@ main > p {
     line-height: 1.5;
 }
 
+/* =========================
+   BOTÃO INÍCIO
+========================= */
+
+.botao-inicio {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    z-index: 1000;
+}
+
+.iconeInicio {
+    width: 40px;
+    height: 40px;
+
+    object-fit: contain;
+
+    transition: transform 0.2s ease;
+}
+
+.botao-inicio:hover .iconeInicio {
+    transform: scale(1.08);
+}
+
 
 /* =========================================================
    TABLET
