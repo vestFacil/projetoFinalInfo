@@ -835,31 +835,34 @@ app.post("/estatisticas", (req, res) => {
 });
 
 
-// ========================
-// METAS - ADICIONAR
-// ========================
+
+ // METAS - ADICIONAR
 
 app.post("/metas", (req, res) => {
+    const usuarioId = req.body.usuarioId ?? req.body.usuario_id;
+    const descricao = req.body.descricao?.trim();
 
-    const {
-        usuarioId,
-        descricao
-    } = req.body;
+    if (!usuarioId || !descricao) {
+        return res.status(400).json({
+            erro: "Informe o usuário e a descrição."
+        });
+    }
 
     db.query(
-        "INSERT INTO metas (usuario_id, descricao) VALUES (?, ?)",
+        "INSERT INTO metas (usuario_id, descricao, concluida) VALUES (?, ?, FALSE)",
         [usuarioId, descricao],
-
-        (err, result) => {
-
+        (err, resultado) => {
             if (err) {
-                return res.status(500).send(err);
+                console.error(err);
+                return res.status(500).json({
+                    erro: "Erro ao adicionar meta."
+                });
             }
 
-            res.json({
-                id: result.insertId,
+            res.status(201).json({
+                id: resultado.insertId,
                 usuario_id: usuarioId,
-                descricao: descricao,
+                descricao,
                 concluida: false
             });
         }
@@ -867,52 +870,63 @@ app.post("/metas", (req, res) => {
 });
 
 
-// ========================
-// METAS - CONCLUIR
-// ========================
+// METAS - CONCLUIR OU DESMARCAR
 
 app.put("/metas/:id", (req, res) => {
-
     const { id } = req.params;
+    const { concluida, usuarioId } = req.body;
 
     db.query(
-        "UPDATE metas SET concluida=TRUE WHERE id=?",
-        [id],
-
-        (err) => {
-
+        "UPDATE metas SET concluida = ? WHERE id = ? AND usuario_id = ?",
+        [concluida, id, usuarioId],
+        (err, resultado) => {
             if (err) {
-                return res.status(500).send(err);
+                console.error(err);
+                return res.status(500).json({
+                    erro: "Erro ao atualizar meta."
+                });
             }
 
-            res.send("Meta concluída!");
+            if (resultado.affectedRows === 0) {
+                return res.status(404).json({
+                    erro: "Meta não encontrada."
+                });
+            }
+
+            res.json({ sucesso: true });
         }
     );
 });
 
 
-// ========================
 // METAS - EXCLUIR
-// ========================
 
 app.delete("/metas/:id", (req, res) => {
-
     const { id } = req.params;
+    const usuarioId = req.query.usuarioId;
 
     db.query(
-        "DELETE FROM metas WHERE id=?",
-        [id],
-
-        (err) => {
-
+        "DELETE FROM metas WHERE id = ? AND usuario_id = ?",
+        [id, usuarioId],
+        (err, resultado) => {
             if (err) {
-                return res.status(500).send(err);
+                console.error(err);
+                return res.status(500).json({
+                    erro: "Erro ao excluir meta."
+                });
             }
 
-            res.send("Meta excluída!");
+            if (resultado.affectedRows === 0) {
+                return res.status(404).json({
+                    erro: "Meta não encontrada."
+                });
+            }
+
+            res.json({ sucesso: true });
         }
     );
 });
+
 
 app.get("/loja", (req, res) => {
 

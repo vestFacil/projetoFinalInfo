@@ -860,3 +860,67 @@ button:disabled {
         padding: 27px 25px;
     }
 }
+
+
+/* =====================================================
+   RODAPÉ FIXO DO VESTFÁCIL
+   ===================================================== */
+
+body {
+    padding-bottom: 60px;
+}
+
+.rodape {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    padding: 5px 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #F0E5F5;
+    border-top: 2px solid #C9B6D9;
+
+    color: #776D78;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    line-height: 1.25;
+
+    box-shadow: 0 -2px 8px rgba(118, 85, 143, 0.06);
+    z-index: 1100;
+}
+
+.rodape p {
+    margin: 1px 0;
+    overflow-wrap: anywhere;
+}
+
+.rodape p:first-child {
+    color: #76558F;
+    font-weight: 700;
+}
+
+.rodape p:last-child {
+    color: #776D78;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding-bottom: 66px;
+    }
+
+    .rodape {
+        min-height: 54px;
+        padding: 5px 10px;
+        font-size: 9px;
+    }
+}

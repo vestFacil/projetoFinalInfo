@@ -1,32 +1,84 @@
+
 document.addEventListener("DOMContentLoaded", () => {
+    // ==========================================
+    // ELEMENTOS DA PÁGINA
+    // ==========================================
 
     const nomeUsuario = document.getElementById("nomeUsuario");
     const emailUsuario = document.getElementById("emailUsuario");
     const bioUsuario = document.getElementById("bioUsuario");
     const fotoPerfil = document.getElementById("fotoPerfil");
     const fotoInput = document.getElementById("fotoInput");
+
     const questoesResolvidas = document.getElementById("questoesResolvidas");
     const mediaRedacao = document.getElementById("mediaRedacao");
     const diasEstudando = document.getElementById("diasEstudando");
+    const maiorSequencia = document.getElementById("maiorSequencia");
+
     const btnEditar = document.getElementById("btnEditar");
     const btnSalvar = document.getElementById("btnSalvar");
+
     const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
     const inputMeta = document.getElementById("inputMeta");
     const metasLista = document.getElementById("metasLista");
-    const maiorSequencia = document.getElementById("maiorSequencia");
 
+    // ==========================================
+    // CONFIGURAÇÃO DA API
+    // ==========================================
+
+    const API_URL = "https://vestfacil-api.onrender.com";
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuarioLogado")
+    );
+
+    // ==========================================
+    // FUNÇÃO PARA FAZER REQUISIÇÕES
+    // ==========================================
+
+    async function requisicao(url, opcoes = {}) {
+        const resposta = await fetch(url, opcoes);
+
+        if (!resposta.ok) {
+            const mensagem = await resposta.text();
+
+            throw new Error(
+                mensagem || `Erro na requisição (${resposta.status}).`
+            );
+        }
+
+        if (resposta.status === 204) {
+            return null;
+        }
+
+        const tipo = resposta.headers.get("content-type");
+
+        if (tipo && tipo.includes("application/json")) {
+            return resposta.json();
+        }
+
+        return null;
+    }
+
+    function opcoesJSON(method, dados) {
+        return {
+            method,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        };
+    }
 
     // ==========================================
     // VERIFICAR USUÁRIO LOGADO
     // ==========================================
 
-    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    if (!usuario) {
-
+    if (!usuario || !usuario.id) {
         const aviso = document.createElement("div");
 
-        aviso.textContent = "⚠️ Você ainda não fez login ou cadastro.";
+        aviso.textContent =
+            "Você ainda não fez login ou cadastro.";
 
         aviso.style.backgroundColor = "#ffeb3b";
         aviso.style.padding = "10px";
@@ -34,313 +86,390 @@ document.addEventListener("DOMContentLoaded", () => {
         aviso.style.textAlign = "center";
         aviso.style.fontWeight = "bold";
 
-
         const btnCadastro = document.createElement("button");
 
         btnCadastro.textContent = "Cadastrar-se";
 
-        btnCadastro.style.marginLeft = "15px";
-        btnCadastro.style.padding = "5px 10px";
-        btnCadastro.style.cursor = "pointer";
-        btnCadastro.style.border = "none";
-        btnCadastro.style.backgroundColor = "#1976d2";
-        btnCadastro.style.color = "white";
-        btnCadastro.style.borderRadius = "4px";
-
-
         btnCadastro.addEventListener("click", () => {
-
             window.location.href = "cadastro.html";
-
         });
-
 
         aviso.appendChild(btnCadastro);
-
         document.body.prepend(aviso);
 
+        if (btnEditar) {
+            btnEditar.textContent = "Cadastrar-se";
 
-        btnEditar.textContent = "Cadastrar-se";
-
-        btnEditar.addEventListener("click", () => {
-
-            window.location.href = "cadastro.html";
-
-        });
+            btnEditar.addEventListener("click", () => {
+                window.location.href = "cadastro.html";
+            });
+        }
 
         return;
     }
 
-
     // ==========================================
-    // CARREGAR DADOS DO BANCO
+    // CARREGAR PERFIL E METAS
     // ==========================================
 
-    fetch("https://vestfacil-api.onrender.com/perfil/" + usuario.id)
+    async function carregarPerfil() {
+        try {
+            const dados = await requisicao(
+                `${API_URL}/perfil/${usuario.id}`
+            );
 
-        .then(res => {
+            nomeUsuario.textContent = dados.nome || "";
+            emailUsuario.textContent = dados.email || "";
+            bioUsuario.textContent = dados.bio || "Sem bio";
 
-            if (!res.ok) {
-
-                throw new Error("Erro ao buscar perfil.");
-
-            }
-
-            return res.json();
-
-        })
-
-        .then(data => {
-
-            console.log("Dados recebidos do banco:", data);
-
-
-            // Dados do usuário
-
-            nomeUsuario.textContent = data.nome;
-
-            emailUsuario.textContent = data.email;
-
-            bioUsuario.textContent = data.bio || "Sem bio";
-
-
-            // Foto
-
-            fotoPerfil.src = data.foto || "img/user.png";
-
-
-            // Estatísticas
+            fotoPerfil.src = dados.foto || "img/user.png";
 
             questoesResolvidas.textContent =
-                data.questoes_resolvidas || 0;
+                dados.questoes_resolvidas ?? 0;
 
             mediaRedacao.textContent =
-                data.media_redacao || 0;
+                dados.media_redacao ?? 0;
 
             diasEstudando.textContent =
-                data.dias_estudando || 0;
+                dados.dias_estudando ?? 0;
 
             maiorSequencia.textContent =
-                data.maior_sequencia || 0;
+                dados.maior_sequencia ?? 0;
 
-
-            // Metas
-
+            // Carregar as metas salvas no banco
             metasLista.innerHTML = "";
 
-            if (data.metas) {
-
-                data.metas.forEach(meta => {
-
-                    adicionarMetaNaLista(
-                        meta.descricao,
-                        meta.concluida
-                    );
-
+            if (Array.isArray(dados.metas)) {
+                dados.metas.forEach(meta => {
+                    adicionarMetaNaLista(meta);
                 });
-
             }
+        } catch (erro) {
+            console.error("Erro ao carregar perfil:", erro);
 
-        })
-
-        .catch(err => {
-
-            console.error("Erro ao carregar perfil:", err);
-
-        });
-
+            alert(
+                "Não foi possível carregar o perfil. " +
+                "Verifique a conexão com o servidor."
+            );
+        }
+    }
 
     // ==========================================
     // EDITAR PERFIL
     // ==========================================
 
     btnEditar.addEventListener("click", () => {
+        if (document.getElementById("inputNome")) {
+            return;
+        }
 
-        nomeUsuario.innerHTML =
-            `<input type="text" id="inputNome" value="${nomeUsuario.textContent}">`;
+        const nomeAtual = nomeUsuario.textContent;
+        const emailAtual = emailUsuario.textContent;
 
-        emailUsuario.innerHTML =
-            `<input type="email" id="inputEmail" value="${emailUsuario.textContent}">`;
+        const bioAtual =
+            bioUsuario.textContent === "Sem bio"
+                ? ""
+                : bioUsuario.textContent;
 
-        bioUsuario.innerHTML =
-            `<input type="text" id="inputBio" value="${bioUsuario.textContent}">`;
+        nomeUsuario.replaceChildren();
+        emailUsuario.replaceChildren();
+        bioUsuario.replaceChildren();
 
+        const inputNome = document.createElement("input");
+        inputNome.type = "text";
+        inputNome.id = "inputNome";
+        inputNome.value = nomeAtual;
+
+        const inputEmail = document.createElement("input");
+        inputEmail.type = "email";
+        inputEmail.id = "inputEmail";
+        inputEmail.value = emailAtual;
+
+        const inputBio = document.createElement("input");
+        inputBio.type = "text";
+        inputBio.id = "inputBio";
+        inputBio.value = bioAtual;
+
+        nomeUsuario.appendChild(inputNome);
+        emailUsuario.appendChild(inputEmail);
+        bioUsuario.appendChild(inputBio);
 
         fotoInput.style.display = "block";
-
         btnEditar.style.display = "none";
-
         btnSalvar.style.display = "inline-block";
-
     });
-
 
     // ==========================================
     // SALVAR PERFIL
     // ==========================================
 
-    btnSalvar.addEventListener("click", () => {
+    btnSalvar.addEventListener("click", async () => {
+        const inputNome = document.getElementById("inputNome");
+        const inputEmail = document.getElementById("inputEmail");
+        const inputBio = document.getElementById("inputBio");
 
-        const novoNome =
-            document.getElementById("inputNome").value;
+        if (!inputNome || !inputEmail || !inputBio) {
+            return;
+        }
 
-        const novoEmail =
-            document.getElementById("inputEmail").value;
+        const dadosAtualizados = {
+            nome: inputNome.value.trim(),
+            email: inputEmail.value.trim(),
+            bio: inputBio.value.trim()
+        };
 
-        const novaBio =
-            document.getElementById("inputBio").value;
+        if (!dadosAtualizados.nome || !dadosAtualizados.email) {
+            alert("Preencha o nome e o e-mail.");
+            return;
+        }
 
+        btnSalvar.disabled = true;
 
-        fetch("https://vestfacil-api.onrender.com/perfil/" + usuario.id, {
+        try {
+            const dados = await requisicao(
+                `${API_URL}/perfil/${usuario.id}`,
+                opcoesJSON("PUT", dadosAtualizados)
+            );
 
-            method: "PUT",
+            const perfil = dados || dadosAtualizados;
 
-            headers: {
+            nomeUsuario.textContent = perfil.nome;
+            emailUsuario.textContent = perfil.email;
+            bioUsuario.textContent = perfil.bio || "Sem bio";
 
-                "Content-Type": "application/json"
-
-            },
-
-            body: JSON.stringify({
-
-                nome: novoNome,
-
-                email: novoEmail,
-
-                bio: novaBio
-
-            })
-
-        })
-
-        .then(res => {
-
-            if (!res.ok) {
-
-                return res.text().then(msg => {
-
-                    throw new Error(msg);
-
-                });
-
-            }
-
-            return res.json();
-
-        })
-
-        .then(data => {
-
-            console.log("Perfil atualizado:", data);
-
-
-            // Atualizar os dados na tela
-
-            nomeUsuario.textContent = data.nome;
-
-            emailUsuario.textContent = data.email;
-
-            bioUsuario.textContent = data.bio || "Sem bio";
-
-
-            // Atualizar localStorage
-
-            usuario.nome = data.nome;
-
-            usuario.email = data.email;
-
-            usuario.bio = data.bio;
+            usuario.nome = perfil.nome;
+            usuario.email = perfil.email;
+            usuario.bio = perfil.bio;
 
             localStorage.setItem(
                 "usuarioLogado",
                 JSON.stringify(usuario)
             );
 
-
-            // Voltar para o modo normal
-
             btnEditar.style.display = "inline-block";
-
             btnSalvar.style.display = "none";
-
             fotoInput.style.display = "none";
 
-
             alert("Perfil atualizado com sucesso!");
-
-        })
-
-        .catch(err => {
-
-            console.error("Erro ao salvar perfil:", err);
-
-            alert("Erro ao salvar o perfil: " + err.message);
-
-        });
-
+        } catch (erro) {
+            console.error("Erro ao salvar perfil:", erro);
+            alert("Não foi possível salvar o perfil.");
+        } finally {
+            btnSalvar.disabled = false;
+        }
     });
 
-
     // ==========================================
-    // ALTERAR FOTO
+    // PRÉ-VISUALIZAR FOTO
     // ==========================================
 
-    fotoInput.addEventListener("change", (event) => {
+    fotoInput.addEventListener("change", event => {
+        const arquivo = event.target.files[0];
 
-        const file = event.target.files[0];
-
-        if (file) {
-
-            const reader = new FileReader();
-
-            reader.onload = () => {
-
-                fotoPerfil.src = reader.result;
-
-            };
-
-            reader.readAsDataURL(file);
-
+        if (!arquivo) {
+            return;
         }
 
-    });
+        if (!arquivo.type.startsWith("image/")) {
+            alert("Selecione um arquivo de imagem.");
+            fotoInput.value = "";
+            return;
+        }
 
+        const leitor = new FileReader();
+
+        leitor.onload = () => {
+            fotoPerfil.src = leitor.result;
+        };
+
+        leitor.readAsDataURL(arquivo);
+    });
 
     // ==========================================
     // ADICIONAR META
     // ==========================================
 
-    btnAdicionarMeta.addEventListener("click", () => {
-
-        if (inputMeta.value.trim() === "") {
-
-            return;
-
-        }
-
-
+    async function adicionarMeta() {
         const descricao = inputMeta.value.trim();
 
-        adicionarMetaNaLista(descricao, false);
+        if (!descricao) {
+            alert("Digite uma meta antes de adicionar!");
+            inputMeta.focus();
+            return;
+        }
 
-        inputMeta.value = "";
+        btnAdicionarMeta.disabled = true;
 
-    });
+        try {
+            const dados = await requisicao(
+                `${API_URL}/metas`,
+                opcoesJSON("POST", {
+                    usuarioId: usuario.id,
+                    descricao: descricao
+                })
+            );
 
+            if (!dados || dados.id == null) {
+                throw new Error(
+                    "A API não retornou o ID da meta criada."
+                );
+            }
 
-    // ==========================================
-    // FUNÇÃO PARA ADICIONAR META NA TELA
-    // ==========================================
+            adicionarMetaNaLista({
+                ...dados,
+                descricao: dados.descricao || descricao,
+                concluida: dados.concluida ?? false
+            });
 
-    function adicionarMetaNaLista(descricao, concluida) {
+            inputMeta.value = "";
+            inputMeta.focus();
+        } catch (erro) {
+            console.error("Erro ao adicionar meta:", erro);
 
-        const li = document.createElement("li");
-
-        li.textContent =
-            descricao + (concluida ? " ✅" : "");
-
-        metasLista.appendChild(li);
-
+            alert(
+                "Não foi possível salvar a meta. " +
+                "Confira se a rota POST /metas está correta na API."
+            );
+        } finally {
+            btnAdicionarMeta.disabled = false;
+        }
     }
 
+    btnAdicionarMeta.addEventListener("click", adicionarMeta);
+
+    inputMeta.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            adicionarMeta();
+        }
+    });
+
+    // ==========================================
+    // CRIAR META NA LISTA
+    // ==========================================
+
+    function adicionarMetaNaLista(meta) {
+        const li = document.createElement("li");
+        li.className = "meta-item";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "meta-checkbox";
+        checkbox.checked = Boolean(meta.concluida);
+
+        checkbox.setAttribute(
+            "aria-label",
+            "Marcar meta como concluída"
+        );
+
+        const texto = document.createElement("span");
+        texto.className = "meta-texto";
+        texto.textContent = meta.descricao;
+
+        const btnExcluir = document.createElement("button");
+        btnExcluir.type = "button";
+        btnExcluir.className = "meta-excluir";
+        btnExcluir.textContent = "Excluir";
+
+        btnExcluir.setAttribute(
+            "aria-label",
+            `Excluir meta: ${meta.descricao}`
+        );
+
+        function atualizarAparencia() {
+            texto.classList.toggle(
+                "meta-concluida",
+                checkbox.checked
+            );
+
+            li.classList.toggle(
+                "meta-item-concluida",
+                checkbox.checked
+            );
+        }
+
+        // ==========================================
+        // MARCAR OU DESMARCAR META
+        // ==========================================
+
+        checkbox.addEventListener("change", async () => {
+            const estadoAnterior = !checkbox.checked;
+
+            checkbox.disabled = true;
+
+            try {
+                await requisicao(
+                    `${API_URL}/metas/${meta.id}`,
+                    opcoesJSON("PUT", {
+                        concluida: checkbox.checked,
+                        usuarioId: usuario.id
+                    })
+                );
+
+                meta.concluida = checkbox.checked;
+                atualizarAparencia();
+            } catch (erro) {
+                console.error("Erro ao atualizar meta:", erro);
+
+                checkbox.checked = estadoAnterior;
+                atualizarAparencia();
+
+                alert(
+                    "Não foi possível atualizar a meta. " +
+                    "Confira a rota PUT /metas/:id na API."
+                );
+            } finally {
+                checkbox.disabled = false;
+            }
+        });
+
+        // ==========================================
+        // EXCLUIR META
+        // ==========================================
+
+        btnExcluir.addEventListener("click", async () => {
+            const confirmar = window.confirm(
+                `Deseja excluir a meta "${meta.descricao}"?`
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            btnExcluir.disabled = true;
+
+            try {
+                await requisicao(
+                    `${API_URL}/metas/${meta.id}?usuarioId=${encodeURIComponent(usuario.id)}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+                li.remove();
+            } catch (erro) {
+                console.error("Erro ao excluir meta:", erro);
+
+                alert(
+                    "Não foi possível excluir a meta. " +
+                    "Confira a rota DELETE /metas/:id na API."
+                );
+            } finally {
+                btnExcluir.disabled = false;
+            }
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(texto);
+        li.appendChild(btnExcluir);
+
+        atualizarAparencia();
+        metasLista.appendChild(li);
+    }
+
+    // ==========================================
+    // INICIAR PÁGINA
+    // ==========================================
+
+    carregarPerfil();
 });

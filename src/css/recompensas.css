@@ -1,19 +1,48 @@
+
 /* =====================================================
-   RECOMPENSAS - ESTILO VESTFÁCIL
+   VESTFÁCIL — ESTILO COMPARTILHADO
    ===================================================== */
 
+:root {
+    --vf-fundo: #F6EEDC;
+    --vf-card: #FFF9ED;
+    --vf-roxo: #76558F;
+    --vf-roxo-secundario: #8B5FBF;
+    --vf-lilas: #C9B6D9;
+    --vf-lilas-claro: #F0E5F5;
+    --vf-texto: #403746;
+    --vf-texto-secundario: #776D78;
+    --vf-borda: #E2D3E9;
+
+    --vf-altura-rodape: 48px;
+}
 
 /* =====================================================
-   GRUPO DO TOPO
+   PADRÃO GLOBAL
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    padding-bottom: calc(var(--vf-altura-rodape) + 12px);
+}
+
+/* =====================================================
+   BOTÕES DO TOPO
    ===================================================== */
 
 .acoes-topo,
 .acoes-recompensas {
     position: fixed;
-
     top: 20px;
     right: 24px;
-
     z-index: 1000;
 }
 
@@ -23,372 +52,281 @@
     gap: 10px;
 }
 
-
-/* =====================================================
-   ✨ BOTÃO DE RECOMPENSAS
-   ===================================================== */
+/* Botão de recompensas */
 
 .acoes-topo #btnRecompensas,
 .acoes-recompensas #btnRecompensas {
-
     position: static;
-
-    width: 48px;
-    height: 48px;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 
+    width: 48px;
+    height: 48px;
     margin: 0;
     padding: 0;
 
-    background-color: #F0E5F5;
-
-    border: 2px solid #D8C5E3;
-
+    background-color: var(--vf-lilas-claro);
+    border: 2px solid var(--vf-borda);
     border-radius: 50%;
 
     cursor: pointer;
+    box-shadow: 0 3px 9px rgba(118, 85, 143, 0.12);
 
-    box-shadow:
-        0 3px 9px rgba(118, 85, 143, 0.12);
-
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
-
-
-/* =====================================================
-   ⭐ IMAGEM DA RECOMPENSA
-   ===================================================== */
 
 #btnRecompensas .iconeRecompensas {
-
+    display: block;
     width: 27px;
     height: 27px;
-
     object-fit: contain;
-
-    display: block;
-
-    transition:
-        transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
-
-
-/* Hover */
 
 .acoes-topo #btnRecompensas:hover,
 .acoes-recompensas #btnRecompensas:hover {
-
     background-color: #E5D5EE;
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 5px 12px rgba(118, 85, 143, 0.17);
 }
-
 
 #btnRecompensas:hover .iconeRecompensas {
-
-    transform:
-        scale(1.10)
-        rotate(5deg);
+    transform: scale(1.08);
 }
 
-
-/* =====================================================
-   🏠 CASINHA
-   ===================================================== */
+/* Botão inicial */
 
 .acoes-topo .botao-inicio {
-
     position: static;
-
-    width: 48px;
-    height: 48px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    margin: 0;
-    padding: 0;
-
-    background-color: transparent;
-
-    border: none;
-
-    border-radius: 0;
-
-    text-decoration: none;
-
-    box-shadow: none;
-
-    transition:
-        transform 0.2s ease;
-}
-
-
-/* =====================================================
-   🏠 IMAGEM DA CASINHA
-   ===================================================== */
-
-.acoes-topo .iconeInicio {
+    flex-shrink: 0;
 
     width: 48px;
     height: 48px;
+    margin: 0;
+    padding: 0;
 
-    object-fit: contain;
-
-    display: block;
-
-    transition:
-        transform 0.2s ease;
-}
-
-
-/* Hover da casinha */
-
-.acoes-topo .botao-inicio:hover {
-
-    background-color: transparent;
-
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
     box-shadow: none;
 
-    transform:
-        translateY(-2px);
+    transition: transform 0.2s ease;
 }
 
-
-.acoes-topo .botao-inicio:hover .iconeInicio {
-
-    transform:
-        scale(1.06)
-        rotate(3deg);
+.acoes-topo .iconeInicio {
+    display: block;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
 }
 
+.acoes-topo .botao-inicio:hover {
+    background: transparent;
+    box-shadow: none;
+    transform: translateY(-2px);
+}
 
 /* =====================================================
-   💜 PAINEL DE RECOMPENSAS
+   PAINEL DE RECOMPENSAS
    ===================================================== */
 
 #painelRecompensas {
-
     position: fixed;
-
     top: 78px;
     right: 24px;
 
     width: 275px;
-    max-width: calc(100vw - 48px);
+    max-width: calc(100vw - 30px);
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
 
     padding: 20px;
 
-    box-sizing: border-box;
-
-    background-color: #FFF9ED;
-
-    border: 2px solid #E2D3E9;
-
+    background-color: var(--vf-card);
+    border: 2px solid var(--vf-borda);
     border-radius: 19px;
 
-    box-shadow:
-        0 8px 22px rgba(118, 85, 143, 0.12);
-
+    box-shadow: 0 8px 22px rgba(118, 85, 143, 0.12);
     z-index: 1001;
 }
 
-
-/* =====================================================
-   TÍTULO DO PAINEL
-   ===================================================== */
-
 #painelRecompensas h2 {
-
-    margin: 0 0 17px;
-
-    color: #76558F;
-
-    font-size: 19px;
-    font-weight: 600;
-
-    text-align: center;
-
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
+    margin: 0 0 17px;
+    color: var(--vf-roxo);
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+}
 
 #painelRecompensas h2 .iconeRecompensas {
-
     width: 22px;
     height: 22px;
-
-    object-fit: contain;
-
     margin-right: 6px;
+    object-fit: contain;
 }
 
-
-/* =====================================================
-   BOTÕES DO PAINEL
-   ===================================================== */
-
 #painelRecompensas button {
-
+    display: block;
     width: 100%;
 
-    margin-bottom: 10px;
-
+    margin: 0 0 10px;
     padding: 11px 13px;
 
     background-color: #F4EBF7;
-
-    color: #403746;
+    color: var(--vf-texto);
 
     border: 1px solid #DCCBE5;
-
     border-radius: 12px;
 
     font-size: 14px;
     font-weight: 600;
-
     cursor: pointer;
 
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
-
 
 #painelRecompensas button:hover {
-
     background-color: #E8D9EF;
-
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 3px 7px rgba(118, 85, 143, 0.08);
+    transform: translateY(-1px);
 }
 
-
-/* =====================================================
-   RESULTADO
-   ===================================================== */
+#painelRecompensas button:last-child {
+    margin-bottom: 0;
+}
 
 #resultadoRecompensa {
-
     margin: 14px 0 0;
-
     padding: 12px;
 
-    background-color: #F6EEDC;
-
+    background-color: var(--vf-fundo);
     border: 1px solid #E8DCC8;
-
     border-radius: 12px;
 
-    color: #776D78;
-
+    color: var(--vf-texto-secundario);
     font-size: 14px;
-
     line-height: 1.5;
-
     text-align: center;
 }
+
 /* =====================================================
-   RODAPÉ
+   RODAPÉ FININHO — TODAS AS PÁGINAS
    ===================================================== */
 
 .rodape {
     position: fixed;
-    bottom: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
 
     width: 100%;
-    box-sizing: border-box;
+    min-height: var(--vf-altura-rodape);
+    margin: 0;
+    padding: 5px 16px;
 
-    padding: 7px 15px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    background-color: rgba(255, 249, 237, 0.96);
+    background-color: var(--vf-lilas-claro);
+    border-top: 2px solid var(--vf-lilas);
 
-    border-top: 1px solid #c6bdc4;
-
-    color: #676567;
-
+    color: var(--vf-texto-secundario);
     text-align: center;
+    font-size: 10px;
+    line-height: 1.25;
 
-    font-size: 11px;
-    line-height: 1.3;
-
-    z-index: 1000;
+    box-shadow: 0 -2px 8px rgba(118, 85, 143, 0.06);
+    z-index: 1100;
 }
 
 .rodape p {
     margin: 1px 0;
+    overflow-wrap: anywhere;
 }
 
+.rodape p:first-child {
+    color: var(--vf-roxo);
+    font-weight: 600;
+}
+
+.rodape p:last-child {
+    color: var(--vf-texto-secundario);
+}
 
 /* =====================================================
-   📱 CELULAR
+   CELULARES
    ===================================================== */
 
 @media (max-width: 600px) {
+    :root {
+        --vf-altura-rodape: 54px;
+    }
+
+    body {
+        padding-bottom: calc(var(--vf-altura-rodape) + 12px);
+    }
 
     .acoes-topo,
     .acoes-recompensas {
-
         top: 15px;
         right: 15px;
     }
 
+    .acoes-topo {
+        gap: 7px;
+    }
 
     .acoes-topo #btnRecompensas,
     .acoes-recompensas #btnRecompensas {
-
         width: 44px;
         height: 44px;
     }
 
-
     #btnRecompensas .iconeRecompensas {
-
         width: 25px;
         height: 25px;
     }
 
-
-    .acoes-topo .botao-inicio {
-
-        width: 44px;
-        height: 44px;
-    }
-
-
+    .acoes-topo .botao-inicio,
     .acoes-topo .iconeInicio {
-
         width: 44px;
         height: 44px;
     }
-
 
     #painelRecompensas {
-
         top: 68px;
         right: 15px;
 
         width: calc(100vw - 30px);
         max-width: 300px;
+        max-height: calc(100vh - 130px);
 
+        padding: 17px;
         border-radius: 17px;
     }
 
+    .rodape {
+        padding: 5px 10px;
+        font-size: 9px;
+    }
+}
+
+/* Respeita a preferência por menos movimento */
+
+@media (prefers-reduced-motion: reduce) {
+    .acoes-topo *,
+    .acoes-recompensas *,
+    #painelRecompensas * {
+        transition: none;
+    }
 }
