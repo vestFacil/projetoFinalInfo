@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const fotoInput = document.getElementById("fotoInput");
 
     const questoesResolvidas = document.getElementById("questoesResolvidas");
-    const mediaRedacao = document.getElementById("mediaRedacao");
     const diasEstudando = document.getElementById("diasEstudando");
     const maiorSequencia = document.getElementById("maiorSequencia");
 
@@ -126,9 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             questoesResolvidas.textContent =
                 dados.questoes_resolvidas ?? 0;
-
-            mediaRedacao.textContent =
-                dados.media_redacao ?? 0;
 
             diasEstudando.textContent =
                 dados.dias_estudando ?? 0;

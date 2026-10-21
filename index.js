@@ -162,7 +162,6 @@ app.get("/perfil/:id", (req, res) => {
                     const estatisticas =
                         estResults[0] || {
                             questoes_resolvidas: 0,
-                            media_redacao: 0,
                             dias_estudando: 0
                         };
 
@@ -804,7 +803,7 @@ app.post("/estatisticas", (req, res) => {
     } = req.body;
 
     db.query(
-        "UPDATE estatisticas SET questoes_resolvidas=?, media_redacao=?, dias_estudando=?, ultimo_acesso=CURDATE() WHERE usuario_id=?",
+        "UPDATE estatisticas SET questoes_resolvidas=?, dias_estudando=?, ultimo_acesso=CURDATE() WHERE usuario_id=?",
         [questoes, media, dias, usuarioId],
 
         (err, result) => {
@@ -816,7 +815,7 @@ app.post("/estatisticas", (req, res) => {
             if (result.affectedRows === 0) {
 
                 db.query(
-                    "INSERT INTO estatisticas (usuario_id, questoes_resolvidas, media_redacao, dias_estudando, ultimo_acesso) VALUES (?, ?, ?, ?, CURDATE())",
+                    "INSERT INTO estatisticas (usuario_id, questoes_resolvidas dias_estudando, ultimo_acesso) VALUES (?, ?, ?, ?, CURDATE())",
                     [usuarioId, questoes, media, dias],
 
                     (err) => {

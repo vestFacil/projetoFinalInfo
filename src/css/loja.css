@@ -473,6 +473,461 @@ main > p {
 }
 
 
+/* ==============================
+   POPUP DE RECOMPENSA
+   ============================== */
+
+.popup-recompensa[hidden] {
+    display: none !important;
+}
+
+.popup-recompensa {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(64, 55, 70, 0.65);
+    backdrop-filter: blur(4px);
+}
+
+.popup-recompensa-conteudo {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+
+    padding: 32px 26px;
+    border: 2px solid #C9B6D9;
+    border-radius: 24px;
+
+    background: #FFF9ED;
+    color: #403746;
+    text-align: center;
+
+    box-shadow: 0 12px 40px rgba(64, 55, 70, 0.2);
+
+    animation: aparecerPopupRecompensa 0.25s ease-out;
+}
+
+.icone-recompensa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 16px;
+
+    border-radius: 50%;
+    background: #E8DDF2;
+    font-size: 36px;
+}
+
+.popup-recompensa-conteudo h2 {
+    margin: 0 20px 12px;
+    color: #76558F;
+    font-size: 25px;
+}
+
+.nome-recompensa-popup {
+    margin: 0 0 10px;
+    font-weight: bold;
+    color: #76558F;
+}
+
+#textoPopupRecompensa {
+    line-height: 1.6;
+}
+
+.instrucoes-recompensa {
+    margin: 22px 0;
+    padding: 16px;
+    border-radius: 14px;
+    background: #F6EEDC;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.instrucoes-recompensa p {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.instrucoes-recompensa p span {
+    flex-shrink: 0;
+}
+
+.fechar-popup-recompensa {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+
+    border: none;
+    background: transparent;
+    color: #776D78;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.botao-confirmar-recompensa {
+    width: 100%;
+    padding: 14px 18px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #76558F;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.botao-confirmar-recompensa:hover {
+    background: #624477;
+}
+
+.botao-confirmar-recompensa:focus-visible,
+.fechar-popup-recompensa:focus-visible {
+    outline: 3px solid #8B5FBF;
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   POPUP DE RECOMPENSA DESBLOQUEADA
+   ========================================= */
+
+.popup-recompensa[hidden] {
+    display: none !important;
+}
+
+.popup-recompensa {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    overflow-y: auto;
+
+    background: rgba(64, 55, 70, 0.65);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Caixa principal */
+
+.popup-recompensa-conteudo {
+    position: relative;
+
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+
+    margin: auto;
+    padding: 34px 28px 28px;
+
+    background: #FFF9ED;
+    color: #403746;
+
+    border: 2px solid #C9B6D9;
+    border-radius: 24px;
+
+    text-align: center;
+
+    box-shadow: 0 16px 45px rgba(64, 55, 70, 0.22);
+
+    animation: popupEntrar 0.25s ease-out;
+}
+
+/* Botão de fechar */
+
+.fechar-popup-recompensa {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #776D78;
+
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.fechar-popup-recompensa:hover {
+    background: #E8DDF2;
+    color: #76558F;
+}
+
+/* Estrela principal */
+
+.icone-recompensa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 76px;
+    height: 76px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+    background: #E8DDF2;
+
+    color: #76558F;
+    font-size: 42px;
+
+    box-shadow: 0 4px 12px rgba(118, 85, 143, 0.12);
+}
+
+/* Título */
+
+.popup-recompensa-conteudo h2 {
+    margin: 0 16px 14px;
+
+    color: #76558F;
+    font-size: 26px;
+    line-height: 1.3;
+}
+
+/* Nome do item comprado */
+
+.nome-recompensa-popup {
+    margin: 0 0 12px;
+
+    color: #8B5FBF;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Mensagem da compra */
+
+#textoPopupRecompensa {
+    margin: 0;
+
+    color: #776D78;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Instruções de uso */
+
+.instrucoes-recompensa {
+    margin: 24px 0;
+    padding: 17px 18px;
+
+    background: #F6EEDC;
+    border: 1px solid #E8DDF2;
+    border-radius: 16px;
+
+    text-align: left;
+}
+
+.instrucoes-recompensa p {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+
+    margin: 0;
+    color: #403746;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.instrucoes-recompensa p + p {
+    margin-top: 14px;
+}
+
+/* Ícones das instruções */
+
+.instrucoes-recompensa p span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 25px;
+    min-height: 25px;
+
+    color: #76558F;
+    font-size: 20px;
+}
+
+.instrucoes-recompensa p span img {
+    display: block;
+
+    width: 23px;
+    height: 23px;
+
+    object-fit: contain;
+}
+
+/* Botão de confirmação */
+
+.botao-confirmar-recompensa {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 15px 18px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: #76558F;
+    color: #FFFFFF;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(118, 85, 143, 0.16);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.botao-confirmar-recompensa:hover {
+    background: #624477;
+    box-shadow: 0 6px 14px rgba(118, 85, 143, 0.22);
+    transform: translateY(-1px);
+}
+
+.botao-confirmar-recompensa:active {
+    transform: translateY(0);
+}
+
+/* Acessibilidade pelo teclado */
+
+.fechar-popup-recompensa:focus-visible,
+.botao-confirmar-recompensa:focus-visible {
+    outline: 3px solid #8B5FBF;
+    outline-offset: 4px;
+}
+
+/* Animação de entrada */
+
+@keyframes popupEntrar {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Celulares */
+
+@media (max-width: 480px) {
+    .popup-recompensa {
+        padding: 14px;
+    }
+
+    .popup-recompensa-conteudo {
+        padding: 32px 20px 22px;
+        border-radius: 20px;
+    }
+
+    .icone-recompensa {
+        width: 66px;
+        height: 66px;
+        font-size: 36px;
+    }
+
+    .popup-recompensa-conteudo h2 {
+        font-size: 22px;
+    }
+
+    .nome-recompensa-popup {
+        font-size: 17px;
+    }
+
+    .instrucoes-recompensa {
+        padding: 14px;
+    }
+
+    .botao-confirmar-recompensa {
+        padding: 14px;
+    }
+}
+
+/* Respeitar preferência por menos animações */
+
+@media (prefers-reduced-motion: reduce) {
+    .popup-recompensa-conteudo {
+        animation: none;
+    }
+
+    .botao-confirmar-recompensa {
+        transition: none;
+    }
+}
+
+
+@keyframes aparecerPopupRecompensa {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-recompensa-conteudo {
+        padding: 28px 20px;
+    }
+
+    .popup-recompensa-conteudo h2 {
+        font-size: 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .popup-recompensa-conteudo {
+        animation: none;
+    }
+}
+
+
+
 /* =========================================================
    TABLET
    ========================================================= */

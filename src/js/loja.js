@@ -9,6 +9,53 @@ const desafioExtra =
 
 
 /* =========================
+   POPUP DE RECOMPENSA
+   ========================= */
+
+function mostrarPopupRecompensa(nomeItem, mensagem) {
+    const popup = document.getElementById("popupRecompensa");
+    const nome = document.getElementById("nomeRecompensaPopup");
+    const texto = document.getElementById("textoPopupRecompensa");
+    const botaoFechar = document.getElementById("fecharPopupRecompensa");
+    const botaoConfirmar = document.getElementById("confirmarPopupRecompensa");
+
+    nome.textContent = nomeItem || "Sua recompensa";
+
+    texto.textContent =
+        mensagem || "Sua recompensa foi ativada com sucesso!";
+
+    popup.hidden = false;
+    botaoConfirmar.focus();
+
+    function fecharPopup() {
+        popup.hidden = true;
+
+        botaoFechar.removeEventListener("click", fecharPopup);
+        botaoConfirmar.removeEventListener("click", fecharPopup);
+        popup.removeEventListener("click", clicarFora);
+        document.removeEventListener("keydown", apertarEscape);
+    }
+
+    function clicarFora(evento) {
+        if (evento.target === popup) {
+            fecharPopup();
+        }
+    }
+
+    function apertarEscape(evento) {
+        if (evento.key === "Escape") {
+            fecharPopup();
+        }
+    }
+
+    botaoFechar.addEventListener("click", fecharPopup);
+    botaoConfirmar.addEventListener("click", fecharPopup);
+    popup.addEventListener("click", clicarFora);
+    document.addEventListener("keydown", apertarEscape);
+}
+
+
+/* =========================
    CARREGAR DESAFIO EXTRA
    ========================= */
 
@@ -30,7 +77,7 @@ async function carregarDesafioExtra() {
 
         const respostaDesafio =
             await fetch(
-                `http://localhost:3000/desafios/extras/${usuarioLogado.id}`,
+                `https://vestfacil-api.onrender.com/desafios/extras/${usuarioLogado.id}`,
                 {
                     cache: "no-store"
                 }
@@ -107,7 +154,7 @@ async function atualizarXP() {
 
         const respostaXP =
             await fetch(
-                `http://localhost:3000/loja/xp/${usuarioLogado.id}`,
+                `https://vestfacil-api.onrender.com/loja/xp/${usuarioLogado.id}`,
                 {
                     cache: "no-store"
                 }
@@ -182,7 +229,7 @@ async function carregarLoja() {
 
         const resposta =
             await fetch(
-                "http://localhost:3000/loja",
+                "https://vestfacil-api.onrender.com/loja",
                 {
                     cache: "no-store"
                 }
@@ -269,12 +316,16 @@ async function carregarLoja() {
                         const itemId =
                             botao.dataset.id;
 
+                        const nomeItem =
+                        botao.closest("div")?.querySelector("h2")?.textContent
+                        || "Sua recompensa";    
+
 
                         try {
 
                             const resposta =
                                 await fetch(
-                                    "http://localhost:3000/loja/resgatar",
+                                    "https://vestfacil-api.onrender.com/loja/resgatar",
                                     {
                                         method: "POST",
 
@@ -318,8 +369,8 @@ async function carregarLoja() {
                                 resultado.xpRestante;
 
 
-                            alert(
-                                "🎉 " +
+                            mostrarPopupRecompensa(
+                                nomeItem,
                                 resultado.mensagem
                             );
 

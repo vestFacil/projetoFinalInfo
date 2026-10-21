@@ -110,6 +110,66 @@
 
     </footer>
 
+    
+    <!-- POPUP DE RECOMPENSA DESBLOQUEADA -->
+    <div
+        id="popupRecompensa"
+        class="popup-recompensa"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloPopupRecompensa"
+        aria-describedby="textoPopupRecompensa"
+        hidden
+    >
+        <div class="popup-recompensa-conteudo">
+
+            <button
+                type="button"
+                id="fecharPopupRecompensa"
+                class="fechar-popup-recompensa"
+                aria-label="Fechar aviso"
+            >
+                &times;
+            </button>
+
+            <div class="icone-recompensa">⭐</div>
+
+            <h2 id="tituloPopupRecompensa">
+                Recompensa desbloqueada!
+            </h2>
+
+            <p id="nomeRecompensaPopup" class="nome-recompensa-popup"></p>
+
+            <p id="textoPopupRecompensa">
+                Sua recompensa foi ativada com sucesso!
+            </p>
+
+            <div class="instrucoes-recompensa">
+
+                <p>
+                    <span>⏳</span>
+                    <strong>Disponível por 3 dias</strong>
+                </p>
+
+                <p>
+                    <span><img src="assets/estrela.png" alt="Estrela"></span>
+                    Para usar sua recompensa, clique na estrela
+                    ao lado das telas do VestFácil.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                id="confirmarPopupRecompensa"
+                class="botao-confirmar-recompensa"
+            >
+                Entendi, vou aproveitar!
+            </button>
+
+        </div>
+    </div>
+
 
     <!-- =====================================================
          SCRIPT
