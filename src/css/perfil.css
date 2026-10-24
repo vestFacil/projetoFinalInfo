@@ -90,29 +90,6 @@ body {
     box-shadow: 0 10px 24px rgba(118, 85, 143, 0.14);
 }
 
-.foto {
-    width: 145px;
-    height: 145px;
-    display: block;
-    margin: 5px auto 18px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 6px solid #C9B6D9;
-    background-color: #F0E5F5;
-    box-shadow: 0 5px 14px rgba(118, 85, 143, 0.13);
-    transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.foto:hover {
-    border-color: #8B5FBF;
-    transform: scale(1.03);
-}
-
-#fotoInput {
-    margin-top: 10px;
-    color: #776D78;
-    font-size: 0.9rem;
-}
 
 .perfil-card h2 {
     margin: 15px 0 10px;

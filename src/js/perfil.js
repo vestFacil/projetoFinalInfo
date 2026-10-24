@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeUsuario = document.getElementById("nomeUsuario");
     const emailUsuario = document.getElementById("emailUsuario");
     const bioUsuario = document.getElementById("bioUsuario");
-    const fotoPerfil = document.getElementById("fotoPerfil");
-    const fotoInput = document.getElementById("fotoInput");
 
     const questoesResolvidas = document.getElementById("questoesResolvidas");
     const diasEstudando = document.getElementById("diasEstudando");
@@ -121,8 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
             emailUsuario.textContent = dados.email || "";
             bioUsuario.textContent = dados.bio || "Sem bio";
 
-            fotoPerfil.src = dados.foto || "img/user.png";
-
             questoesResolvidas.textContent =
                 dados.questoes_resolvidas ?? 0;
 
@@ -190,7 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
         emailUsuario.appendChild(inputEmail);
         bioUsuario.appendChild(inputBio);
 
-        fotoInput.style.display = "block";
         btnEditar.style.display = "none";
         btnSalvar.style.display = "inline-block";
     });
@@ -253,32 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } finally {
             btnSalvar.disabled = false;
         }
-    });
-
-    // ==========================================
-    // PRÉ-VISUALIZAR FOTO
-    // ==========================================
-
-    fotoInput.addEventListener("change", event => {
-        const arquivo = event.target.files[0];
-
-        if (!arquivo) {
-            return;
-        }
-
-        if (!arquivo.type.startsWith("image/")) {
-            alert("Selecione um arquivo de imagem.");
-            fotoInput.value = "";
-            return;
-        }
-
-        const leitor = new FileReader();
-
-        leitor.onload = () => {
-            fotoPerfil.src = leitor.result;
-        };
-
-        leitor.readAsDataURL(arquivo);
     });
 
     // ==========================================
