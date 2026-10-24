@@ -1,7 +1,3 @@
-const usuario = JSON.parse(
-    sessionStorage.getItem("usuarioLogado") || "null"
-);
-
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // ELEMENTOS DA PÁGINA
