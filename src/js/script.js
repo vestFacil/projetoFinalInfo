@@ -15,6 +15,27 @@ document.getElementById("btnDesafio").addEventListener("click", () => {
         "questao.html?modo=desafio&materia=nao_classificadas";
 });
 
+/* =============
+   ACESSAR PERFIL
+   ==============*/
+
+const linkPerfil = document.getElementById("linkPerfil");
+
+if (linkPerfil) {
+    linkPerfil.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const usuarioLogado = JSON.parse(
+            localStorage.getItem("usuarioLogado") || "null"
+        );
+
+        if (usuarioLogado && usuarioLogado.id) {
+            window.location.href = "perfil.html";
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+}
 
 /* =========================
    VERIFICAR DESAFIO DO DIA
@@ -28,7 +49,7 @@ async function verificarDesafioDoDia() {
     if (!btnDesafio) {
         return;
     }
-
+  
     const usuarioLogado =
         JSON.parse(
             localStorage.getItem("usuarioLogado")
