@@ -13,9 +13,9 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         if (res.ok) return res.json();
         else throw new Error("Login inválido");
     })
-    .then(user => {
-        localStorage.setItem("usuarioLogado", JSON.stringify(user));
-        window.location.href = "perfil.html";
-    })
+   .then(user => {
+    sessionStorage.setItem("usuarioLogado", JSON.stringify(user));
+    window.location.href = "perfil.html";
+})
     .catch(err => alert(err.message));
 });

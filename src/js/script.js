@@ -26,7 +26,7 @@ if (linkPerfil) {
         e.preventDefault();
 
         const usuarioLogado = JSON.parse(
-            localStorage.getItem("usuarioLogado") || "null"
+            sessionStorage.getItem("usuarioLogado") || "null"
         );
 
         if (usuarioLogado && usuarioLogado.id) {

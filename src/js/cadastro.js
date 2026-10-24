@@ -30,7 +30,7 @@ function cadastrar(e) {
     .then(user => {
 
         // Guarda o usuário logado
-        localStorage.setItem(
+        sessionStorage.setItem(
             "usuarioLogado",
             JSON.stringify(user)
         );
