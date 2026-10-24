@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const API_URL = "https://vestfacil-api.onrender.com";
 
     const usuario = JSON.parse(
-        localStorage.getItem("usuarioLogado")
+        sessionStorage.getItem("usuarioLogado")
     );
 
     // ==========================================
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
             usuario.email = perfil.email;
             usuario.bio = perfil.bio;
 
-            localStorage.setItem(
+            sessionStorage.setItem(
                 "usuarioLogado",
                 JSON.stringify(usuario)
             );
