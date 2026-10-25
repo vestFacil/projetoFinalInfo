@@ -1103,43 +1103,70 @@ app.post("/loja/resgatar", (req, res) => {
                             }
                         );
 
-                        } else if (
-                            item.nome === "Dica de estudo" ||
-                            item.nome === "Mensagem motivacional"
-                        ) {
+                        
+                    } else if (
+                        item.nome === "Dica de estudo" ||
+                        item.nome === "Mensagem motivacional"
+                    ) {
 
-                            db.query(
-                                `INSERT INTO recompensas_usuario
-                                (
-                                    usuario_id,
-                                    item_loja_id,
-                                    data_compra,
-                                    data_expiracao
-                                )
-                                VALUES (
-                                    ?,
-                                    ?,
-                                    NOW(),
-                                    DATE_ADD(NOW(), INTERVAL 3 DAY)
-                                )`,
-                                [
-                                    usuarioId,
-                                    item.id
-                                ],
-                                (err) => {
+                        // Verificar se a mesma recompensa ainda está ativa
+                        db.query(
+                            `SELECT id
+                             FROM recompensas_usuario
+                             WHERE usuario_id = ?
+                               AND item_loja_id = ?
+                               AND data_expiracao > NOW()
+                             LIMIT 1`,
+                            [usuarioId, item.id],
+                            (err, recompensasAtivas) => {
 
-                                    if (err) {
-                                        console.error(err);
+                                if (err) {
+                                    console.error(err);
 
-                                        return res.status(500).json({
-                                            erro:
-                                                "Erro ao liberar a recompensa."
-                                        });
-                                    }
-
-                                    descontarXP();
+                                    return res.status(500).json({
+                                        erro: "Erro ao verificar recompensa ativa."
+                                    });
                                 }
-                            );
+
+                                // Impedir a compra duplicada
+                                if (recompensasAtivas.length > 0) {
+                                    return res.status(400).json({
+                                        erro: "Você já tem esta recompensa ativa. Tente novamente quando ela expirar."
+                                    });
+                                }
+
+                                // Registrar a recompensa por 3 dias
+                                db.query(
+                                    `INSERT INTO recompensas_usuario
+                                    (
+                                        usuario_id,
+                                        item_loja_id,
+                                        data_compra,
+                                        data_expiracao
+                                    )
+                                    VALUES (
+                                        ?,
+                                        ?,
+                                        NOW(),
+                                        DATE_ADD(NOW(), INTERVAL 3 DAY)
+                                    )`,
+                                    [usuarioId, item.id],
+                                    (err) => {
+
+                                        if (err) {
+                                            console.error(err);
+
+                                            return res.status(500).json({
+                                                erro: "Erro ao liberar a recompensa."
+                                            });
+                                        }
+
+                                        descontarXP();
+                                    }
+                                );
+                            }
+                        );
+
 
                         } else {
 

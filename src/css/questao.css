@@ -728,6 +728,26 @@ body {
 }
 
 
+.btn-finalizar {
+    display: block;
+    margin: 24px auto 8px;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 12px;
+    background-color: #76558F;
+    color: #FFF9ED;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-finalizar:hover {
+    background-color: #8B5FBF;
+}
+
+
+
 @media (max-width: 600px) {
 
     #questao {

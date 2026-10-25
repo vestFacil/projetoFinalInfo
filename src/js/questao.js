@@ -1003,7 +1003,37 @@ botaoProxima.addEventListener(
             localStorage.removeItem(
                 "progressoQuestao"
             );
-            history.replaceState(null, "", "index.html");
+            
+            const botaoFinalizar = document.createElement("button");
+
+            botaoFinalizar.type = "button";
+            botaoFinalizar.id = "finalizarQuiz";
+            botaoFinalizar.className = "btn-finalizar";
+            botaoFinalizar.textContent = "Finalizar";
+
+            resultado.appendChild(botaoFinalizar);
+
+            botaoFinalizar.addEventListener("click", () => {
+                const paginaAnterior = document.referrer;
+
+                let podeVoltar = false;
+
+                try {
+                    podeVoltar =
+                        Boolean(paginaAnterior) &&
+                        new URL(paginaAnterior).origin === window.location.origin &&
+                        window.history.length > 1;
+                } catch (erro) {
+                    podeVoltar = false;
+                }
+
+                if (podeVoltar) {
+                     window.location.href = paginaAnterior;
+                } else {
+                    window.location.href = "index.html";
+                }
+            });
+
         }
     }
 );

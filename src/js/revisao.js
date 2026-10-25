@@ -1,88 +1,60 @@
-const listaRevisao =
-    document.getElementById("listaRevisao");
+
+const listaRevisao = document.getElementById("listaRevisao");
 
 async function carregarRevisao() {
+    if (!listaRevisao) {
+        console.error('Elemento "listaRevisao" não encontrado no HTML.');
+        return;
+    }
 
-    const usuarioLogado =
-        JSON.parse(
-            localStorage.getItem("usuarioLogado")
-        );
+    const usuarioLogado = JSON.parse(
+        localStorage.getItem("usuarioLogado") || "null"
+    );
 
     if (!usuarioLogado || !usuarioLogado.id) {
-
-        listaRevisao.innerHTML =
-            "<p>⚠️ Usuário não identificado.</p>";
-
+        listaRevisao.innerHTML = "<p>⚠️ Usuário não identificado.</p>";
         return;
     }
 
     try {
-
         const resposta = await fetch(
             `https://vestfacil-api.onrender.com/questoes/revisao/${usuarioLogado.id}`
         );
 
-        const questoes =
-            await resposta.json();
+        const questoes = await resposta.json();
 
         console.log("QUESTÕES RECEBIDAS DA API:", questoes);
 
-        const contagem = {};
-
-        questoes.forEach((questao) => {
-            const chave =
-                `${questao.materia}-${questao.questao_id}`;
-
-            contagem[chave] =
-                (contagem[chave] || 0) + 1;
-        });
-
-        const duplicadas =
-            Object.entries(contagem)
-                .filter(([chave, quantidade]) => quantidade > 1);
-
-        console.log("QUESTÕES DUPLICADAS:", duplicadas);
-
-        duplicadas.forEach(([chave, quantidade]) => {
-            console.log(
-                "🔴 DUPLICADA:",
-                chave,
-                "→",
-                quantidade,
-                "vezes"
-            );
-        });
-
+        // Verifica o erro antes de tentar percorrer a resposta.
         if (!resposta.ok) {
             throw new Error(
-                questoes.erro ||
-                "Erro ao carregar questões."
+                questoes.erro || "Erro ao carregar questões."
             );
         }
 
-        if (questoes.length === 0) {
+        // Confirma que a API realmente retornou uma lista.
+        if (!Array.isArray(questoes)) {
+            throw new Error("A API não retornou uma lista de questões.");
+        }
 
+        if (questoes.length === 0) {
             listaRevisao.innerHTML =
                 "<p>Nenhuma questão está disponível para revisão agora.</p>";
-
             return;
         }
 
         listaRevisao.innerHTML = "";
 
         questoes.forEach((questao) => {
+            const item = document.createElement("div");
+            item.classList.add("questao-revisao");
 
-            const item =
-                document.createElement("div");
-
-            item.classList.add(
-                "questao-revisao"
-            );
+            const dataResposta = questao.data_resposta
+                ? new Date(questao.data_resposta).toLocaleDateString("pt-BR")
+                : "Data não disponível";
 
             item.innerHTML = `
-                <h3>
-                    📝 Questão ${questao.questao_id}
-                </h3>
+                <h3>📝 Questão ${questao.questao_id}</h3>
 
                 <p>
                     <strong>Matéria:</strong>
@@ -100,9 +72,7 @@ async function carregarRevisao() {
 
                 <p>
                     <strong>Data:</strong>
-                    ${new Date(
-                        questao.data_resposta
-                    ).toLocaleDateString("pt-BR")}
+                    ${dataResposta}
                 </p>
 
                 <button
@@ -117,32 +87,18 @@ async function carregarRevisao() {
             listaRevisao.appendChild(item);
         });
 
-        document
-            .querySelectorAll(".btn-revisar")
-            .forEach((botao) => {
+        document.querySelectorAll(".btn-revisar").forEach((botao) => {
+            botao.addEventListener("click", () => {
+                const questaoId = botao.dataset.questao;
+                const materia = botao.dataset.materia;
 
-                botao.addEventListener(
-                    "click",
-                    () => {
-
-                        const questaoId =
-                            botao.dataset.questao;
-
-                        const materia =
-                            botao.dataset.materia;
-
-                        window.location.href =
-                            `questao.html?materia=${materia}&modo=revisao&revisar=${questaoId}`;
-                    }
-                );
+                window.location.href =
+                    `questao.html?materia=${encodeURIComponent(materia)}&modo=revisao&revisar=${encodeURIComponent(questaoId)}`;
             });
+        });
 
     } catch (erro) {
-
-        console.error(
-            "Erro ao carregar revisão:",
-            erro
-        );
+        console.error("Erro ao carregar revisão:", erro);
 
         listaRevisao.innerHTML =
             "<p>⚠️ Não foi possível carregar suas questões.</p>";

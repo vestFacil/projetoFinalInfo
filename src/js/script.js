@@ -1,3 +1,11 @@
+const usuarioLogado = JSON.parse(
+    localStorage.getItem("usuarioLogado")
+);
+
+if (!usuarioLogado || !usuarioLogado.id) {
+    window.location.href = "login.html";
+}
+
 document.getElementById("materia").addEventListener("click", () => {
     window.location.href = "materia.html";
 });

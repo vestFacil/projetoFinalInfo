@@ -236,10 +236,18 @@
 
 
 
+        <script>
+            const usuarioLogado = JSON.parse(
+                localStorage.getItem("usuarioLogado")
+            );
 
-    <script src="js/materia.js"></script>
+            if (!usuarioLogado || !usuarioLogado.id) {
+                window.location.href = "login.html";
+            }
+        </script>
 
-    <script src="js/recompensa.js"></script>
+        <script src="js/materia.js"></script>
+        <script src="js/recompensa.js"></script>
 
 
 </body>

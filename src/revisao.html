@@ -102,7 +102,17 @@
          SCRIPT
          ===================================================== -->
 
-    <script src="js/revisao.js"></script>
+        <script>
+            const usuarioLogado = JSON.parse(
+                localStorage.getItem("usuarioLogado")
+            );
+
+            if (!usuarioLogado || !usuarioLogado.id) {
+                window.location.href = "login.html";
+            }
+        </script>
+
+        <script src="js/revisao.js"></script>
 
 
 </body>

@@ -28,6 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.getItem("usuarioLogado")
     );
 
+    const btnSair = document.getElementById("btnSair");
+
+    if (btnSair) {
+        btnSair.addEventListener("click", () => {
+            localStorage.removeItem("usuarioLogado");
+            window.location.href = "login.html";
+        });
+}
+
     // ==========================================
     // FUNÇÃO PARA FAZER REQUISIÇÕES
     // ==========================================

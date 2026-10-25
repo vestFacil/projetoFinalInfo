@@ -380,9 +380,19 @@
          SCRIPTS
          ===================================================== -->
 
-    <script src="js/caderno.js"></script>
+         <script>
+            const usuarioLogado = JSON.parse(
+                localStorage.getItem("usuarioLogado")
+            );
 
-    <script src="js/recompensa.js"></script>
+            if (!usuarioLogado || !usuarioLogado.id) {
+                window.location.href = "login.html";
+            }
+        </script>
+
+        <script src="js/caderno.js"></script>
+
+        <script src="js/recompensa.js"></script>
 
 
 </body>

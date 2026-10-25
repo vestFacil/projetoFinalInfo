@@ -1,21 +1,29 @@
-document.getElementById("loginForm").addEventListener("submit", function(e) {
+
+document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
     fetch("https://vestfacil-api.onrender.com/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
             email: document.getElementById("loginEmail").value,
             senha: document.getElementById("loginSenha").value
         })
     })
     .then(res => {
-        if (res.ok) return res.json();
-        else throw new Error("Login inválido");
+        if (res.ok) {
+            return res.json();
+        }
+
+        throw new Error("Login inválido");
     })
-   .then(user => {
-    sessionStorage.setItem("usuarioLogado", JSON.stringify(user));
-    window.location.href = "perfil.html";
-})
-    .catch(err => alert(err.message));
+    .then(user => {
+        localStorage.setItem("usuarioLogado", JSON.stringify(user));
+        window.location.href = "index.html";
+    })
+    .catch(err => {
+        alert(err.message);
+    });
 });
