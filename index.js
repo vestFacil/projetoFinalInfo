@@ -4,6 +4,8 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const dns = require("dns");
+dns.setDefaultResultOrder("ipv4first");
 
 const app = express();
 
