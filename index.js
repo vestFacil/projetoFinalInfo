@@ -42,7 +42,10 @@ db.connect((err) => {
 
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    family: 4,
     auth: {
         user: process.env.EMAIL_USUARIO,
         pass: process.env.EMAIL_SENHA_APP
