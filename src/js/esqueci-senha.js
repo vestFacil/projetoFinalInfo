@@ -1,6 +1,6 @@
 
 const formulario = document.getElementById("esqueciSenhaForm");
-const campoEmail = document.getElementById("email");
+const campoEmail = document.getElementById("emailRecuperacao");
 const mensagem = document.getElementById("mensagem");
 
 const API_URL = "https://vestfacil-api.onrender.com";
