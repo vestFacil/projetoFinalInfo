@@ -3,9 +3,6 @@ const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-const crypto = require("crypto");
-const dns = require("dns");
-dns.setDefaultResultOrder("ipv4first");
 
 const app = express();
 
@@ -42,18 +39,13 @@ db.connect((err) => {
 // NODEMAILER
 // ========================
 
-
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    family: 4,
+    service: "gmail",
     auth: {
-        user: process.env.EMAIL_USUARIO,
-        pass: process.env.EMAIL_SENHA_APP
+        user: "seuemail@gmail.com",
+        pass: "sua_senha_app"
     }
 });
-
 
 
 // ========================
@@ -115,7 +107,7 @@ app.post("/login", (req, res) => {
                 const usuario = results[0];
 
                 transporter.sendMail({
-                    from: process.env.EMAIL_USUARIO,
+                    from: "seuemail@gmail.com",
                     to: usuario.email,
                     subject: "Confirmação de Login",
                     text: `Olá ${usuario.nome}, você acabou de realizar login. Foi você mesmo?`
@@ -131,187 +123,6 @@ app.post("/login", (req, res) => {
         }
     );
 });
-
-
-app.post("/esqueci-senha", (req, res) => {
-    const { email } = req.body;
-
-    if (!email) {
-        return res.status(400).json({
-            mensagem: "Informe seu e-mail."
-        });
-    }
-
-    db.query(
-        "SELECT id, nome, email FROM usuarios WHERE email = ?",
-        [email],
-        (erro, resultados) => {
-            if (erro) {
-                console.error("Erro ao buscar usuário:", erro);
-                return res.status(500).json({
-                    mensagem: "Não foi possível processar a solicitação."
-                });
-            }
-
-            // A resposta não revela se o e-mail está cadastrado.
-            const resposta = {
-                mensagem: "Se o e-mail estiver cadastrado, você receberá um link de recuperação."
-            };
-
-            if (resultados.length === 0) {
-                return res.json(resposta);
-            }
-
-            const usuario = resultados[0];
-
-            // Token aleatório seguro; somente o hash será salvo no banco.
-            const token = crypto.randomBytes(32).toString("hex");
-            const tokenHash = crypto
-                .createHash("sha256")
-                .update(token)
-                .digest("hex");
-
-            // Invalida tokens anteriores desse usuário.
-            db.query(
-                "UPDATE recuperacao_senha SET usado = TRUE WHERE usuario_id = ? AND usado = FALSE",
-                [usuario.id],
-                (erroAtualizacao) => {
-                    if (erroAtualizacao) {
-                        console.error("Erro ao invalidar tokens:", erroAtualizacao);
-                        return res.status(500).json({
-                            mensagem: "Não foi possível processar a solicitação."
-                        });
-                    }
-
-                    db.query(
-                        `INSERT INTO recuperacao_senha
-                            (usuario_id, token, data_expiracao, usado)
-                         VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR), FALSE)`,
-                        [usuario.id, tokenHash],
-                        (erroInsercao) => {
-                            if (erroInsercao) {
-                                console.error("Erro ao criar token:", erroInsercao);
-                                return res.status(500).json({
-                                    mensagem: "Não foi possível processar a solicitação."
-                                });
-                            }
-
-                            const link =
-                                `${process.env.FRONTEND_URL}/redefinir-senha.html?token=${token}`;
-
-                            transporter.sendMail({
-                                from: process.env.EMAIL_USUARIO,
-                                to: usuario.email,
-                                subject: "Recuperação de senha - VestFácil",
-                                text:
-                                    `Olá, ${usuario.nome}!\n\n` +
-                                    "Recebemos uma solicitação para redefinir sua senha do VestFácil.\n\n" +
-                                    `Acesse este link para criar uma nova senha:\n${link}\n\n` +
-                                    "O link expira em 1 hora e só pode ser usado uma vez.\n" +
-                                    "Se você não solicitou a recuperação, ignore este e-mail."
-                            }, (erroEmail) => {
-                                if (erroEmail) {
-                                    console.error("Erro ao enviar e-mail:", erroEmail);
-                                    return res.status(500).json({
-                                        mensagem: "Não foi possível enviar o e-mail agora. Tente novamente."
-                                    });
-                                }
-
-                                return res.json(resposta);
-                            });
-                        }
-                    );
-                }
-            );
-        }
-    );
-});
-
-
-
-app.post("/redefinir-senha", (req, res) => {
-    const { token, novaSenha } = req.body;
-
-    if (!token || !novaSenha) {
-        return res.status(400).json({
-            mensagem: "Informe o token e a nova senha."
-        });
-    }
-
-    if (novaSenha.length < 8) {
-        return res.status(400).json({
-            mensagem: "A senha deve ter pelo menos 8 caracteres."
-        });
-    }
-
-    const tokenHash = crypto
-        .createHash("sha256")
-        .update(token)
-        .digest("hex");
-
-    db.query(
-        `SELECT id, usuario_id
-         FROM recuperacao_senha
-         WHERE token = ?
-           AND data_expiracao > NOW()
-           AND usado = FALSE
-         LIMIT 1`,
-        [tokenHash],
-        (erro, resultados) => {
-            if (erro) {
-                console.error("Erro ao validar token:", erro);
-                return res.status(500).json({
-                    mensagem: "Erro ao verificar o link de recuperação."
-                });
-            }
-
-            if (resultados.length === 0) {
-                return res.status(400).json({
-                    mensagem: "Link inválido, expirado ou já utilizado."
-                });
-            }
-
-            const recuperacao = resultados[0];
-
-            db.query(
-                "UPDATE usuarios SET senha = ? WHERE id = ?",
-                [novaSenha, recuperacao.usuario_id],
-                (erroSenha, resultado) => {
-                    if (erroSenha) {
-                        console.error("Erro ao atualizar senha:", erroSenha);
-                        return res.status(500).json({
-                            mensagem: "Não foi possível atualizar a senha."
-                        });
-                    }
-
-                    if (resultado.affectedRows === 0) {
-                        return res.status(400).json({
-                            mensagem: "Usuário não encontrado."
-                        });
-                    }
-
-                    db.query(
-                        "UPDATE recuperacao_senha SET usado = TRUE WHERE id = ?",
-                        [recuperacao.id],
-                        (erroToken) => {
-                            if (erroToken) {
-                                console.error("Erro ao invalidar token:", erroToken);
-                                return res.status(500).json({
-                                    mensagem: "A senha foi alterada, mas houve um erro ao finalizar a recuperação. Solicite outro link se necessário."
-                                });
-                            }
-
-                            return res.json({
-                                mensagem: "Senha redefinida com sucesso!"
-                            });
-                        }
-                    );
-                }
-            );
-        }
-    );
-});
-
 
 
 // ========================
