@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Cadastro</title>
+  <title>Cadastro - Vestfacil</title>
 
   <link rel="stylesheet" href="css/cadastro.css">
 
@@ -50,6 +50,14 @@
         placeholder="Curso de interesse"
         required
       >
+
+      <!-- Caixa de seleção dos Termos de Uso -->
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px; font-size: 0.9rem; text-align: left;">
+        <input type="checkbox" id="termos" required style="cursor: pointer;">
+        <label for="termos" style="cursor: pointer; color: #555;">
+          Li e concordo com os <a href="termos.html" target="_blank" style="color: #4A90E2; text-decoration: underline;">Termos de Uso</a>.
+        </label>
+      </div>
 
       <button type="submit">
         Cadastrar
