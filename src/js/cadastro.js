@@ -1,5 +1,10 @@
 function cadastrar(e) {
-
+     
+       const termosCheckbox = document.getElementById("termos");
+      if (termosCheckbox && !termosCheckbox.checked) {
+        alert("Você deve concordar com os Termos de Uso para continuar.");
+       return;
+      }
     e.preventDefault();
 
     fetch("https://vestfacil-api.onrender.com/cadastro", {
