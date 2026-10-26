@@ -27,6 +27,11 @@ document.getElementById("btnDesafio").addEventListener("click", () => {
    ACESSAR PERFIL
    ==============*/
 
+
+/* =============
+   ACESSAR PERFIL
+   ==============*/
+
 const linkPerfil = document.getElementById("linkPerfil");
 
 if (linkPerfil) {
@@ -34,7 +39,7 @@ if (linkPerfil) {
         e.preventDefault();
 
         const usuarioLogado = JSON.parse(
-            sessionStorage.getItem("usuarioLogado") || "null"
+            localStorage.getItem("usuarioLogado") || "null"
         );
 
         if (usuarioLogado && usuarioLogado.id) {
@@ -44,6 +49,7 @@ if (linkPerfil) {
         }
     });
 }
+
 
 /* =========================
    VERIFICAR DESAFIO DO DIA
