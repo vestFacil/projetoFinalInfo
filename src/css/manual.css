@@ -1,0 +1,73 @@
+/* Ajustes específicos da tela de Manual de Uso */
+
+.cadastro-container.manual-container {
+  max-width: 650px;
+  margin: 40px auto;
+  text-align: left;
+}
+
+.cadastro-container.manual-container h2 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.manual-subtitulo {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.manual-conteudo {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  border-bottom: 1px solid #eee;
+}
+
+.manual-conteudo h3 {
+  font-size: 1.05rem;
+  color: #222;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.manual-conteudo p,
+.manual-conteudo ul {
+  margin-bottom: 12px;
+}
+
+.manual-conteudo ul {
+  padding-left: 20px;
+}
+
+.manual-conteudo li {
+  margin-bottom: 6px;
+}
+
+/* Personalização da barra de rolagem */
+.manual-conteudo::-webkit-scrollbar {
+  width: 6px;
+}
+
+.manual-conteudo::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+/* Botão e ações */
+.acoes-manual {
+  display: flex;
+  justify-content: center;
+}
+
+.acoes-manual a {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  text-decoration: none;
+}
