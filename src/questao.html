@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,6 +11,7 @@
     <!-- ÍCONE DO VESTFÁCIL -->
     <link rel="icon" type="image/png" href="assets/coruja.png">
 
+    <!-- ESTILOS -->
     <link rel="stylesheet" href="css/questao.css">
     <link rel="stylesheet" href="css/recompensas.css">
 </head>
@@ -23,7 +25,6 @@
     <div class="acoes-topo">
 
         <!-- RECOMPENSAS -->
-
         <button
             id="btnRecompensas"
             type="button"
@@ -37,9 +38,7 @@
             >
         </button>
 
-
         <!-- BOTÃO INÍCIO -->
-
         <a
             href="index.html"
             class="botao-inicio"
@@ -53,16 +52,12 @@
             >
         </a>
 
-
         <!-- PAINEL DE RECOMPENSAS -->
-
         <div
             id="painelRecompensas"
             style="display: none;"
         >
-
             <h2>
-
                 <img
                     src="assets/estrela.png"
                     class="iconeRecompensas"
@@ -70,9 +65,7 @@
                 >
 
                 Minhas recompensas
-
             </h2>
-
 
             <button
                 id="btnMensagem"
@@ -81,7 +74,6 @@
                 Ver mensagem motivacional
             </button>
 
-
             <button
                 id="btnDica"
                 type="button"
@@ -89,13 +81,10 @@
                 Ver dica de estudo
             </button>
 
-
             <p id="resultadoRecompensa"></p>
-
         </div>
 
     </div>
-
 
     <!-- =====================================================
          POPUP DE CONFIGURAÇÃO
@@ -105,54 +94,34 @@
         id="popupConfiguracao"
         class="popup"
     >
-
         <div class="popup-conteudo">
 
             <div class="titulo">
-
                 <h1>Configuração da Lista</h1>
-
             </div>
 
-
             <select id="quantidade">
-
-                <option value="5">
-                    5 questões
-                </option>
-
-                <option value="10">
-                    10 questões
-                </option>
-
-                <option value="20">
-                    20 questões
-                </option>
-
+                <option value="5">5 questões</option>
+                <option value="10">10 questões</option>
+                <option value="20">20 questões</option>
             </select>
-
 
             <p class="aviso">
                 Você poderá voltar para questões anteriores
                 enquanto estiver respondendo esta lista.
             </p>
 
-
             <div class="botoes-lista">
-
                 <button
                     id="iniciar"
                     type="button"
                 >
                     Começar
                 </button>
-
             </div>
 
         </div>
-
     </div>
-
 
     <!-- =====================================================
          ÁREA DAS QUESTÕES
@@ -166,29 +135,21 @@
             alt="Coruja estudando"
         >
 
-
         <p class="credito-enem">
             ENEM
         </p>
 
-
         <p id="contador"></p>
-
 
         <p id="statusQuestao"></p>
 
-
         <p id="sequencia"></p>
-
 
         <h1 id="titulo"></h1>
 
-
         <div id="enunciado"></div>
 
-
         <div id="alternativas"></div>
-
 
         <button
             id="responder"
@@ -197,14 +158,9 @@
             Responder
         </button>
 
-
         <p id="resultado"></p>
 
-
-        <!-- =================================================
-             NAVEGAÇÃO ENTRE QUESTÕES
-             ================================================= -->
-
+        <!-- NAVEGAÇÃO ENTRE QUESTÕES -->
         <div class="botoes-questao">
 
             <button
@@ -216,7 +172,6 @@
             >
                 ←
             </button>
-
 
             <button
                 id="proxima"
@@ -231,39 +186,52 @@
 
     </main>
 
-
     <!-- =====================================================
          CRÉDITOS
          ===================================================== -->
 
     <footer class="rodape">
-
         <p>© 2026 VestFácil</p>
 
         <p>
             Desenvolvido por Letícia Ferreira Rangel e
             Liz Gonçalves de Almeida
         </p>
-
     </footer>
 
-
     <!-- =====================================================
-         SCRIPTS
+         VERIFICAÇÃO DE LOGIN E CARREGAMENTO DOS SCRIPTS
          ===================================================== -->
 
-        <script>
-            const usuarioLogado = JSON.parse(
-                localStorage.getItem("usuarioLogado")
-            );
+    <script>
+        (() => {
+            let usuarioLogado = null;
 
-            if (!usuarioLogado || !usuarioLogado.id) {
-                window.location.href = "login.html";
+            try {
+                usuarioLogado = JSON.parse(
+                    localStorage.getItem("usuarioLogado")
+                );
+            } catch (erro) {
+                usuarioLogado = null;
             }
-        </script>
 
-        <script src="js/questao.js"></script>
-        <script src="js/recompensa.js"></script>
+            // Redireciona para o login se não houver usuário válido.
+            if (!usuarioLogado || !usuarioLogado.id) {
+                window.location.replace("login.html");
+                return;
+            }
+
+            // Mantém o funcionamento original das questões.
+            const scriptQuestao = document.createElement("script");
+            scriptQuestao.src = "js/questao.js";
+            document.body.appendChild(scriptQuestao);
+
+            // Mantém o funcionamento das recompensas.
+            const scriptRecompensas = document.createElement("script");
+            scriptRecompensas.src = "js/recompensa.js";
+            document.body.appendChild(scriptRecompensas);
+        })();
+    </script>
 
 </body>
 

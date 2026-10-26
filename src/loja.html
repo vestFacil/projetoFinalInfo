@@ -175,18 +175,33 @@
          SCRIPT
          ===================================================== -->
 
-        <script>
-            const usuarioLogado = JSON.parse(
+
+<script>
+    (() => {
+        let usuarioLogado = null;
+
+        try {
+            usuarioLogado = JSON.parse(
                 localStorage.getItem("usuarioLogado")
             );
+        } catch (erro) {
+            usuarioLogado = null;
+        }
 
-            if (!usuarioLogado || !usuarioLogado.id) {
-                window.location.href = "login.html";
-            }
-        </script>
+        if (!usuarioLogado || !usuarioLogado.id) {
+            window.location.replace("login.html");
+            return;
+        }
 
-        <script src="js/loja.js"></script>
+        const scriptLoja = document.createElement("script");
+        scriptLoja.src = "js/loja.js";
+        document.body.appendChild(scriptLoja);
 
+        const scriptRecompensas = document.createElement("script");
+        scriptRecompensas.src = "js/recompensa.js";
+        document.body.appendChild(scriptRecompensas);
+    })();
+</script>
 
 </body>
 

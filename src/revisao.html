@@ -1,8 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -12,30 +12,26 @@
 
     <title>Área de Revisão</title>
 
+    <!-- ESTILOS -->
     <link
         rel="stylesheet"
         href="css/revisao.css"
     >
 
-        <link
+    <link
         rel="stylesheet"
         href="css/recompensas.css"
     >
 
-
     <!-- FAVICON -->
-
     <link
         rel="icon"
         type="image/png"
         href="assets/coruja.png"
     >
-
 </head>
 
-
 <body>
-
 
     <!-- =====================================================
          BOTÃO INÍCIO
@@ -47,15 +43,12 @@
         title="Voltar ao início"
         aria-label="Voltar ao início"
     >
-
         <img
             src="assets/casa.png"
             class="iconeInicio"
             alt="Início"
         >
-
     </a>
-
 
     <!-- =====================================================
          ÁREA DE REVISÃO
@@ -67,20 +60,15 @@
             📚 Área de Revisão
         </h1>
 
-
         <p>
             Aqui você poderá revisar questões que já respondeu.
         </p>
 
-
         <div id="listaRevisao">
-
             Carregando questões...
-
         </div>
 
     </main>
-
 
     <!-- =====================================================
          RODAPÉ
@@ -97,23 +85,34 @@
 
     </footer>
 
-
     <!-- =====================================================
-         SCRIPT
+         VERIFICAÇÃO DE LOGIN E CARREGAMENTO DO SCRIPT
          ===================================================== -->
 
-        <script>
-            const usuarioLogado = JSON.parse(
-                localStorage.getItem("usuarioLogado")
-            );
+    <script>
+        (() => {
+            let usuarioLogado = null;
 
-            if (!usuarioLogado || !usuarioLogado.id) {
-                window.location.href = "login.html";
+            try {
+                usuarioLogado = JSON.parse(
+                    localStorage.getItem("usuarioLogado")
+                );
+            } catch (erro) {
+                usuarioLogado = null;
             }
-        </script>
 
-        <script src="js/revisao.js"></script>
+            // Impede o acesso sem um usuário identificado.
+            if (!usuarioLogado || !usuarioLogado.id) {
+                window.location.replace("login.html");
+                return;
+            }
 
+            // Mantém o funcionamento da área de revisão.
+            const scriptRevisao = document.createElement("script");
+            scriptRevisao.src = "js/revisao.js";
+            document.body.appendChild(scriptRevisao);
+        })();
+    </script>
 
 </body>
 

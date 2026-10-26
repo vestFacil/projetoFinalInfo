@@ -250,8 +250,32 @@
     </footer>
 
 
-    <script src="js/script.js"></script>
-    <script src="js/recompensa.js"></script>
+<script>
+    (() => {
+        let usuarioLogado = null;
+
+        try {
+            usuarioLogado = JSON.parse(
+                localStorage.getItem("usuarioLogado")
+            );
+        } catch (erro) {
+            usuarioLogado = null;
+        }
+
+        if (!usuarioLogado || !usuarioLogado.id) {
+            window.location.replace("login.html");
+            return;
+        }
+
+        const scriptPrincipal = document.createElement("script");
+        scriptPrincipal.src = "js/script.js";
+        document.body.appendChild(scriptPrincipal);
+
+        const scriptRecompensas = document.createElement("script");
+        scriptRecompensas.src = "js/recompensa.js";
+        document.body.appendChild(scriptRecompensas);
+    })();
+</script>
 
 </body>
 

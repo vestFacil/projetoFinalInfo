@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // ELEMENTOS DA PÁGINA
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btnEditar = document.getElementById("btnEditar");
     const btnSalvar = document.getElementById("btnSalvar");
+    const btnSair = document.getElementById("btnSair");
 
     const btnAdicionarMeta = document.getElementById("btnAdicionarMeta");
     const inputMeta = document.getElementById("inputMeta");
@@ -24,21 +26,75 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const API_URL = "https://vestfacil-api.onrender.com";
 
-    const usuario = JSON.parse(
-        sessionStorage.getItem("usuarioLogado")
-    );
+    // ==========================================
+    // LER USUÁRIO SALVO
+    // ==========================================
 
-    const btnSair = document.getElementById("btnSair");
+    let usuario = null;
+
+    try {
+        const usuarioSalvo = localStorage.getItem("usuarioLogado");
+
+        if (usuarioSalvo) {
+            usuario = JSON.parse(usuarioSalvo);
+        }
+    } catch (erro) {
+        console.error("Erro ao ler o usuário salvo:", erro);
+    }
+
+    // Aceitar os nomes de identificador mais comuns.
+    if (usuario && usuario.id == null) {
+        usuario.id = usuario.usuario_id ?? usuario.usuarioId;
+    }
+
+    // ==========================================
+    // SAIR DA CONTA
+    // ==========================================
 
     if (btnSair) {
         btnSair.addEventListener("click", () => {
             localStorage.removeItem("usuarioLogado");
             window.location.href = "login.html";
         });
-}
+    }
 
     // ==========================================
-    // FUNÇÃO PARA FAZER REQUISIÇÕES
+    // VERIFICAR LOGIN
+    // ==========================================
+
+    if (!usuario || usuario.id == null || usuario.id === "") {
+        console.error(
+            "Não foi possível identificar o usuário salvo:",
+            usuario
+        );
+
+        alert(
+            "Não foi possível identificar sua conta. " +
+            "Entre novamente para acessar seu perfil."
+        );
+
+        window.location.replace("login.html");
+        return;
+    }
+
+    // Guardar o identificador normalizado.
+    usuario.id = Number(usuario.id);
+
+    if (!Number.isInteger(usuario.id) || usuario.id <= 0) {
+        console.error("Identificador de usuário inválido:", usuario.id);
+
+        alert("Sua sessão não foi identificada. Entre novamente.");
+        localStorage.removeItem("usuarioLogado");
+        window.location.replace("login.html");
+        return;
+    }
+
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+
+    console.log("Usuário identificado no perfil:", usuario.id);
+
+    // ==========================================
+    // REQUISIÇÕES À API
     // ==========================================
 
     async function requisicao(url, opcoes = {}) {
@@ -76,44 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // VERIFICAR USUÁRIO LOGADO
-    // ==========================================
-
-    if (!usuario || !usuario.id) {
-        const aviso = document.createElement("div");
-
-        aviso.textContent =
-            "Você ainda não fez login ou cadastro.";
-
-        aviso.style.backgroundColor = "#ffeb3b";
-        aviso.style.padding = "10px";
-        aviso.style.marginBottom = "10px";
-        aviso.style.textAlign = "center";
-        aviso.style.fontWeight = "bold";
-
-        const btnCadastro = document.createElement("button");
-
-        btnCadastro.textContent = "Cadastrar-se";
-
-        btnCadastro.addEventListener("click", () => {
-            window.location.href = "cadastro.html";
-        });
-
-        aviso.appendChild(btnCadastro);
-        document.body.prepend(aviso);
-
-        if (btnEditar) {
-            btnEditar.textContent = "Cadastrar-se";
-
-            btnEditar.addEventListener("click", () => {
-                window.location.href = "cadastro.html";
-            });
-        }
-
-        return;
-    }
-
-    // ==========================================
     // CARREGAR PERFIL E METAS
     // ==========================================
 
@@ -123,33 +141,63 @@ document.addEventListener("DOMContentLoaded", () => {
                 `${API_URL}/perfil/${usuario.id}`
             );
 
-            nomeUsuario.textContent = dados.nome || "";
-            emailUsuario.textContent = dados.email || "";
-            bioUsuario.textContent = dados.bio || "Sem bio";
-
-            questoesResolvidas.textContent =
-                dados.questoes_resolvidas ?? 0;
-
-            diasEstudando.textContent =
-                dados.dias_estudando ?? 0;
-
-            maiorSequencia.textContent =
-                dados.maior_sequencia ?? 0;
-
-            // Carregar as metas salvas no banco
-            metasLista.innerHTML = "";
-
-            if (Array.isArray(dados.metas)) {
-                dados.metas.forEach(meta => {
-                    adicionarMetaNaLista(meta);
-                });
+            if (!dados) {
+                throw new Error("A API não retornou os dados do perfil.");
             }
+
+            if (nomeUsuario) {
+                nomeUsuario.textContent = dados.nome || usuario.nome || "";
+            }
+
+            if (emailUsuario) {
+                emailUsuario.textContent = dados.email || usuario.email || "";
+            }
+
+            if (bioUsuario) {
+                bioUsuario.textContent = dados.bio || "Sem bio";
+            }
+
+            if (questoesResolvidas) {
+                questoesResolvidas.textContent =
+                    dados.questoes_resolvidas ?? 0;
+            }
+
+            if (diasEstudando) {
+                diasEstudando.textContent =
+                    dados.dias_estudando ?? 0;
+            }
+
+            if (maiorSequencia) {
+                maiorSequencia.textContent =
+                    dados.maior_sequencia ?? 0;
+            }
+
+            if (metasLista) {
+                metasLista.innerHTML = "";
+
+                if (Array.isArray(dados.metas)) {
+                    dados.metas.forEach(meta => {
+                        adicionarMetaNaLista(meta);
+                    });
+                }
+            }
+
+            // Atualizar os dados básicos guardados no navegador.
+            usuario.nome = dados.nome ?? usuario.nome;
+            usuario.email = dados.email ?? usuario.email;
+            usuario.bio = dados.bio ?? usuario.bio;
+
+            localStorage.setItem(
+                "usuarioLogado",
+                JSON.stringify(usuario)
+            );
+
         } catch (erro) {
             console.error("Erro ao carregar perfil:", erro);
 
             alert(
                 "Não foi possível carregar o perfil. " +
-                "Verifique a conexão com o servidor."
+                "Verifique sua conexão com o servidor e tente novamente."
             );
         }
     }
@@ -158,111 +206,142 @@ document.addEventListener("DOMContentLoaded", () => {
     // EDITAR PERFIL
     // ==========================================
 
-    btnEditar.addEventListener("click", () => {
-        if (document.getElementById("inputNome")) {
-            return;
-        }
+    if (btnEditar) {
+        btnEditar.addEventListener("click", () => {
+            if (
+                document.getElementById("inputNome") ||
+                !nomeUsuario ||
+                !emailUsuario ||
+                !bioUsuario
+            ) {
+                return;
+            }
 
-        const nomeAtual = nomeUsuario.textContent;
-        const emailAtual = emailUsuario.textContent;
+            const nomeAtual = nomeUsuario.textContent;
+            const emailAtual = emailUsuario.textContent;
 
-        const bioAtual =
-            bioUsuario.textContent === "Sem bio"
-                ? ""
-                : bioUsuario.textContent;
+            const bioAtual =
+                bioUsuario.textContent === "Sem bio"
+                    ? ""
+                    : bioUsuario.textContent;
 
-        nomeUsuario.replaceChildren();
-        emailUsuario.replaceChildren();
-        bioUsuario.replaceChildren();
+            nomeUsuario.replaceChildren();
+            emailUsuario.replaceChildren();
+            bioUsuario.replaceChildren();
 
-        const inputNome = document.createElement("input");
-        inputNome.type = "text";
-        inputNome.id = "inputNome";
-        inputNome.value = nomeAtual;
+            const inputNome = document.createElement("input");
+            inputNome.type = "text";
+            inputNome.id = "inputNome";
+            inputNome.value = nomeAtual;
 
-        const inputEmail = document.createElement("input");
-        inputEmail.type = "email";
-        inputEmail.id = "inputEmail";
-        inputEmail.value = emailAtual;
+            const inputEmail = document.createElement("input");
+            inputEmail.type = "email";
+            inputEmail.id = "inputEmail";
+            inputEmail.value = emailAtual;
 
-        const inputBio = document.createElement("input");
-        inputBio.type = "text";
-        inputBio.id = "inputBio";
-        inputBio.value = bioAtual;
+            const inputBio = document.createElement("input");
+            inputBio.type = "text";
+            inputBio.id = "inputBio";
+            inputBio.value = bioAtual;
 
-        nomeUsuario.appendChild(inputNome);
-        emailUsuario.appendChild(inputEmail);
-        bioUsuario.appendChild(inputBio);
+            nomeUsuario.appendChild(inputNome);
+            emailUsuario.appendChild(inputEmail);
+            bioUsuario.appendChild(inputBio);
 
-        btnEditar.style.display = "none";
-        btnSalvar.style.display = "inline-block";
-    });
+            btnEditar.style.display = "none";
+
+            if (btnSalvar) {
+                btnSalvar.style.display = "inline-block";
+            }
+        });
+    }
 
     // ==========================================
     // SALVAR PERFIL
     // ==========================================
 
-    btnSalvar.addEventListener("click", async () => {
-        const inputNome = document.getElementById("inputNome");
-        const inputEmail = document.getElementById("inputEmail");
-        const inputBio = document.getElementById("inputBio");
+    if (btnSalvar) {
+        btnSalvar.addEventListener("click", async () => {
+            const inputNome = document.getElementById("inputNome");
+            const inputEmail = document.getElementById("inputEmail");
+            const inputBio = document.getElementById("inputBio");
 
-        if (!inputNome || !inputEmail || !inputBio) {
-            return;
-        }
+            if (!inputNome || !inputEmail || !inputBio) {
+                return;
+            }
 
-        const dadosAtualizados = {
-            nome: inputNome.value.trim(),
-            email: inputEmail.value.trim(),
-            bio: inputBio.value.trim()
-        };
+            const dadosAtualizados = {
+                nome: inputNome.value.trim(),
+                email: inputEmail.value.trim(),
+                bio: inputBio.value.trim()
+            };
 
-        if (!dadosAtualizados.nome || !dadosAtualizados.email) {
-            alert("Preencha o nome e o e-mail.");
-            return;
-        }
+            if (!dadosAtualizados.nome || !dadosAtualizados.email) {
+                alert("Preencha o nome e o e-mail.");
+                return;
+            }
 
-        btnSalvar.disabled = true;
+            btnSalvar.disabled = true;
 
-        try {
-            const dados = await requisicao(
-                `${API_URL}/perfil/${usuario.id}`,
-                opcoesJSON("PUT", dadosAtualizados)
-            );
+            try {
+                const dados = await requisicao(
+                    `${API_URL}/perfil/${usuario.id}`,
+                    opcoesJSON("PUT", dadosAtualizados)
+                );
 
-            const perfil = dados || dadosAtualizados;
+                const perfil = dados || dadosAtualizados;
 
-            nomeUsuario.textContent = perfil.nome;
-            emailUsuario.textContent = perfil.email;
-            bioUsuario.textContent = perfil.bio || "Sem bio";
+                if (nomeUsuario) {
+                    nomeUsuario.textContent = perfil.nome;
+                }
 
-            usuario.nome = perfil.nome;
-            usuario.email = perfil.email;
-            usuario.bio = perfil.bio;
+                if (emailUsuario) {
+                    emailUsuario.textContent = perfil.email;
+                }
 
-            sessionStorage.setItem(
-                "usuarioLogado",
-                JSON.stringify(usuario)
-            );
+                if (bioUsuario) {
+                    bioUsuario.textContent = perfil.bio || "Sem bio";
+                }
 
-            btnEditar.style.display = "inline-block";
-            btnSalvar.style.display = "none";
-            fotoInput.style.display = "none";
+                usuario.nome = perfil.nome;
+                usuario.email = perfil.email;
+                usuario.bio = perfil.bio;
 
-            alert("Perfil atualizado com sucesso!");
-        } catch (erro) {
-            console.error("Erro ao salvar perfil:", erro);
-            alert("Não foi possível salvar o perfil.");
-        } finally {
-            btnSalvar.disabled = false;
-        }
-    });
+                localStorage.setItem(
+                    "usuarioLogado",
+                    JSON.stringify(usuario)
+                );
+
+                if (btnEditar) {
+                    btnEditar.style.display = "inline-block";
+                }
+
+                btnSalvar.style.display = "none";
+
+                alert("Perfil atualizado com sucesso!");
+
+            } catch (erro) {
+                console.error("Erro ao salvar perfil:", erro);
+
+                alert(
+                    "Não foi possível salvar o perfil. " +
+                    "Verifique se a API possui a rota PUT /perfil/:id."
+                );
+            } finally {
+                btnSalvar.disabled = false;
+            }
+        });
+    }
 
     // ==========================================
     // ADICIONAR META
     // ==========================================
 
     async function adicionarMeta() {
+        if (!inputMeta || !btnAdicionarMeta) {
+            return;
+        }
+
         const descricao = inputMeta.value.trim();
 
         if (!descricao) {
@@ -278,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 `${API_URL}/metas`,
                 opcoesJSON("POST", {
                     usuarioId: usuario.id,
-                    descricao: descricao
+                    descricao
                 })
             );
 
@@ -296,32 +375,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
             inputMeta.value = "";
             inputMeta.focus();
+
         } catch (erro) {
             console.error("Erro ao adicionar meta:", erro);
 
             alert(
                 "Não foi possível salvar a meta. " +
-                "Confira se a rota POST /metas está correta na API."
+                "Verifique a rota POST /metas na API."
             );
         } finally {
             btnAdicionarMeta.disabled = false;
         }
     }
 
-    btnAdicionarMeta.addEventListener("click", adicionarMeta);
+    if (btnAdicionarMeta) {
+        btnAdicionarMeta.addEventListener("click", adicionarMeta);
+    }
 
-    inputMeta.addEventListener("keydown", event => {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            adicionarMeta();
-        }
-    });
+    if (inputMeta) {
+        inputMeta.addEventListener("keydown", event => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                adicionarMeta();
+            }
+        });
+    }
 
     // ==========================================
     // CRIAR META NA LISTA
     // ==========================================
 
     function adicionarMetaNaLista(meta) {
+        if (!metasLista) {
+            return;
+        }
+
         const li = document.createElement("li");
         li.className = "meta-item";
 
@@ -337,7 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const texto = document.createElement("span");
         texto.className = "meta-texto";
-        texto.textContent = meta.descricao;
+        texto.textContent = meta.descricao || "";
 
         const btnExcluir = document.createElement("button");
         btnExcluir.type = "button";
@@ -346,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         btnExcluir.setAttribute(
             "aria-label",
-            `Excluir meta: ${meta.descricao}`
+            `Excluir meta: ${meta.descricao || ""}`
         );
 
         function atualizarAparencia() {
@@ -362,11 +450,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // ==========================================
-        // MARCAR OU DESMARCAR META
+        // MARCAR META COMO CONCLUÍDA
         // ==========================================
 
         checkbox.addEventListener("change", async () => {
-            const estadoAnterior = !checkbox.checked;
+            const estadoNovo = checkbox.checked;
+            const estadoAnterior = !estadoNovo;
 
             checkbox.disabled = true;
 
@@ -374,13 +463,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 await requisicao(
                     `${API_URL}/metas/${meta.id}`,
                     opcoesJSON("PUT", {
-                        concluida: checkbox.checked,
+                        concluida: estadoNovo,
                         usuarioId: usuario.id
                     })
                 );
 
-                meta.concluida = checkbox.checked;
+                meta.concluida = estadoNovo;
                 atualizarAparencia();
+
             } catch (erro) {
                 console.error("Erro ao atualizar meta:", erro);
 
@@ -389,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 alert(
                     "Não foi possível atualizar a meta. " +
-                    "Confira a rota PUT /metas/:id na API."
+                    "Verifique a rota PUT /metas/:id na API."
                 );
             } finally {
                 checkbox.disabled = false;
@@ -420,12 +510,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
                 li.remove();
+
             } catch (erro) {
                 console.error("Erro ao excluir meta:", erro);
 
                 alert(
                     "Não foi possível excluir a meta. " +
-                    "Confira a rota DELETE /metas/:id na API."
+                    "Verifique a rota DELETE /metas/:id na API."
                 );
             } finally {
                 btnExcluir.disabled = false;

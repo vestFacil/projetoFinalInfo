@@ -1,8 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -19,6 +19,7 @@
         href="assets/coruja.png"
     >
 
+    <!-- ESTILOS -->
     <link
         rel="stylesheet"
         href="css/materia.css"
@@ -28,63 +29,47 @@
         rel="stylesheet"
         href="css/recompensas.css"
     >
-
 </head>
-
 
 <body>
 
-
     <!-- AÇÕES DO CANTO SUPERIOR DIREITO -->
-
     <div class="acoes-topo">
 
-
         <!-- RECOMPENSAS -->
-
         <button
             id="btnRecompensas"
             type="button"
             title="Minhas recompensas"
             aria-label="Minhas recompensas"
         >
-
             <img
                 src="assets/estrela.png"
                 class="iconeRecompensas"
                 alt="Recompensas"
             >
-
         </button>
 
-
         <!-- BOTÃO INÍCIO -->
-
         <a
             href="index.html"
             class="botao-inicio"
             title="Voltar para o início"
             aria-label="Voltar para o início"
         >
-
             <img
                 src="assets/casa.png"
                 class="iconeInicio"
                 alt="Início"
             >
-
         </a>
 
-
         <!-- PAINEL DE RECOMPENSAS -->
-
         <div
             id="painelRecompensas"
             style="display: none;"
         >
-
             <h2>
-
                 <img
                     src="assets/estrela.png"
                     class="iconeRecompensas"
@@ -92,137 +77,91 @@
                 >
 
                 Minhas recompensas
-
             </h2>
-
 
             <button
                 id="btnMensagem"
                 type="button"
             >
-
                 Ver mensagem motivacional
-
             </button>
-
 
             <button
                 id="btnDica"
                 type="button"
             >
-
                 Ver dica de estudo
-
             </button>
 
-
             <p id="resultadoRecompensa"></p>
-
         </div>
 
-
     </div>
 
-
-
-
+    <!-- CABEÇALHO -->
     <div class="topo">
-
         <p>Questões</p>
-
     </div>
 
-
-
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <div class="corpo">
 
-
         <p>
-
             Explore uma ampla coleção de questões do ENEM
             para treinar e testar seus conhecimentos.
-
         </p>
 
-
         <div class="materias">
-
 
             <button
                 class="btn-materia"
                 data-materia="linguagens"
             >
-
                 Linguagens
-
             </button>
-
 
             <button
                 class="btn-materia"
                 data-materia="ciencias-humanas"
             >
-
                 Ciências Humanas
-
             </button>
-
 
             <button
                 class="btn-materia"
                 data-materia="ciencias-natureza"
             >
-
                 Ciências da Natureza
-
             </button>
-
 
             <button
                 class="btn-materia"
                 data-materia="matematica"
             >
-
                 Matemática
-
             </button>
-
 
             <button
                 class="btn-materia"
                 data-materia="nao_classificadas"
             >
-
                 Questões não classificadas
-
             </button>
-
 
         </div>
 
-
     </div>
 
-
-
-
+    <!-- QUESTÕES E CONTEÚDOS -->
     <section class="conteudo">
-
 
         <h2 id="tituloMateria"></h2>
 
-
         <div id="listaConteudos"></div>
-
 
     </section>
 
-
-    <!-- =====================================================
-         CRÉDITOS
-         ===================================================== -->
-
+    <!-- RODAPÉ -->
     <footer class="rodape">
 
         <p>© 2026 VestFácil</p>
@@ -234,21 +173,39 @@
 
     </footer>
 
+    <!-- =====================================================
+         VERIFICAÇÃO DE LOGIN E CARREGAMENTO DOS SCRIPTS
+         ===================================================== -->
 
+    <script>
+        (() => {
+            let usuarioLogado = null;
 
-        <script>
-            const usuarioLogado = JSON.parse(
-                localStorage.getItem("usuarioLogado")
-            );
-
-            if (!usuarioLogado || !usuarioLogado.id) {
-                window.location.href = "login.html";
+            try {
+                usuarioLogado = JSON.parse(
+                    localStorage.getItem("usuarioLogado")
+                );
+            } catch (erro) {
+                usuarioLogado = null;
             }
-        </script>
 
-        <script src="js/materia.js"></script>
-        <script src="js/recompensa.js"></script>
+            // Impede o acesso sem um usuário identificado.
+            if (!usuarioLogado || !usuarioLogado.id) {
+                window.location.replace("login.html");
+                return;
+            }
 
+            // Carrega o JavaScript responsável pelas matérias.
+            const scriptMateria = document.createElement("script");
+            scriptMateria.src = "js/materia.js";
+            document.body.appendChild(scriptMateria);
+
+            // Carrega o sistema de recompensas.
+            const scriptRecompensas = document.createElement("script");
+            scriptRecompensas.src = "js/recompensa.js";
+            document.body.appendChild(scriptRecompensas);
+        })();
+    </script>
 
 </body>
 

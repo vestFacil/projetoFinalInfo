@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const nodemailer = require("nodemailer");
 
 const app = express();
 
@@ -32,19 +31,6 @@ db.connect((err) => {
     }
 
     console.log("Conectado ao MySQL com sucesso!");
-});
-
-
-// ========================
-// NODEMAILER
-// ========================
-
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "seuemail@gmail.com",
-        pass: "sua_senha_app"
-    }
 });
 
 
@@ -105,13 +91,6 @@ app.post("/login", (req, res) => {
             if (results.length > 0) {
 
                 const usuario = results[0];
-
-                transporter.sendMail({
-                    from: "seuemail@gmail.com",
-                    to: usuario.email,
-                    subject: "Confirmação de Login",
-                    text: `Olá ${usuario.nome}, você acabou de realizar login. Foi você mesmo?`
-                });
 
                 res.json(usuario);
 
