@@ -93,28 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Usuário identificado no perfil:", usuario.id);
 
     // ==========================================
-    // LÓGICA DE DIAS ESTUDADOS (BASEADO EM LOGIN)
-    // ==========================================
-
-    function registrarDiaEstudo() {
-        const hoje = new Date().toISOString().split('T')[0]; // Data atual no formato YYYY-MM-DD
-        const chaveUltimoLogin = `ultimoLoginData_${usuario.id}`;
-        const chaveDiasEstudados = `diasEstudados_${usuario.id}`;
-
-        const ultimoLogin = localStorage.getItem(chaveUltimoLogin);
-        let dias = parseInt(localStorage.getItem(chaveDiasEstudados)) || 0;
-
-        // Se ainda não registrou login hoje para este usuário, incrementa
-        if (ultimoLogin !== hoje) {
-            dias += 1;
-            localStorage.setItem(chaveUltimoLogin, hoje);
-            localStorage.setItem(chaveDiasEstudados, dias);
-        }
-
-        return dias;
-    }
-
-    // ==========================================
     // REQUISIÇÕES À API
     // ==========================================
 
@@ -183,11 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     dados.questoes_resolvidas ?? 0;
             }
 
-            // Atualiza os dias estudados usando a lógica local de login único diário
-            if (diasEstudando) {
-                const totalDiasEstudo = registrarDiaEstudo();
-                diasEstudando.textContent = totalDiasEstudo;
-            }
+// Atualiza os dias desde o cadastro, usando os dados da API
+if (diasEstudando) {
+    diasEstudando.textContent = dados.dias_estudando ?? 0;
+}
 
             if (maiorSequencia) {
                 maiorSequencia.textContent =
@@ -218,9 +195,9 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Erro ao carregar perfil:", erro);
 
             // Mesmo se a API falhar em algum outro campo, garante que os dias estudados apareçam na tela
-            if (diasEstudando) {
-                diasEstudando.textContent = registrarDiaEstudo();
-            }
+if (diasEstudando) {
+    diasEstudando.textContent = "—";
+}
 
             alert(
                 "Não foi possível carregar o perfil completo. " +
