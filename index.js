@@ -132,7 +132,7 @@ app.get("/perfil/:id", (req, res) => {
                 "SELECT * FROM estatisticas WHERE usuario_id=?",
                 [id],
 
-                (err, estResults) => {
+                async (err, estResults) => {
 
                     if (err) {
                         return res.status(500).send(err);
@@ -143,6 +143,21 @@ app.get("/perfil/:id", (req, res) => {
                             questoes_resolvidas: 0,
                             dias_estudando: 0
                         };
+
+                    const dataCadastro = new Date(usuario.data_cadastro);
+                    const hoje = new Date();
+
+                    dataCadastro.setHours(0, 0, 0, 0);
+                    hoje.setHours(0, 0, 0, 0);
+
+                const [cadastroResults] = await db.promise().query(
+                    `SELECT DATEDIFF(CURDATE(), DATE(data_cadastro)) AS diasCadastro
+                    FROM usuarios
+                    WHERE id = ?`,
+                    [id]
+                );
+
+                const diasCadastro = cadastroResults[0]?.diasCadastro ?? 0; 
 
                     db.query(
                         "SELECT * FROM metas WHERE usuario_id=?",
@@ -157,6 +172,7 @@ app.get("/perfil/:id", (req, res) => {
                             res.json({
                                 ...usuario,
                                 ...estatisticas,
+                                dias_estudando: diasCadastro,
                                 metas: metasResults
                             });
                         }

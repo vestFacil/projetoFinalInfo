@@ -1054,19 +1054,7 @@ botaoVoltar.addEventListener(
     }
 );
 
-window.addEventListener(
-    "beforeunload",
-    event => {
 
-        if (
-            questoesSelecionadas.length > 0
-        ) {
-
-            event.preventDefault();
-            event.returnValue = "";
-        }
-    }
-);
 
 document.addEventListener("keydown", (evento) => {
 
